@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %bundle-name
+Bundle-Vendor: %bundle-vendor
+Bundle-Localization: plugin
+Bundle-SymbolicName: ttworkbench.play.widget.car.rt
+Bundle-Version: 1.0.0
+Require-Bundle: com.testingtech.tools
+Export-Package: com.testingtech.ttworkbench.play.generated
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

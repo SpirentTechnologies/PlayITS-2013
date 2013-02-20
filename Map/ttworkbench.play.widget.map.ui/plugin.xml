@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="com.testingtech.ttworkbench.play.dashboard.widget">
+      <widget
+            class="ttworkbench.play.widget.map.ui.MapWidgetFactory"
+            clf="configuration/main.clf"
+            description="..."
+            icon="icons/widget.png"
+            name="Map"
+            runtime-plugin="ttworkbench.play.widget.map.rt">
+      </widget>
+   </extension>
+
+</plugin>
