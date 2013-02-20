@@ -1,0 +1,42 @@
+package PROTO_API;
+option java_generic_services = true;
+option java_package = "com.testingtech.ttworkbench.play.generated";
+option java_outer_classname = "PROTO_API";
+
+message onOffEngineType {
+  required bool engineStatus = 1;
+}
+
+message speedType {
+  required sint64 speed = 1;
+}
+
+message trackNumberType {
+  repeated string track = 1;
+}
+
+message warningType {
+  repeated string warning = 1;
+}
+
+message carStatusType {
+  required bool engineStatus = 1;
+  required sint64 speed = 2;
+  required string track = 3;
+  required string warning = 4;
+}
+
+message Void {}
+
+service ACTIONS {
+  rpc API_onOffEngineType(PROTO_API.onOffEngineType) returns (Void);
+  rpc API_speedType(PROTO_API.speedType) returns (Void);
+  rpc API_trackNumberType(PROTO_API.trackNumberType) returns (Void);
+  rpc API_warningType(PROTO_API.warningType) returns (Void);
+}
+
+service EVENTS {
+  rpc API_carStatusType(PROTO_API.carStatusType) returns (Void);
+}
+
+
