@@ -1,0 +1,42 @@
+
+
+module API {
+    
+    type record onOffEngineType {
+        boolean engineStatus 
+    }
+    
+    type record speedType {
+        integer speed
+    }
+    
+    type record trackNumberType {
+        record of charstring track
+    }
+    
+    type record warningType {
+        record of charstring warning
+    }
+    
+    type record carStatusType {
+        boolean engineStatus,
+        integer speed,
+        charstring track,
+        charstring warning
+    }
+    
+    type port widgetPort message {
+        out carStatusType;
+        in onOffEngineType, speedType, trackNumberType, warningType;
+    }
+    
+     type port carPort message {
+        in carStatusType;
+        out onOffEngineType, speedType, trackNumberType, warningType;
+    }
+       
+    type component engine {
+        port widgetPort toCarPort;
+        port carPort toWidgetPort;
+    }
+}
