@@ -1,4 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testadapter>
-
+  <codec encode="">
+    <plugin id="com.testingtech.ttcn.XTestAdapter.builtin.tci.codecs">
+      <parameter id="class" value="com.testingtech.ttcn.tci.codec.plugin.ValueStringCodecPluginProvider"/>
+    </plugin>
+    <parameter id="default" value="true"/>
+  </codec>
+  <codec encode="proto">
+    <plugin id="com.testingtech.ttcn.proto.ProtoRuntimePlugin">
+      <parameter id="class" value="com.testingtech.ttworkbench.proto.codec.runtime.ProtoCodecProvider"/>
+    </plugin>
+  </codec>
+  <port>
+    <plugin id="com.testingtech.ttworkbench.tt3rt.tcp.port.TcpPortPlugin">
+      <parameter id="class" value="com.testingtech.ttworkbench.tt3rt.tcp.port.TcpPortPluginProvider"/>
+    </plugin>
+    <parameter id="taParams">
+      <parameter id="TCP_MODE">
+        <value>
+          <Values:charstring name="" type="charstring">
+            <Values:value>mixed</Values:value>
+          </Values:charstring>
+        </value>
+      </parameter>
+      <parameter id="TCP_LOCAL_HOST">
+        <value>
+          <Values:charstring name="" type="charstring">
+            <Values:value>localhost</Values:value>
+          </Values:charstring>
+        </value>
+      </parameter>
+      <parameter id="TCP_LOCAL_PORT">
+        <value>
+          <Values:integer name="" type="integer">
+            <Values:value>5000</Values:value>
+          </Values:integer>
+        </value>
+      </parameter>
+      <parameter id="TCP_REMOTE_HOST">
+        <value>
+          <Values:charstring name="" type="charstring">
+            <Values:value>localhost</Values:value>
+          </Values:charstring>
+        </value>
+      </parameter>
+      <parameter id="TCP_REMOTE_PORT">
+        <value>
+          <Values:integer name="" type="integer">
+            <Values:value>5000</Values:value>
+          </Values:integer>
+        </value>
+      </parameter>
+      <parameter id="TCP_SERVER_WAIT_TIME">
+        <value>
+          <Values:integer xmlns:Values="Values.xsd" type="integer">
+              <Values:value>-1</Values:value>
+            </Values:integer>
+        </value>
+      </parameter>
+    </parameter>
+    <parameter id="default" value="true"/>
+    <parameter id="portType" value="CONFIG_API.PROTO_EVENTS_widgetPort"/>
+    <parameter id="portFilters">
+      <parameter id="portFilter">
+        <parameter id="pluginId" value="com.testingtech.ttcn.proto.ProtoRuntimePlugin"/>
+        <parameter id="class" value="com.testingtech.ttworkbench.proto.filter.ProtobufRpcMessageSplitterFilterProvider"/>
+      </parameter>
+      <parameter id="portFilter">
+        <parameter id="pluginId" value="com.testingtech.ttcn.proto.ProtoRuntimePlugin"/>
+        <parameter id="class" value="com.testingtech.ttworkbench.proto.filter.socketrpc.SocketRPCProtoServiceFilterProvider"/>
+      </parameter>
+    </parameter>
+  </port>
 </testadapter>
