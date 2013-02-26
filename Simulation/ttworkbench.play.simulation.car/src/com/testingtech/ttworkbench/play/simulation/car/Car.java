@@ -1,149 +1,138 @@
 package com.testingtech.ttworkbench.play.simulation.car;
 
+public class Car implements CarInterface {
 
-public class Car implements CarInterface{
-	boolean engine,abs,esp,airbagActivated,airbagTriggered,light,foglamp, rainsensor, lightsensor, breaks;
-	
-	double speed, maxspeed, tirePressure, tank, petrolUsage;
-	
-	GPSposition pos = new GPSposition(0,0);
-	Damage health = Damage.FullHealth;
-	Warnings warning[];
-	Sensors sensors = new Sensors(true, true, true, true, true, 100, (new Tires(2.5, 2.5, 2.5, 2.5)));
-	
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	static int carID;
 
+	double speed, maxSpeed, petrolUsage;
+	private Warnings warning[];
+	Sensors sensors;
+	boolean engine;
+
+	GPSpositionOfCar position = new GPSpositionOfCar();
+	
+	public Car(double speed, double maxSpeed, double tirePressure,
+			double tankFill, double petrolUsage, boolean lightExists,
+			boolean rainExists, boolean tankFillExists,
+			boolean tirePressureExists, boolean espExists, boolean absExists,
+			boolean airbagExists, boolean fogLightExists) {
+		super();
+		this.speed = speed;
+		this.maxSpeed = maxSpeed;
+		this.petrolUsage = petrolUsage;
+		this.sensors = new Sensors(lightExists, rainExists, tankFillExists,
+				airbagExists, espExists, absExists, fogLightExists, tirePressure, tankFill);
+		carID++;
 	}
 
-	private void tankFillUpdate(double usage, double speed){
-		//calculate 
-	}
 	
 	@Override
 	public boolean toggleEngine() {
-		// TODO Auto-generated method stub
-		return false;
+		if (!engine) {
+			engine = true;
+			sensors.toggleOn();
+			return true;
+		} else {
+			engine = sensors.abs = sensors.esp = sensors.light = sensors.fogLight = sensors.breaks = false;
+			sensors.toggleOff();
+			return false;
+		}
+	}
+
+	@Override
+	public boolean toggleFogLight() {
+		sensors.fogLight = !sensors.fogLight;
+		return sensors.fogLight;
 	}
 
 	@Override
 	public boolean toggleLight() {
-		// TODO Auto-generated method stub
-		return false;
+		if (sensors.light) {
+			sensors.fogLight = false;
+		}
+		sensors.light = !sensors.light;
+		return sensors.light;
 	}
 
 	@Override
 	public double setSpeed(double speed) {
-		// TODO Auto-generated method stub
-		return 0;
+		this.speed = speed;
+		return this.speed;
 	}
 
 	@Override
 	public double getSpeed() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.speed;
 	}
 
 	@Override
 	public boolean toggleESP() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean toggleAirbag() {
-		// TODO Auto-generated method stub
-		return false;
+		sensors.esp = !sensors.esp;
+		return sensors.esp;
 	}
 
 	@Override
 	public boolean toggleWarningSender() {
-		// TODO Auto-generated method stub
+		// TODO toggleWaningSender
 		return false;
 	}
 
 	@Override
 	public boolean toggleWarningReceiver() {
-		// TODO Auto-generated method stub
+		// TODO toggleWarningReceiver
 		return false;
 	}
 
 	@Override
 	public boolean toggleLightSensor() {
-		// TODO Auto-generated method stub
-		return false;
+		sensors.light = !sensors.light;
+		return sensors.light;
 	}
 
 	@Override
 	public boolean toggleRainSensor() {
-		// TODO Auto-generated method stub
-		return false;
+		sensors.rain = !sensors.rain;
+		return sensors.rain;
 	}
 
 	@Override
 	public GPSposition getGPSPosition() {
-		// TODO Auto-generated method stub
-		return null;
+		return position.currentPosition;
 	}
 
 	@Override
 	public GPSposition setGPSPosition(GPSposition position) {
-		// TODO Auto-generated method stub
-		return null;
+		this.position.currentPosition = position;
+		return this.position;
 	}
 
 	@Override
 	public double getTankFill() {
-		// TODO Auto-generated method stub
-		return 0;
+		return sensors.tankFillLevel;
 	}
 
 	@Override
-	public boolean triggerAirbag() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void breaking() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Damage getDamage() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Damage setDamage(Damage d) {
-		// TODO Auto-generated method stub
-		return null;
+	public double breaking() {
+		double result = speed * speed / 200;
+		return result;
 	}
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-		/*
-		 * check warnings[], Sensors, damage,  
-		 * 
-		 */
-		
-	}
+		// TODO update
+		// check warnings[], Sensors, damage,
 
-	@Override
-	public boolean toggleFogLight() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean toggleABS() {
-		// TODO Auto-generated method stub
-		return false;
+		// TODO change true to a variable so it can be closed reasonable
+		while (true) {
+			//get the new tankfill level
+			position.
+			
+			/*
+			 * TODO calculate distance between the two KML gps coordinates let
+			 * car drive that distanace
+			 */
+			
+			//TODO get distance with sine and cosine do this in the GPSpositionOfCar class
+		}
 	}
 }

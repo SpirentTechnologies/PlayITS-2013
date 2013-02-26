@@ -1,6 +1,5 @@
 package com.testingtech.ttworkbench.play.simulation.car;
 
-
 public class Tires {
 	double leftFront,rightFront, leftBack, rightBack;
 	
