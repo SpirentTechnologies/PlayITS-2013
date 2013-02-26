@@ -1,3 +1,5 @@
+package com.testingtech.ttworkbench.play.simulation.car;
+
 
 public class Car implements CarInterface {
 
@@ -8,7 +10,7 @@ public class Car implements CarInterface {
     GPSposition newPosition = worldStartPosition;
     GPSposition oldPosition = newPosition;
     private Warnings warning[];
-    Sensors sensors = new Sensors(true, true, true, 100, (new Tires(2.5, 2.5, 2.5, 2.5)));
+    Sensors sensors = new Sensors(true, true, true, true, true, 100, (new Tires(2.5, 2.5, 2.5, 2.5)));
 
     public Car(boolean engine, boolean esp, boolean light, boolean foglamp, boolean breaks, double speed, double maxspeed, double tirePressure, double tankFill, double petrolUsage) {
         this.engine = engine;
