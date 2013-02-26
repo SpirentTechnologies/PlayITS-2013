@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE campaignloader PUBLIC "-//TESTING TECH//DTD MLF//1.9" "mlf.dtd">
 <campaignloader>
-  <campaign Name="main.clf" Control="false">
+  <campaign Name="main" Control="false">
     <testadapter Name="com.testingtech.ttcn.tri.PluginTestAdapter" File="">
       <description>configuration/taconfig.xml</description>
     </testadapter>

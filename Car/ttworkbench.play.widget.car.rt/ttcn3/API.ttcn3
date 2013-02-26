@@ -1,42 +1,75 @@
 
 
+/**
+ * @desc 
+ */
 module API {
     
+    import from CONFIG_CAR {type CarComponent;}
+
+    
+
+    type enumerated warning {
+        deer, rain, ice, accident, fog, snow
+    }
+	
+    type record gpsPosition {
+        float latitude,
+        float longitude
+    }
+	
     type record onOffEngineType {
-        boolean engineStatus 
+        boolean engineStatus
     }
     
     type record speedType {
-        integer speed
+        float speed
     }
     
-    type record trackNumberType {
-        record of charstring track
+    type record trackType {
+        charstring trackName
     }
     
+    /**
+     * @desc 
+     * @member warningName
+     * @member gpsPos
+     * @member priority
+     */
     type record warningType {
-        record of charstring warning
+        warning warningName,
+        gpsPosition gpsPos,
+        integer priority
     }
     
+    /**
+     * @desc 
+     * @member engineStatus
+     * @member speed
+     * @member absSensor
+     * @member espSensor
+     * @member lightSensor
+     * @member fogLightSensor
+     * @member fuelFilling
+     * @member gpsPos
+     * @member warning
+     */
     type record carStatusType {
         boolean engineStatus,
-        integer speed,
-        charstring track,
-        charstring warning
+        float speed,
+        boolean absSensor,
+        boolean espSensor,
+        boolean lightSensor,
+        boolean fogLightSensor,
+        float fuelFilling,
+        gpsPosition gpsPos,
+        warningType warning
     }
     
     type port widgetPort message {
         out carStatusType;
-        in onOffEngineType, speedType, trackNumberType, warningType;
+        in onOffEngineType, speedType, trackType, warningType;
     }
-    
-     type port carPort message {
-        in carStatusType;
-        out onOffEngineType, speedType, trackNumberType, warningType;
-    }
-       
-    type component engine {
-        port widgetPort toCarPort;
-        port carPort toWidgetPort;
-    }
+   
+    type component engine extends CONFIG_CAR.CarComponent {}
 }

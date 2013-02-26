@@ -3,27 +3,51 @@ option java_generic_services = true;
 option java_package = "com.testingtech.ttworkbench.play.generated";
 option java_outer_classname = "PROTO_API";
 
+message warning {
+  enum EnumValue {
+    deer = 1;
+    rain = 2;
+    ice = 3;
+    accident = 4;
+    fog = 5;
+    snow = 6;
+  }
+  required EnumValue enum_value = 1;
+}
+
+message gpsPosition {
+  required float latitude = 1;
+  required float longitude = 2;
+}
+
 message onOffEngineType {
   required bool engineStatus = 1;
 }
 
 message speedType {
-  required sint64 speed = 1;
+  required float speed = 1;
 }
 
-message trackNumberType {
-  repeated string track = 1;
+message trackType {
+  required string trackName = 1;
 }
 
 message warningType {
-  repeated string warning = 1;
+  required PROTO_API.warning warningName = 1;
+  required PROTO_API.gpsPosition gpsPos = 2;
+  required sint64 priority = 3;
 }
 
 message carStatusType {
   required bool engineStatus = 1;
-  required sint64 speed = 2;
-  required string track = 3;
-  required string warning = 4;
+  required float speed = 2;
+  required bool absSensor = 3;
+  required bool espSensor = 4;
+  required bool lightSensor = 5;
+  required bool fogLightSensor = 6;
+  required float fuelFilling = 7;
+  required PROTO_API.gpsPosition gpsPos = 8;
+  required PROTO_API.warningType warning = 9;
 }
 
 message Void {}
@@ -31,7 +55,7 @@ message Void {}
 service ACTIONS {
   rpc API_onOffEngineType(PROTO_API.onOffEngineType) returns (Void);
   rpc API_speedType(PROTO_API.speedType) returns (Void);
-  rpc API_trackNumberType(PROTO_API.trackNumberType) returns (Void);
+  rpc API_trackType(PROTO_API.trackType) returns (Void);
   rpc API_warningType(PROTO_API.warningType) returns (Void);
 }
 
