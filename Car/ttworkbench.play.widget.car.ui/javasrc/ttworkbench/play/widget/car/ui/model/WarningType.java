@@ -7,7 +7,8 @@ public class WarningType {
 	
 	private float distance;
 	private Warnings warning;
-	private int priority;
+	private long priority;
+	private GPSposition gpsPosition;
 	/**
 	 * @return the distance
 	 */
@@ -35,14 +36,26 @@ public class WarningType {
 	/**
 	 * @return the priority
 	 */
-	public int getPriority() {
+	public long getPriority() {
 		return priority;
 	}
 	/**
-	 * @param priority the priority to set
+	 * @param l the priority to set
 	 */
-	public void setPriority(int priority) {
-		this.priority = priority;
+	public void setPriority(long l) {
+		this.priority = l;
+	}
+	/**
+	 * @return the gpsPosition
+	 */
+	public GPSposition getGpsPosition() {
+		return gpsPosition;
+	}
+	/**
+	 * @param gpsPosition the gpsPosition to set
+	 */
+	public void setGpsPosition(GPSposition gpsPosition) {
+		this.gpsPosition = gpsPosition;
 	}
 	
 	
