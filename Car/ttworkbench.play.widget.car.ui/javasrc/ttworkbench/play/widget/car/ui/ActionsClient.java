@@ -10,5 +10,6 @@ public class ActionsClient extends AbstractActionsClient<PROTO_API.ACTIONS.Block
   protected PROTO_API.ACTIONS.BlockingInterface createActionsService(BlockingRpcChannel blockingChannel) {
     return PROTO_API.ACTIONS.newBlockingStub(blockingChannel);
   }
-  
+
+
 }

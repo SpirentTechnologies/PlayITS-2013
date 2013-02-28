@@ -5,6 +5,7 @@ import com.testingtech.ttworkbench.play.dashboard.widget.IDashboard;
 import com.testingtech.ttworkbench.play.dashboard.widget.IDashboardWidget;
 import com.testingtech.ttworkbench.play.generated.PROTO_API;
 
+
 public class CarWidgetFactory extends AbstractDashboardWidgetFactory<ICarModel, PROTO_API.ACTIONS.BlockingInterface> {
 	
 	public IDashboardWidget<ICarModel> create(IDashboard dashboard) {

@@ -1,10 +1,13 @@
 package ttworkbench.play.widget.car.ui.model;
 
+import ttworkbench.play.widget.car.ui.model.Warnings;
+
 
 public class WarningType {
 	
 	private float distance;
 	private Warnings warning;
+	private int priority;
 	/**
 	 * @return the distance
 	 */
@@ -28,6 +31,18 @@ public class WarningType {
 	 */
 	public void setWarning(Warnings warning) {
 		this.warning = warning;
+	}
+	/**
+	 * @return the priority
+	 */
+	public int getPriority() {
+		return priority;
+	}
+	/**
+	 * @param priority the priority to set
+	 */
+	public void setPriority(int priority) {
+		this.priority = priority;
 	}
 	
 	
