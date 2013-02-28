@@ -1,40 +1,58 @@
 
 
 /**
- * @desc 
+ * @desc Description of the Car simulation API.
  */
 module API {
     
     import from CONFIG_CAR {type CarComponent;}
 
-    
-
+    /**
+     * @desc The warning type lists the possible modes of a warning.
+     */
     type enumerated warning {
         deer, rain, ice, accident, fog, snow
     }
 	
+    /**
+    * @desc GPS position of the car.
+    * @member latitude Position in latitude direction.
+    * @member longitude Position in longitude direction.
+    */
     type record gpsPosition {
         float latitude,
         float longitude
     }
 	
+	/**
+	 * @desc States the status of the engine.
+	 * @member engineStatus True, if engine is on, false else.
+	 */
     type record onOffEngineType {
         boolean engineStatus
     }
     
+    /**
+     * @desc Type for current speed of the car.
+     * @member speed Speed in double precision.
+     */
     type record speedType {
         float speed
     }
     
+    /**
+     * @desc The type of the track could simply be the number or the name of the track.
+     * @member trackName Only charstring is provided.
+     */
     type record trackType {
         charstring trackName
     }
     
     /**
-     * @desc 
-     * @member warningName
-     * @member gpsPos
-     * @member priority
+     * @desc The message of a single warning.
+     * @member warningName Type of a warning, see type record warning for possible members.
+     * @member gpsPos Stores the location of the warning.
+     * @member priority Warnings of higher priority need to be served first.
      */
     type record warningType {
         warning warningName,
@@ -43,16 +61,16 @@ module API {
     }
     
     /**
-     * @desc 
-     * @member engineStatus
-     * @member speed
-     * @member absSensor
-     * @member espSensor
-     * @member lightSensor
-     * @member fogLightSensor
-     * @member fuelFilling
-     * @member gpsPos
-     * @member warning
+     * @desc Describes the overall status of one car.
+     * @member engineStatus Is the engine going or not.
+     * @member speed Current speed of the car.
+     * @member absSensor Is the ABS sensor triggered? 
+     * @member espSensor Is the EPS sensor triggered?
+     * @member lightSensor Is the light sensor triggered?
+     * @member fogLightSensor Is the fog light sensor triggered?
+     * @member fuelFilling How much is left in the tank?
+     * @member gpsPos Where is the car at the moment?
+     * @member warning What warning is triggered?
      */
     type record carStatusType {
         boolean engineStatus,
@@ -66,6 +84,9 @@ module API {
         warningType warning
     }
     
+    /**
+     * 
+     */
     type port widgetPort message {
         out carStatusType;
         in onOffEngineType, speedType, trackType, warningType;
