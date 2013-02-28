@@ -8,6 +8,853 @@ public final class PROTO_API {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
+  public interface warningOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // required .PROTO_API.warning.EnumValue enum_value = 1;
+    boolean hasEnumValue();
+    com.testingtech.ttworkbench.play.generated.PROTO_API.warning.EnumValue getEnumValue();
+  }
+  public static final class warning extends
+      com.google.protobuf.GeneratedMessage
+      implements warningOrBuilder {
+    // Use warning.newBuilder() to construct.
+    private warning(Builder builder) {
+      super(builder);
+    }
+    private warning(boolean noInit) {}
+    
+    private static final warning defaultInstance;
+    public static warning getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public warning getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.testingtech.ttworkbench.play.generated.PROTO_API.internal_static_PROTO_API_warning_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.testingtech.ttworkbench.play.generated.PROTO_API.internal_static_PROTO_API_warning_fieldAccessorTable;
+    }
+    
+    public enum EnumValue
+        implements com.google.protobuf.ProtocolMessageEnum {
+      deer(0, 1),
+      rain(1, 2),
+      ice(2, 3),
+      accident(3, 4),
+      fog(4, 5),
+      snow(5, 6),
+      ;
+      
+      public static final int deer_VALUE = 1;
+      public static final int rain_VALUE = 2;
+      public static final int ice_VALUE = 3;
+      public static final int accident_VALUE = 4;
+      public static final int fog_VALUE = 5;
+      public static final int snow_VALUE = 6;
+      
+      
+      public final int getNumber() { return value; }
+      
+      public static EnumValue valueOf(int value) {
+        switch (value) {
+          case 1: return deer;
+          case 2: return rain;
+          case 3: return ice;
+          case 4: return accident;
+          case 5: return fog;
+          case 6: return snow;
+          default: return null;
+        }
+      }
+      
+      public static com.google.protobuf.Internal.EnumLiteMap<EnumValue>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static com.google.protobuf.Internal.EnumLiteMap<EnumValue>
+          internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<EnumValue>() {
+              public EnumValue findValueByNumber(int number) {
+                return EnumValue.valueOf(number);
+              }
+            };
+      
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(index);
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return com.testingtech.ttworkbench.play.generated.PROTO_API.warning.getDescriptor().getEnumTypes().get(0);
+      }
+      
+      private static final EnumValue[] VALUES = {
+        deer, rain, ice, accident, fog, snow, 
+      };
+      
+      public static EnumValue valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        return VALUES[desc.getIndex()];
+      }
+      
+      private final int index;
+      private final int value;
+      
+      private EnumValue(int index, int value) {
+        this.index = index;
+        this.value = value;
+      }
+      
+      // @@protoc_insertion_point(enum_scope:PROTO_API.warning.EnumValue)
+    }
+    
+    private int bitField0_;
+    // required .PROTO_API.warning.EnumValue enum_value = 1;
+    public static final int ENUM_VALUE_FIELD_NUMBER = 1;
+    private com.testingtech.ttworkbench.play.generated.PROTO_API.warning.EnumValue enumValue_;
+    public boolean hasEnumValue() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public com.testingtech.ttworkbench.play.generated.PROTO_API.warning.EnumValue getEnumValue() {
+      return enumValue_;
+    }
+    
+    private void initFields() {
+      enumValue_ = com.testingtech.ttworkbench.play.generated.PROTO_API.warning.EnumValue.deer;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      if (!hasEnumValue()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeEnum(1, enumValue_.getNumber());
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, enumValue_.getNumber());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.warning parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.warning parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.warning parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.warning parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.warning parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.warning parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.warning parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.warning parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.warning parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.warning parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.testingtech.ttworkbench.play.generated.PROTO_API.warning prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.testingtech.ttworkbench.play.generated.PROTO_API.warningOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.testingtech.ttworkbench.play.generated.PROTO_API.internal_static_PROTO_API_warning_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.testingtech.ttworkbench.play.generated.PROTO_API.internal_static_PROTO_API_warning_fieldAccessorTable;
+      }
+      
+      // Construct using com.testingtech.ttworkbench.play.generated.PROTO_API.warning.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        enumValue_ = com.testingtech.ttworkbench.play.generated.PROTO_API.warning.EnumValue.deer;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.testingtech.ttworkbench.play.generated.PROTO_API.warning.getDescriptor();
+      }
+      
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.warning getDefaultInstanceForType() {
+        return com.testingtech.ttworkbench.play.generated.PROTO_API.warning.getDefaultInstance();
+      }
+      
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.warning build() {
+        com.testingtech.ttworkbench.play.generated.PROTO_API.warning result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private com.testingtech.ttworkbench.play.generated.PROTO_API.warning buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        com.testingtech.ttworkbench.play.generated.PROTO_API.warning result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.warning buildPartial() {
+        com.testingtech.ttworkbench.play.generated.PROTO_API.warning result = new com.testingtech.ttworkbench.play.generated.PROTO_API.warning(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.enumValue_ = enumValue_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.testingtech.ttworkbench.play.generated.PROTO_API.warning) {
+          return mergeFrom((com.testingtech.ttworkbench.play.generated.PROTO_API.warning)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(com.testingtech.ttworkbench.play.generated.PROTO_API.warning other) {
+        if (other == com.testingtech.ttworkbench.play.generated.PROTO_API.warning.getDefaultInstance()) return this;
+        if (other.hasEnumValue()) {
+          setEnumValue(other.getEnumValue());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        if (!hasEnumValue()) {
+          
+          return false;
+        }
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 8: {
+              int rawValue = input.readEnum();
+              com.testingtech.ttworkbench.play.generated.PROTO_API.warning.EnumValue value = com.testingtech.ttworkbench.play.generated.PROTO_API.warning.EnumValue.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(1, rawValue);
+              } else {
+                bitField0_ |= 0x00000001;
+                enumValue_ = value;
+              }
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // required .PROTO_API.warning.EnumValue enum_value = 1;
+      private com.testingtech.ttworkbench.play.generated.PROTO_API.warning.EnumValue enumValue_ = com.testingtech.ttworkbench.play.generated.PROTO_API.warning.EnumValue.deer;
+      public boolean hasEnumValue() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.warning.EnumValue getEnumValue() {
+        return enumValue_;
+      }
+      public Builder setEnumValue(com.testingtech.ttworkbench.play.generated.PROTO_API.warning.EnumValue value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000001;
+        enumValue_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearEnumValue() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        enumValue_ = com.testingtech.ttworkbench.play.generated.PROTO_API.warning.EnumValue.deer;
+        onChanged();
+        return this;
+      }
+      
+      // @@protoc_insertion_point(builder_scope:PROTO_API.warning)
+    }
+    
+    static {
+      defaultInstance = new warning(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:PROTO_API.warning)
+  }
+  
+  public interface gpsPositionOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // required float latitude = 1;
+    boolean hasLatitude();
+    float getLatitude();
+    
+    // required float longitude = 2;
+    boolean hasLongitude();
+    float getLongitude();
+  }
+  public static final class gpsPosition extends
+      com.google.protobuf.GeneratedMessage
+      implements gpsPositionOrBuilder {
+    // Use gpsPosition.newBuilder() to construct.
+    private gpsPosition(Builder builder) {
+      super(builder);
+    }
+    private gpsPosition(boolean noInit) {}
+    
+    private static final gpsPosition defaultInstance;
+    public static gpsPosition getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public gpsPosition getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.testingtech.ttworkbench.play.generated.PROTO_API.internal_static_PROTO_API_gpsPosition_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.testingtech.ttworkbench.play.generated.PROTO_API.internal_static_PROTO_API_gpsPosition_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // required float latitude = 1;
+    public static final int LATITUDE_FIELD_NUMBER = 1;
+    private float latitude_;
+    public boolean hasLatitude() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public float getLatitude() {
+      return latitude_;
+    }
+    
+    // required float longitude = 2;
+    public static final int LONGITUDE_FIELD_NUMBER = 2;
+    private float longitude_;
+    public boolean hasLongitude() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public float getLongitude() {
+      return longitude_;
+    }
+    
+    private void initFields() {
+      latitude_ = 0F;
+      longitude_ = 0F;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      if (!hasLatitude()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasLongitude()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeFloat(1, latitude_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeFloat(2, longitude_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(1, latitude_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(2, longitude_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPositionOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.testingtech.ttworkbench.play.generated.PROTO_API.internal_static_PROTO_API_gpsPosition_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.testingtech.ttworkbench.play.generated.PROTO_API.internal_static_PROTO_API_gpsPosition_fieldAccessorTable;
+      }
+      
+      // Construct using com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        latitude_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        longitude_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.getDescriptor();
+      }
+      
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition getDefaultInstanceForType() {
+        return com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.getDefaultInstance();
+      }
+      
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition build() {
+        com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition buildPartial() {
+        com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition result = new com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.latitude_ = latitude_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.longitude_ = longitude_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition) {
+          return mergeFrom((com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition other) {
+        if (other == com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.getDefaultInstance()) return this;
+        if (other.hasLatitude()) {
+          setLatitude(other.getLatitude());
+        }
+        if (other.hasLongitude()) {
+          setLongitude(other.getLongitude());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        if (!hasLatitude()) {
+          
+          return false;
+        }
+        if (!hasLongitude()) {
+          
+          return false;
+        }
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 13: {
+              bitField0_ |= 0x00000001;
+              latitude_ = input.readFloat();
+              break;
+            }
+            case 21: {
+              bitField0_ |= 0x00000002;
+              longitude_ = input.readFloat();
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // required float latitude = 1;
+      private float latitude_ ;
+      public boolean hasLatitude() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public float getLatitude() {
+        return latitude_;
+      }
+      public Builder setLatitude(float value) {
+        bitField0_ |= 0x00000001;
+        latitude_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearLatitude() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        latitude_ = 0F;
+        onChanged();
+        return this;
+      }
+      
+      // required float longitude = 2;
+      private float longitude_ ;
+      public boolean hasLongitude() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public float getLongitude() {
+        return longitude_;
+      }
+      public Builder setLongitude(float value) {
+        bitField0_ |= 0x00000002;
+        longitude_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearLongitude() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        longitude_ = 0F;
+        onChanged();
+        return this;
+      }
+      
+      // @@protoc_insertion_point(builder_scope:PROTO_API.gpsPosition)
+    }
+    
+    static {
+      defaultInstance = new gpsPosition(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:PROTO_API.gpsPosition)
+  }
+  
   public interface onOffEngineTypeOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
@@ -357,9 +1204,9 @@ public final class PROTO_API {
   public interface speedTypeOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // required sint64 speed = 1;
+    // required float speed = 1;
     boolean hasSpeed();
-    long getSpeed();
+    float getSpeed();
   }
   public static final class speedType extends
       com.google.protobuf.GeneratedMessage
@@ -390,18 +1237,18 @@ public final class PROTO_API {
     }
     
     private int bitField0_;
-    // required sint64 speed = 1;
+    // required float speed = 1;
     public static final int SPEED_FIELD_NUMBER = 1;
-    private long speed_;
+    private float speed_;
     public boolean hasSpeed() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public long getSpeed() {
+    public float getSpeed() {
       return speed_;
     }
     
     private void initFields() {
-      speed_ = 0L;
+      speed_ = 0F;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -420,7 +1267,7 @@ public final class PROTO_API {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeSInt64(1, speed_);
+        output.writeFloat(1, speed_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -433,7 +1280,7 @@ public final class PROTO_API {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeSInt64Size(1, speed_);
+          .computeFloatSize(1, speed_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -559,7 +1406,7 @@ public final class PROTO_API {
       
       public Builder clear() {
         super.clear();
-        speed_ = 0L;
+        speed_ = 0F;
         bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
@@ -657,9 +1504,9 @@ public final class PROTO_API {
               }
               break;
             }
-            case 8: {
+            case 13: {
               bitField0_ |= 0x00000001;
-              speed_ = input.readSInt64();
+              speed_ = input.readFloat();
               break;
             }
           }
@@ -668,15 +1515,15 @@ public final class PROTO_API {
       
       private int bitField0_;
       
-      // required sint64 speed = 1;
-      private long speed_ ;
+      // required float speed = 1;
+      private float speed_ ;
       public boolean hasSpeed() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public long getSpeed() {
+      public float getSpeed() {
         return speed_;
       }
-      public Builder setSpeed(long value) {
+      public Builder setSpeed(float value) {
         bitField0_ |= 0x00000001;
         speed_ = value;
         onChanged();
@@ -684,7 +1531,7 @@ public final class PROTO_API {
       }
       public Builder clearSpeed() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        speed_ = 0L;
+        speed_ = 0F;
         onChanged();
         return this;
       }
@@ -700,64 +1547,86 @@ public final class PROTO_API {
     // @@protoc_insertion_point(class_scope:PROTO_API.speedType)
   }
   
-  public interface trackNumberTypeOrBuilder
+  public interface trackTypeOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // repeated string track = 1;
-    java.util.List<String> getTrackList();
-    int getTrackCount();
-    String getTrack(int index);
+    // required string trackName = 1;
+    boolean hasTrackName();
+    String getTrackName();
   }
-  public static final class trackNumberType extends
+  public static final class trackType extends
       com.google.protobuf.GeneratedMessage
-      implements trackNumberTypeOrBuilder {
-    // Use trackNumberType.newBuilder() to construct.
-    private trackNumberType(Builder builder) {
+      implements trackTypeOrBuilder {
+    // Use trackType.newBuilder() to construct.
+    private trackType(Builder builder) {
       super(builder);
     }
-    private trackNumberType(boolean noInit) {}
+    private trackType(boolean noInit) {}
     
-    private static final trackNumberType defaultInstance;
-    public static trackNumberType getDefaultInstance() {
+    private static final trackType defaultInstance;
+    public static trackType getDefaultInstance() {
       return defaultInstance;
     }
     
-    public trackNumberType getDefaultInstanceForType() {
+    public trackType getDefaultInstanceForType() {
       return defaultInstance;
     }
     
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.testingtech.ttworkbench.play.generated.PROTO_API.internal_static_PROTO_API_trackNumberType_descriptor;
+      return com.testingtech.ttworkbench.play.generated.PROTO_API.internal_static_PROTO_API_trackType_descriptor;
     }
     
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.testingtech.ttworkbench.play.generated.PROTO_API.internal_static_PROTO_API_trackNumberType_fieldAccessorTable;
+      return com.testingtech.ttworkbench.play.generated.PROTO_API.internal_static_PROTO_API_trackType_fieldAccessorTable;
     }
     
-    // repeated string track = 1;
-    public static final int TRACK_FIELD_NUMBER = 1;
-    private com.google.protobuf.LazyStringList track_;
-    public java.util.List<String>
-        getTrackList() {
-      return track_;
+    private int bitField0_;
+    // required string trackName = 1;
+    public static final int TRACKNAME_FIELD_NUMBER = 1;
+    private java.lang.Object trackName_;
+    public boolean hasTrackName() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public int getTrackCount() {
-      return track_.size();
+    public String getTrackName() {
+      java.lang.Object ref = trackName_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          trackName_ = s;
+        }
+        return s;
+      }
     }
-    public String getTrack(int index) {
-      return track_.get(index);
+    private com.google.protobuf.ByteString getTrackNameBytes() {
+      java.lang.Object ref = trackName_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        trackName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
     private void initFields() {
-      track_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      trackName_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
       
+      if (!hasTrackName()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -765,8 +1634,8 @@ public final class PROTO_API {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
-      for (int i = 0; i < track_.size(); i++) {
-        output.writeBytes(1, track_.getByteString(i));
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getTrackNameBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -777,14 +1646,9 @@ public final class PROTO_API {
       if (size != -1) return size;
     
       size = 0;
-      {
-        int dataSize = 0;
-        for (int i = 0; i < track_.size(); i++) {
-          dataSize += com.google.protobuf.CodedOutputStream
-            .computeBytesSizeNoTag(track_.getByteString(i));
-        }
-        size += dataSize;
-        size += 1 * getTrackList().size();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getTrackNameBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -798,41 +1662,41 @@ public final class PROTO_API {
       return super.writeReplace();
     }
     
-    public static com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType parseFrom(
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.trackType parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType parseFrom(
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.trackType parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType parseFrom(byte[] data)
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.trackType parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data).buildParsed();
     }
-    public static com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType parseFrom(
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.trackType parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return newBuilder().mergeFrom(data, extensionRegistry)
                .buildParsed();
     }
-    public static com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType parseFrom(java.io.InputStream input)
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.trackType parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType parseFrom(
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.trackType parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input, extensionRegistry)
                .buildParsed();
     }
-    public static com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType parseDelimitedFrom(java.io.InputStream input)
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.trackType parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       Builder builder = newBuilder();
       if (builder.mergeDelimitedFrom(input)) {
@@ -841,7 +1705,7 @@ public final class PROTO_API {
         return null;
       }
     }
-    public static com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType parseDelimitedFrom(
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.trackType parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -852,12 +1716,12 @@ public final class PROTO_API {
         return null;
       }
     }
-    public static com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType parseFrom(
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.trackType parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return newBuilder().mergeFrom(input).buildParsed();
     }
-    public static com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType parseFrom(
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.trackType parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -867,7 +1731,7 @@ public final class PROTO_API {
     
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType prototype) {
+    public static Builder newBuilder(com.testingtech.ttworkbench.play.generated.PROTO_API.trackType prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -880,18 +1744,18 @@ public final class PROTO_API {
     }
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberTypeOrBuilder {
+       implements com.testingtech.ttworkbench.play.generated.PROTO_API.trackTypeOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.testingtech.ttworkbench.play.generated.PROTO_API.internal_static_PROTO_API_trackNumberType_descriptor;
+        return com.testingtech.ttworkbench.play.generated.PROTO_API.internal_static_PROTO_API_trackType_descriptor;
       }
       
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.testingtech.ttworkbench.play.generated.PROTO_API.internal_static_PROTO_API_trackNumberType_fieldAccessorTable;
+        return com.testingtech.ttworkbench.play.generated.PROTO_API.internal_static_PROTO_API_trackType_fieldAccessorTable;
       }
       
-      // Construct using com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType.newBuilder()
+      // Construct using com.testingtech.ttworkbench.play.generated.PROTO_API.trackType.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -910,7 +1774,7 @@ public final class PROTO_API {
       
       public Builder clear() {
         super.clear();
-        track_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        trackName_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
@@ -921,24 +1785,24 @@ public final class PROTO_API {
       
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType.getDescriptor();
+        return com.testingtech.ttworkbench.play.generated.PROTO_API.trackType.getDescriptor();
       }
       
-      public com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType getDefaultInstanceForType() {
-        return com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType.getDefaultInstance();
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.trackType getDefaultInstanceForType() {
+        return com.testingtech.ttworkbench.play.generated.PROTO_API.trackType.getDefaultInstance();
       }
       
-      public com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType build() {
-        com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType result = buildPartial();
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.trackType build() {
+        com.testingtech.ttworkbench.play.generated.PROTO_API.trackType result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
       
-      private com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType buildParsed()
+      private com.testingtech.ttworkbench.play.generated.PROTO_API.trackType buildParsed()
           throws com.google.protobuf.InvalidProtocolBufferException {
-        com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType result = buildPartial();
+        com.testingtech.ttworkbench.play.generated.PROTO_API.trackType result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(
             result).asInvalidProtocolBufferException();
@@ -946,45 +1810,42 @@ public final class PROTO_API {
         return result;
       }
       
-      public com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType buildPartial() {
-        com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType result = new com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType(this);
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.trackType buildPartial() {
+        com.testingtech.ttworkbench.play.generated.PROTO_API.trackType result = new com.testingtech.ttworkbench.play.generated.PROTO_API.trackType(this);
         int from_bitField0_ = bitField0_;
-        if (((bitField0_ & 0x00000001) == 0x00000001)) {
-          track_ = new com.google.protobuf.UnmodifiableLazyStringList(
-              track_);
-          bitField0_ = (bitField0_ & ~0x00000001);
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
         }
-        result.track_ = track_;
+        result.trackName_ = trackName_;
+        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
       
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType) {
-          return mergeFrom((com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType)other);
+        if (other instanceof com.testingtech.ttworkbench.play.generated.PROTO_API.trackType) {
+          return mergeFrom((com.testingtech.ttworkbench.play.generated.PROTO_API.trackType)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
       
-      public Builder mergeFrom(com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType other) {
-        if (other == com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType.getDefaultInstance()) return this;
-        if (!other.track_.isEmpty()) {
-          if (track_.isEmpty()) {
-            track_ = other.track_;
-            bitField0_ = (bitField0_ & ~0x00000001);
-          } else {
-            ensureTrackIsMutable();
-            track_.addAll(other.track_);
-          }
-          onChanged();
+      public Builder mergeFrom(com.testingtech.ttworkbench.play.generated.PROTO_API.trackType other) {
+        if (other == com.testingtech.ttworkbench.play.generated.PROTO_API.trackType.getDefaultInstance()) return this;
+        if (other.hasTrackName()) {
+          setTrackName(other.getTrackName());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
       
       public final boolean isInitialized() {
+        if (!hasTrackName()) {
+          
+          return false;
+        }
         return true;
       }
       
@@ -1012,8 +1873,8 @@ public final class PROTO_API {
               break;
             }
             case 10: {
-              ensureTrackIsMutable();
-              track_.add(input.readBytes());
+              bitField0_ |= 0x00000001;
+              trackName_ = input.readBytes();
               break;
             }
           }
@@ -1022,80 +1883,69 @@ public final class PROTO_API {
       
       private int bitField0_;
       
-      // repeated string track = 1;
-      private com.google.protobuf.LazyStringList track_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      private void ensureTrackIsMutable() {
-        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
-          track_ = new com.google.protobuf.LazyStringArrayList(track_);
-          bitField0_ |= 0x00000001;
-         }
+      // required string trackName = 1;
+      private java.lang.Object trackName_ = "";
+      public boolean hasTrackName() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public java.util.List<String>
-          getTrackList() {
-        return java.util.Collections.unmodifiableList(track_);
+      public String getTrackName() {
+        java.lang.Object ref = trackName_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          trackName_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public int getTrackCount() {
-        return track_.size();
-      }
-      public String getTrack(int index) {
-        return track_.get(index);
-      }
-      public Builder setTrack(
-          int index, String value) {
+      public Builder setTrackName(String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  ensureTrackIsMutable();
-        track_.set(index, value);
+  bitField0_ |= 0x00000001;
+        trackName_ = value;
         onChanged();
         return this;
       }
-      public Builder addTrack(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureTrackIsMutable();
-        track_.add(value);
-        onChanged();
-        return this;
-      }
-      public Builder addAllTrack(
-          java.lang.Iterable<String> values) {
-        ensureTrackIsMutable();
-        super.addAll(values, track_);
-        onChanged();
-        return this;
-      }
-      public Builder clearTrack() {
-        track_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      public Builder clearTrackName() {
         bitField0_ = (bitField0_ & ~0x00000001);
+        trackName_ = getDefaultInstance().getTrackName();
         onChanged();
         return this;
       }
-      void addTrack(com.google.protobuf.ByteString value) {
-        ensureTrackIsMutable();
-        track_.add(value);
+      void setTrackName(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        trackName_ = value;
         onChanged();
       }
       
-      // @@protoc_insertion_point(builder_scope:PROTO_API.trackNumberType)
+      // @@protoc_insertion_point(builder_scope:PROTO_API.trackType)
     }
     
     static {
-      defaultInstance = new trackNumberType(true);
+      defaultInstance = new trackType(true);
       defaultInstance.initFields();
     }
     
-    // @@protoc_insertion_point(class_scope:PROTO_API.trackNumberType)
+    // @@protoc_insertion_point(class_scope:PROTO_API.trackType)
   }
   
   public interface warningTypeOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // repeated string warning = 1;
-    java.util.List<String> getWarningList();
-    int getWarningCount();
-    String getWarning(int index);
+    // required .PROTO_API.warning warningName = 1;
+    boolean hasWarningName();
+    com.testingtech.ttworkbench.play.generated.PROTO_API.warning getWarningName();
+    com.testingtech.ttworkbench.play.generated.PROTO_API.warningOrBuilder getWarningNameOrBuilder();
+    
+    // required .PROTO_API.gpsPosition gpsPos = 2;
+    boolean hasGpsPos();
+    com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition getGpsPos();
+    com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPositionOrBuilder getGpsPosOrBuilder();
+    
+    // required sint64 priority = 3;
+    boolean hasPriority();
+    long getPriority();
   }
   public static final class warningType extends
       com.google.protobuf.GeneratedMessage
@@ -1125,28 +1975,73 @@ public final class PROTO_API {
       return com.testingtech.ttworkbench.play.generated.PROTO_API.internal_static_PROTO_API_warningType_fieldAccessorTable;
     }
     
-    // repeated string warning = 1;
-    public static final int WARNING_FIELD_NUMBER = 1;
-    private com.google.protobuf.LazyStringList warning_;
-    public java.util.List<String>
-        getWarningList() {
-      return warning_;
+    private int bitField0_;
+    // required .PROTO_API.warning warningName = 1;
+    public static final int WARNINGNAME_FIELD_NUMBER = 1;
+    private com.testingtech.ttworkbench.play.generated.PROTO_API.warning warningName_;
+    public boolean hasWarningName() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public int getWarningCount() {
-      return warning_.size();
+    public com.testingtech.ttworkbench.play.generated.PROTO_API.warning getWarningName() {
+      return warningName_;
     }
-    public String getWarning(int index) {
-      return warning_.get(index);
+    public com.testingtech.ttworkbench.play.generated.PROTO_API.warningOrBuilder getWarningNameOrBuilder() {
+      return warningName_;
+    }
+    
+    // required .PROTO_API.gpsPosition gpsPos = 2;
+    public static final int GPSPOS_FIELD_NUMBER = 2;
+    private com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition gpsPos_;
+    public boolean hasGpsPos() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition getGpsPos() {
+      return gpsPos_;
+    }
+    public com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPositionOrBuilder getGpsPosOrBuilder() {
+      return gpsPos_;
+    }
+    
+    // required sint64 priority = 3;
+    public static final int PRIORITY_FIELD_NUMBER = 3;
+    private long priority_;
+    public boolean hasPriority() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public long getPriority() {
+      return priority_;
     }
     
     private void initFields() {
-      warning_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      warningName_ = com.testingtech.ttworkbench.play.generated.PROTO_API.warning.getDefaultInstance();
+      gpsPos_ = com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.getDefaultInstance();
+      priority_ = 0L;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
       
+      if (!hasWarningName()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasGpsPos()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasPriority()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!getWarningName().isInitialized()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!getGpsPos().isInitialized()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -1154,8 +2049,14 @@ public final class PROTO_API {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
-      for (int i = 0; i < warning_.size(); i++) {
-        output.writeBytes(1, warning_.getByteString(i));
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeMessage(1, warningName_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeMessage(2, gpsPos_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeSInt64(3, priority_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -1166,14 +2067,17 @@ public final class PROTO_API {
       if (size != -1) return size;
     
       size = 0;
-      {
-        int dataSize = 0;
-        for (int i = 0; i < warning_.size(); i++) {
-          dataSize += com.google.protobuf.CodedOutputStream
-            .computeBytesSizeNoTag(warning_.getByteString(i));
-        }
-        size += dataSize;
-        size += 1 * getWarningList().size();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, warningName_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, gpsPos_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeSInt64Size(3, priority_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1291,6 +2195,8 @@ public final class PROTO_API {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getWarningNameFieldBuilder();
+          getGpsPosFieldBuilder();
         }
       }
       private static Builder create() {
@@ -1299,8 +2205,20 @@ public final class PROTO_API {
       
       public Builder clear() {
         super.clear();
-        warning_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        if (warningNameBuilder_ == null) {
+          warningName_ = com.testingtech.ttworkbench.play.generated.PROTO_API.warning.getDefaultInstance();
+        } else {
+          warningNameBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000001);
+        if (gpsPosBuilder_ == null) {
+          gpsPos_ = com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.getDefaultInstance();
+        } else {
+          gpsPosBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        priority_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       
@@ -1338,12 +2256,28 @@ public final class PROTO_API {
       public com.testingtech.ttworkbench.play.generated.PROTO_API.warningType buildPartial() {
         com.testingtech.ttworkbench.play.generated.PROTO_API.warningType result = new com.testingtech.ttworkbench.play.generated.PROTO_API.warningType(this);
         int from_bitField0_ = bitField0_;
-        if (((bitField0_ & 0x00000001) == 0x00000001)) {
-          warning_ = new com.google.protobuf.UnmodifiableLazyStringList(
-              warning_);
-          bitField0_ = (bitField0_ & ~0x00000001);
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
         }
-        result.warning_ = warning_;
+        if (warningNameBuilder_ == null) {
+          result.warningName_ = warningName_;
+        } else {
+          result.warningName_ = warningNameBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        if (gpsPosBuilder_ == null) {
+          result.gpsPos_ = gpsPos_;
+        } else {
+          result.gpsPos_ = gpsPosBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.priority_ = priority_;
+        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -1359,21 +2293,40 @@ public final class PROTO_API {
       
       public Builder mergeFrom(com.testingtech.ttworkbench.play.generated.PROTO_API.warningType other) {
         if (other == com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.getDefaultInstance()) return this;
-        if (!other.warning_.isEmpty()) {
-          if (warning_.isEmpty()) {
-            warning_ = other.warning_;
-            bitField0_ = (bitField0_ & ~0x00000001);
-          } else {
-            ensureWarningIsMutable();
-            warning_.addAll(other.warning_);
-          }
-          onChanged();
+        if (other.hasWarningName()) {
+          mergeWarningName(other.getWarningName());
+        }
+        if (other.hasGpsPos()) {
+          mergeGpsPos(other.getGpsPos());
+        }
+        if (other.hasPriority()) {
+          setPriority(other.getPriority());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
       
       public final boolean isInitialized() {
+        if (!hasWarningName()) {
+          
+          return false;
+        }
+        if (!hasGpsPos()) {
+          
+          return false;
+        }
+        if (!hasPriority()) {
+          
+          return false;
+        }
+        if (!getWarningName().isInitialized()) {
+          
+          return false;
+        }
+        if (!getGpsPos().isInitialized()) {
+          
+          return false;
+        }
         return true;
       }
       
@@ -1401,8 +2354,26 @@ public final class PROTO_API {
               break;
             }
             case 10: {
-              ensureWarningIsMutable();
-              warning_.add(input.readBytes());
+              com.testingtech.ttworkbench.play.generated.PROTO_API.warning.Builder subBuilder = com.testingtech.ttworkbench.play.generated.PROTO_API.warning.newBuilder();
+              if (hasWarningName()) {
+                subBuilder.mergeFrom(getWarningName());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setWarningName(subBuilder.buildPartial());
+              break;
+            }
+            case 18: {
+              com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.Builder subBuilder = com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.newBuilder();
+              if (hasGpsPos()) {
+                subBuilder.mergeFrom(getGpsPos());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setGpsPos(subBuilder.buildPartial());
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              priority_ = input.readSInt64();
               break;
             }
           }
@@ -1411,60 +2382,205 @@ public final class PROTO_API {
       
       private int bitField0_;
       
-      // repeated string warning = 1;
-      private com.google.protobuf.LazyStringList warning_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      private void ensureWarningIsMutable() {
-        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
-          warning_ = new com.google.protobuf.LazyStringArrayList(warning_);
-          bitField0_ |= 0x00000001;
-         }
+      // required .PROTO_API.warning warningName = 1;
+      private com.testingtech.ttworkbench.play.generated.PROTO_API.warning warningName_ = com.testingtech.ttworkbench.play.generated.PROTO_API.warning.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.testingtech.ttworkbench.play.generated.PROTO_API.warning, com.testingtech.ttworkbench.play.generated.PROTO_API.warning.Builder, com.testingtech.ttworkbench.play.generated.PROTO_API.warningOrBuilder> warningNameBuilder_;
+      public boolean hasWarningName() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public java.util.List<String>
-          getWarningList() {
-        return java.util.Collections.unmodifiableList(warning_);
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.warning getWarningName() {
+        if (warningNameBuilder_ == null) {
+          return warningName_;
+        } else {
+          return warningNameBuilder_.getMessage();
+        }
       }
-      public int getWarningCount() {
-        return warning_.size();
-      }
-      public String getWarning(int index) {
-        return warning_.get(index);
-      }
-      public Builder setWarning(
-          int index, String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureWarningIsMutable();
-        warning_.set(index, value);
-        onChanged();
+      public Builder setWarningName(com.testingtech.ttworkbench.play.generated.PROTO_API.warning value) {
+        if (warningNameBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          warningName_ = value;
+          onChanged();
+        } else {
+          warningNameBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000001;
         return this;
       }
-      public Builder addWarning(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureWarningIsMutable();
-        warning_.add(value);
-        onChanged();
+      public Builder setWarningName(
+          com.testingtech.ttworkbench.play.generated.PROTO_API.warning.Builder builderForValue) {
+        if (warningNameBuilder_ == null) {
+          warningName_ = builderForValue.build();
+          onChanged();
+        } else {
+          warningNameBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000001;
         return this;
       }
-      public Builder addAllWarning(
-          java.lang.Iterable<String> values) {
-        ensureWarningIsMutable();
-        super.addAll(values, warning_);
-        onChanged();
+      public Builder mergeWarningName(com.testingtech.ttworkbench.play.generated.PROTO_API.warning value) {
+        if (warningNameBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001) &&
+              warningName_ != com.testingtech.ttworkbench.play.generated.PROTO_API.warning.getDefaultInstance()) {
+            warningName_ =
+              com.testingtech.ttworkbench.play.generated.PROTO_API.warning.newBuilder(warningName_).mergeFrom(value).buildPartial();
+          } else {
+            warningName_ = value;
+          }
+          onChanged();
+        } else {
+          warningNameBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000001;
         return this;
       }
-      public Builder clearWarning() {
-        warning_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      public Builder clearWarningName() {
+        if (warningNameBuilder_ == null) {
+          warningName_ = com.testingtech.ttworkbench.play.generated.PROTO_API.warning.getDefaultInstance();
+          onChanged();
+        } else {
+          warningNameBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.warning.Builder getWarningNameBuilder() {
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return getWarningNameFieldBuilder().getBuilder();
+      }
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.warningOrBuilder getWarningNameOrBuilder() {
+        if (warningNameBuilder_ != null) {
+          return warningNameBuilder_.getMessageOrBuilder();
+        } else {
+          return warningName_;
+        }
+      }
+      private com.google.protobuf.SingleFieldBuilder<
+          com.testingtech.ttworkbench.play.generated.PROTO_API.warning, com.testingtech.ttworkbench.play.generated.PROTO_API.warning.Builder, com.testingtech.ttworkbench.play.generated.PROTO_API.warningOrBuilder> 
+          getWarningNameFieldBuilder() {
+        if (warningNameBuilder_ == null) {
+          warningNameBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.testingtech.ttworkbench.play.generated.PROTO_API.warning, com.testingtech.ttworkbench.play.generated.PROTO_API.warning.Builder, com.testingtech.ttworkbench.play.generated.PROTO_API.warningOrBuilder>(
+                  warningName_,
+                  getParentForChildren(),
+                  isClean());
+          warningName_ = null;
+        }
+        return warningNameBuilder_;
+      }
+      
+      // required .PROTO_API.gpsPosition gpsPos = 2;
+      private com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition gpsPos_ = com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition, com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.Builder, com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPositionOrBuilder> gpsPosBuilder_;
+      public boolean hasGpsPos() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition getGpsPos() {
+        if (gpsPosBuilder_ == null) {
+          return gpsPos_;
+        } else {
+          return gpsPosBuilder_.getMessage();
+        }
+      }
+      public Builder setGpsPos(com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition value) {
+        if (gpsPosBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          gpsPos_ = value;
+          onChanged();
+        } else {
+          gpsPosBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      public Builder setGpsPos(
+          com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.Builder builderForValue) {
+        if (gpsPosBuilder_ == null) {
+          gpsPos_ = builderForValue.build();
+          onChanged();
+        } else {
+          gpsPosBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      public Builder mergeGpsPos(com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition value) {
+        if (gpsPosBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+              gpsPos_ != com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.getDefaultInstance()) {
+            gpsPos_ =
+              com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.newBuilder(gpsPos_).mergeFrom(value).buildPartial();
+          } else {
+            gpsPos_ = value;
+          }
+          onChanged();
+        } else {
+          gpsPosBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      public Builder clearGpsPos() {
+        if (gpsPosBuilder_ == null) {
+          gpsPos_ = com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.getDefaultInstance();
+          onChanged();
+        } else {
+          gpsPosBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.Builder getGpsPosBuilder() {
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return getGpsPosFieldBuilder().getBuilder();
+      }
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPositionOrBuilder getGpsPosOrBuilder() {
+        if (gpsPosBuilder_ != null) {
+          return gpsPosBuilder_.getMessageOrBuilder();
+        } else {
+          return gpsPos_;
+        }
+      }
+      private com.google.protobuf.SingleFieldBuilder<
+          com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition, com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.Builder, com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPositionOrBuilder> 
+          getGpsPosFieldBuilder() {
+        if (gpsPosBuilder_ == null) {
+          gpsPosBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition, com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.Builder, com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPositionOrBuilder>(
+                  gpsPos_,
+                  getParentForChildren(),
+                  isClean());
+          gpsPos_ = null;
+        }
+        return gpsPosBuilder_;
+      }
+      
+      // required sint64 priority = 3;
+      private long priority_ ;
+      public boolean hasPriority() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public long getPriority() {
+        return priority_;
+      }
+      public Builder setPriority(long value) {
+        bitField0_ |= 0x00000004;
+        priority_ = value;
         onChanged();
         return this;
       }
-      void addWarning(com.google.protobuf.ByteString value) {
-        ensureWarningIsMutable();
-        warning_.add(value);
+      public Builder clearPriority() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        priority_ = 0L;
         onChanged();
+        return this;
       }
       
       // @@protoc_insertion_point(builder_scope:PROTO_API.warningType)
@@ -1485,17 +2601,39 @@ public final class PROTO_API {
     boolean hasEngineStatus();
     boolean getEngineStatus();
     
-    // required sint64 speed = 2;
+    // required float speed = 2;
     boolean hasSpeed();
-    long getSpeed();
+    float getSpeed();
     
-    // required string track = 3;
-    boolean hasTrack();
-    String getTrack();
+    // required bool absSensor = 3;
+    boolean hasAbsSensor();
+    boolean getAbsSensor();
     
-    // required string warning = 4;
+    // required bool espSensor = 4;
+    boolean hasEspSensor();
+    boolean getEspSensor();
+    
+    // required bool lightSensor = 5;
+    boolean hasLightSensor();
+    boolean getLightSensor();
+    
+    // required bool fogLightSensor = 6;
+    boolean hasFogLightSensor();
+    boolean getFogLightSensor();
+    
+    // required float fuelFilling = 7;
+    boolean hasFuelFilling();
+    float getFuelFilling();
+    
+    // required .PROTO_API.gpsPosition gpsPos = 8;
+    boolean hasGpsPos();
+    com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition getGpsPos();
+    com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPositionOrBuilder getGpsPosOrBuilder();
+    
+    // required .PROTO_API.warningType warning = 9;
     boolean hasWarning();
-    String getWarning();
+    com.testingtech.ttworkbench.play.generated.PROTO_API.warningType getWarning();
+    com.testingtech.ttworkbench.play.generated.PROTO_API.warningTypeOrBuilder getWarningOrBuilder();
   }
   public static final class carStatusType extends
       com.google.protobuf.GeneratedMessage
@@ -1536,85 +2674,102 @@ public final class PROTO_API {
       return engineStatus_;
     }
     
-    // required sint64 speed = 2;
+    // required float speed = 2;
     public static final int SPEED_FIELD_NUMBER = 2;
-    private long speed_;
+    private float speed_;
     public boolean hasSpeed() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public long getSpeed() {
+    public float getSpeed() {
       return speed_;
     }
     
-    // required string track = 3;
-    public static final int TRACK_FIELD_NUMBER = 3;
-    private java.lang.Object track_;
-    public boolean hasTrack() {
+    // required bool absSensor = 3;
+    public static final int ABSSENSOR_FIELD_NUMBER = 3;
+    private boolean absSensor_;
+    public boolean hasAbsSensor() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    public String getTrack() {
-      java.lang.Object ref = track_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          track_ = s;
-        }
-        return s;
-      }
-    }
-    private com.google.protobuf.ByteString getTrackBytes() {
-      java.lang.Object ref = track_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        track_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public boolean getAbsSensor() {
+      return absSensor_;
     }
     
-    // required string warning = 4;
-    public static final int WARNING_FIELD_NUMBER = 4;
-    private java.lang.Object warning_;
-    public boolean hasWarning() {
+    // required bool espSensor = 4;
+    public static final int ESPSENSOR_FIELD_NUMBER = 4;
+    private boolean espSensor_;
+    public boolean hasEspSensor() {
       return ((bitField0_ & 0x00000008) == 0x00000008);
     }
-    public String getWarning() {
-      java.lang.Object ref = warning_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          warning_ = s;
-        }
-        return s;
-      }
+    public boolean getEspSensor() {
+      return espSensor_;
     }
-    private com.google.protobuf.ByteString getWarningBytes() {
-      java.lang.Object ref = warning_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        warning_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    
+    // required bool lightSensor = 5;
+    public static final int LIGHTSENSOR_FIELD_NUMBER = 5;
+    private boolean lightSensor_;
+    public boolean hasLightSensor() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    public boolean getLightSensor() {
+      return lightSensor_;
+    }
+    
+    // required bool fogLightSensor = 6;
+    public static final int FOGLIGHTSENSOR_FIELD_NUMBER = 6;
+    private boolean fogLightSensor_;
+    public boolean hasFogLightSensor() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    public boolean getFogLightSensor() {
+      return fogLightSensor_;
+    }
+    
+    // required float fuelFilling = 7;
+    public static final int FUELFILLING_FIELD_NUMBER = 7;
+    private float fuelFilling_;
+    public boolean hasFuelFilling() {
+      return ((bitField0_ & 0x00000040) == 0x00000040);
+    }
+    public float getFuelFilling() {
+      return fuelFilling_;
+    }
+    
+    // required .PROTO_API.gpsPosition gpsPos = 8;
+    public static final int GPSPOS_FIELD_NUMBER = 8;
+    private com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition gpsPos_;
+    public boolean hasGpsPos() {
+      return ((bitField0_ & 0x00000080) == 0x00000080);
+    }
+    public com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition getGpsPos() {
+      return gpsPos_;
+    }
+    public com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPositionOrBuilder getGpsPosOrBuilder() {
+      return gpsPos_;
+    }
+    
+    // required .PROTO_API.warningType warning = 9;
+    public static final int WARNING_FIELD_NUMBER = 9;
+    private com.testingtech.ttworkbench.play.generated.PROTO_API.warningType warning_;
+    public boolean hasWarning() {
+      return ((bitField0_ & 0x00000100) == 0x00000100);
+    }
+    public com.testingtech.ttworkbench.play.generated.PROTO_API.warningType getWarning() {
+      return warning_;
+    }
+    public com.testingtech.ttworkbench.play.generated.PROTO_API.warningTypeOrBuilder getWarningOrBuilder() {
+      return warning_;
     }
     
     private void initFields() {
       engineStatus_ = false;
-      speed_ = 0L;
-      track_ = "";
-      warning_ = "";
+      speed_ = 0F;
+      absSensor_ = false;
+      espSensor_ = false;
+      lightSensor_ = false;
+      fogLightSensor_ = false;
+      fuelFilling_ = 0F;
+      gpsPos_ = com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.getDefaultInstance();
+      warning_ = com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -1629,11 +2784,39 @@ public final class PROTO_API {
         memoizedIsInitialized = 0;
         return false;
       }
-      if (!hasTrack()) {
+      if (!hasAbsSensor()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasEspSensor()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasLightSensor()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasFogLightSensor()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasFuelFilling()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasGpsPos()) {
         memoizedIsInitialized = 0;
         return false;
       }
       if (!hasWarning()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!getGpsPos().isInitialized()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!getWarning().isInitialized()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -1648,13 +2831,28 @@ public final class PROTO_API {
         output.writeBool(1, engineStatus_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeSInt64(2, speed_);
+        output.writeFloat(2, speed_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getTrackBytes());
+        output.writeBool(3, absSensor_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBytes(4, getWarningBytes());
+        output.writeBool(4, espSensor_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeBool(5, lightSensor_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeBool(6, fogLightSensor_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeFloat(7, fuelFilling_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        output.writeMessage(8, gpsPos_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        output.writeMessage(9, warning_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -1671,15 +2869,35 @@ public final class PROTO_API {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeSInt64Size(2, speed_);
+          .computeFloatSize(2, speed_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getTrackBytes());
+          .computeBoolSize(3, absSensor_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, getWarningBytes());
+          .computeBoolSize(4, espSensor_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(5, lightSensor_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(6, fogLightSensor_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(7, fuelFilling_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(8, gpsPos_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(9, warning_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1797,6 +3015,8 @@ public final class PROTO_API {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getGpsPosFieldBuilder();
+          getWarningFieldBuilder();
         }
       }
       private static Builder create() {
@@ -1807,12 +3027,30 @@ public final class PROTO_API {
         super.clear();
         engineStatus_ = false;
         bitField0_ = (bitField0_ & ~0x00000001);
-        speed_ = 0L;
+        speed_ = 0F;
         bitField0_ = (bitField0_ & ~0x00000002);
-        track_ = "";
+        absSensor_ = false;
         bitField0_ = (bitField0_ & ~0x00000004);
-        warning_ = "";
+        espSensor_ = false;
         bitField0_ = (bitField0_ & ~0x00000008);
+        lightSensor_ = false;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        fogLightSensor_ = false;
+        bitField0_ = (bitField0_ & ~0x00000020);
+        fuelFilling_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000040);
+        if (gpsPosBuilder_ == null) {
+          gpsPos_ = com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.getDefaultInstance();
+        } else {
+          gpsPosBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000080);
+        if (warningBuilder_ == null) {
+          warning_ = com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.getDefaultInstance();
+        } else {
+          warningBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000100);
         return this;
       }
       
@@ -1862,11 +3100,39 @@ public final class PROTO_API {
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.track_ = track_;
+        result.absSensor_ = absSensor_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.warning_ = warning_;
+        result.espSensor_ = espSensor_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.lightSensor_ = lightSensor_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.fogLightSensor_ = fogLightSensor_;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
+        }
+        result.fuelFilling_ = fuelFilling_;
+        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
+          to_bitField0_ |= 0x00000080;
+        }
+        if (gpsPosBuilder_ == null) {
+          result.gpsPos_ = gpsPos_;
+        } else {
+          result.gpsPos_ = gpsPosBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
+          to_bitField0_ |= 0x00000100;
+        }
+        if (warningBuilder_ == null) {
+          result.warning_ = warning_;
+        } else {
+          result.warning_ = warningBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1889,11 +3155,26 @@ public final class PROTO_API {
         if (other.hasSpeed()) {
           setSpeed(other.getSpeed());
         }
-        if (other.hasTrack()) {
-          setTrack(other.getTrack());
+        if (other.hasAbsSensor()) {
+          setAbsSensor(other.getAbsSensor());
+        }
+        if (other.hasEspSensor()) {
+          setEspSensor(other.getEspSensor());
+        }
+        if (other.hasLightSensor()) {
+          setLightSensor(other.getLightSensor());
+        }
+        if (other.hasFogLightSensor()) {
+          setFogLightSensor(other.getFogLightSensor());
+        }
+        if (other.hasFuelFilling()) {
+          setFuelFilling(other.getFuelFilling());
+        }
+        if (other.hasGpsPos()) {
+          mergeGpsPos(other.getGpsPos());
         }
         if (other.hasWarning()) {
-          setWarning(other.getWarning());
+          mergeWarning(other.getWarning());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -1908,11 +3189,39 @@ public final class PROTO_API {
           
           return false;
         }
-        if (!hasTrack()) {
+        if (!hasAbsSensor()) {
+          
+          return false;
+        }
+        if (!hasEspSensor()) {
+          
+          return false;
+        }
+        if (!hasLightSensor()) {
+          
+          return false;
+        }
+        if (!hasFogLightSensor()) {
+          
+          return false;
+        }
+        if (!hasFuelFilling()) {
+          
+          return false;
+        }
+        if (!hasGpsPos()) {
           
           return false;
         }
         if (!hasWarning()) {
+          
+          return false;
+        }
+        if (!getGpsPos().isInitialized()) {
+          
+          return false;
+        }
+        if (!getWarning().isInitialized()) {
           
           return false;
         }
@@ -1947,19 +3256,52 @@ public final class PROTO_API {
               engineStatus_ = input.readBool();
               break;
             }
-            case 16: {
+            case 21: {
               bitField0_ |= 0x00000002;
-              speed_ = input.readSInt64();
+              speed_ = input.readFloat();
               break;
             }
-            case 26: {
+            case 24: {
               bitField0_ |= 0x00000004;
-              track_ = input.readBytes();
+              absSensor_ = input.readBool();
               break;
             }
-            case 34: {
+            case 32: {
               bitField0_ |= 0x00000008;
-              warning_ = input.readBytes();
+              espSensor_ = input.readBool();
+              break;
+            }
+            case 40: {
+              bitField0_ |= 0x00000010;
+              lightSensor_ = input.readBool();
+              break;
+            }
+            case 48: {
+              bitField0_ |= 0x00000020;
+              fogLightSensor_ = input.readBool();
+              break;
+            }
+            case 61: {
+              bitField0_ |= 0x00000040;
+              fuelFilling_ = input.readFloat();
+              break;
+            }
+            case 66: {
+              com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.Builder subBuilder = com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.newBuilder();
+              if (hasGpsPos()) {
+                subBuilder.mergeFrom(getGpsPos());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setGpsPos(subBuilder.buildPartial());
+              break;
+            }
+            case 74: {
+              com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.Builder subBuilder = com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.newBuilder();
+              if (hasWarning()) {
+                subBuilder.mergeFrom(getWarning());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setWarning(subBuilder.buildPartial());
               break;
             }
           }
@@ -1989,15 +3331,15 @@ public final class PROTO_API {
         return this;
       }
       
-      // required sint64 speed = 2;
-      private long speed_ ;
+      // required float speed = 2;
+      private float speed_ ;
       public boolean hasSpeed() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      public long getSpeed() {
+      public float getSpeed() {
         return speed_;
       }
-      public Builder setSpeed(long value) {
+      public Builder setSpeed(float value) {
         bitField0_ |= 0x00000002;
         speed_ = value;
         onChanged();
@@ -2005,81 +3347,294 @@ public final class PROTO_API {
       }
       public Builder clearSpeed() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        speed_ = 0L;
+        speed_ = 0F;
         onChanged();
         return this;
       }
       
-      // required string track = 3;
-      private java.lang.Object track_ = "";
-      public boolean hasTrack() {
+      // required bool absSensor = 3;
+      private boolean absSensor_ ;
+      public boolean hasAbsSensor() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      public String getTrack() {
-        java.lang.Object ref = track_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          track_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
+      public boolean getAbsSensor() {
+        return absSensor_;
       }
-      public Builder setTrack(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
-        track_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearTrack() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        track_ = getDefaultInstance().getTrack();
-        onChanged();
-        return this;
-      }
-      void setTrack(com.google.protobuf.ByteString value) {
+      public Builder setAbsSensor(boolean value) {
         bitField0_ |= 0x00000004;
-        track_ = value;
+        absSensor_ = value;
         onChanged();
+        return this;
+      }
+      public Builder clearAbsSensor() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        absSensor_ = false;
+        onChanged();
+        return this;
       }
       
-      // required string warning = 4;
-      private java.lang.Object warning_ = "";
-      public boolean hasWarning() {
+      // required bool espSensor = 4;
+      private boolean espSensor_ ;
+      public boolean hasEspSensor() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
-      public String getWarning() {
-        java.lang.Object ref = warning_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          warning_ = s;
-          return s;
+      public boolean getEspSensor() {
+        return espSensor_;
+      }
+      public Builder setEspSensor(boolean value) {
+        bitField0_ |= 0x00000008;
+        espSensor_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearEspSensor() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        espSensor_ = false;
+        onChanged();
+        return this;
+      }
+      
+      // required bool lightSensor = 5;
+      private boolean lightSensor_ ;
+      public boolean hasLightSensor() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      public boolean getLightSensor() {
+        return lightSensor_;
+      }
+      public Builder setLightSensor(boolean value) {
+        bitField0_ |= 0x00000010;
+        lightSensor_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearLightSensor() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        lightSensor_ = false;
+        onChanged();
+        return this;
+      }
+      
+      // required bool fogLightSensor = 6;
+      private boolean fogLightSensor_ ;
+      public boolean hasFogLightSensor() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      public boolean getFogLightSensor() {
+        return fogLightSensor_;
+      }
+      public Builder setFogLightSensor(boolean value) {
+        bitField0_ |= 0x00000020;
+        fogLightSensor_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearFogLightSensor() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        fogLightSensor_ = false;
+        onChanged();
+        return this;
+      }
+      
+      // required float fuelFilling = 7;
+      private float fuelFilling_ ;
+      public boolean hasFuelFilling() {
+        return ((bitField0_ & 0x00000040) == 0x00000040);
+      }
+      public float getFuelFilling() {
+        return fuelFilling_;
+      }
+      public Builder setFuelFilling(float value) {
+        bitField0_ |= 0x00000040;
+        fuelFilling_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearFuelFilling() {
+        bitField0_ = (bitField0_ & ~0x00000040);
+        fuelFilling_ = 0F;
+        onChanged();
+        return this;
+      }
+      
+      // required .PROTO_API.gpsPosition gpsPos = 8;
+      private com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition gpsPos_ = com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition, com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.Builder, com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPositionOrBuilder> gpsPosBuilder_;
+      public boolean hasGpsPos() {
+        return ((bitField0_ & 0x00000080) == 0x00000080);
+      }
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition getGpsPos() {
+        if (gpsPosBuilder_ == null) {
+          return gpsPos_;
         } else {
-          return (String) ref;
+          return gpsPosBuilder_.getMessage();
         }
       }
-      public Builder setWarning(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000008;
-        warning_ = value;
+      public Builder setGpsPos(com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition value) {
+        if (gpsPosBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          gpsPos_ = value;
+          onChanged();
+        } else {
+          gpsPosBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000080;
+        return this;
+      }
+      public Builder setGpsPos(
+          com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.Builder builderForValue) {
+        if (gpsPosBuilder_ == null) {
+          gpsPos_ = builderForValue.build();
+          onChanged();
+        } else {
+          gpsPosBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000080;
+        return this;
+      }
+      public Builder mergeGpsPos(com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition value) {
+        if (gpsPosBuilder_ == null) {
+          if (((bitField0_ & 0x00000080) == 0x00000080) &&
+              gpsPos_ != com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.getDefaultInstance()) {
+            gpsPos_ =
+              com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.newBuilder(gpsPos_).mergeFrom(value).buildPartial();
+          } else {
+            gpsPos_ = value;
+          }
+          onChanged();
+        } else {
+          gpsPosBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000080;
+        return this;
+      }
+      public Builder clearGpsPos() {
+        if (gpsPosBuilder_ == null) {
+          gpsPos_ = com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.getDefaultInstance();
+          onChanged();
+        } else {
+          gpsPosBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000080);
+        return this;
+      }
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.Builder getGpsPosBuilder() {
+        bitField0_ |= 0x00000080;
         onChanged();
+        return getGpsPosFieldBuilder().getBuilder();
+      }
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPositionOrBuilder getGpsPosOrBuilder() {
+        if (gpsPosBuilder_ != null) {
+          return gpsPosBuilder_.getMessageOrBuilder();
+        } else {
+          return gpsPos_;
+        }
+      }
+      private com.google.protobuf.SingleFieldBuilder<
+          com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition, com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.Builder, com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPositionOrBuilder> 
+          getGpsPosFieldBuilder() {
+        if (gpsPosBuilder_ == null) {
+          gpsPosBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition, com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.Builder, com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPositionOrBuilder>(
+                  gpsPos_,
+                  getParentForChildren(),
+                  isClean());
+          gpsPos_ = null;
+        }
+        return gpsPosBuilder_;
+      }
+      
+      // required .PROTO_API.warningType warning = 9;
+      private com.testingtech.ttworkbench.play.generated.PROTO_API.warningType warning_ = com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.testingtech.ttworkbench.play.generated.PROTO_API.warningType, com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.Builder, com.testingtech.ttworkbench.play.generated.PROTO_API.warningTypeOrBuilder> warningBuilder_;
+      public boolean hasWarning() {
+        return ((bitField0_ & 0x00000100) == 0x00000100);
+      }
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.warningType getWarning() {
+        if (warningBuilder_ == null) {
+          return warning_;
+        } else {
+          return warningBuilder_.getMessage();
+        }
+      }
+      public Builder setWarning(com.testingtech.ttworkbench.play.generated.PROTO_API.warningType value) {
+        if (warningBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          warning_ = value;
+          onChanged();
+        } else {
+          warningBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000100;
+        return this;
+      }
+      public Builder setWarning(
+          com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.Builder builderForValue) {
+        if (warningBuilder_ == null) {
+          warning_ = builderForValue.build();
+          onChanged();
+        } else {
+          warningBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000100;
+        return this;
+      }
+      public Builder mergeWarning(com.testingtech.ttworkbench.play.generated.PROTO_API.warningType value) {
+        if (warningBuilder_ == null) {
+          if (((bitField0_ & 0x00000100) == 0x00000100) &&
+              warning_ != com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.getDefaultInstance()) {
+            warning_ =
+              com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.newBuilder(warning_).mergeFrom(value).buildPartial();
+          } else {
+            warning_ = value;
+          }
+          onChanged();
+        } else {
+          warningBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000100;
         return this;
       }
       public Builder clearWarning() {
-        bitField0_ = (bitField0_ & ~0x00000008);
-        warning_ = getDefaultInstance().getWarning();
-        onChanged();
+        if (warningBuilder_ == null) {
+          warning_ = com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.getDefaultInstance();
+          onChanged();
+        } else {
+          warningBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000100);
         return this;
       }
-      void setWarning(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000008;
-        warning_ = value;
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.Builder getWarningBuilder() {
+        bitField0_ |= 0x00000100;
         onChanged();
+        return getWarningFieldBuilder().getBuilder();
+      }
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.warningTypeOrBuilder getWarningOrBuilder() {
+        if (warningBuilder_ != null) {
+          return warningBuilder_.getMessageOrBuilder();
+        } else {
+          return warning_;
+        }
+      }
+      private com.google.protobuf.SingleFieldBuilder<
+          com.testingtech.ttworkbench.play.generated.PROTO_API.warningType, com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.Builder, com.testingtech.ttworkbench.play.generated.PROTO_API.warningTypeOrBuilder> 
+          getWarningFieldBuilder() {
+        if (warningBuilder_ == null) {
+          warningBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.testingtech.ttworkbench.play.generated.PROTO_API.warningType, com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.Builder, com.testingtech.ttworkbench.play.generated.PROTO_API.warningTypeOrBuilder>(
+                  warning_,
+                  getParentForChildren(),
+                  isClean());
+          warning_ = null;
+        }
+        return warningBuilder_;
       }
       
       // @@protoc_insertion_point(builder_scope:PROTO_API.carStatusType)
@@ -2384,9 +3939,9 @@ public final class PROTO_API {
           com.testingtech.ttworkbench.play.generated.PROTO_API.speedType request,
           com.google.protobuf.RpcCallback<com.testingtech.ttworkbench.play.generated.PROTO_API.Void> done);
       
-      public abstract void aPITrackNumberType(
+      public abstract void aPITrackType(
           com.google.protobuf.RpcController controller,
-          com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType request,
+          com.testingtech.ttworkbench.play.generated.PROTO_API.trackType request,
           com.google.protobuf.RpcCallback<com.testingtech.ttworkbench.play.generated.PROTO_API.Void> done);
       
       public abstract void aPIWarningType(
@@ -2416,11 +3971,11 @@ public final class PROTO_API {
         }
         
         @java.lang.Override
-        public  void aPITrackNumberType(
+        public  void aPITrackType(
             com.google.protobuf.RpcController controller,
-            com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType request,
+            com.testingtech.ttworkbench.play.generated.PROTO_API.trackType request,
             com.google.protobuf.RpcCallback<com.testingtech.ttworkbench.play.generated.PROTO_API.Void> done) {
-          impl.aPITrackNumberType(controller, request, done);
+          impl.aPITrackType(controller, request, done);
         }
         
         @java.lang.Override
@@ -2458,7 +4013,7 @@ public final class PROTO_API {
             case 1:
               return impl.aPISpeedType(controller, (com.testingtech.ttworkbench.play.generated.PROTO_API.speedType)request);
             case 2:
-              return impl.aPITrackNumberType(controller, (com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType)request);
+              return impl.aPITrackType(controller, (com.testingtech.ttworkbench.play.generated.PROTO_API.trackType)request);
             case 3:
               return impl.aPIWarningType(controller, (com.testingtech.ttworkbench.play.generated.PROTO_API.warningType)request);
             default:
@@ -2480,7 +4035,7 @@ public final class PROTO_API {
             case 1:
               return com.testingtech.ttworkbench.play.generated.PROTO_API.speedType.getDefaultInstance();
             case 2:
-              return com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType.getDefaultInstance();
+              return com.testingtech.ttworkbench.play.generated.PROTO_API.trackType.getDefaultInstance();
             case 3:
               return com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.getDefaultInstance();
             default:
@@ -2523,9 +4078,9 @@ public final class PROTO_API {
         com.testingtech.ttworkbench.play.generated.PROTO_API.speedType request,
         com.google.protobuf.RpcCallback<com.testingtech.ttworkbench.play.generated.PROTO_API.Void> done);
     
-    public abstract void aPITrackNumberType(
+    public abstract void aPITrackType(
         com.google.protobuf.RpcController controller,
-        com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType request,
+        com.testingtech.ttworkbench.play.generated.PROTO_API.trackType request,
         com.google.protobuf.RpcCallback<com.testingtech.ttworkbench.play.generated.PROTO_API.Void> done);
     
     public abstract void aPIWarningType(
@@ -2566,7 +4121,7 @@ public final class PROTO_API {
               done));
           return;
         case 2:
-          this.aPITrackNumberType(controller, (com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType)request,
+          this.aPITrackType(controller, (com.testingtech.ttworkbench.play.generated.PROTO_API.trackType)request,
             com.google.protobuf.RpcUtil.<com.testingtech.ttworkbench.play.generated.PROTO_API.Void>specializeCallback(
               done));
           return;
@@ -2594,7 +4149,7 @@ public final class PROTO_API {
         case 1:
           return com.testingtech.ttworkbench.play.generated.PROTO_API.speedType.getDefaultInstance();
         case 2:
-          return com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType.getDefaultInstance();
+          return com.testingtech.ttworkbench.play.generated.PROTO_API.trackType.getDefaultInstance();
         case 3:
           return com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.getDefaultInstance();
         default:
@@ -2670,9 +4225,9 @@ public final class PROTO_API {
             com.testingtech.ttworkbench.play.generated.PROTO_API.Void.getDefaultInstance()));
       }
       
-      public  void aPITrackNumberType(
+      public  void aPITrackType(
           com.google.protobuf.RpcController controller,
-          com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType request,
+          com.testingtech.ttworkbench.play.generated.PROTO_API.trackType request,
           com.google.protobuf.RpcCallback<com.testingtech.ttworkbench.play.generated.PROTO_API.Void> done) {
         channel.callMethod(
           getDescriptor().getMethods().get(2),
@@ -2717,9 +4272,9 @@ public final class PROTO_API {
           com.testingtech.ttworkbench.play.generated.PROTO_API.speedType request)
           throws com.google.protobuf.ServiceException;
       
-      public com.testingtech.ttworkbench.play.generated.PROTO_API.Void aPITrackNumberType(
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.Void aPITrackType(
           com.google.protobuf.RpcController controller,
-          com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType request)
+          com.testingtech.ttworkbench.play.generated.PROTO_API.trackType request)
           throws com.google.protobuf.ServiceException;
       
       public com.testingtech.ttworkbench.play.generated.PROTO_API.Void aPIWarningType(
@@ -2759,9 +4314,9 @@ public final class PROTO_API {
       }
       
       
-      public com.testingtech.ttworkbench.play.generated.PROTO_API.Void aPITrackNumberType(
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.Void aPITrackType(
           com.google.protobuf.RpcController controller,
-          com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType request)
+          com.testingtech.ttworkbench.play.generated.PROTO_API.trackType request)
           throws com.google.protobuf.ServiceException {
         return (com.testingtech.ttworkbench.play.generated.PROTO_API.Void) channel.callBlockingMethod(
           getDescriptor().getMethods().get(2),
@@ -3007,6 +4562,16 @@ public final class PROTO_API {
   }
   
   private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_PROTO_API_warning_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_PROTO_API_warning_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_PROTO_API_gpsPosition_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_PROTO_API_gpsPosition_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_PROTO_API_onOffEngineType_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -3017,10 +4582,10 @@ public final class PROTO_API {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_PROTO_API_speedType_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_PROTO_API_trackNumberType_descriptor;
+    internal_static_PROTO_API_trackType_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_PROTO_API_trackNumberType_fieldAccessorTable;
+      internal_static_PROTO_API_trackType_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_PROTO_API_warningType_descriptor;
   private static
@@ -3045,31 +4610,57 @@ public final class PROTO_API {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\017PROTO_API.proto\022\tPROTO_API\"\'\n\017onOffEng" +
-      "ineType\022\024\n\014engineStatus\030\001 \002(\010\"\032\n\tspeedTy" +
-      "pe\022\r\n\005speed\030\001 \002(\022\" \n\017trackNumberType\022\r\n\005" +
-      "track\030\001 \003(\t\"\036\n\013warningType\022\017\n\007warning\030\001 " +
-      "\003(\t\"T\n\rcarStatusType\022\024\n\014engineStatus\030\001 \002" +
-      "(\010\022\r\n\005speed\030\002 \002(\022\022\r\n\005track\030\003 \002(\t\022\017\n\007warn" +
-      "ing\030\004 \002(\t\"\006\n\004Void2\205\002\n\007ACTIONS\022B\n\023API_onO" +
-      "ffEngineType\022\032.PROTO_API.onOffEngineType" +
-      "\032\017.PROTO_API.Void\0226\n\rAPI_speedType\022\024.PRO" +
-      "TO_API.speedType\032\017.PROTO_API.Void\022B\n\023API",
-      "_trackNumberType\022\032.PROTO_API.trackNumber" +
-      "Type\032\017.PROTO_API.Void\022:\n\017API_warningType" +
-      "\022\026.PROTO_API.warningType\032\017.PROTO_API.Voi" +
-      "d2H\n\006EVENTS\022>\n\021API_carStatusType\022\030.PROTO" +
-      "_API.carStatusType\032\017.PROTO_API.VoidB:\n*c" +
-      "om.testingtech.ttworkbench.play.generate" +
-      "dB\tPROTO_API\210\001\001"
+      "\n\017PROTO_API.proto\022\tPROTO_API\"\206\001\n\007warning" +
+      "\0220\n\nenum_value\030\001 \002(\0162\034.PROTO_API.warning" +
+      ".EnumValue\"I\n\tEnumValue\022\010\n\004deer\020\001\022\010\n\004rai" +
+      "n\020\002\022\007\n\003ice\020\003\022\014\n\010accident\020\004\022\007\n\003fog\020\005\022\010\n\004s" +
+      "now\020\006\"2\n\013gpsPosition\022\020\n\010latitude\030\001 \002(\002\022\021" +
+      "\n\tlongitude\030\002 \002(\002\"\'\n\017onOffEngineType\022\024\n\014" +
+      "engineStatus\030\001 \002(\010\"\032\n\tspeedType\022\r\n\005speed" +
+      "\030\001 \002(\002\"\036\n\ttrackType\022\021\n\ttrackName\030\001 \002(\t\"p" +
+      "\n\013warningType\022\'\n\013warningName\030\001 \002(\0132\022.PRO" +
+      "TO_API.warning\022&\n\006gpsPos\030\002 \002(\0132\026.PROTO_A",
+      "PI.gpsPosition\022\020\n\010priority\030\003 \002(\022\"\355\001\n\rcar" +
+      "StatusType\022\024\n\014engineStatus\030\001 \002(\010\022\r\n\005spee" +
+      "d\030\002 \002(\002\022\021\n\tabsSensor\030\003 \002(\010\022\021\n\tespSensor\030" +
+      "\004 \002(\010\022\023\n\013lightSensor\030\005 \002(\010\022\026\n\016fogLightSe" +
+      "nsor\030\006 \002(\010\022\023\n\013fuelFilling\030\007 \002(\002\022&\n\006gpsPo" +
+      "s\030\010 \002(\0132\026.PROTO_API.gpsPosition\022\'\n\007warni" +
+      "ng\030\t \002(\0132\026.PROTO_API.warningType\"\006\n\004Void" +
+      "2\371\001\n\007ACTIONS\022B\n\023API_onOffEngineType\022\032.PR" +
+      "OTO_API.onOffEngineType\032\017.PROTO_API.Void" +
+      "\0226\n\rAPI_speedType\022\024.PROTO_API.speedType\032",
+      "\017.PROTO_API.Void\0226\n\rAPI_trackType\022\024.PROT" +
+      "O_API.trackType\032\017.PROTO_API.Void\022:\n\017API_" +
+      "warningType\022\026.PROTO_API.warningType\032\017.PR" +
+      "OTO_API.Void2H\n\006EVENTS\022>\n\021API_carStatusT" +
+      "ype\022\030.PROTO_API.carStatusType\032\017.PROTO_AP" +
+      "I.VoidB:\n*com.testingtech.ttworkbench.pl" +
+      "ay.generatedB\tPROTO_API\210\001\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
         public com.google.protobuf.ExtensionRegistry assignDescriptors(
             com.google.protobuf.Descriptors.FileDescriptor root) {
           descriptor = root;
-          internal_static_PROTO_API_onOffEngineType_descriptor =
+          internal_static_PROTO_API_warning_descriptor =
             getDescriptor().getMessageTypes().get(0);
+          internal_static_PROTO_API_warning_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_PROTO_API_warning_descriptor,
+              new java.lang.String[] { "EnumValue", },
+              com.testingtech.ttworkbench.play.generated.PROTO_API.warning.class,
+              com.testingtech.ttworkbench.play.generated.PROTO_API.warning.Builder.class);
+          internal_static_PROTO_API_gpsPosition_descriptor =
+            getDescriptor().getMessageTypes().get(1);
+          internal_static_PROTO_API_gpsPosition_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_PROTO_API_gpsPosition_descriptor,
+              new java.lang.String[] { "Latitude", "Longitude", },
+              com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.class,
+              com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.Builder.class);
+          internal_static_PROTO_API_onOffEngineType_descriptor =
+            getDescriptor().getMessageTypes().get(2);
           internal_static_PROTO_API_onOffEngineType_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_PROTO_API_onOffEngineType_descriptor,
@@ -3077,39 +4668,39 @@ public final class PROTO_API {
               com.testingtech.ttworkbench.play.generated.PROTO_API.onOffEngineType.class,
               com.testingtech.ttworkbench.play.generated.PROTO_API.onOffEngineType.Builder.class);
           internal_static_PROTO_API_speedType_descriptor =
-            getDescriptor().getMessageTypes().get(1);
+            getDescriptor().getMessageTypes().get(3);
           internal_static_PROTO_API_speedType_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_PROTO_API_speedType_descriptor,
               new java.lang.String[] { "Speed", },
               com.testingtech.ttworkbench.play.generated.PROTO_API.speedType.class,
               com.testingtech.ttworkbench.play.generated.PROTO_API.speedType.Builder.class);
-          internal_static_PROTO_API_trackNumberType_descriptor =
-            getDescriptor().getMessageTypes().get(2);
-          internal_static_PROTO_API_trackNumberType_fieldAccessorTable = new
+          internal_static_PROTO_API_trackType_descriptor =
+            getDescriptor().getMessageTypes().get(4);
+          internal_static_PROTO_API_trackType_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_PROTO_API_trackNumberType_descriptor,
-              new java.lang.String[] { "Track", },
-              com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType.class,
-              com.testingtech.ttworkbench.play.generated.PROTO_API.trackNumberType.Builder.class);
+              internal_static_PROTO_API_trackType_descriptor,
+              new java.lang.String[] { "TrackName", },
+              com.testingtech.ttworkbench.play.generated.PROTO_API.trackType.class,
+              com.testingtech.ttworkbench.play.generated.PROTO_API.trackType.Builder.class);
           internal_static_PROTO_API_warningType_descriptor =
-            getDescriptor().getMessageTypes().get(3);
+            getDescriptor().getMessageTypes().get(5);
           internal_static_PROTO_API_warningType_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_PROTO_API_warningType_descriptor,
-              new java.lang.String[] { "Warning", },
+              new java.lang.String[] { "WarningName", "GpsPos", "Priority", },
               com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.class,
               com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.Builder.class);
           internal_static_PROTO_API_carStatusType_descriptor =
-            getDescriptor().getMessageTypes().get(4);
+            getDescriptor().getMessageTypes().get(6);
           internal_static_PROTO_API_carStatusType_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_PROTO_API_carStatusType_descriptor,
-              new java.lang.String[] { "EngineStatus", "Speed", "Track", "Warning", },
+              new java.lang.String[] { "EngineStatus", "Speed", "AbsSensor", "EspSensor", "LightSensor", "FogLightSensor", "FuelFilling", "GpsPos", "Warning", },
               com.testingtech.ttworkbench.play.generated.PROTO_API.carStatusType.class,
               com.testingtech.ttworkbench.play.generated.PROTO_API.carStatusType.Builder.class);
           internal_static_PROTO_API_Void_descriptor =
-            getDescriptor().getMessageTypes().get(5);
+            getDescriptor().getMessageTypes().get(7);
           internal_static_PROTO_API_Void_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_PROTO_API_Void_descriptor,

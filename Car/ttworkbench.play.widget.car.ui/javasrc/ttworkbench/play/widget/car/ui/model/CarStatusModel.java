@@ -1,4 +1,4 @@
-package com.testingtech.ttworkbench.play.widget.car.ui.model;
+package ttworkbench.play.widget.car.ui.model;
 
 public class CarStatusModel {
 	
@@ -8,7 +8,6 @@ public class CarStatusModel {
 	private boolean lightenabled;
 	private int actualTemperature;
 	private double actualSpeed;
-	private Warnings warning;
 	
 	
 	
@@ -67,19 +66,6 @@ public class CarStatusModel {
 		this.actualSpeed = actualSpeed;
 	}
 
-	/**
-	 * @return the warning
-	 */
-	public Warnings getWarning() {
-		return warning;
-	}
-
-	/**
-	 * @param warning the warning to set
-	 */
-	public void setWarning(Warnings warning) {
-		this.warning = warning;
-	}
 
 	/**
 	 * @return the lightenabled
