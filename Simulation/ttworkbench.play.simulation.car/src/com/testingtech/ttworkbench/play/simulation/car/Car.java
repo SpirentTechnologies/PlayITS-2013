@@ -9,7 +9,7 @@ public class Car implements CarInterface {
 	Sensors sensors;
 	boolean engine;
 
-	GPSpositionOfCar position = new GPSpositionOfCar();
+	GPSpositionOfCar position = new GPSpositionOfCar(null, null);
 	
 	public Car(double speed, double maxSpeed, double tirePressure,
 			double tankFill, double petrolUsage, boolean lightExists,
