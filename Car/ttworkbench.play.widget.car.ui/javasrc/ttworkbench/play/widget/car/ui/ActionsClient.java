@@ -1,5 +1,5 @@
 
-package com.testingtech.ttworkbench.play.widget.car.ui;
+package ttworkbench.play.widget.car.ui;
 
 import com.google.protobuf.BlockingRpcChannel;
 import com.testingtech.ttworkbench.play.dashboard.widget.AbstractActionsClient;
