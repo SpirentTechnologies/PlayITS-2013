@@ -3,24 +3,14 @@ module SUTAPI {
   import from CONFIG_SUTAPI {type COMPONENT;}
 
   import from API {
-	  type carStatusType, onOffEngineType, speedType, trackType, warningType;
+	  type carInitType, carStatusType, onOffEngineType, speedType, trackType, warningType;
   }
-
-	type record carInitType {
-	    boolean absSensorExists,
-	    boolean espSensorExists,
-	    boolean lightSensorExists,
-        boolean fogLightSensorExists,
-	    float fuelFilling,
-	    float fuelConsumption,
-	    float maxSpeed
-	}
 
   	type port carPort message {
     	out onOffEngineType, speedType, trackType, warningType, carInitType;
      	in carStatusType;
  	}
        
- 	type component engine extends CONFIG_SUTAPI.COMPONENT {
- 	}
+// 	type component engine extends CONFIG_SUTAPI.COMPONENT {
+// 	}
 }
