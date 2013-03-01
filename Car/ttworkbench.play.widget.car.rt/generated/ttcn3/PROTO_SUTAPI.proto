@@ -13,19 +13,3 @@ message carInitType {
   required float maxSpeed = 7;
 }
 
-message Void {}
-
-service ACTIONS {
-  rpc API_carStatusType(PROTO_API.carStatusType) returns (Void);
-}
-
-service EVENTS {
-  rpc API_onOffEngineType(PROTO_API.onOffEngineType) returns (Void);
-  rpc API_speedType(PROTO_API.speedType) returns (Void);
-  rpc API_trackType(PROTO_API.trackType) returns (Void);
-  rpc API_warningType(PROTO_API.warningType) returns (Void);
-  rpc SUTAPI_carInitType(PROTO_SUTAPI.carInitType) returns (Void);
-}
-
-
-import "PROTO_API.proto";

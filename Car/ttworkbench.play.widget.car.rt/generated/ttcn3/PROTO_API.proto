@@ -50,6 +50,16 @@ message carStatusType {
   required PROTO_API.warningType warning = 9;
 }
 
+message carInitType {
+  required bool absSensorExists = 1;
+  required bool espSensorExists = 2;
+  required bool lightSensorExists = 3;
+  required bool fogLightSensorExists = 4;
+  required float fuelFilling = 5;
+  required float fuelConsumption = 6;
+  required float maxSpeed = 7;
+}
+
 message Void {}
 
 service ACTIONS {
@@ -57,6 +67,7 @@ service ACTIONS {
   rpc API_speedType(PROTO_API.speedType) returns (Void);
   rpc API_trackType(PROTO_API.trackType) returns (Void);
   rpc API_warningType(PROTO_API.warningType) returns (Void);
+  rpc API_carInitType(PROTO_API.carInitType) returns (Void);
 }
 
 service EVENTS {
