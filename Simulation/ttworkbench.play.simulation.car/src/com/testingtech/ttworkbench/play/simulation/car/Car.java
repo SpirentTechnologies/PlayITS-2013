@@ -1,5 +1,7 @@
 package com.testingtech.ttworkbench.play.simulation.car;
 
+import java.util.ArrayList;
+
 public class Car implements CarInterface {
 
 	static int carID;
@@ -9,7 +11,7 @@ public class Car implements CarInterface {
 	Sensors sensors;
 	boolean engine;
 
-	GPSpositionOfCar position = new GPSpositionOfCar(null, null);
+	GPSpositionOfCar position = new GPSpositionOfCar(new GPSposition(0, 0), new GPSposition(0, 0), new ArrayList<GPSposition>());
 	
 	public Car(double speed, double maxSpeed, double tirePressure,
 			double tankFill, double petrolUsage, boolean lightExists,
@@ -97,13 +99,13 @@ public class Car implements CarInterface {
 
 	@Override
 	public GPSposition getGPSPosition() {
-		return position.currentPosition;
+		return position.getCurrentPosition();
 	}
 
 	@Override
 	public GPSposition setGPSPosition(GPSposition position) {
-		this.position.currentPosition = position;
-		return this.position;
+		this.position.setCurrentPosition(position);
+		return this.position.getCurrentPosition();
 	}
 
 	@Override
@@ -125,7 +127,7 @@ public class Car implements CarInterface {
 		// TODO change true to a variable so it can be closed reasonable
 		while (true) {
 			//get the new tankfill level
-			position.
+			//position;
 			
 			/*
 			 * TODO calculate distance between the two KML gps coordinates let
