@@ -8,9 +8,8 @@ public class CarStatusModel {
 	private boolean lightenabled;
 	private int actualTemperature;
 	private double actualSpeed;
-	
-	
-	
+	private GPSposition gpsPosition;
+		
 	/**
 	 * @return the engineStarted
 	 */
@@ -93,6 +92,20 @@ public class CarStatusModel {
 	 */
 	public void setActualTemperature(int actualTemperature) {
 		this.actualTemperature = actualTemperature;
+	}
+
+	/**
+	 * @return the gpsPosition
+	 */
+	public GPSposition getGpsPosition() {
+		return gpsPosition;
+	}
+
+	/**
+	 * @param gpsPosition the gpsPosition to set
+	 */
+	public void setGpsPosition(GPSposition gpsPosition) {
+		this.gpsPosition = gpsPosition;
 	}
 
 

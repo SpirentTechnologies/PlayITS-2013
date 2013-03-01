@@ -13,21 +13,26 @@ import com.testingtech.ttworkbench.play.dashboard.widget.IDashboard;
 import com.testingtech.ttworkbench.play.dashboard.widget.IDashboardWidgetFactory;
 import com.testingtech.ttworkbench.play.generated.PROTO_API;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.ACTIONS.BlockingInterface;
+import ttworkbench.play.widget.car.ui.EventsServiceImpl;
 
-public class TestWidget extends AbstractDashboardWidget<ICarModel, PROTO_API.ACTIONS.BlockingInterface> implements ICarModel {
+public class TestWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTIONS.BlockingInterface> implements ICarModelListener {
 
+	private CarModel model = new CarModel();
+	
 	public TestWidget(
-			IDashboardWidgetFactory<ICarModel, BlockingInterface> dashboardWidgetFactory,
+			IDashboardWidgetFactory<CarModel, BlockingInterface> dashboardWidgetFactory,
 			IDashboard dashboard) {
 		super(dashboardWidgetFactory, dashboard);
 
 	}
+	
+	
+	public BlockingService createEventsService(int eventsServicePortNumber) {
+	    BlockingService eventsService = 
+	        PROTO_API.EVENTS.newReflectiveBlockingService(new EventsServiceImpl(getModel()));
+	    return eventsService;
+	  }
 
-	@Override
-	public void updateStatus(int num, long statusCode, String statusMessage) {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public Control createWidgetControl(Composite arg0) {
@@ -36,8 +41,8 @@ public class TestWidget extends AbstractDashboardWidget<ICarModel, PROTO_API.ACT
 	}
 
 	@Override
-	public ICarModel getModel() {
-		return this;
+	public CarModel getModel() {
+		return model;
 	}
 
 	public ActionsClient createActionsClient(String host, int actionsServicePort) throws IOException{
@@ -46,11 +51,6 @@ public class TestWidget extends AbstractDashboardWidget<ICarModel, PROTO_API.ACT
 		    return actionsClient;
 	}
 
-	@Override
-	public BlockingService createEventsService(int arg0) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	protected void disableActions() {
@@ -60,6 +60,13 @@ public class TestWidget extends AbstractDashboardWidget<ICarModel, PROTO_API.ACT
 
 	@Override
 	protected void enableActions() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void notifyModelChange() {
 		// TODO Auto-generated method stub
 		
 	}
