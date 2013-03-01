@@ -84,12 +84,22 @@ module API {
         warningType warning
     }
     
+    type record carInitType {
+        boolean absSensorExists,
+        boolean espSensorExists,
+        boolean lightSensorExists,
+        boolean fogLightSensorExists,
+        float fuelFilling,
+        float fuelConsumption,
+        float maxSpeed
+    }
+    
     /**
      * 
      */
     type port widgetPort message {
         out carStatusType;
-        in onOffEngineType, speedType, trackType, warningType;
+        in onOffEngineType, speedType, trackType, warningType, carInitType;
     }
    
     type component engine extends CONFIG_CAR.CarComponent {}

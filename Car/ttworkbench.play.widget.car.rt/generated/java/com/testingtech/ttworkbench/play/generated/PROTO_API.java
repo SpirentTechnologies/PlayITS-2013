@@ -3648,6 +3648,742 @@ public final class PROTO_API {
     // @@protoc_insertion_point(class_scope:PROTO_API.carStatusType)
   }
   
+  public interface carInitTypeOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // required bool absSensorExists = 1;
+    boolean hasAbsSensorExists();
+    boolean getAbsSensorExists();
+    
+    // required bool espSensorExists = 2;
+    boolean hasEspSensorExists();
+    boolean getEspSensorExists();
+    
+    // required bool lightSensorExists = 3;
+    boolean hasLightSensorExists();
+    boolean getLightSensorExists();
+    
+    // required bool fogLightSensorExists = 4;
+    boolean hasFogLightSensorExists();
+    boolean getFogLightSensorExists();
+    
+    // required float fuelFilling = 5;
+    boolean hasFuelFilling();
+    float getFuelFilling();
+    
+    // required float fuelConsumption = 6;
+    boolean hasFuelConsumption();
+    float getFuelConsumption();
+    
+    // required float maxSpeed = 7;
+    boolean hasMaxSpeed();
+    float getMaxSpeed();
+  }
+  public static final class carInitType extends
+      com.google.protobuf.GeneratedMessage
+      implements carInitTypeOrBuilder {
+    // Use carInitType.newBuilder() to construct.
+    private carInitType(Builder builder) {
+      super(builder);
+    }
+    private carInitType(boolean noInit) {}
+    
+    private static final carInitType defaultInstance;
+    public static carInitType getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public carInitType getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.testingtech.ttworkbench.play.generated.PROTO_API.internal_static_PROTO_API_carInitType_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.testingtech.ttworkbench.play.generated.PROTO_API.internal_static_PROTO_API_carInitType_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // required bool absSensorExists = 1;
+    public static final int ABSSENSOREXISTS_FIELD_NUMBER = 1;
+    private boolean absSensorExists_;
+    public boolean hasAbsSensorExists() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public boolean getAbsSensorExists() {
+      return absSensorExists_;
+    }
+    
+    // required bool espSensorExists = 2;
+    public static final int ESPSENSOREXISTS_FIELD_NUMBER = 2;
+    private boolean espSensorExists_;
+    public boolean hasEspSensorExists() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public boolean getEspSensorExists() {
+      return espSensorExists_;
+    }
+    
+    // required bool lightSensorExists = 3;
+    public static final int LIGHTSENSOREXISTS_FIELD_NUMBER = 3;
+    private boolean lightSensorExists_;
+    public boolean hasLightSensorExists() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public boolean getLightSensorExists() {
+      return lightSensorExists_;
+    }
+    
+    // required bool fogLightSensorExists = 4;
+    public static final int FOGLIGHTSENSOREXISTS_FIELD_NUMBER = 4;
+    private boolean fogLightSensorExists_;
+    public boolean hasFogLightSensorExists() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    public boolean getFogLightSensorExists() {
+      return fogLightSensorExists_;
+    }
+    
+    // required float fuelFilling = 5;
+    public static final int FUELFILLING_FIELD_NUMBER = 5;
+    private float fuelFilling_;
+    public boolean hasFuelFilling() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    public float getFuelFilling() {
+      return fuelFilling_;
+    }
+    
+    // required float fuelConsumption = 6;
+    public static final int FUELCONSUMPTION_FIELD_NUMBER = 6;
+    private float fuelConsumption_;
+    public boolean hasFuelConsumption() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    public float getFuelConsumption() {
+      return fuelConsumption_;
+    }
+    
+    // required float maxSpeed = 7;
+    public static final int MAXSPEED_FIELD_NUMBER = 7;
+    private float maxSpeed_;
+    public boolean hasMaxSpeed() {
+      return ((bitField0_ & 0x00000040) == 0x00000040);
+    }
+    public float getMaxSpeed() {
+      return maxSpeed_;
+    }
+    
+    private void initFields() {
+      absSensorExists_ = false;
+      espSensorExists_ = false;
+      lightSensorExists_ = false;
+      fogLightSensorExists_ = false;
+      fuelFilling_ = 0F;
+      fuelConsumption_ = 0F;
+      maxSpeed_ = 0F;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      if (!hasAbsSensorExists()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasEspSensorExists()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasLightSensorExists()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasFogLightSensorExists()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasFuelFilling()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasFuelConsumption()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasMaxSpeed()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBool(1, absSensorExists_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBool(2, espSensorExists_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBool(3, lightSensorExists_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeBool(4, fogLightSensorExists_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeFloat(5, fuelFilling_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeFloat(6, fuelConsumption_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeFloat(7, maxSpeed_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(1, absSensorExists_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(2, espSensorExists_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(3, lightSensorExists_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(4, fogLightSensorExists_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(5, fuelFilling_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(6, fuelConsumption_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(7, maxSpeed_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.testingtech.ttworkbench.play.generated.PROTO_API.carInitTypeOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.testingtech.ttworkbench.play.generated.PROTO_API.internal_static_PROTO_API_carInitType_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.testingtech.ttworkbench.play.generated.PROTO_API.internal_static_PROTO_API_carInitType_fieldAccessorTable;
+      }
+      
+      // Construct using com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        absSensorExists_ = false;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        espSensorExists_ = false;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        lightSensorExists_ = false;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        fogLightSensorExists_ = false;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        fuelFilling_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        fuelConsumption_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000020);
+        maxSpeed_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000040);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType.getDescriptor();
+      }
+      
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType getDefaultInstanceForType() {
+        return com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType.getDefaultInstance();
+      }
+      
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType build() {
+        com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType buildPartial() {
+        com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType result = new com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.absSensorExists_ = absSensorExists_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.espSensorExists_ = espSensorExists_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.lightSensorExists_ = lightSensorExists_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.fogLightSensorExists_ = fogLightSensorExists_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.fuelFilling_ = fuelFilling_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.fuelConsumption_ = fuelConsumption_;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
+        }
+        result.maxSpeed_ = maxSpeed_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType) {
+          return mergeFrom((com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType other) {
+        if (other == com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType.getDefaultInstance()) return this;
+        if (other.hasAbsSensorExists()) {
+          setAbsSensorExists(other.getAbsSensorExists());
+        }
+        if (other.hasEspSensorExists()) {
+          setEspSensorExists(other.getEspSensorExists());
+        }
+        if (other.hasLightSensorExists()) {
+          setLightSensorExists(other.getLightSensorExists());
+        }
+        if (other.hasFogLightSensorExists()) {
+          setFogLightSensorExists(other.getFogLightSensorExists());
+        }
+        if (other.hasFuelFilling()) {
+          setFuelFilling(other.getFuelFilling());
+        }
+        if (other.hasFuelConsumption()) {
+          setFuelConsumption(other.getFuelConsumption());
+        }
+        if (other.hasMaxSpeed()) {
+          setMaxSpeed(other.getMaxSpeed());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        if (!hasAbsSensorExists()) {
+          
+          return false;
+        }
+        if (!hasEspSensorExists()) {
+          
+          return false;
+        }
+        if (!hasLightSensorExists()) {
+          
+          return false;
+        }
+        if (!hasFogLightSensorExists()) {
+          
+          return false;
+        }
+        if (!hasFuelFilling()) {
+          
+          return false;
+        }
+        if (!hasFuelConsumption()) {
+          
+          return false;
+        }
+        if (!hasMaxSpeed()) {
+          
+          return false;
+        }
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              absSensorExists_ = input.readBool();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              espSensorExists_ = input.readBool();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              lightSensorExists_ = input.readBool();
+              break;
+            }
+            case 32: {
+              bitField0_ |= 0x00000008;
+              fogLightSensorExists_ = input.readBool();
+              break;
+            }
+            case 45: {
+              bitField0_ |= 0x00000010;
+              fuelFilling_ = input.readFloat();
+              break;
+            }
+            case 53: {
+              bitField0_ |= 0x00000020;
+              fuelConsumption_ = input.readFloat();
+              break;
+            }
+            case 61: {
+              bitField0_ |= 0x00000040;
+              maxSpeed_ = input.readFloat();
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // required bool absSensorExists = 1;
+      private boolean absSensorExists_ ;
+      public boolean hasAbsSensorExists() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public boolean getAbsSensorExists() {
+        return absSensorExists_;
+      }
+      public Builder setAbsSensorExists(boolean value) {
+        bitField0_ |= 0x00000001;
+        absSensorExists_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearAbsSensorExists() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        absSensorExists_ = false;
+        onChanged();
+        return this;
+      }
+      
+      // required bool espSensorExists = 2;
+      private boolean espSensorExists_ ;
+      public boolean hasEspSensorExists() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public boolean getEspSensorExists() {
+        return espSensorExists_;
+      }
+      public Builder setEspSensorExists(boolean value) {
+        bitField0_ |= 0x00000002;
+        espSensorExists_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearEspSensorExists() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        espSensorExists_ = false;
+        onChanged();
+        return this;
+      }
+      
+      // required bool lightSensorExists = 3;
+      private boolean lightSensorExists_ ;
+      public boolean hasLightSensorExists() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public boolean getLightSensorExists() {
+        return lightSensorExists_;
+      }
+      public Builder setLightSensorExists(boolean value) {
+        bitField0_ |= 0x00000004;
+        lightSensorExists_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearLightSensorExists() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        lightSensorExists_ = false;
+        onChanged();
+        return this;
+      }
+      
+      // required bool fogLightSensorExists = 4;
+      private boolean fogLightSensorExists_ ;
+      public boolean hasFogLightSensorExists() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      public boolean getFogLightSensorExists() {
+        return fogLightSensorExists_;
+      }
+      public Builder setFogLightSensorExists(boolean value) {
+        bitField0_ |= 0x00000008;
+        fogLightSensorExists_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearFogLightSensorExists() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        fogLightSensorExists_ = false;
+        onChanged();
+        return this;
+      }
+      
+      // required float fuelFilling = 5;
+      private float fuelFilling_ ;
+      public boolean hasFuelFilling() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      public float getFuelFilling() {
+        return fuelFilling_;
+      }
+      public Builder setFuelFilling(float value) {
+        bitField0_ |= 0x00000010;
+        fuelFilling_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearFuelFilling() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        fuelFilling_ = 0F;
+        onChanged();
+        return this;
+      }
+      
+      // required float fuelConsumption = 6;
+      private float fuelConsumption_ ;
+      public boolean hasFuelConsumption() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      public float getFuelConsumption() {
+        return fuelConsumption_;
+      }
+      public Builder setFuelConsumption(float value) {
+        bitField0_ |= 0x00000020;
+        fuelConsumption_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearFuelConsumption() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        fuelConsumption_ = 0F;
+        onChanged();
+        return this;
+      }
+      
+      // required float maxSpeed = 7;
+      private float maxSpeed_ ;
+      public boolean hasMaxSpeed() {
+        return ((bitField0_ & 0x00000040) == 0x00000040);
+      }
+      public float getMaxSpeed() {
+        return maxSpeed_;
+      }
+      public Builder setMaxSpeed(float value) {
+        bitField0_ |= 0x00000040;
+        maxSpeed_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearMaxSpeed() {
+        bitField0_ = (bitField0_ & ~0x00000040);
+        maxSpeed_ = 0F;
+        onChanged();
+        return this;
+      }
+      
+      // @@protoc_insertion_point(builder_scope:PROTO_API.carInitType)
+    }
+    
+    static {
+      defaultInstance = new carInitType(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:PROTO_API.carInitType)
+  }
+  
   public interface VoidOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
   }
@@ -3949,6 +4685,11 @@ public final class PROTO_API {
           com.testingtech.ttworkbench.play.generated.PROTO_API.warningType request,
           com.google.protobuf.RpcCallback<com.testingtech.ttworkbench.play.generated.PROTO_API.Void> done);
       
+      public abstract void aPICarInitType(
+          com.google.protobuf.RpcController controller,
+          com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType request,
+          com.google.protobuf.RpcCallback<com.testingtech.ttworkbench.play.generated.PROTO_API.Void> done);
+      
     }
     
     public static com.google.protobuf.Service newReflectiveService(
@@ -3986,6 +4727,14 @@ public final class PROTO_API {
           impl.aPIWarningType(controller, request, done);
         }
         
+        @java.lang.Override
+        public  void aPICarInitType(
+            com.google.protobuf.RpcController controller,
+            com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType request,
+            com.google.protobuf.RpcCallback<com.testingtech.ttworkbench.play.generated.PROTO_API.Void> done) {
+          impl.aPICarInitType(controller, request, done);
+        }
+        
       };
     }
     
@@ -4016,6 +4765,8 @@ public final class PROTO_API {
               return impl.aPITrackType(controller, (com.testingtech.ttworkbench.play.generated.PROTO_API.trackType)request);
             case 3:
               return impl.aPIWarningType(controller, (com.testingtech.ttworkbench.play.generated.PROTO_API.warningType)request);
+            case 4:
+              return impl.aPICarInitType(controller, (com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType)request);
             default:
               throw new java.lang.AssertionError("Can't get here.");
           }
@@ -4038,6 +4789,8 @@ public final class PROTO_API {
               return com.testingtech.ttworkbench.play.generated.PROTO_API.trackType.getDefaultInstance();
             case 3:
               return com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.getDefaultInstance();
+            case 4:
+              return com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType.getDefaultInstance();
             default:
               throw new java.lang.AssertionError("Can't get here.");
           }
@@ -4059,6 +4812,8 @@ public final class PROTO_API {
             case 2:
               return com.testingtech.ttworkbench.play.generated.PROTO_API.Void.getDefaultInstance();
             case 3:
+              return com.testingtech.ttworkbench.play.generated.PROTO_API.Void.getDefaultInstance();
+            case 4:
               return com.testingtech.ttworkbench.play.generated.PROTO_API.Void.getDefaultInstance();
             default:
               throw new java.lang.AssertionError("Can't get here.");
@@ -4086,6 +4841,11 @@ public final class PROTO_API {
     public abstract void aPIWarningType(
         com.google.protobuf.RpcController controller,
         com.testingtech.ttworkbench.play.generated.PROTO_API.warningType request,
+        com.google.protobuf.RpcCallback<com.testingtech.ttworkbench.play.generated.PROTO_API.Void> done);
+    
+    public abstract void aPICarInitType(
+        com.google.protobuf.RpcController controller,
+        com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType request,
         com.google.protobuf.RpcCallback<com.testingtech.ttworkbench.play.generated.PROTO_API.Void> done);
     
     public static final
@@ -4130,6 +4890,11 @@ public final class PROTO_API {
             com.google.protobuf.RpcUtil.<com.testingtech.ttworkbench.play.generated.PROTO_API.Void>specializeCallback(
               done));
           return;
+        case 4:
+          this.aPICarInitType(controller, (com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType)request,
+            com.google.protobuf.RpcUtil.<com.testingtech.ttworkbench.play.generated.PROTO_API.Void>specializeCallback(
+              done));
+          return;
         default:
           throw new java.lang.AssertionError("Can't get here.");
       }
@@ -4152,6 +4917,8 @@ public final class PROTO_API {
           return com.testingtech.ttworkbench.play.generated.PROTO_API.trackType.getDefaultInstance();
         case 3:
           return com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.getDefaultInstance();
+        case 4:
+          return com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType.getDefaultInstance();
         default:
           throw new java.lang.AssertionError("Can't get here.");
       }
@@ -4173,6 +4940,8 @@ public final class PROTO_API {
         case 2:
           return com.testingtech.ttworkbench.play.generated.PROTO_API.Void.getDefaultInstance();
         case 3:
+          return com.testingtech.ttworkbench.play.generated.PROTO_API.Void.getDefaultInstance();
+        case 4:
           return com.testingtech.ttworkbench.play.generated.PROTO_API.Void.getDefaultInstance();
         default:
           throw new java.lang.AssertionError("Can't get here.");
@@ -4254,6 +5023,21 @@ public final class PROTO_API {
             com.testingtech.ttworkbench.play.generated.PROTO_API.Void.class,
             com.testingtech.ttworkbench.play.generated.PROTO_API.Void.getDefaultInstance()));
       }
+      
+      public  void aPICarInitType(
+          com.google.protobuf.RpcController controller,
+          com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType request,
+          com.google.protobuf.RpcCallback<com.testingtech.ttworkbench.play.generated.PROTO_API.Void> done) {
+        channel.callMethod(
+          getDescriptor().getMethods().get(4),
+          controller,
+          request,
+          com.testingtech.ttworkbench.play.generated.PROTO_API.Void.getDefaultInstance(),
+          com.google.protobuf.RpcUtil.generalizeCallback(
+            done,
+            com.testingtech.ttworkbench.play.generated.PROTO_API.Void.class,
+            com.testingtech.ttworkbench.play.generated.PROTO_API.Void.getDefaultInstance()));
+      }
     }
     
     public static BlockingInterface newBlockingStub(
@@ -4280,6 +5064,11 @@ public final class PROTO_API {
       public com.testingtech.ttworkbench.play.generated.PROTO_API.Void aPIWarningType(
           com.google.protobuf.RpcController controller,
           com.testingtech.ttworkbench.play.generated.PROTO_API.warningType request)
+          throws com.google.protobuf.ServiceException;
+      
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.Void aPICarInitType(
+          com.google.protobuf.RpcController controller,
+          com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType request)
           throws com.google.protobuf.ServiceException;
     }
     
@@ -4332,6 +5121,18 @@ public final class PROTO_API {
           throws com.google.protobuf.ServiceException {
         return (com.testingtech.ttworkbench.play.generated.PROTO_API.Void) channel.callBlockingMethod(
           getDescriptor().getMethods().get(3),
+          controller,
+          request,
+          com.testingtech.ttworkbench.play.generated.PROTO_API.Void.getDefaultInstance());
+      }
+      
+      
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.Void aPICarInitType(
+          com.google.protobuf.RpcController controller,
+          com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType request)
+          throws com.google.protobuf.ServiceException {
+        return (com.testingtech.ttworkbench.play.generated.PROTO_API.Void) channel.callBlockingMethod(
+          getDescriptor().getMethods().get(4),
           controller,
           request,
           com.testingtech.ttworkbench.play.generated.PROTO_API.Void.getDefaultInstance());
@@ -4597,6 +5398,11 @@ public final class PROTO_API {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_PROTO_API_carStatusType_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_PROTO_API_carInitType_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_PROTO_API_carInitType_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_PROTO_API_Void_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -4626,17 +5432,23 @@ public final class PROTO_API {
       "\004 \002(\010\022\023\n\013lightSensor\030\005 \002(\010\022\026\n\016fogLightSe" +
       "nsor\030\006 \002(\010\022\023\n\013fuelFilling\030\007 \002(\002\022&\n\006gpsPo" +
       "s\030\010 \002(\0132\026.PROTO_API.gpsPosition\022\'\n\007warni" +
-      "ng\030\t \002(\0132\026.PROTO_API.warningType\"\006\n\004Void" +
-      "2\371\001\n\007ACTIONS\022B\n\023API_onOffEngineType\022\032.PR" +
-      "OTO_API.onOffEngineType\032\017.PROTO_API.Void" +
-      "\0226\n\rAPI_speedType\022\024.PROTO_API.speedType\032",
-      "\017.PROTO_API.Void\0226\n\rAPI_trackType\022\024.PROT" +
-      "O_API.trackType\032\017.PROTO_API.Void\022:\n\017API_" +
-      "warningType\022\026.PROTO_API.warningType\032\017.PR" +
-      "OTO_API.Void2H\n\006EVENTS\022>\n\021API_carStatusT" +
-      "ype\022\030.PROTO_API.carStatusType\032\017.PROTO_AP" +
-      "I.VoidB:\n*com.testingtech.ttworkbench.pl" +
-      "ay.generatedB\tPROTO_API\210\001\001"
+      "ng\030\t \002(\0132\026.PROTO_API.warningType\"\270\001\n\013car" +
+      "InitType\022\027\n\017absSensorExists\030\001 \002(\010\022\027\n\017esp" +
+      "SensorExists\030\002 \002(\010\022\031\n\021lightSensorExists\030" +
+      "\003 \002(\010\022\034\n\024fogLightSensorExists\030\004 \002(\010\022\023\n\013f",
+      "uelFilling\030\005 \002(\002\022\027\n\017fuelConsumption\030\006 \002(" +
+      "\002\022\020\n\010maxSpeed\030\007 \002(\002\"\006\n\004Void2\265\002\n\007ACTIONS\022" +
+      "B\n\023API_onOffEngineType\022\032.PROTO_API.onOff" +
+      "EngineType\032\017.PROTO_API.Void\0226\n\rAPI_speed" +
+      "Type\022\024.PROTO_API.speedType\032\017.PROTO_API.V" +
+      "oid\0226\n\rAPI_trackType\022\024.PROTO_API.trackTy" +
+      "pe\032\017.PROTO_API.Void\022:\n\017API_warningType\022\026" +
+      ".PROTO_API.warningType\032\017.PROTO_API.Void\022" +
+      ":\n\017API_carInitType\022\026.PROTO_API.carInitTy" +
+      "pe\032\017.PROTO_API.Void2H\n\006EVENTS\022>\n\021API_car",
+      "StatusType\022\030.PROTO_API.carStatusType\032\017.P" +
+      "ROTO_API.VoidB:\n*com.testingtech.ttworkb" +
+      "ench.play.generatedB\tPROTO_API\210\001\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -4699,8 +5511,16 @@ public final class PROTO_API {
               new java.lang.String[] { "EngineStatus", "Speed", "AbsSensor", "EspSensor", "LightSensor", "FogLightSensor", "FuelFilling", "GpsPos", "Warning", },
               com.testingtech.ttworkbench.play.generated.PROTO_API.carStatusType.class,
               com.testingtech.ttworkbench.play.generated.PROTO_API.carStatusType.Builder.class);
-          internal_static_PROTO_API_Void_descriptor =
+          internal_static_PROTO_API_carInitType_descriptor =
             getDescriptor().getMessageTypes().get(7);
+          internal_static_PROTO_API_carInitType_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_PROTO_API_carInitType_descriptor,
+              new java.lang.String[] { "AbsSensorExists", "EspSensorExists", "LightSensorExists", "FogLightSensorExists", "FuelFilling", "FuelConsumption", "MaxSpeed", },
+              com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType.class,
+              com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType.Builder.class);
+          internal_static_PROTO_API_Void_descriptor =
+            getDescriptor().getMessageTypes().get(8);
           internal_static_PROTO_API_Void_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_PROTO_API_Void_descriptor,

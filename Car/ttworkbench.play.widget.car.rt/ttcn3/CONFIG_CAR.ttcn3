@@ -1,10 +1,13 @@
 module CONFIG_CAR {
-   import from PROTO_SUTAPI language "PROTO" all;
-   import from SUTAPI all;
+   import from PROTO_API language "PROTO" all;
 
    type port carPort procedure {
-     out PROTO_SUTAPI.ACTIONS__API_carStatusType;
-     in PROTO_SUTAPI.EVENTS__API_onOffEngineType, PROTO_SUTAPI.EVENTS__API_speedType, PROTO_SUTAPI.EVENTS__API_trackType, PROTO_SUTAPI.EVENTS__API_warningType, PROTO_SUTAPI.EVENTS__SUTAPI_carInitType;
+     out PROTO_API.EVENTS__API_carStatusType;
+     in PROTO_API.ACTIONS__API_onOffEngineType, 
+     PROTO_API.ACTIONS__API_speedType, 
+     PROTO_API.ACTIONS__API_trackType, 
+     PROTO_API.ACTIONS__API_warningType, 
+     PROTO_API.ACTIONS__API_carInitType;
    }
 
    type component CarComponent {
