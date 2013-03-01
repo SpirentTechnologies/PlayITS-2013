@@ -2,12 +2,8 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="generated"/>
-<<<<<<< HEAD
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-=======
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="lib" path="lib/protobuf-java-2.4.1.jar"/>
 	<classpathentry kind="lib" path="lib/protobuf-socket-rpc-2.0.jar"/>
->>>>>>> 6c3ca171d7cc59a0fd2a864c2e8461adee3258e2
 	<classpathentry kind="output" path="bin"/>
 </classpath>
