@@ -1,0 +1,6 @@
+module SUT_TEST {
+    import from CONFIG_CAR {type CarComponent;}
+    
+	type component testSutComponent extends CONFIG_CAR.CarComponent {}
+    
+}
