@@ -1,6 +1,6 @@
 module SUT_TEST {
     import from CONFIG_API all;
-    import from PROTO_API all;
+    import from PROTO_API language "PROTO" all;
     import from HANDLE_API all;
     
     type port PROTO_ACTIONS_widgetPort procedure {
@@ -16,13 +16,41 @@ module SUT_TEST {
         port PROTO_EVENTS_widgetPort EVENTS_PORT_widgetPort;
     }
     
-    function PREAMBLE() runs on COMPONENT return TEST_WIDGET_COMPONENT {
-        var TEST_WIDGET_COMPONENT testComp;
-        testComp := TEST_WIDGET_COMPONENT.create;
-        connect(mtc:ACTIONS_PORT_widgetPort, testComp:ACTIONS_PORT_widgetPort);
-        connect(mtc:EVENTS_PORT_widgetPort, testComp:EVENTS_PORT_widgetPort);
-        testComp.start(widgetSim());
-        return testComp;
+    type port PROTO_ACTIONS_carPort procedure {
+        out PROTO_API.ACTIONS__API_carStatusType;
+    }
+
+    type port PROTO_EVENTS_carPort procedure {
+        in PROTO_API.EVENTS__API_onOffEngineType,
+        PROTO_API.EVENTS__API_speedType,
+        PROTO_API.EVENTS__API_trackType,
+        PROTO_API.EVENTS__API_warningType,
+        PROTO_API.EVENTS__API_carInitType;
+    }
+
+    type component TEST_CAR_COMPONENT {
+        port PROTO_ACTIONS_carPort ACTIONS_PORT_carPort;
+        port PROTO_EVENTS_carPort EVENTS_PORT_carPort;
+    }
+      
+    type component comp1 extends COMPONENT {
+        var TEST_WIDGET_COMPONENT testWidgetComp;
+
+        var TEST_CAR_COMPONENT testCarComp;
+    }
+    
+    function PREAMBLE() runs on comp1 {
+        testWidgetComp := TEST_WIDGET_COMPONENT.create;
+        testCarComp := TEST_CAR_COMPONENT.create;
+        
+        connect(mtc:ACTIONS_PORT_widgetPort, testWidgetComp:ACTIONS_PORT_widgetPort);
+        connect(mtc:EVENTS_PORT_widgetPort, testWidgetComp:EVENTS_PORT_widgetPort);
+
+        connect(mtc:ACTIONS_PORT_carPort, testCarComp:ACTIONS_PORT_carPort);
+        connect(mtc:EVENTS_PORT_carPort, testCarComp:EVENTS_PORT_carPort);
+        
+        testWidgetComp.start(widgetSim());
+        testCarComp.start(carSim());
     }
 
     template ACTIONS__API_carInitType carInitTemplate := {
@@ -38,42 +66,67 @@ module SUT_TEST {
         }
     }
 
+    template EVENTS__API_carStatusType carStatusTemplate := {
+        p_carStatusType := {
+            engineStatus := true,
+            speed := 50.0,
+            absSensor := true,
+            espSensor := false,
+            lightSensor := false,
+            fogLightSensor := false,
+            fuelFilling := 0.3,
+            gpsPos := {latitude := 1.0, longitude := 1.0, unknown_ := omit},
+            warning := {
+                warningName := {enum_value := deer, unknown_ := omit},
+                gpsPos := {latitude := 5.0, longitude := 1.0, unknown_ := omit},
+                priority := 3,
+                unknown_ := omit
+            },
+            unknown_ := omit
+        }
+    }
+
+
+
     function widgetSim() runs on TEST_WIDGET_COMPONENT {
         // Send initial car values.
         ACTIONS_PORT_widgetPort.call(carInitTemplate, nowait);
         ACTIONS_PORT_widgetPort.getreply;
         // Get status type from SUT.
         EVENTS_PORT_widgetPort.getcall(EVENTS__API_carStatusType:?);
-		EVENTS_PORT_widgetPort.reply(EVENTS__API_carStatusType:{-} value {});
-		// Send message to start engine.
-		ACTIONS_PORT_widgetPort.call(ACTIONS__API_onOffEngineType:{ {true} }, nowait);
-		ACTIONS_PORT_widgetPort.getreply;
+        EVENTS_PORT_widgetPort.reply(EVENTS__API_carStatusType:{-} value {});
+        // Send message to start engine.
+        ACTIONS_PORT_widgetPort.call(ACTIONS__API_onOffEngineType:{ {true} }, nowait);
+        ACTIONS_PORT_widgetPort.getreply;
     }
     
-   // function autoSim() runs on TEST_CAR_COMPONENT {
-//        // Send initial car values.
-//        EVENTS_PORT_carPort.call(carInitTemplate, nowait);
-//        ACTIONS_PORT_widgetPort.getreply;
-//        // Get status type from SUT.
-//        EVENTS_PORT_widgetPort.getcall(EVENTS__API_carStatusType:?);
-//        EVENTS_PORT_widgetPort.reply(EVENT_API__carStatusType:{-} value {});
-//        // Send message to start engine.
-//        ACTIONS_PORT_widgetPort.call(ACTION_API__onOffEngineType:{ {true} }, nowait);
-//        ACTIONS_PORT_widgetPort.getreply;
-//    }
+    function carSim() runs on TEST_CAR_COMPONENT {
+        // Get initial car values.
+        ACTIONS_PORT_carPort.getcall(carInitTemplate);
+        ACTIONS_PORT_carPort.reply(ACTIONS__API_carInitType:{-} value {});
+        // Send status type from SUT.
+        EVENTS_PORT_carPort.call(carStatusTemplate, nowait);
+        EVENTS_PORT_carPort.getreply;
+        // Get message to start engine.
+        ACTIONS_PORT_carPort.getcall(ACTIONS__API_onOffEngineType:?);
+        ACTIONS_PORT_carPort.reply(ACTIONS__API_onOffEngineType:{-} value {});
+    }
 	
 	
-    function POSTAMBLE(TEST_WIDGET_COMPONENT testComp) runs on COMPONENT {
-        disconnect(mtc:ACTIONS_PORT_widgetPort, testComp:ACTIONS_PORT_widgetPort);
-        disconnect(mtc:EVENTS_PORT_widgetPort, testComp:EVENTS_PORT_widgetPort);
+    function POSTAMBLE() runs on comp1 {
+        disconnect(mtc:ACTIONS_PORT_widgetPort, testWidgetComp:ACTIONS_PORT_widgetPort);
+        disconnect(mtc:EVENTS_PORT_widgetPort, testWidgetComp:EVENTS_PORT_widgetPort);
+
+        disconnect(mtc:ACTIONS_PORT_carPort, testCarComp:ACTIONS_PORT_carPort);
+        connect(mtc:EVENTS_PORT_carPort, testCarComp:EVENTS_PORT_carPort);
         deactivate;
     }
     
-    testcase TESTCASE() runs on COMPONENT system COMPONENT {
-        var TEST_WIDGET_COMPONENT tc := PREAMBLE();
+    testcase TESTCASE() runs on comp1 system COMPONENT {
+        PREAMBLE();
         while (true) {
             handleAction();
         }
-        POSTAMBLE(tc);
+        POSTAMBLE();
     }
 }
