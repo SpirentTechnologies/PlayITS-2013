@@ -4,7 +4,11 @@ module SUT_TEST {
     import from HANDLE_API all;
     
     type port PROTO_ACTIONS_widgetPort procedure {
-        out PROTO_API.ACTIONS__API_onOffEngineType, PROTO_API.ACTIONS__API_speedType, PROTO_API.ACTIONS__API_trackType, PROTO_API.ACTIONS__API_warningType;
+        out PROTO_API.ACTIONS__API_onOffEngineType
+        , PROTO_API.ACTIONS__API_speedType
+        , PROTO_API.ACTIONS__API_trackType
+        , PROTO_API.ACTIONS__API_warningType
+        , PROTO_API.ACTIONS__API_carInitType;
     }
 
     type port PROTO_EVENTS_widgetPort procedure {
@@ -16,21 +20,18 @@ module SUT_TEST {
         port PROTO_EVENTS_widgetPort EVENTS_PORT_widgetPort;
     }
     
-    type port PROTO_ACTIONS_carPort procedure {
-        out PROTO_API.ACTIONS__API_carStatusType;
-    }
-
-    type port PROTO_EVENTS_carPort procedure {
-        in PROTO_API.EVENTS__API_onOffEngineType,
-        PROTO_API.EVENTS__API_speedType,
-        PROTO_API.EVENTS__API_trackType,
-        PROTO_API.EVENTS__API_warningType,
-        PROTO_API.EVENTS__API_carInitType;
+    type port PROTO_carPort procedure {
+        out PROTO_API.EVENTS__API_carStatusType;
+        in PROTO_API.ACTIONS__API_onOffEngineType,
+        PROTO_API.ACTIONS__API_speedType,
+        PROTO_API.ACTIONS__API_trackType,
+        PROTO_API.ACTIONS__API_warningType,
+        PROTO_API.ACTIONS__API_carInitType;
+        
     }
 
     type component TEST_CAR_COMPONENT {
-        port PROTO_ACTIONS_carPort ACTIONS_PORT_carPort;
-        port PROTO_EVENTS_carPort EVENTS_PORT_carPort;
+        port PROTO_carPort carPort;
     }
       
     type component comp1 extends COMPONENT {
@@ -46,8 +47,7 @@ module SUT_TEST {
         connect(mtc:ACTIONS_PORT_widgetPort, testWidgetComp:ACTIONS_PORT_widgetPort);
         connect(mtc:EVENTS_PORT_widgetPort, testWidgetComp:EVENTS_PORT_widgetPort);
 
-        connect(mtc:ACTIONS_PORT_carPort, testCarComp:ACTIONS_PORT_carPort);
-        connect(mtc:EVENTS_PORT_carPort, testCarComp:EVENTS_PORT_carPort);
+        connect(mtc:car, testCarComp:carPort);
         
         testWidgetComp.start(widgetSim());
         testCarComp.start(carSim());
@@ -102,14 +102,14 @@ module SUT_TEST {
     
     function carSim() runs on TEST_CAR_COMPONENT {
         // Get initial car values.
-        ACTIONS_PORT_carPort.getcall(carInitTemplate);
-        ACTIONS_PORT_carPort.reply(ACTIONS__API_carInitType:{-} value {});
+        carPort.getcall(carInitTemplate);
+        carPort.reply(ACTIONS__API_carInitType:{-} value {});
         // Send status type from SUT.
-        EVENTS_PORT_carPort.call(carStatusTemplate, nowait);
-        EVENTS_PORT_carPort.getreply;
+        carPort.call(carStatusTemplate, nowait);
+        carPort.getreply;
         // Get message to start engine.
-        ACTIONS_PORT_carPort.getcall(ACTIONS__API_onOffEngineType:?);
-        ACTIONS_PORT_carPort.reply(ACTIONS__API_onOffEngineType:{-} value {});
+        carPort.getcall(ACTIONS__API_onOffEngineType:?);
+        carPort.reply(ACTIONS__API_onOffEngineType:{-} value {});
     }
 	
 	
@@ -117,8 +117,8 @@ module SUT_TEST {
         disconnect(mtc:ACTIONS_PORT_widgetPort, testWidgetComp:ACTIONS_PORT_widgetPort);
         disconnect(mtc:EVENTS_PORT_widgetPort, testWidgetComp:EVENTS_PORT_widgetPort);
 
-        disconnect(mtc:ACTIONS_PORT_carPort, testCarComp:ACTIONS_PORT_carPort);
-        connect(mtc:EVENTS_PORT_carPort, testCarComp:EVENTS_PORT_carPort);
+        disconnect(mtc:ACTIONS_PORT_carPort, testCarComp:carPort);
+        connect(mtc:EVENTS_PORT_carPort, testCarComp:carPort);
         deactivate;
     }
     

@@ -2,8 +2,8 @@ module CONFIG_CAR {
    import from PROTO_API language "PROTO" all;
 
    type port carPort procedure {
-     out PROTO_API.EVENTS__API_carStatusType;
-     in PROTO_API.ACTIONS__API_onOffEngineType, 
+     in PROTO_API.EVENTS__API_carStatusType;
+     out PROTO_API.ACTIONS__API_onOffEngineType, 
      PROTO_API.ACTIONS__API_speedType, 
      PROTO_API.ACTIONS__API_warningType, 
      PROTO_API.ACTIONS__API_trackType, 

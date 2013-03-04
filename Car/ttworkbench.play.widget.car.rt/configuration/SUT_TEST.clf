@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE campaignloader PUBLIC "-//TESTING TECH//DTD MLF//1.9" "mlf.dtd">
+<campaignloader>
+  <campaign Name="SUT_TEST" Control="false">
+    <testadapter Name="com.testingtech.ttcn.tri.PluginTestAdapter" File="">
+      <description>configuration/taconfig.xml</description>
+    </testadapter>
+    <module Name="HANDLE_API" File="ttcn3build/HANDLE_API.jar" Package="generated_ttcn"/>
+    <module Name="SUT_TEST" File="ttcn3build/SUT_TEST.jar" Package="generated_ttcn"/>
+    <testcase Name="TESTCASE" Alias="" Module="SUT_TEST" Retries="0" Runs="1" ActionOnFail="continue" Selection="false" Status="stopped" Verdict="fail">
+      <description></description>
+    </testcase>
+    <testcase Name="TESTCASE" Alias="" Module="HANDLE_API" Retries="0" Runs="1" ActionOnFail="continue" Selection="false" Status="stopped" Verdict="fail">
+      <description></description>
+    </testcase>
+  </campaign>
+</campaignloader>
