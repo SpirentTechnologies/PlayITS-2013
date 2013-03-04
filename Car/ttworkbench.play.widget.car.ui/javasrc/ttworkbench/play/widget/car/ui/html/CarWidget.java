@@ -1,45 +1,84 @@
 package ttworkbench.play.widget.car.ui.html;
 
 
-import org.eclipse.swt.*;
-import org.eclipse.swt.browser.*;
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.SWTError;
+import org.eclipse.swt.SWTException;
+import org.eclipse.swt.browser.Browser;
+import org.eclipse.swt.browser.BrowserFunction;
+import org.eclipse.swt.browser.LocationAdapter;
+import org.eclipse.swt.browser.LocationEvent;
+import org.eclipse.swt.browser.ProgressAdapter;
+import org.eclipse.swt.browser.ProgressEvent;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.widgets.*;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Monitor;
+import org.eclipse.swt.widgets.Shell;
 
 public class CarWidget {
 
-public static void main (String [] args) {
-	
-	
-	Display display = new Display();
-	int shellWidth = 864;
-	int shellHeight = 534 + 22;
-	
-	Shell shell = new Shell(display, SWT.CLOSE | SWT.MIN);
-	shell.setSize(shellWidth, shellHeight);
-	shell.setLayout(new FillLayout());
-	
-	Monitor primary = display.getPrimaryMonitor();
-	Rectangle screenBounds = primary.getBounds();
-	Rectangle shellSize = shell.getBounds();
-	int xPosition = screenBounds.x + (screenBounds.width - shellSize.width) / 2;
-	int yPosition = screenBounds.y + (screenBounds.height - shellSize.height) / 2;
-	
-	shell.setLocation (xPosition, yPosition);
+	private final File wwwRoot;
 
-	final Browser browser;
-	try {
-		browser = new Browser (shell, SWT.WEBKIT);
-	} catch (SWTError e) {
-		System.out.println ("Could not instantiate Browser: " + e.getMessage ());
-		display.dispose();
-		return;
+	public CarWidget(File wwwRoot) {
+		this.wwwRoot = wwwRoot;
 	}
-	
-	final BrowserFunction function = new CustomFunction (browser, "theJavaFunction");
-	
-	//Define each JavaScript function
+
+	public static void main (String [] args) {
+
+
+		Display display = new Display();
+		int shellWidth = 864;
+		int shellHeight = 534 + 22;
+
+		Shell shell = new Shell(display, SWT.CLOSE | SWT.MIN);
+		shell.setSize(shellWidth, shellHeight);
+		shell.setLayout(new FillLayout());
+
+		Monitor primary = display.getPrimaryMonitor();
+		Rectangle screenBounds = primary.getBounds();
+		Rectangle shellSize = shell.getBounds();
+		int xPosition = screenBounds.x + (screenBounds.width - shellSize.width) / 2;
+		int yPosition = screenBounds.y + (screenBounds.height - shellSize.height) / 2;
+
+		shell.setLocation (xPosition, yPosition);
+
+		try {
+			new CarWidget(new File(new URL(CarWidget.class.getResource("/").toExternalForm()).getFile(), "../www")).createControl(shell);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		shell.open();
+
+		while (!shell.isDisposed ()) {
+			if (!display.readAndDispatch ()) {
+				display.sleep ();
+			}
+		}
+		display.dispose ();
+	}
+
+	public Control createControl(Composite parent) {
+
+		final Browser browser;
+		try {
+			browser = new Browser (parent, SWT.NONE);
+		} catch (SWTError e) {
+			System.out.println ("Could not instantiate Browser: " + e.getMessage ());
+			return null;
+		}
+
+		final BrowserFunction function = new CustomFunction (browser, "theJavaFunction");
+
+		//Define each JavaScript function
 		final BrowserFunction function1 = new CustomFunction (browser, "motor");
 		final BrowserFunction function2 = new CustomFunction (browser, "abs");
 		final BrowserFunction function3 = new CustomFunction (browser, "esp");
@@ -51,7 +90,7 @@ public static void main (String [] args) {
 					public void changed (LocationEvent event) {
 						browser.removeLocationListener (this);
 						System.out.println ("left java function-aware page, so disposed CustomFunction");
-						
+
 						//Dispose JavaScript functions
 						function1.dispose ();
 						function2.dispose ();
@@ -62,102 +101,95 @@ public static void main (String [] args) {
 			}
 		});
 
-	browser.addProgressListener (new ProgressAdapter () {
-		double latitude = 52.515;
-		double longitude = 13.351;
-		
-		public void completed (ProgressEvent event) {
-			
-			new Thread(new Runnable() {
-		      public void run() {
-		         while (true) {
-		            try { Thread.sleep(1000);
-			            Display.getDefault().asyncExec(new Runnable() {
-			               public void run() {
-			            	   browser.execute("updateMarker(" + latitude + ", " + longitude + ")");
-			            	   longitude += 0.001;
-			            	   longitude = Math.round( (longitude + 0.001) * 1000.0 ) / 1000.0;
-			            	   System.out.println(latitude + ", " + longitude);
-			               }
-			            });
-			        } catch (SWTException e) {
-		        		System.out.println("Quit.");
-		        		return;
-		        	} catch (Exception e) { }
-		         }
-		      }
-		   }).start();
-			
-			browser.addLocationListener (new LocationAdapter () {
-				public void changed (LocationEvent event) {
-					browser.removeLocationListener (this);
-					System.out.println ("left java function-aware page, so disposed CustomFunction");
-					function.dispose ();
-				}
-			});
-		}
-	});
+		browser.addProgressListener (new ProgressAdapter () {
+			double latitude = 52.515;
+			double longitude = 13.351;
 
-	shell.open();
-	browser.setUrl("file:///C:/Users/XxeLL/workspace/TTworkbench/src/car.html");
-	
-	while (!shell.isDisposed ()) {
-		if (!display.readAndDispatch ()) {
-			display.sleep ();
-		}
-	}
-	display.dispose ();
-}
+			public void completed (ProgressEvent event) {
 
-static class CustomFunction extends BrowserFunction {
-	CustomFunction (Browser browser, String name) {
-		super (browser, name);
+				new Thread(new Runnable() {
+					public void run() {
+						while (true) {
+							try { Thread.sleep(1000);
+							Display.getDefault().asyncExec(new Runnable() {
+								public void run() {
+									browser.execute("updateMarker(" + latitude + ", " + longitude + ")");
+									longitude += 0.001;
+									longitude = Math.round( (longitude + 0.001) * 1000.0 ) / 1000.0;
+									System.out.println(latitude + ", " + longitude);
+								}
+							});
+							} catch (SWTException e) {
+								System.out.println("Quit.");
+								return;
+							} catch (Exception e) { }
+						}
+					}
+				}).start();
+
+				browser.addLocationListener (new LocationAdapter () {
+					public void changed (LocationEvent event) {
+						browser.removeLocationListener (this);
+						System.out.println ("left java function-aware page, so disposed CustomFunction");
+						function.dispose ();
+					}
+				});
+			}
+		});
+
+		browser.setUrl(new File(wwwRoot, "car.html").getPath());
+		return browser;
 	}
-	
-/* --------------------- Create the functions: Form JS to Java---------------------------*/
-	private Object callMotor(String arg) {
-		boolean b= Boolean.parseBoolean(arg);
-		System.out.println("Motor: " + b);
-		return null;
-	}
-	
-	private Object callABS(String arg) {
-		boolean b= Boolean.parseBoolean(arg);
-		System.out.println("ABS: " + b);
-		return null;
-	}
-	
-	private Object callESP(String arg) {
-		boolean b= Boolean.parseBoolean(arg);
-		System.out.println("ESP: " + b);
-		return null;
-	}
-	
-	private Object callSpeed(String arg) {
-		int i=(int) Float.parseFloat(arg);
-		System.out.println("Speed: " + i);
-		return null;
-	}
-	
-	public Object function (Object[] args) {
-		
-		//Get the name of the function and invoke that function in JAVA
-		switch(this.getName()) {
-			
+
+	static class CustomFunction extends BrowserFunction {
+		CustomFunction (Browser browser, String name) {
+			super (browser, name);
+		}
+
+		/* --------------------- Create the functions: Form JS to Java---------------------------*/
+		private Object callMotor(String arg) {
+			boolean b= Boolean.parseBoolean(arg);
+			System.out.println("Motor: " + b);
+			return null;
+		}
+
+		private Object callABS(String arg) {
+			boolean b= Boolean.parseBoolean(arg);
+			System.out.println("ABS: " + b);
+			return null;
+		}
+
+		private Object callESP(String arg) {
+			boolean b= Boolean.parseBoolean(arg);
+			System.out.println("ESP: " + b);
+			return null;
+		}
+
+		private Object callSpeed(String arg) {
+			int i=(int) Float.parseFloat(arg);
+			System.out.println("Speed: " + i);
+			return null;
+		}
+
+		public Object function (Object[] args) {
+
+			//Get the name of the function and invoke that function in JAVA
+			switch(this.getName()) {
+
 			case "motor": callMotor(args[0].toString());
-				break;
+			break;
 			case "abs": callABS(args[0].toString());
-				break;
+			break;
 			case "esp": callESP(args[0].toString());
-				break;
+			break;
 			case "speed": callSpeed(args[0].toString());
-				break;
+			break;
 			default: System.out.println ("??? was called from javascript!");
-				break;
-		
-		}
-		
-		/*
+			break;
+
+			}
+
+			/*
 		//Create return object for JavaScript
 		Object returnValue = new Object[] {
 			new Short ((short)3),
@@ -167,8 +199,8 @@ static class CustomFunction extends BrowserFunction {
 			"hi",
 			new Float (2.0f / 3.0f),
 		};
-		*/
-		return null;
+			 */
+			return null;
+		}
 	}
-}
 }
