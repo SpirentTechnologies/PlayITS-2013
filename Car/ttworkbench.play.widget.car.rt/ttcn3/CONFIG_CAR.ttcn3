@@ -1,17 +1,18 @@
 module CONFIG_CAR {
-   import from PROTO_API language "PROTO" all;
+    import from PROTO_API language "PROTO" all;
 
-   type port carPort procedure {
-     in PROTO_API.EVENTS__API_carStatusType;
-     out PROTO_API.ACTIONS__API_onOffEngineType, 
-     PROTO_API.ACTIONS__API_speedType, 
-     PROTO_API.ACTIONS__API_warningType, 
-     PROTO_API.ACTIONS__API_trackType, 
-     PROTO_API.ACTIONS__API_carInitType;
-   }
+    type port carPort procedure {
+        in PROTO_API.EVENTS__API_carStatusType;
+        out PROTO_API.ACTIONS__API_onOffEngineType,
+        PROTO_API.ACTIONS__API_speedType,
+        PROTO_API.ACTIONS__API_warningType,
+        PROTO_API.ACTIONS__API_trackType,
+        PROTO_API.ACTIONS__API_carInitType;
+    }
 
-   type component CarComponent {
-     port carPort car;
-     timer calltimer := 1.0;
-   }
+    type component CarComponent {
+        var boolean widgetExit := false;
+        port carPort car;
+        timer calltimer := 1.0;
+    }
 }

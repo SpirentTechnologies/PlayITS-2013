@@ -238,4 +238,28 @@ module CONVERT_API {
       }
     }
   }
+
+  function fromProto_widgetExit(template(omit) PROTO_API.widgetExit p_value)
+    return template(omit) API.widgetExit {
+    if (not ispresent(p_value)) {
+      return omit;
+    }
+    else {
+      return {
+         
+      }
+    }
+  }
+
+  function toProto_widgetExit(template(omit) API.widgetExit p_value)
+    return template(omit) PROTO_API.widgetExit {
+    if (not ispresent(p_value)) {
+      return omit;
+    }
+    else {
+      return {
+        
+      }
+    }
+  }
 }

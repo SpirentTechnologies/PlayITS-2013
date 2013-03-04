@@ -1,4 +1,6 @@
 module SUT_TEST {
+    import from ACTIONS_API all;
+
     import from CONFIG_API all;
     import from PROTO_API language "PROTO" all;
     import from HANDLE_API all;
@@ -8,7 +10,8 @@ module SUT_TEST {
         , PROTO_API.ACTIONS__API_speedType
         , PROTO_API.ACTIONS__API_trackType
         , PROTO_API.ACTIONS__API_warningType
-        , PROTO_API.ACTIONS__API_carInitType;
+        , PROTO_API.ACTIONS__API_carInitType
+        , PROTO_API.ACTIONS__API_widgetExit;
     }
 
     type port PROTO_EVENTS_widgetPort procedure {
@@ -26,8 +29,8 @@ module SUT_TEST {
         PROTO_API.ACTIONS__API_speedType,
         PROTO_API.ACTIONS__API_trackType,
         PROTO_API.ACTIONS__API_warningType,
-        PROTO_API.ACTIONS__API_carInitType;
-        
+        PROTO_API.ACTIONS__API_carInitType,
+        PROTO_API.ACTIONS__API_widgetExit;
     }
 
     type component TEST_CAR_COMPONENT {
@@ -51,6 +54,9 @@ module SUT_TEST {
         
         testWidgetComp.start(widgetSim());
         testCarComp.start(carSim());
+        
+        activate(handleTimeout());
+        activate(handleCarEvents());
     }
 
     template ACTIONS__API_carInitType carInitTemplate := {
@@ -86,17 +92,18 @@ module SUT_TEST {
         }
     }
 
-
-
     function widgetSim() runs on TEST_WIDGET_COMPONENT {
         // Send initial car values.
         ACTIONS_PORT_widgetPort.call(carInitTemplate, nowait);
         ACTIONS_PORT_widgetPort.getreply;
         // Get status type from SUT.
-        EVENTS_PORT_widgetPort.getcall(EVENTS__API_carStatusType:?);
+        EVENTS_PORT_widgetPort.getcall(EVENTS__API_carStatusType:{?});
         EVENTS_PORT_widgetPort.reply(EVENTS__API_carStatusType:{-} value {});
         // Send message to start engine.
         ACTIONS_PORT_widgetPort.call(ACTIONS__API_onOffEngineType:{ {true} }, nowait);
+        ACTIONS_PORT_widgetPort.getreply;
+        
+        ACTIONS_PORT_widgetPort.call(ACTIONS__API_widgetExit:{ {} }, nowait);
         ACTIONS_PORT_widgetPort.getreply;
     }
     
@@ -117,14 +124,13 @@ module SUT_TEST {
         disconnect(mtc:ACTIONS_PORT_widgetPort, testWidgetComp:ACTIONS_PORT_widgetPort);
         disconnect(mtc:EVENTS_PORT_widgetPort, testWidgetComp:EVENTS_PORT_widgetPort);
 
-        disconnect(mtc:ACTIONS_PORT_carPort, testCarComp:carPort);
-        connect(mtc:EVENTS_PORT_carPort, testCarComp:carPort);
+        disconnect(mtc:car, testCarComp:carPort);
         deactivate;
     }
     
     testcase TESTCASE() runs on comp1 system COMPONENT {
         PREAMBLE();
-        while (true) {
+        while (not widgetExit) {
             handleAction();
         }
         POSTAMBLE();

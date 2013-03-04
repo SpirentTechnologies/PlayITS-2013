@@ -39,6 +39,11 @@ module ACTIONS_API {
         car.call(ACTIONS__API_carInitType:{toProto_carInitType(p_value)}, nowait);
         log("ACTION_API__carInitType was called by the widget");
     }
+    
+    function ACTION_API__widgetExit(API.widgetExit p_value) runs on COMPONENT {
+        widgetExit := true;
+        log("ACTION_API__widgetExit was called by the widget");
+    }
 
     altstep handleCarEvents() runs on COMPONENT {
         var PROTO_API.carStatusType status;

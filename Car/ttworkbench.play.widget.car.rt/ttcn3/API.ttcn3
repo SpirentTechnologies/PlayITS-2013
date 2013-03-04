@@ -94,12 +94,14 @@ module API {
         float maxSpeed
     }
     
+    type record widgetExit { }
+    
     /**
      * 
      */
     type port widgetPort message {
         out carStatusType;
-        in onOffEngineType, speedType, trackType, warningType, carInitType;
+        in onOffEngineType, speedType, trackType, warningType, carInitType, widgetExit;
     }
    
     type component engine extends CONFIG_CAR.CarComponent {}
