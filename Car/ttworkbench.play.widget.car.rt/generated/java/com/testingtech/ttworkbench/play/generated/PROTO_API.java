@@ -4384,6 +4384,282 @@ public final class PROTO_API {
     // @@protoc_insertion_point(class_scope:PROTO_API.carInitType)
   }
   
+  public interface widgetExitOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+  }
+  public static final class widgetExit extends
+      com.google.protobuf.GeneratedMessage
+      implements widgetExitOrBuilder {
+    // Use widgetExit.newBuilder() to construct.
+    private widgetExit(Builder builder) {
+      super(builder);
+    }
+    private widgetExit(boolean noInit) {}
+    
+    private static final widgetExit defaultInstance;
+    public static widgetExit getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public widgetExit getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.testingtech.ttworkbench.play.generated.PROTO_API.internal_static_PROTO_API_widgetExit_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.testingtech.ttworkbench.play.generated.PROTO_API.internal_static_PROTO_API_widgetExit_fieldAccessorTable;
+    }
+    
+    private void initFields() {
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExitOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.testingtech.ttworkbench.play.generated.PROTO_API.internal_static_PROTO_API_widgetExit_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.testingtech.ttworkbench.play.generated.PROTO_API.internal_static_PROTO_API_widgetExit_fieldAccessorTable;
+      }
+      
+      // Construct using com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit.getDescriptor();
+      }
+      
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit getDefaultInstanceForType() {
+        return com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit.getDefaultInstance();
+      }
+      
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit build() {
+        com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit buildPartial() {
+        com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit result = new com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit(this);
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit) {
+          return mergeFrom((com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit other) {
+        if (other == com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit.getDefaultInstance()) return this;
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+          }
+        }
+      }
+      
+      
+      // @@protoc_insertion_point(builder_scope:PROTO_API.widgetExit)
+    }
+    
+    static {
+      defaultInstance = new widgetExit(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:PROTO_API.widgetExit)
+  }
+  
   public interface VoidOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
   }
@@ -4690,6 +4966,11 @@ public final class PROTO_API {
           com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType request,
           com.google.protobuf.RpcCallback<com.testingtech.ttworkbench.play.generated.PROTO_API.Void> done);
       
+      public abstract void aPIWidgetExit(
+          com.google.protobuf.RpcController controller,
+          com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit request,
+          com.google.protobuf.RpcCallback<com.testingtech.ttworkbench.play.generated.PROTO_API.Void> done);
+      
     }
     
     public static com.google.protobuf.Service newReflectiveService(
@@ -4735,6 +5016,14 @@ public final class PROTO_API {
           impl.aPICarInitType(controller, request, done);
         }
         
+        @java.lang.Override
+        public  void aPIWidgetExit(
+            com.google.protobuf.RpcController controller,
+            com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit request,
+            com.google.protobuf.RpcCallback<com.testingtech.ttworkbench.play.generated.PROTO_API.Void> done) {
+          impl.aPIWidgetExit(controller, request, done);
+        }
+        
       };
     }
     
@@ -4767,6 +5056,8 @@ public final class PROTO_API {
               return impl.aPIWarningType(controller, (com.testingtech.ttworkbench.play.generated.PROTO_API.warningType)request);
             case 4:
               return impl.aPICarInitType(controller, (com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType)request);
+            case 5:
+              return impl.aPIWidgetExit(controller, (com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit)request);
             default:
               throw new java.lang.AssertionError("Can't get here.");
           }
@@ -4791,6 +5082,8 @@ public final class PROTO_API {
               return com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.getDefaultInstance();
             case 4:
               return com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType.getDefaultInstance();
+            case 5:
+              return com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit.getDefaultInstance();
             default:
               throw new java.lang.AssertionError("Can't get here.");
           }
@@ -4814,6 +5107,8 @@ public final class PROTO_API {
             case 3:
               return com.testingtech.ttworkbench.play.generated.PROTO_API.Void.getDefaultInstance();
             case 4:
+              return com.testingtech.ttworkbench.play.generated.PROTO_API.Void.getDefaultInstance();
+            case 5:
               return com.testingtech.ttworkbench.play.generated.PROTO_API.Void.getDefaultInstance();
             default:
               throw new java.lang.AssertionError("Can't get here.");
@@ -4846,6 +5141,11 @@ public final class PROTO_API {
     public abstract void aPICarInitType(
         com.google.protobuf.RpcController controller,
         com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType request,
+        com.google.protobuf.RpcCallback<com.testingtech.ttworkbench.play.generated.PROTO_API.Void> done);
+    
+    public abstract void aPIWidgetExit(
+        com.google.protobuf.RpcController controller,
+        com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit request,
         com.google.protobuf.RpcCallback<com.testingtech.ttworkbench.play.generated.PROTO_API.Void> done);
     
     public static final
@@ -4895,6 +5195,11 @@ public final class PROTO_API {
             com.google.protobuf.RpcUtil.<com.testingtech.ttworkbench.play.generated.PROTO_API.Void>specializeCallback(
               done));
           return;
+        case 5:
+          this.aPIWidgetExit(controller, (com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit)request,
+            com.google.protobuf.RpcUtil.<com.testingtech.ttworkbench.play.generated.PROTO_API.Void>specializeCallback(
+              done));
+          return;
         default:
           throw new java.lang.AssertionError("Can't get here.");
       }
@@ -4919,6 +5224,8 @@ public final class PROTO_API {
           return com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.getDefaultInstance();
         case 4:
           return com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType.getDefaultInstance();
+        case 5:
+          return com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit.getDefaultInstance();
         default:
           throw new java.lang.AssertionError("Can't get here.");
       }
@@ -4942,6 +5249,8 @@ public final class PROTO_API {
         case 3:
           return com.testingtech.ttworkbench.play.generated.PROTO_API.Void.getDefaultInstance();
         case 4:
+          return com.testingtech.ttworkbench.play.generated.PROTO_API.Void.getDefaultInstance();
+        case 5:
           return com.testingtech.ttworkbench.play.generated.PROTO_API.Void.getDefaultInstance();
         default:
           throw new java.lang.AssertionError("Can't get here.");
@@ -5038,6 +5347,21 @@ public final class PROTO_API {
             com.testingtech.ttworkbench.play.generated.PROTO_API.Void.class,
             com.testingtech.ttworkbench.play.generated.PROTO_API.Void.getDefaultInstance()));
       }
+      
+      public  void aPIWidgetExit(
+          com.google.protobuf.RpcController controller,
+          com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit request,
+          com.google.protobuf.RpcCallback<com.testingtech.ttworkbench.play.generated.PROTO_API.Void> done) {
+        channel.callMethod(
+          getDescriptor().getMethods().get(5),
+          controller,
+          request,
+          com.testingtech.ttworkbench.play.generated.PROTO_API.Void.getDefaultInstance(),
+          com.google.protobuf.RpcUtil.generalizeCallback(
+            done,
+            com.testingtech.ttworkbench.play.generated.PROTO_API.Void.class,
+            com.testingtech.ttworkbench.play.generated.PROTO_API.Void.getDefaultInstance()));
+      }
     }
     
     public static BlockingInterface newBlockingStub(
@@ -5069,6 +5393,11 @@ public final class PROTO_API {
       public com.testingtech.ttworkbench.play.generated.PROTO_API.Void aPICarInitType(
           com.google.protobuf.RpcController controller,
           com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType request)
+          throws com.google.protobuf.ServiceException;
+      
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.Void aPIWidgetExit(
+          com.google.protobuf.RpcController controller,
+          com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit request)
           throws com.google.protobuf.ServiceException;
     }
     
@@ -5133,6 +5462,18 @@ public final class PROTO_API {
           throws com.google.protobuf.ServiceException {
         return (com.testingtech.ttworkbench.play.generated.PROTO_API.Void) channel.callBlockingMethod(
           getDescriptor().getMethods().get(4),
+          controller,
+          request,
+          com.testingtech.ttworkbench.play.generated.PROTO_API.Void.getDefaultInstance());
+      }
+      
+      
+      public com.testingtech.ttworkbench.play.generated.PROTO_API.Void aPIWidgetExit(
+          com.google.protobuf.RpcController controller,
+          com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit request)
+          throws com.google.protobuf.ServiceException {
+        return (com.testingtech.ttworkbench.play.generated.PROTO_API.Void) channel.callBlockingMethod(
+          getDescriptor().getMethods().get(5),
           controller,
           request,
           com.testingtech.ttworkbench.play.generated.PROTO_API.Void.getDefaultInstance());
@@ -5403,6 +5744,11 @@ public final class PROTO_API {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_PROTO_API_carInitType_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_PROTO_API_widgetExit_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_PROTO_API_widgetExit_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_PROTO_API_Void_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -5437,18 +5783,20 @@ public final class PROTO_API {
       "SensorExists\030\002 \002(\010\022\031\n\021lightSensorExists\030" +
       "\003 \002(\010\022\034\n\024fogLightSensorExists\030\004 \002(\010\022\023\n\013f",
       "uelFilling\030\005 \002(\002\022\027\n\017fuelConsumption\030\006 \002(" +
-      "\002\022\020\n\010maxSpeed\030\007 \002(\002\"\006\n\004Void2\265\002\n\007ACTIONS\022" +
-      "B\n\023API_onOffEngineType\022\032.PROTO_API.onOff" +
-      "EngineType\032\017.PROTO_API.Void\0226\n\rAPI_speed" +
-      "Type\022\024.PROTO_API.speedType\032\017.PROTO_API.V" +
-      "oid\0226\n\rAPI_trackType\022\024.PROTO_API.trackTy" +
-      "pe\032\017.PROTO_API.Void\022:\n\017API_warningType\022\026" +
-      ".PROTO_API.warningType\032\017.PROTO_API.Void\022" +
-      ":\n\017API_carInitType\022\026.PROTO_API.carInitTy" +
-      "pe\032\017.PROTO_API.Void2H\n\006EVENTS\022>\n\021API_car",
-      "StatusType\022\030.PROTO_API.carStatusType\032\017.P" +
-      "ROTO_API.VoidB:\n*com.testingtech.ttworkb" +
-      "ench.play.generatedB\tPROTO_API\210\001\001"
+      "\002\022\020\n\010maxSpeed\030\007 \002(\002\"\014\n\nwidgetExit\"\006\n\004Voi" +
+      "d2\357\002\n\007ACTIONS\022B\n\023API_onOffEngineType\022\032.P" +
+      "ROTO_API.onOffEngineType\032\017.PROTO_API.Voi" +
+      "d\0226\n\rAPI_speedType\022\024.PROTO_API.speedType" +
+      "\032\017.PROTO_API.Void\0226\n\rAPI_trackType\022\024.PRO" +
+      "TO_API.trackType\032\017.PROTO_API.Void\022:\n\017API" +
+      "_warningType\022\026.PROTO_API.warningType\032\017.P" +
+      "ROTO_API.Void\022:\n\017API_carInitType\022\026.PROTO" +
+      "_API.carInitType\032\017.PROTO_API.Void\0228\n\016API",
+      "_widgetExit\022\025.PROTO_API.widgetExit\032\017.PRO" +
+      "TO_API.Void2H\n\006EVENTS\022>\n\021API_carStatusTy" +
+      "pe\022\030.PROTO_API.carStatusType\032\017.PROTO_API" +
+      ".VoidB:\n*com.testingtech.ttworkbench.pla" +
+      "y.generatedB\tPROTO_API\210\001\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -5519,8 +5867,16 @@ public final class PROTO_API {
               new java.lang.String[] { "AbsSensorExists", "EspSensorExists", "LightSensorExists", "FogLightSensorExists", "FuelFilling", "FuelConsumption", "MaxSpeed", },
               com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType.class,
               com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType.Builder.class);
-          internal_static_PROTO_API_Void_descriptor =
+          internal_static_PROTO_API_widgetExit_descriptor =
             getDescriptor().getMessageTypes().get(8);
+          internal_static_PROTO_API_widgetExit_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_PROTO_API_widgetExit_descriptor,
+              new java.lang.String[] { },
+              com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit.class,
+              com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit.Builder.class);
+          internal_static_PROTO_API_Void_descriptor =
+            getDescriptor().getMessageTypes().get(9);
           internal_static_PROTO_API_Void_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_PROTO_API_Void_descriptor,
