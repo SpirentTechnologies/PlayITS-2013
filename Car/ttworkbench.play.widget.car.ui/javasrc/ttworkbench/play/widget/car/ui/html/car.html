@@ -1,47 +1,128 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset=utf-8>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="carWidgetCSS.css">
+    
+    <style type="text/css">
+      html { height: 100%; }
+      body { height: 100%; margin: 0; padding: 0; overflow: hidden; }
+      #map_canvas {
+          height: 100%;
+          position: absolute;
+          left: 330px;
+          top: 0;
+      }
+      #map_canvas > div > div:nth-child(3n) {
+          visibility: hidden;
+      }
+      #speedContainer {
+          width: 100px;
+          height: 100px;
+          margin: 50px 0 0 115px;
+      }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="jquery.knob.js"></script>
+    
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?sensor=false">
+    </script>
+    
+    <script type="text/javascript">
+    var map, marker;
+    
+    
+      
+ function OnSliderChanged(slider) {
+           var sliderValue = document.getElementById (slider.id + "Value");
+           sliderValue.innerHTML = slider.value;
+        }
 
-<link rel="stylesheet" type="text/css" href="carWidgetCSS.css">
-<script src="jquery-1.9.1.min.js"></script>
-
-  
-<script type="text/javascript">
- /*
-function updateHello(user){
-  document.getElementById("helloprompt").innerHTML="Hello: " + user;
-}
-  
-function clearHello(user){
-  document.getElementById("helloprompt").innerHTML="Hello <a href='http://java-buddy.blogspot.com/'>Java-Buddy</a>";
-}
+ function Init() {
+            $('#slider1Value').html(0);
+         	}
  
+    
+    $(document).ready(function() {
+        var lat = 52.515;
+        var lng = 13.351;
+        var myLatlng = new google.maps.LatLng(lat, lng);
+        
+        var mapOptions = {
+          center: myLatlng,
+          zoom: 15,
+          panControl: false,
+          mapTypeControl: false,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        
+        map = new google.maps.Map(document.getElementById("map_canvas"),
+            mapOptions);
+        
+        marker = new google.maps.Marker({
+            position: myLatlng, 
+            map: map
+        });
+        
+        /*
+        $("#speed").knob({
+            inputColor: '#66CC66',
+            fgColor: '#66CC66',
+            angleOffset: -125,
+            angleArc: 250,
+            width: 100,
+            change: function(v) {
+                console.log("!");
+                if(v > 80) {
+                    this.o.fgColor = '#ff0000';
+                    $('#speed').css('color', '#ff0000');
+                } else {
+                    this.o.fgColor = '#66CC66';
+                    $('#speed').css('color', '#66CC66');
+                }
+            }
+        });
+        
+        $('#slider').on('change', function() {
+            $('#speed').val( $(this).val() );
+            $('#speed').trigger('change');
+        });
+        */
+        
+        
+        $('#callMotor').on('click', function(){
+			motor($(this).is(':checked'));
+		});
 
-*/
-$(document).ready(function() {
+		$('#callABS').on('click', function(){
+			abs($(this).is(':checked'));
+		});
+		$('#callESP').on('click', function(){		
+			esp($(this).is(':checked'));
+		});
+		$('#sliderSpeed').on('change', function(){		
+			speed($(this).val());
+		$('#slider1Value').html($(this).val());
+		});
+    });
+    
+    function updateMarker(lat, lng) {
+        var latLng = new google.maps.LatLng(lat, lng);
+        marker.setPosition(latLng);
+        map.setCenter(latLng);
+    };
+        
+    
+    </script>
+  </head>
+  <body onload="Init ()">
+  	<!-- ---------------------Speed----------------- 
+       <div id="speedContainer">
+          <input type="text" value="50" id="speed">
+      </div>
+      -->
 
-	$('#callMotor').on('click', function(){
-		app.Motor($(this).is(':checked'));
-	});
-
-	$('#callABS').on('click', function(){
-		app.ABS($(this).is(':checked'));
-	});
-	$('#callESP').on('click', function(){
-		app.ESP($(this).is(':checked'));
-	});
-});
-
-</script>
-  
-</head>
-<body>
-<!-- <img src="http://2.bp.blogspot.com/-Ol8pLJcc9oo/TnZY6R8YJ5I/AAAAAAAACSI/YDxcIHCZhy4/s150/duke_44x80.png"/>
-<p id="helloprompt">Hello <a href="http://java-buddy.blogspot.com/">Java-Buddy</a></p>
-<p><textarea id="textto"> </textarea></p> -->
-
-<br><br>
 <p>Motor:</p>
 <div class="onoffswitch">
     	<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="callMotor">
@@ -51,8 +132,11 @@ $(document).ready(function() {
     		</label>
 </div>
 <br>
+
+
+<!-- --------------------------------Control buttons------------------------- -->
 <p>Control Lamps:</p>
-<br>
+
 <br>
 	<p>ABS:</p>
     <div class="onoffswitch">
@@ -71,5 +155,13 @@ $(document).ready(function() {
     			<div class="onoffswitch-switch"></div>
     		</label>
     </div>
-</body>
+    <br><br>
+    <!-- --------------------------------------  Slider bar --------------------------- -->
+    0 <input type="range" id="sliderSpeed" min="0" max="230" step="1"  value="0" /> 230
+    <span id="slider1Value" class="sliderValue"></span>
+       
+     
+     
+      <div id="map_canvas" style="width:534px; height:534px;"></div>
+  </body>
 </html>
