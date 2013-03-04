@@ -8,7 +8,7 @@ module ACTIONS_API {
 
     function ACTION_API__onOffEngineType(API.onOffEngineType p_value) runs on COMPONENT {
         calltimer.start;
-        car.call (PROTO_API.onOffEngineType:{toProto_onOffEngineType(p_value)}, nowait);
+        car.call(PROTO_API.onOffEngineType:{toProto_onOffEngineType(p_value)}, nowait);
 
         log("ACTION_API__onOffEngineType was called by the widget");
     }

@@ -1,15 +1,13 @@
 module SUTAPI {
-    
-  import from CONFIG_SUTAPI {type COMPONENT;}
 
-  import from API {
-	  type carInitType, carStatusType, onOffEngineType, speedType, trackType, warningType;
-  }
+    import from API {
+        type carInitType, carStatusType, onOffEngineType, speedType, trackType, warningType;
+    }
 
-  	type port carPort message {
-    	out onOffEngineType, speedType, trackType, warningType, carInitType;
-     	in carStatusType;
- 	}
+    type port carPort message {
+        out onOffEngineType, speedType, trackType, warningType, carInitType;
+        in carStatusType;
+    }
        
 // 	type component engine extends CONFIG_SUTAPI.COMPONENT {
 // 	}

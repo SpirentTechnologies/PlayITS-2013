@@ -2,24 +2,24 @@
 // use as template for merging with implementation
 module ACTIONS_SUTAPI {
   import from API all;
-  import from CONFIG_SUTAPI all;
-  import from EVENTS_SUTAPI all;
+  import from CONFIG_API all;
+  import from EVENTS_API all;
 
   function ACTION_API__carStatusType(API.carStatusType p_value) runs on COMPONENT {
-    // TODO to be implemented
-    log("ACTION_API__carStatusType was called by the widget");
-  }
+      // TODO to be implemented
+      log("ACTION_API__carStatusType was called by the widget");
+    }
 
-  function PREAMBLE() runs on COMPONENT {
-    map(mtc:ACTIONS_PORT_carPort, system:ACTIONS_PORT_carPort);
-    map(mtc:EVENTS_PORT_carPort, system:EVENTS_PORT_carPort);
-    // TODO add default alternatives and other initializations here
-  }
+    function PREAMBLE() runs on COMPONENT {
+      map(mtc:ACTIONS_PORT_carPort, system:ACTIONS_PORT_carPort);
+      map(mtc:EVENTS_PORT_carPort, system:EVENTS_PORT_carPort);
+      // TODO add default alternatives and other initializations here
+    }
 
-  function POSTAMBLE() runs on COMPONENT {
-    // TODO add cleanup code here
-    unmap(mtc:ACTIONS_PORT_carPort, system:ACTIONS_PORT_carPort);
-    unmap(mtc:EVENTS_PORT_carPort, system:EVENTS_PORT_carPort);
-    deactivate;
+    function POSTAMBLE() runs on COMPONENT {
+      // TODO add cleanup code here
+      unmap(mtc:ACTIONS_PORT_carPort, system:ACTIONS_PORT_carPort);
+      unmap(mtc:EVENTS_PORT_carPort, system:EVENTS_PORT_carPort);
+      deactivate;
+    }
   }
-}

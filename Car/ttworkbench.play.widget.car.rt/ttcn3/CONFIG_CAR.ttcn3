@@ -5,8 +5,8 @@ module CONFIG_CAR {
      out PROTO_API.EVENTS__API_carStatusType;
      in PROTO_API.ACTIONS__API_onOffEngineType, 
      PROTO_API.ACTIONS__API_speedType, 
-     PROTO_API.ACTIONS__API_trackType, 
      PROTO_API.ACTIONS__API_warningType, 
+     PROTO_API.ACTIONS__API_trackType, 
      PROTO_API.ACTIONS__API_carInitType;
    }
 
