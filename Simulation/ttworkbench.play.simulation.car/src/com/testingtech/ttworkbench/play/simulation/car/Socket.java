@@ -31,7 +31,7 @@ public class Socket {
 	void test(){
 		int port = 13333;
 		startActionService(port);
-		createEventsClient();
+		createEventsClient(port, host);
 	}
 
 
