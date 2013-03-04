@@ -8,44 +8,49 @@ module ACTIONS_API {
 
     function ACTION_API__onOffEngineType(API.onOffEngineType p_value) runs on COMPONENT {
         calltimer.start;
-        car.call (PROTO_API.onOffEngineType:{toProto_onOffEngineType(p_value)}, nowait);
+        car.call(ACTIONS__API_onOffEngineType:{toProto_onOffEngineType(p_value)}, nowait);
 
         log("ACTION_API__onOffEngineType was called by the widget");
     }
 
     function ACTION_API__speedType(API.speedType p_value) runs on COMPONENT {
         calltimer.start;
-        car.call(PROTO_API.speedType:{toProto_speedType(p_value)}, nowait);
+        car.call(ACTIONS__API_speedType:{toProto_speedType(p_value)}, nowait);
         
         log("ACTION_API__speedType was called by the widget");
     }
 
     function ACTION_API__trackType(API.trackType p_value) runs on COMPONENT {
         calltimer.start;
-        car.call(PROTO_API.trackType:{toProto_trackType(p_value)}, nowait);
+        car.call(ACTIONS__API_trackType:{toProto_trackType(p_value)}, nowait);
         
         log("ACTION_API__trackType was called by the widget");
     }
 
     function ACTION_API__warningType(API.warningType p_value) runs on COMPONENT {
         calltimer.start;
-        car.call(PROTO_API.warningType:{toProto_warningType(p_value)}, nowait);
+        car.call(ACTIONS__API_warningType:{toProto_warningType(p_value)}, nowait);
         
         log("ACTION_API__warningType was called by the widget");
     }
     
     function ACTION_API__carInitType(API.carInitType p_value) runs on COMPONENT {
         calltimer.start;
-        car.call(PROTO_API.carInitType:{toProto_carInitType(p_value)}, nowait);
+        car.call(ACTIONS__API_carInitType:{toProto_carInitType(p_value)}, nowait);
         log("ACTION_API__carInitType was called by the widget");
+    }
+    
+    function ACTION_API__widgetExit(API.widgetExit p_value) runs on COMPONENT {
+        widgetExit := true;
+        log("ACTION_API__widgetExit was called by the widget");
     }
 
     altstep handleCarEvents() runs on COMPONENT {
-        var PROTO_API.PROTO_API__carStatusType status;
-        [] car.getcall (PROTO_API.ACTIONS__API_carStatusType:{?}) -> param (status){
+        var PROTO_API.carStatusType status;
+        [] car.getcall (EVENTS__API_carStatusType:{?}) -> param (status){
             calltimer.start;
-            EVENTS_PORT_widgetPort.call(PROTO_API.EVENTS__API_carStatusType:{status}, nowait);
-            car.reply (PROTO_API.ACTIONS__API_carStatusType:{-} value {}) ;
+            EVENTS_PORT_widgetPort.call(EVENTS__API_carStatusType:{status}, nowait);
+            car.reply (EVENTS__API_carStatusType:{-} value {}) ;
         }
     }
 

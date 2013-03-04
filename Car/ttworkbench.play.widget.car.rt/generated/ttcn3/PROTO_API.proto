@@ -60,6 +60,9 @@ message carInitType {
   required float maxSpeed = 7;
 }
 
+message widgetExit {
+}
+
 message Void {}
 
 service ACTIONS {
@@ -68,6 +71,7 @@ service ACTIONS {
   rpc API_trackType(PROTO_API.trackType) returns (Void);
   rpc API_warningType(PROTO_API.warningType) returns (Void);
   rpc API_carInitType(PROTO_API.carInitType) returns (Void);
+  rpc API_widgetExit(PROTO_API.widgetExit) returns (Void);
 }
 
 service EVENTS {

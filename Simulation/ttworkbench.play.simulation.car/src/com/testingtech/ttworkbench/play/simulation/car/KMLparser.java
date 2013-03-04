@@ -2,14 +2,13 @@ package com.testingtech.ttworkbench.play.simulation.car;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class KMLparser {
 
-	public static ArrayList<GPSposition> positions = new ArrayList<>();
+	public static ArrayList<GPSposition> positions = new ArrayList<GPSposition>();
 
 	public static void main(String[] args) {
 
