@@ -8,14 +8,6 @@
     </classpath>
   </taskdef>
 
-  <fail message="Property 'module.id' is not set!">
-    <condition>
-      <not>
-        <isset property="module.id"/>
-      </not>
-    </condition>
-  </fail>
-
   <tstamp>
     <format property="build.id.detailed" pattern="yyyy.MM.dd.HH.mm.ss.SSS"/>
   </tstamp>
@@ -87,7 +79,7 @@
           </else>
         </if>
         <!-- Generating Java from Proto -->
-        <pathconvert property="proto-files"
+        <pathconvert property="generated-proto-files"
                      pathsep=" ">
           <fileset dir="${basedir}/generated/ttcn3/"
                    includes="*.proto"/>
@@ -100,7 +92,7 @@
               failifexecutionfails="true">
           <arg line="--java_out=generated${file.separator}java" />
           <arg line="--proto_path=generated${file.separator}ttcn3" />
-          <arg line="${proto-files}" />
+          <arg line="${generated-proto-files}" />
         </exec>
       
         <pathconvert property="ttwb.path.tt3plugins.local">
@@ -113,6 +105,14 @@
                   value="${ttwb.path.tt3plugins.local}${path.separator}${ttwb.path.tt3plugins}"/>
 
         <!-- Compiling generated TTCN-3 -->
+        <pathconvert property="generated-ttcn3-files"
+                     pathsep=" ">
+          <fileset dir="${basedir}/generated/ttcn3/"
+                   includes="HANDLE_*.ttcn3"/>
+          <mapper type="glob"
+                  from="${basedir}/generated/ttcn3/*.ttcn3"
+                  to="*"/>
+        </pathconvert>
         <java classname="de.tu_berlin.cs.uebb.ttcn.compiler.CompilerMain"
               fork="true"
               failonerror="true"
@@ -124,7 +124,7 @@
           <arg line="--license-file &quot;${eclipse.home}/license.dat&quot;"/>
           <arg line="-R &quot;${ttwb.classpath.generated-ttcn}&quot;"/>
           <arg line="-C internal-javac"/>
-          <arg line="HANDLE_${module.id}"/>
+          <arg line="${generated-ttcn3-files}"/>
           <classpath>
             <pathelement path="${ttwb.classpath.compiler}"/>
           </classpath>
@@ -136,7 +136,7 @@
                               depth="infinite"/>                        
       </then>
       <else>
-        <echo message="Generated Play files for ${module.id}.ttcn3 are up-to-date!"/>
+        <echo message="Generated Play files are up-to-date!"/>
       </else>
     </if>
   </target>
