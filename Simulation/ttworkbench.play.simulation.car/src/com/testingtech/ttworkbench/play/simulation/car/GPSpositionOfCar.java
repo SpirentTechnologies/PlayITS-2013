@@ -198,4 +198,3 @@ public class GPSpositionOfCar {
 		return oldPosition;
 	}
 }
->>>>>>> f30563df9578bb45d9d1c7cd385e227a04f3fab6
