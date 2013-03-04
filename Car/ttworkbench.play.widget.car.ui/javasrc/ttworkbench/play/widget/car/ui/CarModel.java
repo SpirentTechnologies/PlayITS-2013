@@ -7,25 +7,41 @@ import ttworkbench.play.widget.car.ui.model.CarStatusModel;
 import ttworkbench.play.widget.car.ui.model.GPSposition;
 import ttworkbench.play.widget.car.ui.model.WarningType;
 
-
+/**
+ * 
+ * @author kensan
+ *
+ */
 public class CarModel {
 	
 	private CarStatusModel status = new CarStatusModel();;
 	private LinkedList<WarningType> warnings = new LinkedList<WarningType>();
 	private LinkedList<ICarModelListener> listeners = new LinkedList<ICarModelListener>();
 	
-	public CarModel(){
-	}
-	
+
+	/**
+	 * Returns CarStatusModel, consisting attributes.
+	 * @return
+	 */
 	public CarStatusModel getStatus(){
 		return status;
 	}
 	
+	/**
+	 * Adds Warning to Warninglist
+	 * @param warning
+	 */
 	public void addWarning(WarningType warning){
 		warnings.add(warning);
 	}
 	
-	public void setGPSPostion(double latitude, double longitude){
+	/**
+	 * Sets GPS latitude and longitude to model.
+	 * Delete Warnings with the same Coords.
+	 * @param latitude
+	 * @param longitude
+	 */
+	public void setGPSPostion(float latitude, float longitude){
 		Iterator<WarningType> iterator = warnings.iterator();
 		
 		while(iterator.hasNext()){
@@ -38,15 +54,25 @@ public class CarModel {
 		status.setGpsPosition(new GPSposition(latitude, longitude));
 	}
 	
-	
+	/**
+	 * Add Listener, that import ICarModelListener to List.
+	 * @param listener
+	 */
 	public void addListener(ICarModelListener listener){
 		this.listeners.add(listener);
 	}
 	
+	/**
+	 * Remove Listener from List.
+	 * @param listener
+	 */
 	public void removeListener(ICarModelListener listener){
 		this.listeners.remove(listener);
 	}
 	
+	/**
+	 * Notfies every Listener in List.
+	 */
 	public void notifyListener(){
 		for(ICarModelListener listener: listeners){
 			listener.notifyModelChange();

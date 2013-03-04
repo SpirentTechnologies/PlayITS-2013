@@ -1,26 +1,23 @@
 package ttworkbench.play.widget.car.ui;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
-import ttworkbench.play.widget.car.ui.model.CarStatusModel;
-import ttworkbench.play.widget.car.ui.model.WarningType;
 
 import com.google.protobuf.ServiceException;
-import com.testingtech.ttworkbench.play.dashboard.widget.AbstractActionsClient;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.onOffEngineType;
+import com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType;
+import com.testingtech.ttworkbench.play.generated.PROTO_API.speedType;
+import com.testingtech.ttworkbench.play.generated.PROTO_API.trackType;
+import com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit;
 
 
-
+/**
+ * 
+ * @author kensan
+ *
+ */
 public class Widget_Controller {
 	
-		private CarStatusModel model;
-		private ArrayList<WarningType> warnings = new ArrayList<WarningType>();
-
-		public Widget_Controller(){
-			model = new CarStatusModel();
-		}
-		
+	
 		/**
 		 * 
 		 * @param client from com.testingtech.ttworkbench.play.dashboard.widget.AbstractDashboardWidget.getActionsClient()
@@ -48,7 +45,6 @@ public class Widget_Controller {
 		 */
 		public void stopEngine(ActionsClient client) throws IOException{	
 			
-			if(!model.isEngineStarted()) return;
 			try {
 				onOffEngineType.Builder request = onOffEngineType.newBuilder();
 				request.setEngineStatus(false);
@@ -60,5 +56,213 @@ public class Widget_Controller {
 			}
 			
 		}
+		
+		/**
+		 * 
+		 * @param client
+		 */
+		public void enableLightSensor(ActionsClient client){
+			try {
+				carInitType.Builder request = carInitType.newBuilder();
+				
+				client.getActionsService().aPICarInitType(client.getController(), request.build());
+				request.setLightSensorExists(true);
+				
+			} catch (ServiceException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		
+		/**
+		 * 
+		 * @param client
+		 */
+		public void disableLightSensor(ActionsClient client){
+			try {
+				carInitType.Builder request = carInitType.newBuilder();
+				
+				client.getActionsService().aPICarInitType(client.getController(), request.build());
+				request.setLightSensorExists(false);
+				
+			} catch (ServiceException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		
+		/**
+		 * 
+		 * @param client
+		 */
+		public void enableFogLight(ActionsClient client){
+			try {
+				carInitType.Builder request = carInitType.newBuilder();
+				
+				client.getActionsService().aPICarInitType(client.getController(), request.build());
+				request.setFogLightSensorExists(true);
+				
+			} catch (ServiceException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		
+		/**
+		 * 
+		 * @param client
+		 */
+		
+		public void disableFogLight(ActionsClient client){
+			try {
+				carInitType.Builder request = carInitType.newBuilder();
+				
+				client.getActionsService().aPICarInitType(client.getController(), request.build());
+				request.setFogLightSensorExists(false);
+				
+			} catch (ServiceException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		
+		/**
+		 * 
+		 * @param client
+		 * @param speed
+		 */
+		public void setMaxSpeed(ActionsClient client, float speed){
+			try {
+				carInitType.Builder request = carInitType.newBuilder();
+				
+				client.getActionsService().aPICarInitType(client.getController(), request.build());
+				request.setMaxSpeed(speed);
+				
+			} catch (ServiceException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		
+		/**
+		 * 
+		 * @param client
+		 * @param speed
+		 */
+		public void changeSpeed(ActionsClient client, float speed){
+			try {
+				speedType.Builder request = speedType.newBuilder();
+				
+				client.getActionsService().aPISpeedType(client.getController(), request.build());
+				request.setSpeed(speed);
+				
+			} catch (ServiceException e) {
+				
+				e.printStackTrace();
+			}
+		}
+
+		/**
+		 * 
+		 * @param client
+		 * @param value
+		 */
+		public void setTrack(ActionsClient client, String value){
+			try {
+				trackType.Builder request = trackType.newBuilder();
+				
+				client.getActionsService().aPITrackType(client.getController(), request.build());
+				request.setTrackName(value);
+				
+			} catch (ServiceException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		
+		/**
+		 * 
+		 * @param client
+		 */
+		public void enableABS(ActionsClient client){
+			try {
+				carInitType.Builder request = carInitType.newBuilder();
+				
+				client.getActionsService().aPICarInitType(client.getController(), request.build());
+				request.setAbsSensorExists(true);
+				
+			} catch (ServiceException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		
+		/**
+		 * 
+		 * @param client
+		 */
+		public void disableABS(ActionsClient client){
+			try {
+				carInitType.Builder request = carInitType.newBuilder();
+				
+				client.getActionsService().aPICarInitType(client.getController(), request.build());
+				request.setAbsSensorExists(false);
+				
+			} catch (ServiceException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		
+		/**
+		 * 
+		 * @param client
+		 */
+		public void enableESP(ActionsClient client){
+			try {
+				carInitType.Builder request = carInitType.newBuilder();
+				
+				client.getActionsService().aPICarInitType(client.getController(), request.build());
+				request.setEspSensorExists(true);
+				
+			} catch (ServiceException e) {
+				
+				e.printStackTrace();
+			}
+		}
 	
+		/**
+		 * 
+		 * @param client
+		 */
+		public void disableESP(ActionsClient client){
+			try {
+				carInitType.Builder request = carInitType.newBuilder();
+				
+				client.getActionsService().aPICarInitType(client.getController(), request.build());
+				request.setEspSensorExists(false);
+				
+			} catch (ServiceException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		
+		/**
+		 * 
+		 * @param client
+		 */
+		public void exitWidget(ActionsClient client){
+			try {
+				widgetExit.Builder request = widgetExit.newBuilder();
+				
+				client.getActionsService().aPIWidgetExit(client.getController(), request.build());
+				
+			} catch (ServiceException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		
+		
 }

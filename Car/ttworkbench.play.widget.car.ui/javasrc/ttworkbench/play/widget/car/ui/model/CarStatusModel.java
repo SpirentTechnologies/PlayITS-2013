@@ -7,8 +7,11 @@ public class CarStatusModel {
 	private boolean eSPenabled;
 	private boolean lightenabled;
 	private int actualTemperature;
-	private double actualSpeed;
+	private float actualSpeed;
 	private GPSposition gpsPosition;
+	private boolean lightSensorEnabled;
+	private boolean fogLightEnabled;
+	private float fuel;
 		
 	/**
 	 * @return the engineStarted
@@ -61,7 +64,7 @@ public class CarStatusModel {
 	/**
 	 * @param actualSpeed the actualSpeed to set
 	 */
-	public void setActualSpeed(double actualSpeed) {
+	public void setActualSpeed(float actualSpeed) {
 		this.actualSpeed = actualSpeed;
 	}
 
@@ -106,6 +109,48 @@ public class CarStatusModel {
 	 */
 	public void setGpsPosition(GPSposition gpsPosition) {
 		this.gpsPosition = gpsPosition;
+	}
+
+	/**
+	 * @return the fogLightEnabled
+	 */
+	public boolean isFogLightEnabled() {
+		return fogLightEnabled;
+	}
+
+	/**
+	 * @param fogLightEnabled the fogLightEnabled to set
+	 */
+	public void setFogLightEnabled(boolean fogLightEnabled) {
+		this.fogLightEnabled = fogLightEnabled;
+	}
+
+	/**
+	 * @return the lightSensorEnabled
+	 */
+	public boolean isLightSensorEnabled() {
+		return lightSensorEnabled;
+	}
+
+	/**
+	 * @param lightSensorEnabled the lightSensorEnabled to set
+	 */
+	public void setLightSensorEnabled(boolean lightSensorEnabled) {
+		this.lightSensorEnabled = lightSensorEnabled;
+	}
+
+	/**
+	 * @return the fuel
+	 */
+	public float getFuel() {
+		return fuel;
+	}
+
+	/**
+	 * @param fuel the fuel to set
+	 */
+	public void setFuel(float fuel) {
+		this.fuel = fuel;
 	}
 
 

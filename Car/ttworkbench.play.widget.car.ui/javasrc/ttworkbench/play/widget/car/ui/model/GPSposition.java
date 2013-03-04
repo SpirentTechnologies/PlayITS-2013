@@ -1,4 +1,10 @@
 package ttworkbench.play.widget.car.ui.model;
+
+/**
+ * 
+ * @author kensan
+ *
+ */
 public class GPSposition {
 	double latitude, longitude;
 

@@ -2,6 +2,11 @@ package ttworkbench.play.widget.car.ui.model;
 
 import ttworkbench.play.widget.car.ui.model.Warnings;
 
+/**
+ * 
+ * @author kensan
+ *
+ */
 
 public class WarningType {
 	

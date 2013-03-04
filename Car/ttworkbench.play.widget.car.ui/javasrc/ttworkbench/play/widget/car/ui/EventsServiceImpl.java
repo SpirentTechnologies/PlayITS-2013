@@ -14,7 +14,11 @@ import com.testingtech.ttworkbench.play.generated.PROTO_API.carStatusType;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.warningType;
 
 
-
+/**
+ * 
+ * @author kensan
+ *
+ */
 public class EventsServiceImpl implements BlockingInterface {
 
   private final CarModel model;
@@ -26,7 +30,9 @@ public class EventsServiceImpl implements BlockingInterface {
 @Override
 public Void aPICarStatusType(RpcController controller, carStatusType request)
 		throws ServiceException {
+	
 	if(request != null){
+		
 		warningType reqWarning = request.getWarning();
 		if(reqWarning != null){
 			WarningType warning = new WarningType();
@@ -41,9 +47,12 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 		status.setActualSpeed(request.getSpeed());
 		status.setEngineStarted(request.getEngineStatus());
 		status.setESPenabled(request.getEspSensor());
-		status.setLightenabled(request.getLightSensor());
-		
+		status.setLightSensorEnabled(request.getLightSensor());
+		status.setFogLightEnabled(request.getFogLightSensor());
+		status.setFuel(request.getFuelFilling());
+		model.setGPSPostion(request.getGpsPos().getLatitude(), request.getGpsPos().getLongitude());
 		model.notifyListener();
+		
 	}
 	return nil();
 }

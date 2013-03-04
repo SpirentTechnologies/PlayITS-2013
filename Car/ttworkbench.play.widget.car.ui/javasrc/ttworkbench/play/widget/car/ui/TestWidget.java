@@ -15,6 +15,11 @@ import com.testingtech.ttworkbench.play.dashboard.widget.IDashboardWidgetFactory
 import com.testingtech.ttworkbench.play.generated.PROTO_API;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.ACTIONS.BlockingInterface;
 
+/**
+ * 
+ * @author kensan
+ *
+ */
 public class TestWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTIONS.BlockingInterface> implements ICarModelListener {
 
 	private CarModel model = new CarModel();

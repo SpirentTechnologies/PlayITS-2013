@@ -1,9 +1,18 @@
 package ttworkbench.play.widget.car.ui.model;
 
-
+/**
+ * 
+ * @author kensan
+ *
+ */
 public enum Warnings {
 	DEER, RAIN, ICE, ACCIDENT, FOG, SNOW;
 	
+	/**
+	 * 
+	 * @param value
+	 * @return Warnings
+	 */
 	public static Warnings getWarning(int value){
 		switch(value){
 		case 0: return DEER;
