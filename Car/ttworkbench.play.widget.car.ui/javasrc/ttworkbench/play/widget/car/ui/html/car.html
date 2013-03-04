@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset=utf-8>
+
+<link rel="stylesheet" type="text/css" href="carWidgetCSS.css">
+<script src="jquery-1.9.1.min.js"></script>
+
+  
+<script type="text/javascript">
+ /*
+function updateHello(user){
+  document.getElementById("helloprompt").innerHTML="Hello: " + user;
+}
+  
+function clearHello(user){
+  document.getElementById("helloprompt").innerHTML="Hello <a href='http://java-buddy.blogspot.com/'>Java-Buddy</a>";
+}
+ 
+
+*/
+$(document).ready(function() {
+
+	$('#callMotor').on('click', function(){
+		app.Motor($(this).is(':checked'));
+	});
+
+	$('#callABS').on('click', function(){
+		app.ABS($(this).is(':checked'));
+	});
+	$('#callESP').on('click', function(){
+		app.ESP($(this).is(':checked'));
+	});
+});
+
+</script>
+  
+</head>
+<body>
+<!-- <img src="http://2.bp.blogspot.com/-Ol8pLJcc9oo/TnZY6R8YJ5I/AAAAAAAACSI/YDxcIHCZhy4/s150/duke_44x80.png"/>
+<p id="helloprompt">Hello <a href="http://java-buddy.blogspot.com/">Java-Buddy</a></p>
+<p><textarea id="textto"> </textarea></p> -->
+
+<br><br>
+<p>Motor:</p>
+<div class="onoffswitch">
+    	<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="callMotor">
+    		<label class="onoffswitch-label" for="callMotor">
+    			<div class="onoffswitch-inner"></div>
+    			<div class="onoffswitch-switch"></div>
+    		</label>
+</div>
+<br>
+<p>Control Lamps:</p>
+<br>
+<br>
+	<p>ABS:</p>
+    <div class="onoffswitch">
+    	<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="callABS">
+    		<label class="onoffswitch-label" for="callABS">
+    			<div class="onoffswitch-inner"></div>
+    			<div class="onoffswitch-switch"></div>
+    		</label>
+    </div>
+   <br>
+   <p>ESP:</p>
+     <div class="onoffswitch">
+    	<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="callESP">
+    		<label class="onoffswitch-label" for="callESP">
+    			<div class="onoffswitch-inner"></div>
+    			<div class="onoffswitch-switch"></div>
+    		</label>
+    </div>
+</body>
+</html>
