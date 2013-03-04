@@ -50,7 +50,7 @@ public class CarWidget {
 		shell.setLocation (xPosition, yPosition);
 
 		try {
-			new CarWidget(new File(new URL(CarWidget.class.getResource("/").toExternalForm()).getFile(), "../www")).createControl(shell);
+			new CarWidget(new File(new URL(CarWidget.class.getResource("/").toExternalForm()).getFile(), "../www").getAbsoluteFile()).createControl(shell);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -68,22 +68,23 @@ public class CarWidget {
 
 	public Control createControl(Composite parent) {
 
-		final Browser browser;
+		Browser bw;
 		try {
-			browser = new Browser (parent, SWT.NONE);
+			bw = new Browser (parent, SWT.WEBKIT);
 		} catch (SWTError e) {
+			bw = new Browser (parent, SWT.NONE);
 			System.out.println ("Could not instantiate Browser: " + e.getMessage ());
-			return null;
 		}
 
-		final BrowserFunction function = new CustomFunction (browser, "theJavaFunction");
+		final BrowserFunction function = new CustomFunction (bw, "theJavaFunction");
 
 		//Define each JavaScript function
-		final BrowserFunction function1 = new CustomFunction (browser, "motor");
-		final BrowserFunction function2 = new CustomFunction (browser, "abs");
-		final BrowserFunction function3 = new CustomFunction (browser, "esp");
-		final BrowserFunction function4 = new CustomFunction (browser, "speed");
+		final BrowserFunction function1 = new CustomFunction (bw, "motor");
+		final BrowserFunction function2 = new CustomFunction (bw, "abs");
+		final BrowserFunction function3 = new CustomFunction (bw, "esp");
+		final BrowserFunction function4 = new CustomFunction (bw, "speed");
 
+		final Browser browser = bw;
 		browser.addProgressListener (new ProgressAdapter () {
 			public void completed (ProgressEvent event) {
 				browser.addLocationListener (new LocationAdapter () {
@@ -137,7 +138,7 @@ public class CarWidget {
 			}
 		});
 
-		browser.setUrl(new File(wwwRoot, "car.html").getPath());
+		browser.setUrl(new File(wwwRoot, "car.html").toURI().toString());
 		return browser;
 	}
 
