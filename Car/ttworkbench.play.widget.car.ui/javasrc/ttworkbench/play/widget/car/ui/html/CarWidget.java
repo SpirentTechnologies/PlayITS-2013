@@ -73,6 +73,7 @@ public class CarWidget {
 			bw = new Browser (parent, SWT.WEBKIT);
 		} catch (SWTError e) {
 			bw = new Browser (parent, SWT.NONE);
+			bw.setSize(800, 600);
 			System.out.println ("Could not instantiate Browser: " + e.getMessage ());
 		}
 
