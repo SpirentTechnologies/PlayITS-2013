@@ -16,8 +16,7 @@ public class GPSpositionOfCar {
 		this.oldPosition = startPosition;
 		this.positions = positions;
 
-		// calculate the angle needed for calculating the new position 
-		// of the car
+		// calculate the angle needed for calculating the distance
 		double lon1 = startPosition.longitude;
 		double lon2 = destinationPositions.longitude;
 		double lat1 = startPosition.latitude;
@@ -32,13 +31,11 @@ public class GPSpositionOfCar {
 
 		angle = (Math.toDegrees(Math.atan2(y, x)) + 360) % 360;
 
-		// update the directions the car is driving
+		// update the directions
 		directionX = Math.abs(lon1) - Math.abs(lon2);
 		directionY = Math.abs(lat1) - Math.abs(lat2);
 	}
 
-	// basically the constructors functionality repeated for new start and 
-	// destination points
 	private void updateAngleAndDirections(GPSposition destinationPositions,
 			GPSposition startPosition) {
 		this.worldDestination = destinationPositions;
@@ -74,11 +71,10 @@ public class GPSpositionOfCar {
 		return tankFillLevel;
 	}
 
-	// calculate the new position of the car using the length driven
-	// and the old position of the car
+	// calculate the new position of the car
 	private GPSposition calculatePosition(double length,
 			GPSposition currentPositon) {
-		
+
 		GPSposition newPos = new GPSposition(0, 0);
 		double dist = length / 6371.0;
 		double brng = Math.toRadians(angle);
@@ -103,8 +99,7 @@ public class GPSpositionOfCar {
 				- Math.abs(worldDestination.longitude);
 		double directionYlocal = Math.abs(newPos.latitude)
 				- Math.abs(worldDestination.latitude);
-		//validation of the driving funcitonality, so the car stops,
-		//by reaching its destination
+
 		if (directionX < 0 && directionXlocal >= 0) {
 			if (directionY < 0 && directionYlocal >= 0) {
 				newPos = worldDestination;
@@ -164,7 +159,7 @@ public class GPSpositionOfCar {
 	// update the petrol usage state and the new gps position
 	public Tupel<GPSposition, Double> updateEverything(double tankFillLevel,
 			double petrolUsage, double speed) {
-		// calculate the length driven, should be somewhere in the code
+		// TODO calculate the length driven, should be somewhere in the code
 		// already just add function call
 		double length = speed * 0.000277777778; // km/s
 
@@ -183,18 +178,11 @@ public class GPSpositionOfCar {
 			positionsCounter++;
 
 		}
-		//return the new destination of the car and the tankfill status
+
 		return new Tupel<GPSposition, Double>(first, second);
 	}
 
 	public double getAngle() {
 		return angle;
-	}
-	public GPSposition getCurrentPosition(){
-		return oldPosition;
-	}
-	public GPSposition setCurrentPosition(GPSposition position){
-		oldPosition = position;
-		return oldPosition;
 	}
 }
