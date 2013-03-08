@@ -5,11 +5,9 @@ public class CarStatusModel {
 	private boolean engineStarted;
 	private boolean aBSenabled;
 	private boolean eSPenabled;
-	private boolean lightenabled;
-	private int actualTemperature;
-	private float actualSpeed;
+	private float speed;
 	private GPSposition gpsPosition;
-	private boolean lightSensorEnabled;
+	private boolean lightEnabled;
 	private boolean fogLightEnabled;
 	private float fuel;
 		
@@ -58,44 +56,16 @@ public class CarStatusModel {
 	 * @return the actualSpeed
 	 */
 	public double getActualSpeed() {
-		return actualSpeed;
+		return speed;
 	}
 
 	/**
 	 * @param actualSpeed the actualSpeed to set
 	 */
 	public void setActualSpeed(float actualSpeed) {
-		this.actualSpeed = actualSpeed;
+		this.speed = actualSpeed;
 	}
 
-
-	/**
-	 * @return the lightenabled
-	 */
-	public boolean isLightenabled() {
-		return lightenabled;
-	}
-
-	/**
-	 * @param lightenabled the lightenabled to set
-	 */
-	public void setLightenabled(boolean lightenabled) {
-		this.lightenabled = lightenabled;
-	}
-
-	/**
-	 * @return the actualTemperature
-	 */
-	public int getActualTemperature() {
-		return actualTemperature;
-	}
-
-	/**
-	 * @param actualTemperature the actualTemperature to set
-	 */
-	public void setActualTemperature(int actualTemperature) {
-		this.actualTemperature = actualTemperature;
-	}
 
 	/**
 	 * @return the gpsPosition
@@ -129,14 +99,14 @@ public class CarStatusModel {
 	 * @return the lightSensorEnabled
 	 */
 	public boolean isLightSensorEnabled() {
-		return lightSensorEnabled;
+		return lightEnabled;
 	}
 
 	/**
 	 * @param lightSensorEnabled the lightSensorEnabled to set
 	 */
 	public void setLightSensorEnabled(boolean lightSensorEnabled) {
-		this.lightSensorEnabled = lightSensorEnabled;
+		this.lightEnabled = lightSensorEnabled;
 	}
 
 	/**

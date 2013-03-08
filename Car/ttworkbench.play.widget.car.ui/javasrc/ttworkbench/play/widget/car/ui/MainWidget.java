@@ -29,8 +29,6 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 	}
 	
-	
-	
 	public BlockingService createEventsService(int eventsServicePortNumber) {
 	    BlockingService eventsService = 
 	        PROTO_API.EVENTS.newReflectiveBlockingService(new EventsServiceImpl(getModel()));
@@ -43,6 +41,8 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 		File wwwRoot = new File(Activator.getDefault().getBundle().getLocation().replace("reference:file:/", ""), "/www");
 		//System.out.println(wwwRoot.toString()+"\n"+wwwRoot.exists());
 		carWidget = new CarWidget(wwwRoot);
+		//TODO
+		//f.e.: carWidget.setActionClient(this.getActionsClient());
 		return carWidget.createControl(parent);
 	}
 
@@ -70,11 +70,66 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 		
 	}
 
+	@Override
+	public void notifyEngineStatusChange() {
+		// TODO Auto-generated method stub
+		//f.e.: CarWidget.setEngineStatus(model.getStatus().isEngineStarted());
+		
+	}
 
 	@Override
-	public void notifyModelChange() {
+	public void notifyABSStatusChange() {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void notifyESPStatusChange() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void notifyGpsPositionChange() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void notifyFillingStatusChange() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void notifySpeedChange() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyWarningAdded() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyFogLightChange() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyLightChange() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

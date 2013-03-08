@@ -5,6 +5,7 @@ import java.util.LinkedList;
 
 import ttworkbench.play.widget.car.ui.model.CarStatusModel;
 import ttworkbench.play.widget.car.ui.model.GPSposition;
+import ttworkbench.play.widget.car.ui.model.NotifyAttributes;
 import ttworkbench.play.widget.car.ui.model.WarningType;
 
 /**
@@ -73,9 +74,21 @@ public class CarModel {
 	/**
 	 * Notfies every Listener in List.
 	 */
-	public void notifyListener(){
+	public void notifyListener(NotifyAttributes attr){
 		for(ICarModelListener listener: listeners){
-			listener.notifyModelChange();
+			switch(attr){
+			case GPS: listener.notifyGpsPositionChange(); break;
+			case ESP: listener.notifyESPStatusChange(); break;
+			case ABS: listener.notifyABSStatusChange(); break;
+			case SPEED: listener.notifySpeedChange(); break;
+			case ENGINE: listener.notifyEngineStatusChange(); break;
+			case WARNING: listener.notifyWarningAdded(); break;
+			case FOG: listener.notifyFogLightChange(); break;
+			case LIGHT: listener.notifyLightChange(); break;
+			case FUEL: listener.notifyFillingStatusChange(); break;			
+			default:;
+			}
+			
 		}
 	}
 	
