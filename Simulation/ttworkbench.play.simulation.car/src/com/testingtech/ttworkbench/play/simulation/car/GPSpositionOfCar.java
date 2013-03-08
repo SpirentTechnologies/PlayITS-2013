@@ -10,6 +10,14 @@ public class GPSpositionOfCar {
 	private ArrayList<GPSposition> positions;
 	private int positionsCounter = 2;
 
+	public GPSpositionOfCar(ArrayList<GPSposition> positions) {
+		this.worldDestination = positions.get(1);
+		this.oldPosition = positions.get(0);
+		this.positions = positions;
+
+		updateAngleAndDirections(worldDestination, oldPosition);
+	}
+
 	public GPSpositionOfCar(GPSposition destinationPositions,
 			GPSposition startPosition, ArrayList<GPSposition> positions) {
 		this.worldDestination = destinationPositions;
@@ -181,8 +189,17 @@ public class GPSpositionOfCar {
 
 		return new Tupel<GPSposition, Double>(first, second);
 	}
+	//TODO add breaking functionality
 
 	public double getAngle() {
 		return angle;
+	}
+
+	public GPSposition getOldPosition() {
+		return oldPosition;
+	}
+
+	public void setOldPosition(GPSposition oldPosition) {
+		this.oldPosition = oldPosition;
 	}
 }
