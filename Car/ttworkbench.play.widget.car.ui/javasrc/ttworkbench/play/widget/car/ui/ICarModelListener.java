@@ -1,13 +1,13 @@
 package ttworkbench.play.widget.car.ui;
 /**
  * 
- * @author kensan
+ * @author kensan, andre
  *
  */
 public interface ICarModelListener {
 	
 	/**
-	 * Called, when Engine is started or stoped
+	 * Called, when Engine is started or stopped
 	 */
 	public void notifyEngineStatusChange();
 	

@@ -10,7 +10,7 @@ import ttworkbench.play.widget.car.ui.model.WarningType;
 
 /**
  * 
- * @author kensan
+ * @author kensan, andre
  *
  */
 public class CarModel {
@@ -38,7 +38,7 @@ public class CarModel {
 	
 	/**
 	 * Sets GPS latitude and longitude to model.
-	 * Delete Warnings with the same Coords.
+	 * Delete Warnings with the same coordinates.
 	 * @param latitude
 	 * @param longitude
 	 */
@@ -56,7 +56,7 @@ public class CarModel {
 	}
 	
 	/**
-	 * Add Listener, that import ICarModelListener to List.
+	 * Add Listener, that imports ICarModelListener to List.
 	 * @param listener
 	 */
 	public void addListener(ICarModelListener listener){
@@ -72,7 +72,8 @@ public class CarModel {
 	}
 	
 	/**
-	 * Notfies every Listener in List.
+	 * Notifies every Listener in List.
+	 * @param attr
 	 */
 	public void notifyListener(NotifyAttributes attr){
 		for(ICarModelListener listener: listeners){
