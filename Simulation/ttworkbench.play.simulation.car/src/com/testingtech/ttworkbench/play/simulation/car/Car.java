@@ -154,6 +154,7 @@ public class Car implements CarInterface {
 				//TODO check warning and enable counter meassures 
 			}
 			
+			//TODO at the end of update make new rpc call with updated things to the server tell him what is updated
 		}
 	}
 
@@ -164,5 +165,8 @@ public class Car implements CarInterface {
 	public void setWarning(
 			ConcurrentLinkedQueue<Tupel<Warnings, GPSposition>> warning) {
 		this.warning = warning;
+	}
+	public void addWarning(Tupel<Warnings, GPSposition> t){
+		this.warning.add(t);
 	}
 }

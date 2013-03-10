@@ -18,6 +18,7 @@ import com.googlecode.protobuf.socketrpc.RpcServer;
 import com.googlecode.protobuf.socketrpc.ServerRpcConnectionFactory;
 import com.googlecode.protobuf.socketrpc.SocketRpcConnectionFactories;
 import com.googlecode.protobuf.socketrpc.SocketRpcController;
+import com.googlecode.protobuf.socketrpc.SocketRpcProtos.Request;
 import com.testingtech.ttworkbench.play.generated.PROTO_API;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.ACTIONS.BlockingInterface;
 
@@ -42,6 +43,7 @@ public class Socket {
 
 	//Client connection to the server "API"
 	//event
+	//We return values to "API"
 	public void createEventsClient(int port, String host) {
 		// Create channel
 		RpcConnectionFactory connectionFactory = SocketRpcConnectionFactories
@@ -51,8 +53,24 @@ public class Socket {
 		// Call service
 		PROTO_API.EVENTS.BlockingInterface service = PROTO_API.EVENTS.newBlockingStub(channel);
 		RpcController rpcController = new SocketRpcController();
-		MethodDescriptor serv = PROTO_API.EVENTS.getDescriptor().findMethodByName("API_carStatusType");
-		//MyResponse myResponse = service.sendStatus(rpcController, myRequest);
+		/*
+		 * message Request {
+		 * 
+		 * // RPC service full name
+		 * required string service_name = 1;
+		 * 
+		 * // RPC method name
+		 * required string method_name = 2;
+		 * 
+		 * // RPC request proto
+		 * required bytes request_proto = 3;
+		 * }
+		 */
+		
+		
+		
+		
+		MyResponse myResponse = service.aPICarStatusType(rpcController, request);
 
 		
 		// Check success
@@ -64,6 +82,7 @@ public class Socket {
 
 	//Server, the "API" connects to us 
 	//action
+	//"API" sets values
 	public void startActionService(int port) {
 		// Start server
 		ServerRpcConnectionFactory rpcConnectionFactory = SocketRpcConnectionFactories.createServerRpcConnectionFactory(port);
