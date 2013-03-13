@@ -112,41 +112,41 @@ public class CarWidget {
 			}
 		});
 
-		browser.addProgressListener (new ProgressAdapter () {
-			double latitude = 52.515;
-			double longitude = 13.351;
-
-			public void completed (ProgressEvent event) {
-
-				new Thread(new Runnable() {
-					public void run() {
-						while (true) {
-							try { Thread.sleep(1000);
-							Display.getDefault().asyncExec(new Runnable() {
-								public void run() {
-									browser.execute("updateMarker(" + latitude + ", " + longitude + ")");
-									longitude += 0.001;
-									longitude = Math.round( (longitude + 0.001) * 1000.0 ) / 1000.0;
-									System.out.println(latitude + ", " + longitude);
-								}
-							});
-							} catch (SWTException e) {
-								System.out.println("Quit.");
-								return;
-							} catch (Exception e) { }
-						}
-					}
-				}).start();
-
-				browser.addLocationListener (new LocationAdapter () {
-					public void changed (LocationEvent event) {
-						browser.removeLocationListener (this);
-						System.out.println ("left java function-aware page, so disposed CustomFunction");
-						function.dispose ();
-					}
-				});
-			}
-		});
+//		browser.addProgressListener (new ProgressAdapter () {
+//			double latitude = 52.515;
+//			double longitude = 13.351;
+//
+//			public void completed (ProgressEvent event) {
+//
+//				new Thread(new Runnable() {
+//					public void run() {
+//						while (true) {
+//							try { Thread.sleep(1000);
+//							Display.getDefault().asyncExec(new Runnable() {
+//								public void run() {
+//									browser.execute("updateMarker(" + latitude + ", " + longitude + ")");
+//									longitude += 0.001;
+//									longitude = Math.round( (longitude + 0.001) * 1000.0 ) / 1000.0;
+//									System.out.println(latitude + ", " + longitude);
+//								}
+//							});
+//							} catch (SWTException e) {
+//								System.out.println("Quit.");
+//								return;
+//							} catch (Exception e) { }
+//						}
+//					}
+//				}).start();
+//
+//				browser.addLocationListener (new LocationAdapter () {
+//					public void changed (LocationEvent event) {
+//						browser.removeLocationListener (this);
+//						System.out.println ("left java function-aware page, so disposed CustomFunction");
+//						function.dispose ();
+//					}
+//				});
+//			}
+//		});
 
 		browser.setUrl(new File(wwwRoot, "car.html").toURI().toString());
 		return browser;
@@ -160,8 +160,15 @@ public class CarWidget {
 		/* --------------------- Create the functions: Form JS to Java---------------------------*/
 		private Object callMotor(String arg) {
 			boolean b= Boolean.parseBoolean(arg);
+			if(b)
+				try {
+					widgetController.startEngine(actionsClient);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			try {
-				widgetController.startEngine(actionsClient);
+				widgetController.stopEngine(actionsClient);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -172,18 +179,23 @@ public class CarWidget {
 
 		private Object callABS(String arg) {
 			boolean b= Boolean.parseBoolean(arg);
+			if(b) widgetController.enableABS(actionsClient);
+				else widgetController.disableABS(actionsClient);
 			System.out.println("ABS: " + b);
 			return null;
 		}
 
 		private Object callESP(String arg) {
 			boolean b= Boolean.parseBoolean(arg);
+			if(b) widgetController.enableESP(actionsClient);
+				else widgetController.disableESP(actionsClient);
 			System.out.println("ESP: " + b);
 			return null;
 		}
 
 		private Object callSpeed(String arg) {
 			int i=(int) Float.parseFloat(arg);
+				widgetController.changeSpeed(actionsClient, i);
 			System.out.println("Speed: " + i);
 			return null;
 		}
