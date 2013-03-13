@@ -12,6 +12,7 @@ import com.google.*;
 import com.google.protobuf.BlockingRpcChannel;
 import com.google.protobuf.Descriptors.MethodDescriptor;
 import com.google.protobuf.RpcController;
+import com.google.protobuf.ServiceException;
 import com.googlecode.protobuf.socketrpc.RpcChannels;
 import com.googlecode.protobuf.socketrpc.RpcConnectionFactory;
 import com.googlecode.protobuf.socketrpc.RpcServer;
@@ -21,6 +22,7 @@ import com.googlecode.protobuf.socketrpc.SocketRpcController;
 import com.googlecode.protobuf.socketrpc.SocketRpcProtos.Request;
 import com.testingtech.ttworkbench.play.generated.PROTO_API;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.ACTIONS.BlockingInterface;
+import com.testingtech.ttworkbench.play.generated.PROTO_API.carStatusType;
 
 
 public class Socket {
@@ -70,7 +72,15 @@ public class Socket {
 		
 		
 		
-		MyResponse myResponse = service.aPICarStatusType(rpcController, request);
+		carStatusType request = CarStatusTypeParser.parseToStatusType(car);
+		
+		try {
+			Object myResponse = service.aPICarStatusType(rpcController, request);
+		} catch (ServiceException e) {
+			// TODO Auto-generated catch block
+			System.out.println("some error with parsing the car");
+			e.printStackTrace();
+		}
 
 		
 		// Check success
