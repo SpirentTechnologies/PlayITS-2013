@@ -5,7 +5,7 @@
          point="com.testingtech.ttworkbench.play.dashboard.widget">
       <widget
             class="ttworkbench.play.widget.car.ui.CarWidgetFactory"
-            clf="configuration/main.clf"
+            clf="configuration/HANDLE_API.clf"
             description="..."
             icon="icons/widget.png"
             name="Car"
