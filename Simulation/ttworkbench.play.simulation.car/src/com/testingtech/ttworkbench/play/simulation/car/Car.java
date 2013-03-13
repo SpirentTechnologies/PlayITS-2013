@@ -158,8 +158,8 @@ public class Car implements CarInterface {
 		}
 	}
 
-	public ConcurrentLinkedQueue<Tupel<Warnings, GPSposition>> getWarning() {
-		return warning;
+	public Warnings getWarning() {
+		return warning.peek().first;
 	}
 
 	public void setWarning(
