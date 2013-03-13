@@ -11,7 +11,8 @@ module SUT_TEST {
         , PROTO_API.ACTIONS__API_trackType
         , PROTO_API.ACTIONS__API_warningType
         , PROTO_API.ACTIONS__API_carInitType
-        , PROTO_API.ACTIONS__API_widgetExit;
+        , PROTO_API.ACTIONS__API_widgetExit
+        ;
     }
 
     type port PROTO_EVENTS_widgetPort procedure {

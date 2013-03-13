@@ -1,0 +1,25 @@
+module Parameters {
+    /**
+     * @desc The TCP server port for the Actions service. 
+     * The Widget is calling ACTIONS to the SUT on this port. 
+     */
+    modulepar integer ACTIONS_WIDGET_TCP_PORT := 13333;
+
+    /**
+     * @desc The TCP client port on which the Widget started it's EVENTS service. 
+     * The SUT connects to it as a client.
+     */
+    modulepar integer EVENTS_WIDGET_TCP_PORT := 13334;
+    
+    /**
+     * @desc The TCP client port on which the SUT started it's EVENTS service. 
+     * The Widget connects to it as a client.
+     */
+    modulepar integer EVENTS_CAR_TCP_PORT := 13335;
+    
+    /**
+    * @desc The TCP server port for the Actions service.
+    * The SUT is calling ACTIONS to the Widget on this port.
+    */
+    modulepar integer ACTIONS_CAR_TCP_PORT := 13336;
+}

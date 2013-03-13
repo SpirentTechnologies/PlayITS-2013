@@ -6,6 +6,7 @@
 module API {
     
     import from CONFIG_CAR {type CarComponent;}
+    import from Parameters all;
 
     /**
      * @desc The warning type lists the possible modes of a warning.

@@ -18,39 +18,27 @@
     <parameter id="taParams">
       <parameter id="TCP_MODE">
         <value>
-          <Values:charstring name="" type="charstring">
+          <Values:charstring xmlns:Values="Values.xsd" type="charstring">
             <Values:value>mixed</Values:value>
           </Values:charstring>
         </value>
       </parameter>
       <parameter id="TCP_LOCAL_HOST">
         <value>
-          <Values:charstring name="" type="charstring">
+          <Values:charstring xmlns:Values="Values.xsd" type="charstring">
             <Values:value>localhost</Values:value>
           </Values:charstring>
         </value>
       </parameter>
-      <parameter id="TCP_LOCAL_PORT">
-        <value>
-          <Values:integer name="" type="integer">
-            <Values:value>5000</Values:value>
-          </Values:integer>
-        </value>
-      </parameter>
+      <parameter id="TCP_LOCAL_PORT" value="${Parameters.ACTIONS_CAR_TCP_PORT}"/>
       <parameter id="TCP_REMOTE_HOST">
         <value>
-          <Values:charstring name="" type="charstring">
+          <Values:charstring xmlns:Values="Values.xsd" type="charstring">
             <Values:value>localhost</Values:value>
           </Values:charstring>
         </value>
       </parameter>
-      <parameter id="TCP_REMOTE_PORT">
-        <value>
-          <Values:integer name="" type="integer">
-            <Values:value>5000</Values:value>
-          </Values:integer>
-        </value>
-      </parameter>
+      <parameter id="TCP_REMOTE_PORT" value="${Parameters.EVENTS_CAR_TCP_PORT}"/>
       <parameter id="TCP_SERVER_WAIT_TIME">
         <value>
           <Values:integer xmlns:Values="Values.xsd" type="integer">
@@ -60,15 +48,15 @@
       </parameter>
     </parameter>
     <parameter id="default" value="true"/>
-    <parameter id="portType" value="CONFIG_API.PROTO_EVENTS_widgetPort"/>
+    <parameter id="portType" value="CONFIG_CAR.carPort"/>
     <parameter id="portFilters">
       <parameter id="portFilter">
         <parameter id="pluginId" value="com.testingtech.ttcn.proto.ProtoRuntimePlugin"/>
-        <parameter id="class" value="com.testingtech.ttworkbench.proto.filter.ProtobufRpcMessageSplitterFilterProvider"/>
+        <parameter id="class" value="com.testingtech.ttworkbench.proto.filter.socketrpc.SocketRPCProtoServiceFilterProvider"/>
       </parameter>
       <parameter id="portFilter">
         <parameter id="pluginId" value="com.testingtech.ttcn.proto.ProtoRuntimePlugin"/>
-        <parameter id="class" value="com.testingtech.ttworkbench.proto.filter.socketrpc.SocketRPCProtoServiceFilterProvider"/>
+        <parameter id="class" value="com.testingtech.ttworkbench.proto.filter.ProtobufRpcMessageSplitterFilterProvider"/>
       </parameter>
     </parameter>
   </port>
