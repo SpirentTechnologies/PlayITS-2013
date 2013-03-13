@@ -2,6 +2,7 @@ package ttworkbench.play.widget.car.ui.html;
 
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -22,9 +23,17 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 
+import ttworkbench.play.widget.car.ui.ActionsClient;
+import ttworkbench.play.widget.car.ui.WidgetController;
+
+import com.testingtech.ttworkbench.play.dashboard.widget.AbstractActionsClient;
+import com.testingtech.ttworkbench.play.generated.PROTO_API.ACTIONS.BlockingInterface;
+
 public class CarWidget {
 
 	private final File wwwRoot;
+	protected static ActionsClient actionsClient;
+	protected static WidgetController widgetController;
 
 	public CarWidget(File wwwRoot) {
 		this.wwwRoot = wwwRoot;
@@ -151,6 +160,12 @@ public class CarWidget {
 		/* --------------------- Create the functions: Form JS to Java---------------------------*/
 		private Object callMotor(String arg) {
 			boolean b= Boolean.parseBoolean(arg);
+			try {
+				widgetController.startEngine(actionsClient);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			System.out.println("Motor: " + b);
 			return null;
 		}
@@ -204,5 +219,16 @@ public class CarWidget {
 			 */
 			return null;
 		}
+	}
+
+	public void setActionClient(
+			AbstractActionsClient<BlockingInterface> abstractActionsClient) {
+		this.actionsClient = (ActionsClient) abstractActionsClient;
+		
+	}
+
+	public void setController(WidgetController widgetController) {
+		this.widgetController = widgetController;
+		
 	}
 }

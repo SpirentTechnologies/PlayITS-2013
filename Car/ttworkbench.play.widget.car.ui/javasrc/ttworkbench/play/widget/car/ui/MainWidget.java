@@ -42,7 +42,13 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 		//System.out.println(wwwRoot.toString()+"\n"+wwwRoot.exists());
 		carWidget = new CarWidget(wwwRoot);
 		//TODO
-		//f.e.: carWidget.setActionClient(this.getActionsClient());
+		try {
+			carWidget.setActionClient(createActionsClient("localhost", 13333));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		carWidget.setController(new WidgetController());
 		return carWidget.createControl(parent);
 	}
 

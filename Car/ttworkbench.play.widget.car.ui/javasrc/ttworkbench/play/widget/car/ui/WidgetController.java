@@ -15,7 +15,7 @@ import com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit;
  * @author kensan
  *
  */
-public class Widget_Controller {
+public class WidgetController {
 	
 	
 		/**
