@@ -11,7 +11,7 @@ https://www.mi.fu-berlin.de/kvv/course.htm?cid=10887&sid=26&iid=1
 based on
 
 TTworkbench Play
-================
+----------------
 
 TTworkbench Play designs a new approach for testing.
 
@@ -24,7 +24,7 @@ If you would like to join this Program please contact play[at]testingtech.com.
 
 
 Projektbeschreibung
-===================
+-------------------
 
 Autosimulation
 
@@ -42,7 +42,7 @@ So können Warnungen von einem Auto an alle anderen gesendet und entsprechend da
 
 
 Legal information
-=================
+-----------------
 
 (C) Copyright ITS Project Students Winter 2013 and Testing Technologies, 2013. All Rights Reserved.
 
