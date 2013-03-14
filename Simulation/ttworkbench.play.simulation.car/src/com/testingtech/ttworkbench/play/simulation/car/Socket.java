@@ -1,17 +1,8 @@
 package com.testingtech.ttworkbench.play.simulation.car;
 
-
-
-
 import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
-
-import javax.xml.ws.Service;
-
-import com.google.*;
 
 import com.google.protobuf.BlockingRpcChannel;
-import com.google.protobuf.Descriptors.MethodDescriptor;
 import com.google.protobuf.RpcController;
 import com.google.protobuf.ServiceException;
 import com.googlecode.protobuf.socketrpc.RpcChannels;
@@ -20,9 +11,7 @@ import com.googlecode.protobuf.socketrpc.RpcServer;
 import com.googlecode.protobuf.socketrpc.ServerRpcConnectionFactory;
 import com.googlecode.protobuf.socketrpc.SocketRpcConnectionFactories;
 import com.googlecode.protobuf.socketrpc.SocketRpcController;
-import com.googlecode.protobuf.socketrpc.SocketRpcProtos.Request;
 import com.testingtech.ttworkbench.play.generated.PROTO_API;
-import com.testingtech.ttworkbench.play.generated.PROTO_API.ACTIONS.BlockingInterface;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.carStatusType;
 
 
@@ -38,14 +27,9 @@ public class Socket {
 		this.car = car;
 	}
 
-	void run(){
-		int port = 13333;
-		startActionService(port);
-		createEventsClient(port, "localhost");
-	}
-	void run(int port){
-		startActionService(port);
-		createEventsClient(port, "localhost");
+	void run(int clientPort, String clientHost, int serverPort){
+		startActionService(serverPort);
+		createEventsClient(clientPort, clientHost);
 	}
 
 	//Client connection to the server "API"

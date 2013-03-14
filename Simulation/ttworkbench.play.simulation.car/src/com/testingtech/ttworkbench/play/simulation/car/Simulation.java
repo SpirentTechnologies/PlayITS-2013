@@ -1,47 +1,57 @@
 package com.testingtech.ttworkbench.play.simulation.car;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.ArrayList;
-import java.util.concurrent.ThreadPoolExecutor;
 
 public class Simulation {
 	
-	
-	private static boolean usingArgs(String[] args){
-		if(args.length > 0){
-			return true;
-		}else{
-			return false;
-		}
-	}
-	private static ArrayList<GPSposition> getMap(String location, boolean args){
-		if(args){
-			return null;
-		}else{
-			try {
-				return KMLparser.parseKML("path/to/file");
-			} catch (NumberFormatException e) {
-				System.out.println("The file format was wrong");
-				e.printStackTrace();
-			} catch (IOException e) {
-				System.out.println("Some I/O operations went wrong, does the file exist?");
-				e.printStackTrace();
-			}
+	private static ArrayList<GPSposition> getMap(File mapFile){
+		try {
+			return KMLparser.parseKML(mapFile);
+		} catch (NumberFormatException e) {
+			System.out.println(MessageFormat.format("The file format was wrong", mapFile.getAbsolutePath()));
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			System.out.println(MessageFormat.format("Map file does the file exist: ", mapFile.getAbsolutePath()));
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("Some I/O operations went wrong");
+			e.printStackTrace();
 		}
 		return null;
 	}
 	
 	public static void main(String[] args) {
-		String host;
 		//parse map file
-		ArrayList<GPSposition> map = getMap(args[2], usingArgs(args));
 		
-		if(usingArgs(args)){
+		if (args.length == 4) {
+			int index = 0;
+
+			int clientPort = parsePort(args, index++);
+			String clientHost = args[index++];
+			int serverPort = parsePort(args, index++);
 			
-		}else{	
+			File mapFile = new File(args[index++]);
+			ArrayList<GPSposition> map = getMap(mapFile);
 			
 			Socket testCar1 = new Socket(new Car(100, 200, 2.5, 100, 6, true, true, true, true, true, true, true, true, map));
-			testCar1.run();			
+			testCar1.run(clientPort, clientHost, serverPort);
+		} else {
+			System.out.println("Usage: java -jar Simulation.jar <clientPort> <clientHost> <serverPort> <kmlFile>");
+		}
+	}
+	private static int parsePort(String[] args, int argIndex) throws IllegalArgumentException {
+		if (argIndex >= args.length) {
+			throw new IllegalArgumentException("Missing port argument at index "+argIndex);
+		}
+		try {
+			int portNumber = Integer.parseInt(args[argIndex]);
+			return portNumber;
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException("Invalid port "+args[argIndex]);
 		}
 	}
 
