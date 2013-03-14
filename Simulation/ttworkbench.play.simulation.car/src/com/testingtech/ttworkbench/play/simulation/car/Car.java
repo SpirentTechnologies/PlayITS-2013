@@ -2,13 +2,12 @@ package com.testingtech.ttworkbench.play.simulation.car;
 
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.Semaphore;
 
 public class Car implements CarInterface {
-	/*
-	 * TODO get car declaration correctly
-	 */
 	static int carID;
-
+	final int customID;
+	
 	double speed, maxSpeed, petrolUsage;
 	private ConcurrentLinkedQueue<Tupel<Warnings, GPSposition>> warning;
 	Sensors sensors;
@@ -16,6 +15,7 @@ public class Car implements CarInterface {
 
 	GPSpositionOfCar position;
 	GPSposition currentPosition;
+
 
 	public Car(double speed, double maxSpeed, double tirePressure,
 			double tankFill, double petrolUsage, boolean lightExists,
@@ -31,6 +31,7 @@ public class Car implements CarInterface {
 				airbagExists, espExists, absExists, fogLightExists,
 				tirePressure, tankFill);
 		carID++;
+		customID = carID;
 		currentPosition = positions.get(0);
 		position = new GPSpositionOfCar(positions);
 	}
@@ -127,34 +128,34 @@ public class Car implements CarInterface {
 	}
 
 	@Override
-	/* What is needed to be returned:
-	 * 			tankFillLevel
-	 * 			currentGPSposition
-	 * 			
-	 * */
+	/*
+	 * What is needed to be returned: tankFillLevel currentGPSposition
+	 */
 	public void update() {
-		// TODO update
 		// check warnings[], Sensors, damage,
 		Tupel<GPSposition, Double> gpsPositionOfCarUpdate;
 		Tupel<Warnings, GPSposition> nextWarning;
-		// TODO change true to a variable so it can be closed reasonable
-		while (true) {
-			// get the new tankfill level
-			gpsPositionOfCarUpdate = position.updateEverything(
-					sensors.tankFillLevel, petrolUsage, speed);
-			// update the current tankFill level
-			sensors.tankFillLevel = gpsPositionOfCarUpdate.second;
-			// update the current gpsPosition
-			currentPosition = gpsPositionOfCarUpdate.first;
-			nextWarning = warning.peek();
-			if (currentPosition.latitude == nextWarning.second.latitude
-					&& currentPosition.longitude == nextWarning.second.longitude) {
-				//remove warning because it will be handled now
-				warning.poll();
-				//TODO check warning and enable counter meassures 
-			}
+		
+		//---------- Update Process starts here-------------//
+		// get the new tankfill level
+		gpsPositionOfCarUpdate = position.updateEverything(
+				sensors.tankFillLevel, petrolUsage, speed);
+		
+		// update the current tankFill level
+		sensors.tankFillLevel = gpsPositionOfCarUpdate.second;
+		
+		// update the current gpsPosition
+		currentPosition = gpsPositionOfCarUpdate.first;
+		nextWarning = warning.peek();
+		
+		if (currentPosition.latitude == nextWarning.second.latitude
+				&& currentPosition.longitude == nextWarning.second.longitude) {
+			// remove warning because it will be handled now
+			warning.poll();
 			
-			//TODO at the end of update make new rpc call with updated things to the server tell him what is updated
+			// TODO check warning and enable counter meassures
+			// TODO at the end of update make new rpc call with updated things
+			// to the server tell him what is updated
 		}
 	}
 
@@ -166,7 +167,8 @@ public class Car implements CarInterface {
 			ConcurrentLinkedQueue<Tupel<Warnings, GPSposition>> warning) {
 		this.warning = warning;
 	}
-	public void addWarning(Tupel<Warnings, GPSposition> t){
+
+	public void addWarning(Tupel<Warnings, GPSposition> t) {
 		this.warning.add(t);
 	}
 }

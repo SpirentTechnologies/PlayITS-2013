@@ -14,7 +14,6 @@ public class ActionsServiceImpl implements BlockingInterface {
 	Car car;
 
 	public ActionsServiceImpl(Car car) {
-		// TODO Auto-generated constructor stub
 		this.car = car;
 	}
 

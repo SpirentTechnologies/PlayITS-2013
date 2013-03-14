@@ -4,6 +4,7 @@ package com.testingtech.ttworkbench.play.simulation.car;
 
 
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 
 import javax.xml.ws.Service;
 
@@ -37,8 +38,12 @@ public class Socket {
 		this.car = car;
 	}
 
-	void test(){
+	void run(){
 		int port = 13333;
+		startActionService(port);
+		createEventsClient(port, "localhost");
+	}
+	void run(int port){
 		startActionService(port);
 		createEventsClient(port, "localhost");
 	}
@@ -55,33 +60,18 @@ public class Socket {
 		// Call service
 		PROTO_API.EVENTS.BlockingInterface service = PROTO_API.EVENTS.newBlockingStub(channel);
 		RpcController rpcController = new SocketRpcController();
-		/*
-		 * message Request {
-		 * 
-		 * // RPC service full name
-		 * required string service_name = 1;
-		 * 
-		 * // RPC method name
-		 * required string method_name = 2;
-		 * 
-		 * // RPC request proto
-		 * required bytes request_proto = 3;
-		 * }
-		 */
-		
-		
-		
-		
+		//Call the cars update methode before the widget needs new information about the car
+		car.update();
+		//parse the car into a carStatusType message and make the rpc call
 		carStatusType request = CarStatusTypeParser.parseToStatusType(car);
 		
 		try {
 			Object myResponse = service.aPICarStatusType(rpcController, request);
 		} catch (ServiceException e) {
 			// TODO Auto-generated catch block
-			System.out.println("some error with parsing the car");
+			System.out.println("some error with sending the parsed package the car");
 			e.printStackTrace();
 		}
-
 		
 		// Check success
 		if (rpcController.failed()) {

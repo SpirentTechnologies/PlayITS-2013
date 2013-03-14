@@ -3,25 +3,25 @@ package com.testingtech.ttworkbench.play.simulation.car;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class KMLparser {
 
-	public static ArrayList<GPSposition> positions = new ArrayList<>();
+	
+	public static ArrayList<GPSposition> parseKML(String location) throws NumberFormatException, IOException {
+		ArrayList<GPSposition> positions = new ArrayList<>();
 
-	public static void main(String[] args) {
-
-		File file = new File("Z:\\route.txt");
+		File file = new File(location);
 		StringBuilder contents = new StringBuilder();
 		BufferedReader reader = null;
 
-		try {
 			reader = new BufferedReader(new FileReader(file));
 			String text = null;
 
-			// repeat until all lines is read
+			// repeat until all lines are read
 			while ((text = reader.readLine()) != null) {
 				contents.append(text).append(
 						System.getProperty("line.separator"));
@@ -34,23 +34,7 @@ public class KMLparser {
 				positions.add(gps);
 			}
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (reader != null) {
-					reader.close();
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.println("not sleeping");
-		}
+
+			return positions;
 	}
 }

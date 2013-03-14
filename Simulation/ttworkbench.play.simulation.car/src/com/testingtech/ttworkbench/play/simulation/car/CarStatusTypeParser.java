@@ -9,8 +9,8 @@ import com.testingtech.ttworkbench.play.generated.PROTO_API.warningType;
 
 public class CarStatusTypeParser {
 	public static carStatusType parseToStatusType(Car car){
+		//Build the message with the updated car
 		Builder cst = carStatusType.newBuilder();
-	
 		cst.setAbsSensor(car.sensors.abs);
 		cst.setEngineStatus(car.engine);
 		cst.setEspSensor(car.sensors.esp);
