@@ -39,3 +39,23 @@ Das Auto hat mehrere Funktionen:
 Die zu fahrende Strecke kann ausgewählt werden. Die Funktionen des Autos sollen getestet werden.
 Dafür verwenden wir eine TTCN3 Schicht, die mit einem in Java implementierten "Auto" - dem System Under Test - und dem Widget kommuniziert und die Tests ausführt. Weiterführend soll es möglich sein, auch mehrere SUTs mittels der TTCN3 Schicht untereinander zu verknüpfen. 
 So können Warnungen von einem Auto an alle anderen gesendet und entsprechend darauf reagiert werden.
+
+
+Legal information
+=================
+
+(C) Copyright ITS Project Students Winter 2013 and Testing Technologies, 2013. All Rights Reserved.
+
+This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
+
+http://www.eclipse.org/legal/epl-v10.html
+
+All copies of this program, whether in whole or in part, and whether modified or not, must display this and all other embedded copyright and ownership notices in full.
+
+See the file COPYRIGHT for details of redistribution and use.
+
+You should have received a copy of the COPYRIGHT file along with this file; if not, write to the Testing Technologies, Michaelkirchstr. 17/18, 10179 Berlin, Germany.
+
+TESTING TECHNOLOGIES DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE. IN NO EVENT SHALL TESTING TECHNOLOGIES BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING ANY KIND OF IMPLIED OR EXPRESSED WARRANTY OF NON-INFRINGEMENT OR THE IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
