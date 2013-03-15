@@ -5,6 +5,7 @@ Bundle-Vendor: %bundle-vendor
 Bundle-Localization: plugin
 Bundle-SymbolicName: ttworkbench.play.widget.car.rt
 Bundle-Version: 1.0.0
-Require-Bundle: com.testingtech.tools
+Require-Bundle: com.testingtech.tools,
+ com.testingtech.ttthree.runtime
 Export-Package: com.testingtech.ttworkbench.play.generated
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
