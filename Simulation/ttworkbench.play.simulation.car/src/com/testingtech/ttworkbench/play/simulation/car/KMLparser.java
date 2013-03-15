@@ -10,7 +10,7 @@ public class KMLparser {
 
 	
 	public static ArrayList<GPSposition> parseKML(File file) throws NumberFormatException, IOException {
-		ArrayList<GPSposition> positions = new ArrayList<>();
+		ArrayList<GPSposition> positions = new ArrayList<GPSposition>();
 
 		StringBuilder contents = new StringBuilder();
 		BufferedReader reader = null;

@@ -2,7 +2,6 @@ package com.testingtech.ttworkbench.play.simulation.car;
 
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.Semaphore;
 
 public class Car implements CarInterface {
 	static int carID;

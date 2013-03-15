@@ -61,7 +61,7 @@ public class Socket {
 		if (rpcController.failed()) {
 		  System.err.println(String.format("Rpc failed %s",
 		      rpcController.errorText()));
-		}		
+		}
 	}
 
 	//Server, the "API" connects to us 
