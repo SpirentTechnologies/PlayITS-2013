@@ -44,6 +44,7 @@ public class Simulation {
 			
 			Socket testCar1 = new Socket(new Car(100, 200, 2.5, 100, 6, true, true, true, true, true, true, true, true, map));
 			testCar1.run(clientPort, clientHost, serverPort);
+			//FIXME either fix it here or in socket testCar1.car.doDestroyCar(); == true -> destroy/stop 
 		} else {
 			System.out.println("Usage: java -jar Simulation.jar <clientPort> <clientHost> <serverPort> <kmlFile>");
 		}

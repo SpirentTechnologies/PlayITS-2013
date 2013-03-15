@@ -60,6 +60,7 @@ public class ActionsServiceImpl implements BlockingInterface {
 	public Void aPIWidgetExit(RpcController controller, widgetExit request)
 			throws ServiceException {
 		// TODO kill the car simulation
+		car.setDestroyCar(true);
 		return nil();
 	}
 

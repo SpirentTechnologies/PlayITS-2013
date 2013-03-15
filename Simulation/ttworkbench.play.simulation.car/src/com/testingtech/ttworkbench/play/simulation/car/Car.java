@@ -7,6 +7,7 @@ public class Car implements CarInterface {
 	static int carID;
 	final int customID;
 	
+	
 	double speed, maxSpeed, petrolUsage;
 	private ConcurrentLinkedQueue<Tupel<Warnings, GPSposition>> warning;
 	Sensors sensors;
@@ -14,7 +15,8 @@ public class Car implements CarInterface {
 
 	GPSpositionOfCar position;
 	GPSposition currentPosition;
-
+	// if this boolean is set the car will be removed from the simulation
+	private boolean destroyCar = false;
 
 	public Car(double speed, double maxSpeed, double tirePressure,
 			double tankFill, double petrolUsage, boolean lightExists,
@@ -170,4 +172,14 @@ public class Car implements CarInterface {
 	public void addWarning(Tupel<Warnings, GPSposition> t) {
 		this.warning.add(t);
 	}
+
+	public boolean doDestroyCar() {
+		return destroyCar;
+	}
+
+	public void setDestroyCar(boolean destroyCar) {
+		this.destroyCar = destroyCar;
+	}
+	
+	
 }
