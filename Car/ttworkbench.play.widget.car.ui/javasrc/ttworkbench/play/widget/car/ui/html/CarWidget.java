@@ -1,6 +1,5 @@
 package ttworkbench.play.widget.car.ui.html;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -8,7 +7,6 @@ import java.net.URL;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.SWTError;
-import org.eclipse.swt.SWTException;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.browser.BrowserFunction;
 import org.eclipse.swt.browser.LocationAdapter;
@@ -17,6 +15,7 @@ import org.eclipse.swt.browser.ProgressAdapter;
 import org.eclipse.swt.browser.ProgressEvent;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
@@ -40,7 +39,6 @@ public class CarWidget {
 	}
 
 	public static void main (String [] args) {
-
 
 		Display display = new Display();
 		int shellWidth = 864;
@@ -82,11 +80,9 @@ public class CarWidget {
 			bw = new Browser (parent, SWT.WEBKIT);
 		} catch (SWTError e) {
 			bw = new Browser (parent, SWT.NONE);
-			bw.setSize(800, 600);
 			System.out.println ("Could not instantiate Browser: " + e.getMessage ());
 		}
-
-		final BrowserFunction function = new CustomFunction (bw, "theJavaFunction");
+		bw.setLayoutData(new GridData(GridData.FILL_BOTH));
 
 		//Define each JavaScript function
 		final BrowserFunction function1 = new CustomFunction (bw, "motor");
@@ -203,19 +199,18 @@ public class CarWidget {
 		public Object function (Object[] args) {
 
 			//Get the name of the function and invoke that function in JAVA
-			switch(this.getName()) {
+			String functionName = this.getName();
 
-			case "motor": callMotor(args[0].toString());
-			break;
-			case "abs": callABS(args[0].toString());
-			break;
-			case "esp": callESP(args[0].toString());
-			break;
-			case "speed": callSpeed(args[0].toString());
-			break;
-			default: System.out.println ("??? was called from javascript!");
-			break;
-
+			if (functionName.toLowerCase().equals("motor")) {
+				callMotor(args[0].toString());
+			} else if (functionName.toLowerCase().equals("abs")) {
+				callABS(args[0].toString());
+			} else if (functionName.toLowerCase().equals("esp")) {
+				callESP(args[0].toString());
+			} else if (functionName.toLowerCase().equals("speed")) {
+				callSpeed(args[0].toString());
+			} else {
+				System.out.println("??? was called from javascript!");
 			}
 
 			/*
@@ -233,14 +228,11 @@ public class CarWidget {
 		}
 	}
 
-	public void setActionClient(
-			AbstractActionsClient<BlockingInterface> abstractActionsClient) {
+	public void setActionClient(AbstractActionsClient<BlockingInterface> abstractActionsClient) {
 		this.actionsClient = (ActionsClient) abstractActionsClient;
-		
 	}
 
 	public void setController(WidgetController widgetController) {
 		this.widgetController = widgetController;
-		
 	}
 }
