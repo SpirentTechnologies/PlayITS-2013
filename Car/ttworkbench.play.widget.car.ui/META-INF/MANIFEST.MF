@@ -7,11 +7,12 @@ Bundle-Vendor: %bundle-vendor
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
+ org.eclipse.core.resources,
  com.testingtech.ttworkbench.core,
  com.testingtech.ttworkbench.play.dashboard,
  com.testingtech.ttworkbench.ttman.server.api,
  ttworkbench.play.widget.car.rt
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ClassPath: .
 Bundle-Activator: ttworkbench.play.widget.car.ui.Activator
 Bundle-ActivationPolicy: lazy
