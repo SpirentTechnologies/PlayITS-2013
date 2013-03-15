@@ -19,18 +19,24 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 
 import ttworkbench.play.widget.car.ui.WidgetController;
 
+import com.testingtech.ttworkbench.core.ui.preferences.common.AbstractConfigurationBlock;
+import com.testingtech.ttworkbench.play.dashboard.widget.DashboardWidgetFactoryDescriptor;
+
 public class CarWidget {
 
 	private final File wwwRoot;
 	protected static WidgetController widgetController;
+  private final DashboardWidgetFactoryDescriptor descriptor;
 
-	public CarWidget(File wwwRoot) {
+	public CarWidget(File wwwRoot, DashboardWidgetFactoryDescriptor descriptor) {
 		this.wwwRoot = wwwRoot;
+    this.descriptor = descriptor;
 	}
 
 	public static void main (String [] args) {
@@ -53,7 +59,7 @@ public class CarWidget {
 
 		try {
 			File wwwRoot = new File(new URL(CarWidget.class.getResource("/").toExternalForm()).getFile(), "../www");
-			new CarWidget(wwwRoot.getAbsoluteFile()).createControl(shell);
+			new CarWidget(wwwRoot.getAbsoluteFile(), new DashboardWidgetFactoryDescriptor("", "", "", null, null, null, null)).createControl(shell);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -70,15 +76,22 @@ public class CarWidget {
 	}
 
 	public Control createControl(Composite parent) {
+    Group group = AbstractConfigurationBlock.addGroup(parent, descriptor.getName());
+    ((GridData)group.getLayoutData()).widthHint = 500;
+    ((GridData)group.getLayoutData()).heightHint = 400;
+    group.setToolTipText(descriptor.getDescription());
+    GridData gd = new GridData(GridData.FILL_BOTH);
+    gd.horizontalSpan = 2;
+    group.setLayoutData(gd);
 
 		Browser bw;
 		try {
-			bw = new Browser (parent, SWT.WEBKIT);
+			bw = new Browser (group, SWT.WEBKIT);
 		} catch (SWTError e) {
-			bw = new Browser (parent, SWT.NONE);
+			bw = new Browser (group, SWT.NONE);
 			System.out.println ("Could not instantiate Browser: " + e.getMessage ());
 		}
-		bw.setLayoutData(new GridData(GridData.FILL_BOTH));
+    bw.setLayoutData(new GridData(GridData.FILL_BOTH));
 
 		//Define each JavaScript function
 		final BrowserFunction function1 = new CustomFunction (bw, "motor");

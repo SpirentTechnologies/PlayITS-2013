@@ -48,7 +48,7 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 			URL wwwLocation = ResourceUtil.getLocation(Activator.getDefault().getBundle().getSymbolicName(), "/www");
 			File wwwRoot = new File(wwwLocation.toURI());
 			//System.out.println(wwwRoot.toString()+"\n"+wwwRoot.exists());
-			carWidget = new CarWidget(wwwRoot);
+			carWidget = new CarWidget(wwwRoot, getFactory().getDescriptor());
 			carWidget.setController(new WidgetController(this));
 			return carWidget.createControl(parent);
 		} catch (IOException e) {
