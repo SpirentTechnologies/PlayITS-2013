@@ -22,16 +22,11 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 
-import ttworkbench.play.widget.car.ui.ActionsClient;
 import ttworkbench.play.widget.car.ui.WidgetController;
-
-import com.testingtech.ttworkbench.play.dashboard.widget.AbstractActionsClient;
-import com.testingtech.ttworkbench.play.generated.PROTO_API.ACTIONS.BlockingInterface;
 
 public class CarWidget {
 
 	private final File wwwRoot;
-	protected static ActionsClient actionsClient;
 	protected static WidgetController widgetController;
 
 	public CarWidget(File wwwRoot) {
@@ -57,7 +52,8 @@ public class CarWidget {
 		shell.setLocation (xPosition, yPosition);
 
 		try {
-			new CarWidget(new File(new URL(CarWidget.class.getResource("/").toExternalForm()).getFile(), "../www").getAbsoluteFile()).createControl(shell);
+			File wwwRoot = new File(new URL(CarWidget.class.getResource("/").toExternalForm()).getFile(), "../www");
+			new CarWidget(wwwRoot.getAbsoluteFile()).createControl(shell);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -149,6 +145,7 @@ public class CarWidget {
 	}
 
 	static class CustomFunction extends BrowserFunction {
+
 		CustomFunction (Browser browser, String name) {
 			super (browser, name);
 		}
@@ -158,13 +155,13 @@ public class CarWidget {
 			boolean b= Boolean.parseBoolean(arg);
 			if(b)
 				try {
-					widgetController.startEngine(actionsClient);
+					widgetController.startEngine();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			try {
-				widgetController.stopEngine(actionsClient);
+				widgetController.stopEngine();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -175,23 +172,23 @@ public class CarWidget {
 
 		private Object callABS(String arg) {
 			boolean b= Boolean.parseBoolean(arg);
-			if(b) widgetController.enableABS(actionsClient);
-				else widgetController.disableABS(actionsClient);
+			if(b) widgetController.enableABS();
+				else widgetController.disableABS();
 			System.out.println("ABS: " + b);
 			return null;
 		}
 
 		private Object callESP(String arg) {
 			boolean b= Boolean.parseBoolean(arg);
-			if(b) widgetController.enableESP(actionsClient);
-				else widgetController.disableESP(actionsClient);
+			if(b) widgetController.enableESP();
+				else widgetController.disableESP();
 			System.out.println("ESP: " + b);
 			return null;
 		}
 
 		private Object callSpeed(String arg) {
 			int i=(int) Float.parseFloat(arg);
-				widgetController.changeSpeed(actionsClient, i);
+				widgetController.changeSpeed(i);
 			System.out.println("Speed: " + i);
 			return null;
 		}
@@ -226,10 +223,6 @@ public class CarWidget {
 			 */
 			return null;
 		}
-	}
-
-	public void setActionClient(AbstractActionsClient<BlockingInterface> abstractActionsClient) {
-		this.actionsClient = (ActionsClient) abstractActionsClient;
 	}
 
 	public void setController(WidgetController widgetController) {
