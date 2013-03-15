@@ -202,4 +202,7 @@ public class GPSpositionOfCar {
 	public void setOldPosition(GPSposition oldPosition) {
 		this.oldPosition = oldPosition;
 	}
+	public GPSposition getNextWorldPosition(){
+		return positions.get(positionsCounter+1);
+	}
 }

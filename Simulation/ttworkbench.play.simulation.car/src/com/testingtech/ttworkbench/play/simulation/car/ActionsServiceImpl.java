@@ -35,7 +35,7 @@ public class ActionsServiceImpl implements BlockingInterface {
 	@Override
 	public Void aPITrackType(RpcController controller, trackType request)
 			throws ServiceException {
-		// TODO get track type from car
+		// TODO set car track depending on name of the track/map
 		return nil();
 	}
 
@@ -43,23 +43,23 @@ public class ActionsServiceImpl implements BlockingInterface {
 	public Void aPIWarningType(RpcController controller, warningType request)
 			throws ServiceException {
 		Warnings danger = Warnings.valueOf(request.getWarningName().getEnumValue().toString());
-		Tupel<Warnings, GPSposition> warning = new Tupel<Warnings, GPSposition>(danger, new GPSposition(0, 0));
+		//add the warning to the next possible position, TODO add to WarningType a gpsPosition for the map at least
+		Tupel<Warnings, GPSposition> warning = new Tupel<Warnings, GPSposition>(danger, car.position.getNextWorldPosition());
 		car.addWarning(warning);
-
 		return nil();
 	}
 
 	@Override
 	public Void aPICarInitType(RpcController controller, carInitType request)
 			throws ServiceException {
-		// TODO Auto-generated method stub
+		// TODO generate the car or update all the fields see into it how to do that
 		return nil();
 	}
 
 	@Override
 	public Void aPIWidgetExit(RpcController controller, widgetExit request)
 			throws ServiceException {
-		// TODO Auto-generated method stub
+		// TODO kill the car simulation
 		return nil();
 	}
 
