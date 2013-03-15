@@ -167,7 +167,6 @@ public class GPSpositionOfCar {
 	// update the petrol usage state and the new gps position
 	public Tupel<GPSposition, Double> updateEverything(double tankFillLevel,
 			double petrolUsage, double speed) {
-		// TODO calculate the length driven, should be somewhere in the code
 		// already just add function call
 		double length = speed * 0.000277777778; // km/s
 

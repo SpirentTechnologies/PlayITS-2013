@@ -90,7 +90,7 @@ public class Car implements CarInterface {
 
 	@Override
 	public boolean toggleWarningReceiver() {
-		// TODO toggleWarningReceiver
+		// TODO toggleWarningReceiver 
 		return false;
 	}
 
@@ -155,8 +155,6 @@ public class Car implements CarInterface {
 			warning.poll();
 			
 			// TODO check warning and enable counter meassures
-			// TODO at the end of update make new rpc call with updated things
-			// to the server tell him what is updated
 		}
 	}
 

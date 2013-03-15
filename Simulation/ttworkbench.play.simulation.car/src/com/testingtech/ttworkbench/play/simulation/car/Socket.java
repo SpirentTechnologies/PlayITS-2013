@@ -30,11 +30,12 @@ public class Socket {
 		startActionService(serverPort);
 		createEventsClient(clientPort, clientHost);
 	}
-	//-------------------------------------
-	// FIXME car.update should be limited somehow to every second or so, maybe
-	// this function should be limited in total to be called only every second
-	// to minimize traffic and let the car actually drive a bit
-	//-------------------------------------
+
+	/*
+	 * FIXME car.update should be limited somehow to every second or so, maybe
+	 * this function should be limited in total to be called only every second
+	 * to minimize traffic and let the car actually drive a bit
+	 */
 	// Client connection to the server "API"
 	// event
 	// We return values to "API"
@@ -53,11 +54,6 @@ public class Socket {
 		// Call the cars update methode before the widget needs new information
 		// about the car
 		car.update();
-		/*
-		 * TODO
-		 * 		if (car.destroyCar)
-		 * 			kill this Socket instance
-		 */
 		// parse the car into a carStatusType message and make the rpc call
 		carStatusType request = CarStatusTypeParser.parseToStatusType(car);
 
@@ -65,7 +61,6 @@ public class Socket {
 			Object myResponse = service
 					.aPICarStatusType(rpcController, request);
 		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
 			System.out
 					.println("some error with sending the parsed package the car");
 			e.printStackTrace();
@@ -91,6 +86,6 @@ public class Socket {
 		server.registerBlockingService(PROTO_API.ACTIONS
 				.newReflectiveBlockingService(asi)); // For blocking impl
 		server.run();
-		
+
 	}
 }

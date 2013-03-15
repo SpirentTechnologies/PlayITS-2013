@@ -42,9 +42,15 @@ public class ActionsServiceImpl implements BlockingInterface {
 	@Override
 	public Void aPIWarningType(RpcController controller, warningType request)
 			throws ServiceException {
-		Warnings danger = Warnings.valueOf(request.getWarningName().getEnumValue().toString());
-		//add the warning to the next possible position, TODO add to WarningType a gpsPosition for the map at least
-		Tupel<Warnings, GPSposition> warning = new Tupel<Warnings, GPSposition>(danger, car.position.getNextWorldPosition());
+		Warnings danger = Warnings.valueOf(request.getWarningName()
+				.getEnumValue().toString());
+		// add the warning to the next possible position
+		/*
+		 * FIXME add to WarningType a gpsPosition for the map at least or let it
+		 * stay at this implementation
+		 */
+		Tupel<Warnings, GPSposition> warning = new Tupel<Warnings, GPSposition>(
+				danger, car.position.getNextWorldPosition());
 		car.addWarning(warning);
 		return nil();
 	}
@@ -52,14 +58,16 @@ public class ActionsServiceImpl implements BlockingInterface {
 	@Override
 	public Void aPICarInitType(RpcController controller, carInitType request)
 			throws ServiceException {
-		// TODO generate the car or update all the fields see into it how to do that
+		// TODO generate the car or update all the fields see into it how to do
+		// that
 		return nil();
 	}
 
 	@Override
 	public Void aPIWidgetExit(RpcController controller, widgetExit request)
 			throws ServiceException {
-		// TODO kill the car simulation
+		// set the car to be destructed in the next update or immediately
+		// (depending on simulation)
 		car.setDestroyCar(true);
 		return nil();
 	}
