@@ -25,16 +25,21 @@ public class Simulation {
 	}
 	
 	public static void main(String[] args) {
-		//parse map file
 		
 		if (args.length == 4) {
 			int index = 0;
 
 			int clientPort = parsePort(args, index++);
 			String clientHost = args[index++];
+			
+			// actually we only need this port number
 			int serverPort = parsePort(args, index++);
 			
+			// a service implementation should be able to handle multiple cars
+			// that's why map file, client host and port should be 
+			// delivered by the initCarType or another init function
 			File mapFile = new File(args[index++]);
+			//parse map file
 			ArrayList<GPSposition> map = getMap(mapFile);
 			
 			Socket testCar1 = new Socket(new Car(100, 200, 2.5, 100, 6, true, true, true, true, true, true, true, true, map));
@@ -53,6 +58,16 @@ public class Simulation {
 		} catch (NumberFormatException e) {
 			throw new IllegalArgumentException("Invalid port "+args[argIndex]);
 		}
+	}
+
+	public void startServer(int p_serverPort) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void stopServer() throws IOException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
