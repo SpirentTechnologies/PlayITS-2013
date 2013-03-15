@@ -2,10 +2,16 @@ package ttworkbench.play.widget.car.ui;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+
 import ttworkbench.play.widget.car.ui.html.CarWidget;
+
 import com.google.protobuf.BlockingService;
+import com.testingtech.ttworkbench.core.util.ResourceUtil;
 import com.testingtech.ttworkbench.play.dashboard.widget.AbstractDashboardWidget;
 import com.testingtech.ttworkbench.play.dashboard.widget.IDashboard;
 import com.testingtech.ttworkbench.play.dashboard.widget.IDashboardWidgetFactory;
@@ -38,18 +44,27 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 	@Override
 	public Control createWidgetControl(Composite parent) {
-		File wwwRoot = new File(Activator.getDefault().getBundle().getLocation().replace("reference:file:/", ""), "/www");
-		//System.out.println(wwwRoot.toString()+"\n"+wwwRoot.exists());
-		carWidget = new CarWidget(wwwRoot);
-		//TODO
 		try {
+			URL wwwLocation = ResourceUtil.getLocation(Activator.getDefault().getBundle().getSymbolicName(), "/www");
+			File wwwRoot = new File(wwwLocation.toURI());
+			//System.out.println(wwwRoot.toString()+"\n"+wwwRoot.exists());
+			carWidget = new CarWidget(wwwRoot);
+			//TODO
 			carWidget.setActionClient(createActionsClient("localhost", 13333));
+			carWidget.setController(new WidgetController());
+			return carWidget.createControl(parent);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			throw new RuntimeException("Cannot instantiate car", e);
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new RuntimeException("Cannot instantiate car", e);
+		} catch (Throwable e) {
+			e.printStackTrace();
+			throw new RuntimeException("Cannot instantiate car", e);
 		}
-		carWidget.setController(new WidgetController());
-		return carWidget.createControl(parent);
 	}
 
 	@Override
