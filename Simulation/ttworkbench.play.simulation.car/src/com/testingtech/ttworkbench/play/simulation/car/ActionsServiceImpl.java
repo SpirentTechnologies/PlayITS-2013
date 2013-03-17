@@ -59,7 +59,8 @@ public class ActionsServiceImpl implements BlockingInterface {
 	public Void aPICarInitType(RpcController controller, carInitType request)
 			throws ServiceException {
 		// TODO generate the car or update all the fields see into it how to do
-		// that
+		// that, check how to use this message to init the car
+		
 		return nil();
 	}
 

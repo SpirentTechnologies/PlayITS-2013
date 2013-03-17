@@ -11,7 +11,7 @@ public class Simulation {
 
 	private static ArrayList<GPSposition> getMap(File mapFile) {
 		try {
-			return KMLparser.parseKML(mapFile);
+			return KMLparser.parseFile(mapFile);
 		} catch (NumberFormatException e) {
 			System.out.println(MessageFormat.format(
 					"The file format was wrong", mapFile.getAbsolutePath()));
@@ -24,6 +24,9 @@ public class Simulation {
 			e.printStackTrace();
 		} catch (IOException e) {
 			System.out.println("Some I/O operations went wrong");
+			e.printStackTrace();
+		} catch (CannotParseFileException e) {
+			System.out.println("The Mapfile format is not supported");
 			e.printStackTrace();
 		}
 		return null;
@@ -77,6 +80,7 @@ public class Simulation {
 		}
 	}
 
+	//FIXME Are these to functions even needed?
 	public void startServer(int p_serverPort) throws IOException {
 		// TODO Auto-generated method stub
 
