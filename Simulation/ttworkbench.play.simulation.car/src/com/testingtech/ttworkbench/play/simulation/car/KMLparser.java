@@ -46,21 +46,56 @@ public class KMLparser {
 	public static ArrayList<GPSposition> parseFile(File file)
 			throws NumberFormatException, IOException, CannotParseFileException {
 		ArrayList<GPSposition> positions = new ArrayList<GPSposition>();
-		//get file extension
+		// get file extension
 		String fileExtension = getExtension(file.getName());
 
-		if(fileExtension.equals("txt")){
+		if (fileExtension.equals("txt")) {
 			positions = parseTxt(file);
-		}else if (fileExtension.equals("KML")){
+		} else if (fileExtension.equals("KML")) {
 			positions = parseKML(file);
-		}else{
+		} else {
 			throw new CannotParseFileException(file);
 		}
 		return positions;
 	}
 
-	private static ArrayList<GPSposition> parseKML(File file) {
-		// TODO Implement a Methode to parse KML files correctly
-		return null;
+	// Works basically just like the txt parser, except it checks for
+	// "coordinates" and
+	// adds them only, if the KML file might be not in correct format this will
+	// not work
+	private static ArrayList<GPSposition> parseKML(File file) throws NumberFormatException, IOException {
+		ArrayList<GPSposition> positions = new ArrayList<GPSposition>();
+		StringBuilder contents = new StringBuilder();
+		BufferedReader reader = null;
+		boolean open = false;
+
+		reader = new BufferedReader(new FileReader(file));
+		String text = null;
+
+		// repeat until all lines are read
+		while ((text = reader.readLine()) != null) {
+
+			contents.append(text).append(System.getProperty("line.separator"));
+			// check where coordinates begin and end
+			if (text.contains("<coordinates>")) {
+				open = true;
+			} else if (text.contains("</coordinates>")) {
+				open = false;
+			}
+			// replace the not needed parts of the coordinates
+			String[] splitted = text.replace("<coordinates>", "")
+					.replace("</coordinates>", "").replace("\t ", "")
+					.replace(" ", "").split(",");
+			// if coordinates begin add the gps positions to the positions array
+			if (open) {
+				GPSposition gps = new GPSposition(
+						Double.parseDouble(splitted[0]),
+						Double.parseDouble(splitted[1]));
+
+				positions.add(gps);
+
+			}
+		}
+		return positions;
 	}
 }
