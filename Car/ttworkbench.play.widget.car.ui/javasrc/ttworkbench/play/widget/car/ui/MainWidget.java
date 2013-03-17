@@ -5,10 +5,12 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
+import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
 import ttworkbench.play.widget.car.ui.html.CarWidget;
+import ttworkbench.play.widget.car.ui.html.UIController;
 
 import com.google.protobuf.BlockingService;
 import com.testingtech.ttworkbench.core.util.ResourceUtil;
@@ -27,6 +29,7 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 	private CarModel model = new CarModel();
 	private CarWidget carWidget;
+	private UIController uiController = null;
 
 	public MainWidget(
 			IDashboardWidgetFactory<CarModel, BlockingInterface> dashboardWidgetFactory,
@@ -50,7 +53,16 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 			//System.out.println(wwwRoot.toString()+"\n"+wwwRoot.exists());
 			carWidget = new CarWidget(wwwRoot, getFactory().getDescriptor());
 			carWidget.setController(new WidgetController(this));
-			return carWidget.createControl(parent);
+			Control control = carWidget.createControl(parent);
+			
+			if(control instanceof Browser){
+				uiController = new UIController((Browser)control);
+			}else{
+				System.err.println("Can't initiate incoming Eventservice!");
+			}
+			
+			return control;
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -92,8 +104,6 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 	@Override
 	public void notifyEngineStatusChange() {
 		// TODO Auto-generated method stub
-		//f.e.: CarWidget.setEngineStatus(model.getStatus().isEngineStarted());
-
 	}
 
 	@Override
@@ -128,7 +138,8 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 	@Override
 	public void notifySpeedChange() {
-		// TODO Auto-generated method stub
+		
+		uiController.carSpeed(new Double(model.getStatus().getActualSpeed()).intValue());
 
 	}
 
