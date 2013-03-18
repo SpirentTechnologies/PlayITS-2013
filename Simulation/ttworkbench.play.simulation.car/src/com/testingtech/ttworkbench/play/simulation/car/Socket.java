@@ -1,14 +1,11 @@
 package com.testingtech.ttworkbench.play.simulation.car;
 
-import java.util.concurrent.Executors;
-
 import com.google.protobuf.BlockingRpcChannel;
 import com.google.protobuf.RpcController;
 import com.google.protobuf.ServiceException;
+import com.googlecode.protobuf.socketrpc.PersistentRpcConnectionFactory;
 import com.googlecode.protobuf.socketrpc.RpcChannels;
 import com.googlecode.protobuf.socketrpc.RpcConnectionFactory;
-import com.googlecode.protobuf.socketrpc.RpcServer;
-import com.googlecode.protobuf.socketrpc.ServerRpcConnectionFactory;
 import com.googlecode.protobuf.socketrpc.SocketRpcConnectionFactories;
 import com.googlecode.protobuf.socketrpc.SocketRpcController;
 import com.testingtech.ttworkbench.play.generated.PROTO_API;
@@ -54,8 +51,10 @@ public class Socket implements Runnable {
 	// We return values to "API"
 	public void createEventsClient(int port, String host) {
 		// Create channel
-		RpcConnectionFactory connectionFactory = SocketRpcConnectionFactories
-				.createRpcConnectionFactory(host, port);
+		RpcConnectionFactory connectionFactory = 
+				PersistentRpcConnectionFactory.createInstance(
+				SocketRpcConnectionFactories.createRpcConnectionFactory(host, port));
+
 		BlockingRpcChannel channel = RpcChannels
 				.newBlockingRpcChannel(connectionFactory);
 
