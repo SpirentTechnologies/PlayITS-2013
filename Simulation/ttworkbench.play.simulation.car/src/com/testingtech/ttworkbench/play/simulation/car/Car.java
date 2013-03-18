@@ -2,11 +2,11 @@ package com.testingtech.ttworkbench.play.simulation.car;
 
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.Semaphore;
 
 public class Car implements CarInterface {
 	static int carID;
 	final int customID;
+	
 	
 	double speed, maxSpeed, petrolUsage;
 	private ConcurrentLinkedQueue<Tupel<Warnings, GPSposition>> warning;
@@ -15,8 +15,10 @@ public class Car implements CarInterface {
 
 	GPSpositionOfCar position;
 	GPSposition currentPosition;
+	// if this boolean is set the car will be removed from the simulation
+	private boolean destroyCar = false;
 
-
+		
 	public Car(double speed, double maxSpeed, double tirePressure,
 			double tankFill, double petrolUsage, boolean lightExists,
 			boolean rainExists, boolean tankFillExists,
@@ -36,6 +38,21 @@ public class Car implements CarInterface {
 		position = new GPSpositionOfCar(positions);
 	}
 
+	public void setCar(double speed, double maxSpeed,
+			double tankFill, double petrolUsage, boolean lightExists,
+			boolean rainExists, boolean tankFillExists,
+			boolean tirePressureExists, boolean espExists, boolean absExists,
+			boolean airbagExists, boolean fogLightExists) {
+
+		this.speed = speed;
+		this.maxSpeed = maxSpeed;
+		this.petrolUsage = petrolUsage;
+		this.sensors = new Sensors(lightExists, rainExists, tankFillExists,
+				airbagExists, espExists, absExists, fogLightExists,
+				new Tires(), tankFill);
+	}
+
+	
 	@Override
 	public boolean toggleEngine() {
 		if (!engine) {
@@ -89,7 +106,7 @@ public class Car implements CarInterface {
 
 	@Override
 	public boolean toggleWarningReceiver() {
-		// TODO toggleWarningReceiver
+		// TODO toggleWarningReceiver 
 		return false;
 	}
 
@@ -154,8 +171,6 @@ public class Car implements CarInterface {
 			warning.poll();
 			
 			// TODO check warning and enable counter meassures
-			// TODO at the end of update make new rpc call with updated things
-			// to the server tell him what is updated
 		}
 	}
 
@@ -171,4 +186,14 @@ public class Car implements CarInterface {
 	public void addWarning(Tupel<Warnings, GPSposition> t) {
 		this.warning.add(t);
 	}
+
+	public boolean doDestroyCar() {
+		return destroyCar;
+	}
+
+	public void setDestroyCar(boolean destroyCar) {
+		this.destroyCar = destroyCar;
+	}
+	
+	
 }

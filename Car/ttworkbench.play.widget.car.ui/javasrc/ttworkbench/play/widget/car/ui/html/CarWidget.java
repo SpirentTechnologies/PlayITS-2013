@@ -1,6 +1,5 @@
 package ttworkbench.play.widget.car.ui.html;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -8,7 +7,6 @@ import java.net.URL;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.SWTError;
-import org.eclipse.swt.SWTException;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.browser.BrowserFunction;
 import org.eclipse.swt.browser.LocationAdapter;
@@ -17,30 +15,31 @@ import org.eclipse.swt.browser.ProgressAdapter;
 import org.eclipse.swt.browser.ProgressEvent;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 
-import ttworkbench.play.widget.car.ui.ActionsClient;
 import ttworkbench.play.widget.car.ui.WidgetController;
 
-import com.testingtech.ttworkbench.play.dashboard.widget.AbstractActionsClient;
-import com.testingtech.ttworkbench.play.generated.PROTO_API.ACTIONS.BlockingInterface;
+import com.testingtech.ttworkbench.core.ui.preferences.common.AbstractConfigurationBlock;
+import com.testingtech.ttworkbench.play.dashboard.widget.DashboardWidgetFactoryDescriptor;
 
 public class CarWidget {
 
 	private final File wwwRoot;
-	protected static ActionsClient actionsClient;
 	protected static WidgetController widgetController;
+  private final DashboardWidgetFactoryDescriptor descriptor;
 
-	public CarWidget(File wwwRoot) {
+	public CarWidget(File wwwRoot, DashboardWidgetFactoryDescriptor descriptor) {
 		this.wwwRoot = wwwRoot;
+    this.descriptor = descriptor;
 	}
 
 	public static void main (String [] args) {
-
 
 		Display display = new Display();
 		int shellWidth = 864;
@@ -59,7 +58,8 @@ public class CarWidget {
 		shell.setLocation (xPosition, yPosition);
 
 		try {
-			new CarWidget(new File(new URL(CarWidget.class.getResource("/").toExternalForm()).getFile(), "../www").getAbsoluteFile()).createControl(shell);
+			File wwwRoot = new File(new URL(CarWidget.class.getResource("/").toExternalForm()).getFile(), "../www");
+			new CarWidget(wwwRoot.getAbsoluteFile(), new DashboardWidgetFactoryDescriptor("", "", "", null, null, null, null)).createControl(shell);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -76,17 +76,22 @@ public class CarWidget {
 	}
 
 	public Control createControl(Composite parent) {
+    Group group = AbstractConfigurationBlock.addGroup(parent, descriptor.getName());
+    ((GridData)group.getLayoutData()).widthHint = 500;
+    ((GridData)group.getLayoutData()).heightHint = 400;
+    group.setToolTipText(descriptor.getDescription());
+    GridData gd = new GridData(GridData.FILL_BOTH);
+    gd.horizontalSpan = 2;
+    group.setLayoutData(gd);
 
 		Browser bw;
 		try {
-			bw = new Browser (parent, SWT.WEBKIT);
+			bw = new Browser (group, SWT.WEBKIT);
 		} catch (SWTError e) {
-			bw = new Browser (parent, SWT.NONE);
-			bw.setSize(800, 600);
+			bw = new Browser (group, SWT.NONE);
 			System.out.println ("Could not instantiate Browser: " + e.getMessage ());
 		}
-
-		final BrowserFunction function = new CustomFunction (bw, "theJavaFunction");
+    bw.setLayoutData(new GridData(GridData.FILL_BOTH));
 
 		//Define each JavaScript function
 		final BrowserFunction function1 = new CustomFunction (bw, "motor");
@@ -153,6 +158,7 @@ public class CarWidget {
 	}
 
 	static class CustomFunction extends BrowserFunction {
+
 		CustomFunction (Browser browser, String name) {
 			super (browser, name);
 		}
@@ -162,13 +168,13 @@ public class CarWidget {
 			boolean b= Boolean.parseBoolean(arg);
 			if(b)
 				try {
-					widgetController.startEngine(actionsClient);
+					widgetController.startEngine();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			try {
-				widgetController.stopEngine(actionsClient);
+				widgetController.stopEngine();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -179,23 +185,23 @@ public class CarWidget {
 
 		private Object callABS(String arg) {
 			boolean b= Boolean.parseBoolean(arg);
-			if(b) widgetController.enableABS(actionsClient);
-				else widgetController.disableABS(actionsClient);
+			if(b) widgetController.enableABS();
+				else widgetController.disableABS();
 			System.out.println("ABS: " + b);
 			return null;
 		}
 
 		private Object callESP(String arg) {
 			boolean b= Boolean.parseBoolean(arg);
-			if(b) widgetController.enableESP(actionsClient);
-				else widgetController.disableESP(actionsClient);
+			if(b) widgetController.enableESP();
+				else widgetController.disableESP();
 			System.out.println("ESP: " + b);
 			return null;
 		}
 
 		private Object callSpeed(String arg) {
 			int i=(int) Float.parseFloat(arg);
-				widgetController.changeSpeed(actionsClient, i);
+				widgetController.changeSpeed(i);
 			System.out.println("Speed: " + i);
 			return null;
 		}
@@ -203,19 +209,18 @@ public class CarWidget {
 		public Object function (Object[] args) {
 
 			//Get the name of the function and invoke that function in JAVA
-			switch(this.getName()) {
+			String functionName = this.getName();
 
-			case "motor": callMotor(args[0].toString());
-			break;
-			case "abs": callABS(args[0].toString());
-			break;
-			case "esp": callESP(args[0].toString());
-			break;
-			case "speed": callSpeed(args[0].toString());
-			break;
-			default: System.out.println ("??? was called from javascript!");
-			break;
-
+			if (functionName.toLowerCase().equals("motor")) {
+				callMotor(args[0].toString());
+			} else if (functionName.toLowerCase().equals("abs")) {
+				callABS(args[0].toString());
+			} else if (functionName.toLowerCase().equals("esp")) {
+				callESP(args[0].toString());
+			} else if (functionName.toLowerCase().equals("speed")) {
+				callSpeed(args[0].toString());
+			} else {
+				System.out.println("??? was called from javascript!");
 			}
 
 			/*
@@ -233,14 +238,7 @@ public class CarWidget {
 		}
 	}
 
-	public void setActionClient(
-			AbstractActionsClient<BlockingInterface> abstractActionsClient) {
-		this.actionsClient = (ActionsClient) abstractActionsClient;
-		
-	}
-
 	public void setController(WidgetController widgetController) {
 		this.widgetController = widgetController;
-		
 	}
 }

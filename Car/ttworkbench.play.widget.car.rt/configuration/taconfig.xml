@@ -11,6 +11,11 @@
       <parameter id="class" value="com.testingtech.ttworkbench.proto.codec.runtime.ProtoCodecProvider"/>
     </plugin>
   </codec>
+  <extfunc>
+    <plugin id="ttworkbench.play.widget.car.rt.sutStarter">
+      <parameter id="class" value="ttworkbench.play.widget.car.rt.SUTRunner"/>
+    </plugin>
+  </extfunc>
   <port>
     <plugin id="com.testingtech.ttworkbench.tt3rt.tcp.port.TcpPortPlugin">
       <parameter id="class" value="com.testingtech.ttworkbench.tt3rt.tcp.port.TcpPortPluginProvider"/>
@@ -45,6 +50,120 @@
               <Values:value>-1</Values:value>
             </Values:integer>
         </value>
+      </parameter>
+      <parameter id="car">
+        <parameter id="TCP_MODE">
+          <value>
+            <Values:charstring xmlns:Values="Values.xsd" type="charstring">
+              <Values:value>client</Values:value>
+            </Values:charstring>
+          </value>
+        </parameter>
+        <parameter id="TCP_LOCAL_HOST">
+          <value>
+            <Values:charstring name="" type="charstring">
+              <Values:value>localhost</Values:value>
+            </Values:charstring>
+          </value>
+        </parameter>
+        <parameter id="TCP_LOCAL_PORT">
+          <value>
+            <Values:integer xmlns:Values="Values.xsd" type="integer">
+              <Values:value>5003</Values:value>
+            </Values:integer>
+          </value>
+        </parameter>
+        <parameter id="TCP_REMOTE_HOST">
+          <value>
+            <Values:charstring name="" type="charstring">
+              <Values:value>localhost</Values:value>
+            </Values:charstring>
+          </value>
+        </parameter>
+        <parameter id="TCP_REMOTE_PORT" value="${Parameters.ACTIONS_CAR_TCP_PORT}"/>
+        <parameter id="TCP_SERVER_WAIT_TIME">
+          <value>
+            <Values:integer xmlns:Values="Values.xsd" type="integer">
+              <Values:value>-1</Values:value>
+            </Values:integer>
+          </value>
+        </parameter>
+      </parameter>
+      <parameter id="EVENTS_PORT_widgetPort">
+        <parameter id="TCP_MODE">
+          <value>
+            <Values:charstring xmlns:Values="Values.xsd" type="charstring">
+              <Values:value>client</Values:value>
+            </Values:charstring>
+          </value>
+        </parameter>
+        <parameter id="TCP_LOCAL_HOST">
+          <value>
+            <Values:charstring name="" type="charstring">
+              <Values:value>localhost</Values:value>
+            </Values:charstring>
+          </value>
+        </parameter>
+        <parameter id="TCP_LOCAL_PORT">
+          <value>
+            <Values:integer xmlns:Values="Values.xsd" type="integer">
+              <Values:value>5001</Values:value>
+            </Values:integer>
+          </value>
+        </parameter>
+        <parameter id="TCP_REMOTE_HOST">
+          <value>
+            <Values:charstring xmlns:Values="Values.xsd" type="charstring">
+              <Values:value>localhost</Values:value>
+            </Values:charstring>
+          </value>
+        </parameter>
+        <parameter id="TCP_REMOTE_PORT" value="${Parameters.EVENTS_WIDGET_TCP_PORT}"/>
+        <parameter id="TCP_SERVER_WAIT_TIME">
+          <value>
+            <Values:integer xmlns:Values="Values.xsd" type="integer">
+              <Values:value>-1</Values:value>
+            </Values:integer>
+          </value>
+        </parameter>
+      </parameter>
+      <parameter id="ACTIONS_PORT_widgetPort">
+        <parameter id="TCP_MODE">
+          <value>
+            <Values:charstring xmlns:Values="Values.xsd" type="charstring">
+              <Values:value>server</Values:value>
+            </Values:charstring>
+          </value>
+        </parameter>
+        <parameter id="TCP_LOCAL_HOST">
+          <value>
+            <Values:charstring name="" type="charstring">
+              <Values:value>localhost</Values:value>
+            </Values:charstring>
+          </value>
+        </parameter>
+        <parameter id="TCP_LOCAL_PORT" value="${Parameters.ACTIONS_WIDGET_TCP_PORT}"/>
+        <parameter id="TCP_REMOTE_HOST">
+          <value>
+            <Values:charstring name="" type="charstring">
+              <Values:value>localhost</Values:value>
+            </Values:charstring>
+          </value>
+        </parameter>
+        <parameter id="TCP_REMOTE_PORT">
+          <value>
+            <Values:integer xmlns:Values="Values.xsd" type="integer">
+              <Values:value>5000</Values:value>
+            </Values:integer>
+          </value>
+        </parameter>
+        <parameter id="TCP_SERVER_WAIT_TIME">
+          <value>
+            <Values:integer xmlns:Values="Values.xsd" type="integer">
+              <Values:value>-1</Values:value>
+            </Values:integer>
+          </value>
+        </parameter>
       </parameter>
     </parameter>
     <parameter id="default" value="true"/>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE plugin PUBLIC "-//TESTING TECH//DTD TT3plugin//2.0" "TT3plugin.dtd"> 
+<plugin id="ttworkbench.play.widget.car.rt.sutStarter" name="Car Simulation Controller" provider-name="ITS Play" version="1.0.0">
+  <runtime>
+    <library name="../../build/sutStarter"/>
+  </runtime>
+  <dependency/>
+  <extension point="com.testingtech.ttcn.extension.ExternalFunctionsProvider">
+    <parameter id="class" value="ttworkbench.play.widget.car.rt.SUTRunner"/>
+    <parameter id="name" value="Car Simulation Controller External Functions"/>
+    <parameter id="description" value="Start and stops the Car simulation"/>
+  </extension>
+</plugin>
