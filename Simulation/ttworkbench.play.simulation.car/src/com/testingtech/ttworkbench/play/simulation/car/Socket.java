@@ -48,11 +48,7 @@ public class Socket implements Runnable {
 		}
 	}
 
-	/*
-	 * FIXME car.update should be limited somehow to every second or so, maybe
-	 * this function should be limited in total to be called only every second
-	 * to minimize traffic and let the car actually drive a bit
-	 */
+
 	// Client connection to the server "API"
 	// event
 	// We return values to "API"
