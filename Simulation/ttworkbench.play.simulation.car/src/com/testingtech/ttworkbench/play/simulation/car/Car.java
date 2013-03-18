@@ -6,8 +6,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class Car implements CarInterface {
 	static int carID;
 	final int customID;
-	
-	
+
 	double speed, maxSpeed, petrolUsage;
 	private ConcurrentLinkedQueue<Tupel<Warnings, GPSposition>> warning;
 	Sensors sensors;
@@ -19,7 +18,6 @@ public class Car implements CarInterface {
 	private boolean destroyCar = false;
 	private String trackName;
 
-		
 	public Car(double speed, double maxSpeed, double tirePressure,
 			double tankFill, double petrolUsage, boolean lightExists,
 			boolean rainExists, boolean tankFillExists,
@@ -39,11 +37,11 @@ public class Car implements CarInterface {
 		position = new GPSpositionOfCar(positions);
 	}
 
-	public Car(double speed, double maxSpeed,
-			double tankFill, double petrolUsage, boolean lightExists,
-			boolean rainExists, boolean tankFillExists,
-			boolean tirePressureExists, boolean espExists, boolean absExists,
-			boolean airbagExists, boolean fogLightExists) {
+	public Car(double speed, double maxSpeed, double tankFill,
+			double petrolUsage, boolean lightExists, boolean rainExists,
+			boolean tankFillExists, boolean tirePressureExists,
+			boolean espExists, boolean absExists, boolean airbagExists,
+			boolean fogLightExists) {
 
 		this.speed = speed;
 		this.maxSpeed = maxSpeed;
@@ -55,7 +53,6 @@ public class Car implements CarInterface {
 		customID = carID;
 	}
 
-	
 	@Override
 	public boolean toggleEngine() {
 		if (!engine) {
@@ -109,7 +106,7 @@ public class Car implements CarInterface {
 
 	@Override
 	public boolean toggleWarningReceiver() {
-		// TODO toggleWarningReceiver 
+		// TODO toggleWarningReceiver
 		return false;
 	}
 
@@ -155,24 +152,37 @@ public class Car implements CarInterface {
 		// check warnings[], Sensors, damage,
 		Tupel<GPSposition, Double> gpsPositionOfCarUpdate;
 		Tupel<Warnings, GPSposition> nextWarning;
-		
-		//---------- Update Process starts here-------------//
-		// get the new tankfill level
-		gpsPositionOfCarUpdate = position.updateEverything(
-				sensors.tankFillLevel, petrolUsage, speed);
-		
-		// update the current tankFill level
-		sensors.tankFillLevel = gpsPositionOfCarUpdate.second;
-		
-		// update the current gpsPosition
-		currentPosition = gpsPositionOfCarUpdate.first;
-		nextWarning = warning.peek();
-		
+
+		// ---------- Update Process starts here-------------//
+		if (engine) {
+			// get the new tankfill level
+			gpsPositionOfCarUpdate = position.updateEverything(
+					sensors.tankFillLevel, petrolUsage, speed);
+
+			// update the current tankFill level
+			sensors.tankFillLevel = gpsPositionOfCarUpdate.second;
+
+			// update the current gpsPosition
+			currentPosition = gpsPositionOfCarUpdate.first;
+			nextWarning = warning.peek();
+		} else {
+			// get the new tankfill level, if engine off then the car cannot drive
+			gpsPositionOfCarUpdate = position.updateEverything(
+					sensors.tankFillLevel, petrolUsage, 0);
+
+			// update the current tankFill level
+			sensors.tankFillLevel = gpsPositionOfCarUpdate.second;
+
+			// update the current gpsPosition
+			currentPosition = gpsPositionOfCarUpdate.first;
+			nextWarning = warning.peek();
+		}
+
 		if (currentPosition.latitude == nextWarning.second.latitude
 				&& currentPosition.longitude == nextWarning.second.longitude) {
 			// remove warning because it will be handled now
 			warning.poll();
-			
+
 			// TODO check warning and enable counter meassures
 		}
 	}
@@ -201,9 +211,9 @@ public class Car implements CarInterface {
 	public void setTrack(String trackName) {
 		this.trackName = trackName;
 	}
+
 	public String getTrackName() {
 		return trackName;
 	}
-	
-	
+
 }

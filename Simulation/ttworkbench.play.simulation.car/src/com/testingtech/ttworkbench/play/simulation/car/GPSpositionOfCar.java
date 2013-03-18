@@ -188,7 +188,6 @@ public class GPSpositionOfCar {
 
 		return new Tupel<GPSposition, Double>(first, second);
 	}
-	//TODO add breaking functionality
 
 	public double getAngle() {
 		return angle;
