@@ -80,6 +80,7 @@ module SUT_TEST {
 
     template EVENTS__API_carStatusType carStatusTemplate := {
         p_carStatusType := {
+            carId := 1,
             engineStatus := true,
             speed := 50.0,
             absSensor := true,
@@ -106,10 +107,10 @@ module SUT_TEST {
         EVENTS_PORT_widgetPort.getcall(EVENTS__API_carStatusType:{?});
         EVENTS_PORT_widgetPort.reply(EVENTS__API_carStatusType:{-} value {});
         // Send message to start engine.
-        ACTIONS_PORT_widgetPort.call(ACTIONS__API_onOffEngineType:{ {true} }, nowait);
+        ACTIONS_PORT_widgetPort.call(ACTIONS__API_onOffEngineType:{ {1, true} }, nowait);
         ACTIONS_PORT_widgetPort.getreply;
         
-        ACTIONS_PORT_widgetPort.call(ACTIONS__API_widgetExit:{ {} }, nowait);
+        ACTIONS_PORT_widgetPort.call(ACTIONS__API_widgetExit:{ {1} }, nowait);
         ACTIONS_PORT_widgetPort.getreply;
     }
     
