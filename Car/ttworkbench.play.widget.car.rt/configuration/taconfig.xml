@@ -11,6 +11,11 @@
       <parameter id="class" value="com.testingtech.ttworkbench.proto.codec.runtime.ProtoCodecProvider"/>
     </plugin>
   </codec>
+  <extfunc>
+    <plugin id="com.testingtech.ttcn.rt.tri.ttlibrary">
+      <parameter id="class" value="com.testingtech.ttcn.rt.tri.ttlibrary.extfct.TTlibraryExtFuncProvider"/>
+    </plugin>
+  </extfunc>
   <port>
     <plugin id="com.testingtech.ttworkbench.tt3rt.tcp.port.TcpPortPlugin">
       <parameter id="class" value="com.testingtech.ttworkbench.tt3rt.tcp.port.TcpPortPluginProvider"/>
