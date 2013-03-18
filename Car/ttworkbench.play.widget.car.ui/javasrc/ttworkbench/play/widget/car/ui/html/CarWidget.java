@@ -25,12 +25,20 @@ import ttworkbench.play.widget.car.ui.WidgetController;
 import com.testingtech.ttworkbench.core.ui.preferences.common.AbstractConfigurationBlock;
 import com.testingtech.ttworkbench.play.dashboard.widget.DashboardWidgetFactoryDescriptor;
 
+/**
+ * @author kensan, andre
+ *
+ */
 public class CarWidget {
 
 	private final File wwwRoot;
 	protected WidgetController widgetController;
 	private final DashboardWidgetFactoryDescriptor descriptor;
 
+	/**
+	 * @param wwwRoot
+	 * @param descriptor
+	 */
 	public CarWidget(File wwwRoot, DashboardWidgetFactoryDescriptor descriptor) {
 		this.wwwRoot = wwwRoot;
 		this.descriptor = descriptor;
@@ -72,6 +80,14 @@ public class CarWidget {
 		display.dispose ();
 	}
 
+	/**
+	 * @param parent
+	 * @return browser
+	 */
+	/**
+	 * @param parent
+	 * @return
+	 */
 	public Control createControl(Composite parent) {
     Group group = AbstractConfigurationBlock.addGroup(parent, descriptor.getName());
     ((GridData)group.getLayoutData()).widthHint = 500;
@@ -109,11 +125,19 @@ public class CarWidget {
 	static class CustomFunction extends BrowserFunction {
 		UIController uiControl;
 		
+		/**
+		 * @param browser
+		 * @param name
+		 * @param uiController
+		 */
 		CustomFunction (Browser browser, String name, UIController uiController) {
 			super (browser, name);
 			uiControl = uiController;
 		}
 		
+		/* (non-Javadoc)
+		 * @see org.eclipse.swt.browser.BrowserFunction#function(java.lang.Object[])
+		 */
 		public Object function(Object[] args) {
 			
 			//Get the name of the function and invoke that function in JAVA
@@ -127,6 +151,9 @@ public class CarWidget {
 		}
 	}
 
+	/**
+	 * @param widgetController
+	 */
 	public void setController(WidgetController widgetController) {
 		this.widgetController = widgetController;
 	}
