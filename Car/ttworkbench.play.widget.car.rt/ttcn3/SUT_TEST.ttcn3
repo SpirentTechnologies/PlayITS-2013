@@ -4,6 +4,7 @@ module SUT_TEST {
     import from CONFIG_API all;
     import from PROTO_API language "PROTO" all;
     import from HANDLE_API all;
+    import from TTlibrary all;
     
     type port PROTO_ACTIONS_widgetPort procedure {
         out PROTO_API.ACTIONS__API_onOffEngineType
@@ -67,6 +68,7 @@ module SUT_TEST {
 
     template ACTIONS__API_carInitType carInitTemplate := {
         p_carInitType := {
+            ttcnEventsHostName := TTlibrary_Net.hostAddress("localhost"),
             ttcnEventsPort := EVENTS_CAR_TCP_PORT,
             absSensorExists := true,
             espSensorExists := false,

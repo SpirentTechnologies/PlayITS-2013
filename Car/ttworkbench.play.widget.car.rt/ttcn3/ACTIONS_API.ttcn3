@@ -9,6 +9,7 @@ module ACTIONS_API {
     import from CONVERT_API all;
     import from API all;
     import from CONFIG_API all;
+    import from TTlibrary all;
 
     function ACTION_API__onOffEngineType(API.onOffEngineType p_value) runs on COMPONENT {
         log("ACTION_API__onOffEngineType was called by the widget");
@@ -38,6 +39,7 @@ module ACTIONS_API {
         log("ACTION_API__carInitType was called by the widget");
         calltimer.start;
         p_value.ttcnEventsPort := EVENTS_CAR_TCP_PORT;
+        p_value.ttcnEventsHostName := TTlibrary_Net.hostAddress("localhost");
         carActions.call(ACTIONS__API_carInitType:{toProto_carInitType(p_value)}, nowait);
     }
     
