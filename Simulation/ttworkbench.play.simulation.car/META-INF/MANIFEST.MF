@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %bundle-name
+Bundle-SymbolicName: ttworkbench.play.simulation.car
+Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: car.jar
+Export-Package: com.testingtech.ttworkbench.play.simulation.car
+Require-Bundle: com.testingtech.tools
+Bundle-Vendor: %bundle-vendor
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

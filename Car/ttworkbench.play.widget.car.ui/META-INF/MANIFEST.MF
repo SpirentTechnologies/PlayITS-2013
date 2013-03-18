@@ -11,7 +11,8 @@ Require-Bundle: org.eclipse.ui,
  com.testingtech.ttworkbench.core,
  com.testingtech.ttworkbench.play.dashboard,
  com.testingtech.ttworkbench.ttman.server.api,
- ttworkbench.play.widget.car.rt
+ ttworkbench.play.widget.car.rt,
+ ttworkbench.play.simulation.car
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ClassPath: .
 Bundle-Activator: ttworkbench.play.widget.car.ui.Activator
