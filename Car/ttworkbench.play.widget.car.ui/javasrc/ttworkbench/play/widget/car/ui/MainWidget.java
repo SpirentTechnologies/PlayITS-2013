@@ -54,6 +54,7 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 			carWidget = new CarWidget(wwwRoot, getFactory().getDescriptor());
 			carWidget.setController(new WidgetController(this));
 			Control control = carWidget.createControl(parent);
+			model.addListener(this);
 			
 			if(control instanceof Browser){
 				uiController = new UIController((Browser)control);
