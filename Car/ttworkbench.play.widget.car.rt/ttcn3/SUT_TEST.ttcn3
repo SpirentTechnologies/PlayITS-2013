@@ -24,8 +24,11 @@ module SUT_TEST {
         port PROTO_EVENTS_widgetPort EVENTS_PORT_widgetPort;
     }
     
-    type port PROTO_carPort procedure {
+    type port PROTO_carEventsPort procedure {
         out PROTO_API.EVENTS__API_carStatusType;
+    }
+    
+    type port PROTO_carActionsPort procedure {
         in PROTO_API.ACTIONS__API_onOffEngineType,
         PROTO_API.ACTIONS__API_speedType,
         PROTO_API.ACTIONS__API_trackType,
@@ -35,7 +38,8 @@ module SUT_TEST {
     }
 
     type component TEST_CAR_COMPONENT {
-        port PROTO_carPort carPort;
+        port PROTO_carActionsPort carActionsPort;
+        port PROTO_carEventsPort carEventsPort;
     }
       
     type component comp1 extends COMPONENT {
@@ -51,7 +55,8 @@ module SUT_TEST {
         connect(mtc:ACTIONS_PORT_widgetPort, testWidgetComp:ACTIONS_PORT_widgetPort);
         connect(mtc:EVENTS_PORT_widgetPort, testWidgetComp:EVENTS_PORT_widgetPort);
 
-        connect(mtc:car, testCarComp:carPort);
+        connect(mtc:carActions, testCarComp:carActionsPort);
+        connect(mtc:carEvents, testCarComp:carEventsPort);
         
         testWidgetComp.start(widgetSim());
         testCarComp.start(carSim());
@@ -110,14 +115,14 @@ module SUT_TEST {
     
     function carSim() runs on TEST_CAR_COMPONENT {
         // Get initial car values.
-        carPort.getcall(carInitTemplate);
-        carPort.reply(ACTIONS__API_carInitType:{-} value {});
+        carActionsPort.getcall(carInitTemplate);
+        carActionsPort.reply(ACTIONS__API_carInitType:{-} value {});
         // Send status type from SUT.
-        carPort.call(carStatusTemplate, nowait);
-        carPort.getreply;
+        carEventsPort.call(carStatusTemplate, nowait);
+        carEventsPort.getreply;
         // Get message to start engine.
-        carPort.getcall(ACTIONS__API_onOffEngineType:?);
-        carPort.reply(ACTIONS__API_onOffEngineType:{-} value {});
+        carActionsPort.getcall(ACTIONS__API_onOffEngineType:?);
+        carActionsPort.reply(ACTIONS__API_onOffEngineType:{-} value {});
     }
 	
 	
@@ -125,7 +130,8 @@ module SUT_TEST {
         disconnect(mtc:ACTIONS_PORT_widgetPort, testWidgetComp:ACTIONS_PORT_widgetPort);
         disconnect(mtc:EVENTS_PORT_widgetPort, testWidgetComp:EVENTS_PORT_widgetPort);
 
-        disconnect(mtc:car, testCarComp:carPort);
+        disconnect(mtc:carActions, testCarComp:carActionsPort);
+        disconnect(mtc:carEvents, testCarComp:carEventsPort);
         deactivate;
     }
     

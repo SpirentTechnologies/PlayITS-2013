@@ -1,8 +1,11 @@
 module CONFIG_CAR {
     import from PROTO_API language "PROTO" all;
 
-    type port carPort procedure {
+    type port carEventsPort procedure {
         in PROTO_API.EVENTS__API_carStatusType;
+    }
+    
+    type port carActionsPort procedure {
         out PROTO_API.ACTIONS__API_onOffEngineType,
         PROTO_API.ACTIONS__API_speedType,
         PROTO_API.ACTIONS__API_warningType,
@@ -12,7 +15,22 @@ module CONFIG_CAR {
 
     type component CarComponent {
         var boolean widgetExit := false;
-        port carPort car;
+        port carActionsPort carActions;
+        port carEventsPort carEvents;
         timer calltimer := 1.0;
     }
+    
+    /**
+     * @desc Start the simulator on given port
+     * @param p_serverPort the server port
+     * @return -1 on error, 0 means OK, -2 already running
+     */
+    external function xf_startSimulation(integer p_serverPort) return integer;
+    /**
+     * @desc Stops the simulator on given port
+     * @param p_serverPort the server port
+     * @return -1 on error, 0 means OK, -2 not running
+     */
+    external function xf_stopSimulation(integer p_serverPort) return integer;
+
 }
