@@ -9,7 +9,7 @@ public class Car implements CarInterface {
 	
 	
 	double speed, maxSpeed, petrolUsage;
-	private ConcurrentLinkedQueue<Tupel<Warnings, GPSposition>> warning;
+	private ConcurrentLinkedQueue<Tupel<Warnings, GPSposition>> warning = new ConcurrentLinkedQueue<Tupel<Warnings,GPSposition>>();
 	Sensors sensors;
 	boolean engine;
 
@@ -39,23 +39,6 @@ public class Car implements CarInterface {
 		position = new GPSpositionOfCar(positions);
 	}
 
-	public Car(double speed, double maxSpeed,
-			double tankFill, double petrolUsage, boolean lightExists,
-			boolean rainExists, boolean tankFillExists,
-			boolean tirePressureExists, boolean espExists, boolean absExists,
-			boolean airbagExists, boolean fogLightExists) {
-
-		this.speed = speed;
-		this.maxSpeed = maxSpeed;
-		this.petrolUsage = petrolUsage;
-		this.sensors = new Sensors(lightExists, rainExists, tankFillExists,
-				airbagExists, espExists, absExists, fogLightExists,
-				new Tires(), tankFill);
-		carID++;
-		customID = carID;
-	}
-
-	
 	@Override
 	public boolean toggleEngine() {
 		if (!engine) {
@@ -152,6 +135,11 @@ public class Car implements CarInterface {
 	 * What is needed to be returned: tankFillLevel currentGPSposition
 	 */
 	public void update() {
+		if (position == null) {
+			System.out.println("No route set");
+			return;
+		}
+		
 		// check warnings[], Sensors, damage,
 		Tupel<GPSposition, Double> gpsPositionOfCarUpdate;
 		Tupel<Warnings, GPSposition> nextWarning;
@@ -168,7 +156,7 @@ public class Car implements CarInterface {
 		currentPosition = gpsPositionOfCarUpdate.first;
 		nextWarning = warning.peek();
 		
-		if (currentPosition.latitude == nextWarning.second.latitude
+		if (nextWarning !=null && currentPosition.latitude == nextWarning.second.latitude
 				&& currentPosition.longitude == nextWarning.second.longitude) {
 			// remove warning because it will be handled now
 			warning.poll();
