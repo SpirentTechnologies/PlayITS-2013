@@ -21,33 +21,38 @@ message gpsPosition {
 }
 
 message onOffEngineType {
-  required bool engineStatus = 1;
+  required sint64 carId = 1;
+  required bool engineStatus = 2;
 }
 
 message speedType {
-  required float speed = 1;
+  required sint64 carId = 1;
+  required float speed = 2;
 }
 
 message trackType {
-  required string trackName = 1;
+  required sint64 carId = 1;
+  required string trackName = 2;
 }
 
 message warningType {
-  required PROTO_API.warning warningName = 1;
-  required PROTO_API.gpsPosition gpsPos = 2;
-  required sint64 priority = 3;
+  optional sint64 carId = 1;
+  required PROTO_API.warning warningName = 2;
+  required PROTO_API.gpsPosition gpsPos = 3;
+  required sint64 priority = 4;
 }
 
 message carStatusType {
-  required bool engineStatus = 1;
-  required float speed = 2;
-  required bool absSensor = 3;
-  required bool espSensor = 4;
-  required bool lightSensor = 5;
-  required bool fogLightSensor = 6;
-  required float fuelFilling = 7;
-  required PROTO_API.gpsPosition gpsPos = 8;
-  required PROTO_API.warningType warning = 9;
+  optional sint64 carId = 1;
+  required bool engineStatus = 2;
+  required float speed = 3;
+  required bool absSensor = 4;
+  required bool espSensor = 5;
+  required bool lightSensor = 6;
+  required bool fogLightSensor = 7;
+  required float fuelFilling = 8;
+  required PROTO_API.gpsPosition gpsPos = 9;
+  required PROTO_API.warningType warning = 10;
 }
 
 message carInitType {
@@ -61,6 +66,7 @@ message carInitType {
 }
 
 message widgetExit {
+  required sint64 carId = 1;
 }
 
 message Void {}

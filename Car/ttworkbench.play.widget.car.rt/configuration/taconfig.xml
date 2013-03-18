@@ -51,7 +51,7 @@
             </Values:integer>
         </value>
       </parameter>
-      <parameter id="car">
+      <parameter id="carActions">
         <parameter id="TCP_MODE">
           <value>
             <Values:charstring xmlns:Values="Values.xsd" type="charstring">
@@ -165,6 +165,44 @@
           </value>
         </parameter>
       </parameter>
+      <parameter id="carEvents">
+        <parameter id="TCP_MODE">
+          <value>
+            <Values:charstring xmlns:Values="Values.xsd" type="charstring">
+              <Values:value>server</Values:value>
+            </Values:charstring>
+          </value>
+        </parameter>
+        <parameter id="TCP_LOCAL_HOST">
+          <value>
+            <Values:charstring name="" type="charstring">
+              <Values:value>localhost</Values:value>
+            </Values:charstring>
+          </value>
+        </parameter>
+        <parameter id="TCP_LOCAL_PORT" value="${Parameters.EVENTS_CAR_TCP_PORT}"/>
+        <parameter id="TCP_REMOTE_HOST">
+          <value>
+            <Values:charstring xmlns:Values="Values.xsd" type="charstring">
+              <Values:value>localhost</Values:value>
+            </Values:charstring>
+          </value>
+        </parameter>
+        <parameter id="TCP_REMOTE_PORT">
+          <value>
+            <Values:integer xmlns:Values="Values.xsd" type="integer">
+              <Values:value>5002</Values:value>
+            </Values:integer>
+          </value>
+        </parameter>
+        <parameter id="TCP_SERVER_WAIT_TIME">
+          <value>
+            <Values:integer xmlns:Values="Values.xsd" type="integer">
+              <Values:value>-1</Values:value>
+            </Values:integer>
+          </value>
+        </parameter>
+      </parameter>
     </parameter>
     <parameter id="default" value="true"/>
     <parameter id="portFilters">
@@ -179,5 +217,7 @@
     </parameter>
     <parameter id="portType" value="CONFIG_API.PROTO_ACTIONS_widgetPort"/>
     <parameter id="portType" value="CONFIG_API.PROTO_EVENTS_widgetPort"/>
+    <parameter id="portType" value="CONFIG_CAR.carEventsPort"/>
+    <parameter id="portType" value="CONFIG_CAR.carActionsPort"/>
   </port>
 </testadapter>
