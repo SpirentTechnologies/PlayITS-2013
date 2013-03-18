@@ -858,7 +858,11 @@ public final class PROTO_API {
   public interface onOffEngineTypeOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // required bool engineStatus = 1;
+    // required sint64 carId = 1;
+    boolean hasCarId();
+    long getCarId();
+    
+    // required bool engineStatus = 2;
     boolean hasEngineStatus();
     boolean getEngineStatus();
   }
@@ -891,17 +895,28 @@ public final class PROTO_API {
     }
     
     private int bitField0_;
-    // required bool engineStatus = 1;
-    public static final int ENGINESTATUS_FIELD_NUMBER = 1;
+    // required sint64 carId = 1;
+    public static final int CARID_FIELD_NUMBER = 1;
+    private long carId_;
+    public boolean hasCarId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public long getCarId() {
+      return carId_;
+    }
+    
+    // required bool engineStatus = 2;
+    public static final int ENGINESTATUS_FIELD_NUMBER = 2;
     private boolean engineStatus_;
     public boolean hasEngineStatus() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
+      return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     public boolean getEngineStatus() {
       return engineStatus_;
     }
     
     private void initFields() {
+      carId_ = 0L;
       engineStatus_ = false;
     }
     private byte memoizedIsInitialized = -1;
@@ -909,6 +924,10 @@ public final class PROTO_API {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
       
+      if (!hasCarId()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
       if (!hasEngineStatus()) {
         memoizedIsInitialized = 0;
         return false;
@@ -921,7 +940,10 @@ public final class PROTO_API {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBool(1, engineStatus_);
+        output.writeSInt64(1, carId_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBool(2, engineStatus_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -934,7 +956,11 @@ public final class PROTO_API {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(1, engineStatus_);
+          .computeSInt64Size(1, carId_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(2, engineStatus_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1060,8 +1086,10 @@ public final class PROTO_API {
       
       public Builder clear() {
         super.clear();
-        engineStatus_ = false;
+        carId_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000001);
+        engineStatus_ = false;
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
       
@@ -1103,6 +1131,10 @@ public final class PROTO_API {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
+        result.carId_ = carId_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
         result.engineStatus_ = engineStatus_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -1120,6 +1152,9 @@ public final class PROTO_API {
       
       public Builder mergeFrom(com.testingtech.ttworkbench.play.generated.PROTO_API.onOffEngineType other) {
         if (other == com.testingtech.ttworkbench.play.generated.PROTO_API.onOffEngineType.getDefaultInstance()) return this;
+        if (other.hasCarId()) {
+          setCarId(other.getCarId());
+        }
         if (other.hasEngineStatus()) {
           setEngineStatus(other.getEngineStatus());
         }
@@ -1128,6 +1163,10 @@ public final class PROTO_API {
       }
       
       public final boolean isInitialized() {
+        if (!hasCarId()) {
+          
+          return false;
+        }
         if (!hasEngineStatus()) {
           
           return false;
@@ -1160,6 +1199,11 @@ public final class PROTO_API {
             }
             case 8: {
               bitField0_ |= 0x00000001;
+              carId_ = input.readSInt64();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
               engineStatus_ = input.readBool();
               break;
             }
@@ -1169,22 +1213,43 @@ public final class PROTO_API {
       
       private int bitField0_;
       
-      // required bool engineStatus = 1;
+      // required sint64 carId = 1;
+      private long carId_ ;
+      public boolean hasCarId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public long getCarId() {
+        return carId_;
+      }
+      public Builder setCarId(long value) {
+        bitField0_ |= 0x00000001;
+        carId_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearCarId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        carId_ = 0L;
+        onChanged();
+        return this;
+      }
+      
+      // required bool engineStatus = 2;
       private boolean engineStatus_ ;
       public boolean hasEngineStatus() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       public boolean getEngineStatus() {
         return engineStatus_;
       }
       public Builder setEngineStatus(boolean value) {
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         engineStatus_ = value;
         onChanged();
         return this;
       }
       public Builder clearEngineStatus() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         engineStatus_ = false;
         onChanged();
         return this;
@@ -1204,7 +1269,11 @@ public final class PROTO_API {
   public interface speedTypeOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // required float speed = 1;
+    // required sint64 carId = 1;
+    boolean hasCarId();
+    long getCarId();
+    
+    // required float speed = 2;
     boolean hasSpeed();
     float getSpeed();
   }
@@ -1237,17 +1306,28 @@ public final class PROTO_API {
     }
     
     private int bitField0_;
-    // required float speed = 1;
-    public static final int SPEED_FIELD_NUMBER = 1;
+    // required sint64 carId = 1;
+    public static final int CARID_FIELD_NUMBER = 1;
+    private long carId_;
+    public boolean hasCarId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public long getCarId() {
+      return carId_;
+    }
+    
+    // required float speed = 2;
+    public static final int SPEED_FIELD_NUMBER = 2;
     private float speed_;
     public boolean hasSpeed() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
+      return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     public float getSpeed() {
       return speed_;
     }
     
     private void initFields() {
+      carId_ = 0L;
       speed_ = 0F;
     }
     private byte memoizedIsInitialized = -1;
@@ -1255,6 +1335,10 @@ public final class PROTO_API {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
       
+      if (!hasCarId()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
       if (!hasSpeed()) {
         memoizedIsInitialized = 0;
         return false;
@@ -1267,7 +1351,10 @@ public final class PROTO_API {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeFloat(1, speed_);
+        output.writeSInt64(1, carId_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeFloat(2, speed_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -1280,7 +1367,11 @@ public final class PROTO_API {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(1, speed_);
+          .computeSInt64Size(1, carId_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(2, speed_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1406,8 +1497,10 @@ public final class PROTO_API {
       
       public Builder clear() {
         super.clear();
-        speed_ = 0F;
+        carId_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000001);
+        speed_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
       
@@ -1449,6 +1542,10 @@ public final class PROTO_API {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
+        result.carId_ = carId_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
         result.speed_ = speed_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -1466,6 +1563,9 @@ public final class PROTO_API {
       
       public Builder mergeFrom(com.testingtech.ttworkbench.play.generated.PROTO_API.speedType other) {
         if (other == com.testingtech.ttworkbench.play.generated.PROTO_API.speedType.getDefaultInstance()) return this;
+        if (other.hasCarId()) {
+          setCarId(other.getCarId());
+        }
         if (other.hasSpeed()) {
           setSpeed(other.getSpeed());
         }
@@ -1474,6 +1574,10 @@ public final class PROTO_API {
       }
       
       public final boolean isInitialized() {
+        if (!hasCarId()) {
+          
+          return false;
+        }
         if (!hasSpeed()) {
           
           return false;
@@ -1504,8 +1608,13 @@ public final class PROTO_API {
               }
               break;
             }
-            case 13: {
+            case 8: {
               bitField0_ |= 0x00000001;
+              carId_ = input.readSInt64();
+              break;
+            }
+            case 21: {
+              bitField0_ |= 0x00000002;
               speed_ = input.readFloat();
               break;
             }
@@ -1515,22 +1624,43 @@ public final class PROTO_API {
       
       private int bitField0_;
       
-      // required float speed = 1;
+      // required sint64 carId = 1;
+      private long carId_ ;
+      public boolean hasCarId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public long getCarId() {
+        return carId_;
+      }
+      public Builder setCarId(long value) {
+        bitField0_ |= 0x00000001;
+        carId_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearCarId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        carId_ = 0L;
+        onChanged();
+        return this;
+      }
+      
+      // required float speed = 2;
       private float speed_ ;
       public boolean hasSpeed() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       public float getSpeed() {
         return speed_;
       }
       public Builder setSpeed(float value) {
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         speed_ = value;
         onChanged();
         return this;
       }
       public Builder clearSpeed() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         speed_ = 0F;
         onChanged();
         return this;
@@ -1550,7 +1680,11 @@ public final class PROTO_API {
   public interface trackTypeOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // required string trackName = 1;
+    // required sint64 carId = 1;
+    boolean hasCarId();
+    long getCarId();
+    
+    // required string trackName = 2;
     boolean hasTrackName();
     String getTrackName();
   }
@@ -1583,11 +1717,21 @@ public final class PROTO_API {
     }
     
     private int bitField0_;
-    // required string trackName = 1;
-    public static final int TRACKNAME_FIELD_NUMBER = 1;
+    // required sint64 carId = 1;
+    public static final int CARID_FIELD_NUMBER = 1;
+    private long carId_;
+    public boolean hasCarId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public long getCarId() {
+      return carId_;
+    }
+    
+    // required string trackName = 2;
+    public static final int TRACKNAME_FIELD_NUMBER = 2;
     private java.lang.Object trackName_;
     public boolean hasTrackName() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
+      return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     public String getTrackName() {
       java.lang.Object ref = trackName_;
@@ -1616,6 +1760,7 @@ public final class PROTO_API {
     }
     
     private void initFields() {
+      carId_ = 0L;
       trackName_ = "";
     }
     private byte memoizedIsInitialized = -1;
@@ -1623,6 +1768,10 @@ public final class PROTO_API {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
       
+      if (!hasCarId()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
       if (!hasTrackName()) {
         memoizedIsInitialized = 0;
         return false;
@@ -1635,7 +1784,10 @@ public final class PROTO_API {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getTrackNameBytes());
+        output.writeSInt64(1, carId_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(2, getTrackNameBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -1648,7 +1800,11 @@ public final class PROTO_API {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getTrackNameBytes());
+          .computeSInt64Size(1, carId_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, getTrackNameBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1774,8 +1930,10 @@ public final class PROTO_API {
       
       public Builder clear() {
         super.clear();
-        trackName_ = "";
+        carId_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000001);
+        trackName_ = "";
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
       
@@ -1817,6 +1975,10 @@ public final class PROTO_API {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
+        result.carId_ = carId_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
         result.trackName_ = trackName_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -1834,6 +1996,9 @@ public final class PROTO_API {
       
       public Builder mergeFrom(com.testingtech.ttworkbench.play.generated.PROTO_API.trackType other) {
         if (other == com.testingtech.ttworkbench.play.generated.PROTO_API.trackType.getDefaultInstance()) return this;
+        if (other.hasCarId()) {
+          setCarId(other.getCarId());
+        }
         if (other.hasTrackName()) {
           setTrackName(other.getTrackName());
         }
@@ -1842,6 +2007,10 @@ public final class PROTO_API {
       }
       
       public final boolean isInitialized() {
+        if (!hasCarId()) {
+          
+          return false;
+        }
         if (!hasTrackName()) {
           
           return false;
@@ -1872,8 +2041,13 @@ public final class PROTO_API {
               }
               break;
             }
-            case 10: {
+            case 8: {
               bitField0_ |= 0x00000001;
+              carId_ = input.readSInt64();
+              break;
+            }
+            case 18: {
+              bitField0_ |= 0x00000002;
               trackName_ = input.readBytes();
               break;
             }
@@ -1883,10 +2057,31 @@ public final class PROTO_API {
       
       private int bitField0_;
       
-      // required string trackName = 1;
+      // required sint64 carId = 1;
+      private long carId_ ;
+      public boolean hasCarId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public long getCarId() {
+        return carId_;
+      }
+      public Builder setCarId(long value) {
+        bitField0_ |= 0x00000001;
+        carId_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearCarId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        carId_ = 0L;
+        onChanged();
+        return this;
+      }
+      
+      // required string trackName = 2;
       private java.lang.Object trackName_ = "";
       public boolean hasTrackName() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       public String getTrackName() {
         java.lang.Object ref = trackName_;
@@ -1902,19 +2097,19 @@ public final class PROTO_API {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000001;
+  bitField0_ |= 0x00000002;
         trackName_ = value;
         onChanged();
         return this;
       }
       public Builder clearTrackName() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         trackName_ = getDefaultInstance().getTrackName();
         onChanged();
         return this;
       }
       void setTrackName(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         trackName_ = value;
         onChanged();
       }
@@ -1933,17 +2128,21 @@ public final class PROTO_API {
   public interface warningTypeOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // required .PROTO_API.warning warningName = 1;
+    // optional sint64 carId = 1;
+    boolean hasCarId();
+    long getCarId();
+    
+    // required .PROTO_API.warning warningName = 2;
     boolean hasWarningName();
     com.testingtech.ttworkbench.play.generated.PROTO_API.warning getWarningName();
     com.testingtech.ttworkbench.play.generated.PROTO_API.warningOrBuilder getWarningNameOrBuilder();
     
-    // required .PROTO_API.gpsPosition gpsPos = 2;
+    // required .PROTO_API.gpsPosition gpsPos = 3;
     boolean hasGpsPos();
     com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition getGpsPos();
     com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPositionOrBuilder getGpsPosOrBuilder();
     
-    // required sint64 priority = 3;
+    // required sint64 priority = 4;
     boolean hasPriority();
     long getPriority();
   }
@@ -1976,11 +2175,21 @@ public final class PROTO_API {
     }
     
     private int bitField0_;
-    // required .PROTO_API.warning warningName = 1;
-    public static final int WARNINGNAME_FIELD_NUMBER = 1;
+    // optional sint64 carId = 1;
+    public static final int CARID_FIELD_NUMBER = 1;
+    private long carId_;
+    public boolean hasCarId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public long getCarId() {
+      return carId_;
+    }
+    
+    // required .PROTO_API.warning warningName = 2;
+    public static final int WARNINGNAME_FIELD_NUMBER = 2;
     private com.testingtech.ttworkbench.play.generated.PROTO_API.warning warningName_;
     public boolean hasWarningName() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
+      return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     public com.testingtech.ttworkbench.play.generated.PROTO_API.warning getWarningName() {
       return warningName_;
@@ -1989,11 +2198,11 @@ public final class PROTO_API {
       return warningName_;
     }
     
-    // required .PROTO_API.gpsPosition gpsPos = 2;
-    public static final int GPSPOS_FIELD_NUMBER = 2;
+    // required .PROTO_API.gpsPosition gpsPos = 3;
+    public static final int GPSPOS_FIELD_NUMBER = 3;
     private com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition gpsPos_;
     public boolean hasGpsPos() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     public com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition getGpsPos() {
       return gpsPos_;
@@ -2002,17 +2211,18 @@ public final class PROTO_API {
       return gpsPos_;
     }
     
-    // required sint64 priority = 3;
-    public static final int PRIORITY_FIELD_NUMBER = 3;
+    // required sint64 priority = 4;
+    public static final int PRIORITY_FIELD_NUMBER = 4;
     private long priority_;
     public boolean hasPriority() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     public long getPriority() {
       return priority_;
     }
     
     private void initFields() {
+      carId_ = 0L;
       warningName_ = com.testingtech.ttworkbench.play.generated.PROTO_API.warning.getDefaultInstance();
       gpsPos_ = com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.getDefaultInstance();
       priority_ = 0L;
@@ -2050,13 +2260,16 @@ public final class PROTO_API {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeMessage(1, warningName_);
+        output.writeSInt64(1, carId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeMessage(2, gpsPos_);
+        output.writeMessage(2, warningName_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeSInt64(3, priority_);
+        output.writeMessage(3, gpsPos_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeSInt64(4, priority_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -2069,15 +2282,19 @@ public final class PROTO_API {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, warningName_);
+          .computeSInt64Size(1, carId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, gpsPos_);
+          .computeMessageSize(2, warningName_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeSInt64Size(3, priority_);
+          .computeMessageSize(3, gpsPos_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeSInt64Size(4, priority_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -2205,20 +2422,22 @@ public final class PROTO_API {
       
       public Builder clear() {
         super.clear();
+        carId_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000001);
         if (warningNameBuilder_ == null) {
           warningName_ = com.testingtech.ttworkbench.play.generated.PROTO_API.warning.getDefaultInstance();
         } else {
           warningNameBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         if (gpsPosBuilder_ == null) {
           gpsPos_ = com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.getDefaultInstance();
         } else {
           gpsPosBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000002);
-        priority_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000004);
+        priority_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
       
@@ -2260,21 +2479,25 @@ public final class PROTO_API {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
+        result.carId_ = carId_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
         if (warningNameBuilder_ == null) {
           result.warningName_ = warningName_;
         } else {
           result.warningName_ = warningNameBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
         }
         if (gpsPosBuilder_ == null) {
           result.gpsPos_ = gpsPos_;
         } else {
           result.gpsPos_ = gpsPosBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
         }
         result.priority_ = priority_;
         result.bitField0_ = to_bitField0_;
@@ -2293,6 +2516,9 @@ public final class PROTO_API {
       
       public Builder mergeFrom(com.testingtech.ttworkbench.play.generated.PROTO_API.warningType other) {
         if (other == com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.getDefaultInstance()) return this;
+        if (other.hasCarId()) {
+          setCarId(other.getCarId());
+        }
         if (other.hasWarningName()) {
           mergeWarningName(other.getWarningName());
         }
@@ -2353,7 +2579,12 @@ public final class PROTO_API {
               }
               break;
             }
-            case 10: {
+            case 8: {
+              bitField0_ |= 0x00000001;
+              carId_ = input.readSInt64();
+              break;
+            }
+            case 18: {
               com.testingtech.ttworkbench.play.generated.PROTO_API.warning.Builder subBuilder = com.testingtech.ttworkbench.play.generated.PROTO_API.warning.newBuilder();
               if (hasWarningName()) {
                 subBuilder.mergeFrom(getWarningName());
@@ -2362,7 +2593,7 @@ public final class PROTO_API {
               setWarningName(subBuilder.buildPartial());
               break;
             }
-            case 18: {
+            case 26: {
               com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.Builder subBuilder = com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.newBuilder();
               if (hasGpsPos()) {
                 subBuilder.mergeFrom(getGpsPos());
@@ -2371,8 +2602,8 @@ public final class PROTO_API {
               setGpsPos(subBuilder.buildPartial());
               break;
             }
-            case 24: {
-              bitField0_ |= 0x00000004;
+            case 32: {
+              bitField0_ |= 0x00000008;
               priority_ = input.readSInt64();
               break;
             }
@@ -2382,12 +2613,33 @@ public final class PROTO_API {
       
       private int bitField0_;
       
-      // required .PROTO_API.warning warningName = 1;
+      // optional sint64 carId = 1;
+      private long carId_ ;
+      public boolean hasCarId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public long getCarId() {
+        return carId_;
+      }
+      public Builder setCarId(long value) {
+        bitField0_ |= 0x00000001;
+        carId_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearCarId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        carId_ = 0L;
+        onChanged();
+        return this;
+      }
+      
+      // required .PROTO_API.warning warningName = 2;
       private com.testingtech.ttworkbench.play.generated.PROTO_API.warning warningName_ = com.testingtech.ttworkbench.play.generated.PROTO_API.warning.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           com.testingtech.ttworkbench.play.generated.PROTO_API.warning, com.testingtech.ttworkbench.play.generated.PROTO_API.warning.Builder, com.testingtech.ttworkbench.play.generated.PROTO_API.warningOrBuilder> warningNameBuilder_;
       public boolean hasWarningName() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       public com.testingtech.ttworkbench.play.generated.PROTO_API.warning getWarningName() {
         if (warningNameBuilder_ == null) {
@@ -2406,7 +2658,7 @@ public final class PROTO_API {
         } else {
           warningNameBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         return this;
       }
       public Builder setWarningName(
@@ -2417,12 +2669,12 @@ public final class PROTO_API {
         } else {
           warningNameBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         return this;
       }
       public Builder mergeWarningName(com.testingtech.ttworkbench.play.generated.PROTO_API.warning value) {
         if (warningNameBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) == 0x00000001) &&
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
               warningName_ != com.testingtech.ttworkbench.play.generated.PROTO_API.warning.getDefaultInstance()) {
             warningName_ =
               com.testingtech.ttworkbench.play.generated.PROTO_API.warning.newBuilder(warningName_).mergeFrom(value).buildPartial();
@@ -2433,7 +2685,7 @@ public final class PROTO_API {
         } else {
           warningNameBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         return this;
       }
       public Builder clearWarningName() {
@@ -2443,11 +2695,11 @@ public final class PROTO_API {
         } else {
           warningNameBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
       public com.testingtech.ttworkbench.play.generated.PROTO_API.warning.Builder getWarningNameBuilder() {
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         onChanged();
         return getWarningNameFieldBuilder().getBuilder();
       }
@@ -2472,12 +2724,12 @@ public final class PROTO_API {
         return warningNameBuilder_;
       }
       
-      // required .PROTO_API.gpsPosition gpsPos = 2;
+      // required .PROTO_API.gpsPosition gpsPos = 3;
       private com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition gpsPos_ = com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition, com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.Builder, com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPositionOrBuilder> gpsPosBuilder_;
       public boolean hasGpsPos() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       public com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition getGpsPos() {
         if (gpsPosBuilder_ == null) {
@@ -2496,7 +2748,7 @@ public final class PROTO_API {
         } else {
           gpsPosBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         return this;
       }
       public Builder setGpsPos(
@@ -2507,12 +2759,12 @@ public final class PROTO_API {
         } else {
           gpsPosBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         return this;
       }
       public Builder mergeGpsPos(com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition value) {
         if (gpsPosBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+          if (((bitField0_ & 0x00000004) == 0x00000004) &&
               gpsPos_ != com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.getDefaultInstance()) {
             gpsPos_ =
               com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.newBuilder(gpsPos_).mergeFrom(value).buildPartial();
@@ -2523,7 +2775,7 @@ public final class PROTO_API {
         } else {
           gpsPosBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         return this;
       }
       public Builder clearGpsPos() {
@@ -2533,11 +2785,11 @@ public final class PROTO_API {
         } else {
           gpsPosBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       public com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.Builder getGpsPosBuilder() {
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return getGpsPosFieldBuilder().getBuilder();
       }
@@ -2562,22 +2814,22 @@ public final class PROTO_API {
         return gpsPosBuilder_;
       }
       
-      // required sint64 priority = 3;
+      // required sint64 priority = 4;
       private long priority_ ;
       public boolean hasPriority() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       public long getPriority() {
         return priority_;
       }
       public Builder setPriority(long value) {
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         priority_ = value;
         onChanged();
         return this;
       }
       public Builder clearPriority() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         priority_ = 0L;
         onChanged();
         return this;
@@ -2597,40 +2849,44 @@ public final class PROTO_API {
   public interface carStatusTypeOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // required bool engineStatus = 1;
+    // optional sint64 carId = 1;
+    boolean hasCarId();
+    long getCarId();
+    
+    // required bool engineStatus = 2;
     boolean hasEngineStatus();
     boolean getEngineStatus();
     
-    // required float speed = 2;
+    // required float speed = 3;
     boolean hasSpeed();
     float getSpeed();
     
-    // required bool absSensor = 3;
+    // required bool absSensor = 4;
     boolean hasAbsSensor();
     boolean getAbsSensor();
     
-    // required bool espSensor = 4;
+    // required bool espSensor = 5;
     boolean hasEspSensor();
     boolean getEspSensor();
     
-    // required bool lightSensor = 5;
+    // required bool lightSensor = 6;
     boolean hasLightSensor();
     boolean getLightSensor();
     
-    // required bool fogLightSensor = 6;
+    // required bool fogLightSensor = 7;
     boolean hasFogLightSensor();
     boolean getFogLightSensor();
     
-    // required float fuelFilling = 7;
+    // required float fuelFilling = 8;
     boolean hasFuelFilling();
     float getFuelFilling();
     
-    // required .PROTO_API.gpsPosition gpsPos = 8;
+    // required .PROTO_API.gpsPosition gpsPos = 9;
     boolean hasGpsPos();
     com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition getGpsPos();
     com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPositionOrBuilder getGpsPosOrBuilder();
     
-    // required .PROTO_API.warningType warning = 9;
+    // required .PROTO_API.warningType warning = 10;
     boolean hasWarning();
     com.testingtech.ttworkbench.play.generated.PROTO_API.warningType getWarning();
     com.testingtech.ttworkbench.play.generated.PROTO_API.warningTypeOrBuilder getWarningOrBuilder();
@@ -2664,81 +2920,91 @@ public final class PROTO_API {
     }
     
     private int bitField0_;
-    // required bool engineStatus = 1;
-    public static final int ENGINESTATUS_FIELD_NUMBER = 1;
+    // optional sint64 carId = 1;
+    public static final int CARID_FIELD_NUMBER = 1;
+    private long carId_;
+    public boolean hasCarId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public long getCarId() {
+      return carId_;
+    }
+    
+    // required bool engineStatus = 2;
+    public static final int ENGINESTATUS_FIELD_NUMBER = 2;
     private boolean engineStatus_;
     public boolean hasEngineStatus() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
+      return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     public boolean getEngineStatus() {
       return engineStatus_;
     }
     
-    // required float speed = 2;
-    public static final int SPEED_FIELD_NUMBER = 2;
+    // required float speed = 3;
+    public static final int SPEED_FIELD_NUMBER = 3;
     private float speed_;
     public boolean hasSpeed() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     public float getSpeed() {
       return speed_;
     }
     
-    // required bool absSensor = 3;
-    public static final int ABSSENSOR_FIELD_NUMBER = 3;
+    // required bool absSensor = 4;
+    public static final int ABSSENSOR_FIELD_NUMBER = 4;
     private boolean absSensor_;
     public boolean hasAbsSensor() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     public boolean getAbsSensor() {
       return absSensor_;
     }
     
-    // required bool espSensor = 4;
-    public static final int ESPSENSOR_FIELD_NUMBER = 4;
+    // required bool espSensor = 5;
+    public static final int ESPSENSOR_FIELD_NUMBER = 5;
     private boolean espSensor_;
     public boolean hasEspSensor() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+      return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     public boolean getEspSensor() {
       return espSensor_;
     }
     
-    // required bool lightSensor = 5;
-    public static final int LIGHTSENSOR_FIELD_NUMBER = 5;
+    // required bool lightSensor = 6;
+    public static final int LIGHTSENSOR_FIELD_NUMBER = 6;
     private boolean lightSensor_;
     public boolean hasLightSensor() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
+      return ((bitField0_ & 0x00000020) == 0x00000020);
     }
     public boolean getLightSensor() {
       return lightSensor_;
     }
     
-    // required bool fogLightSensor = 6;
-    public static final int FOGLIGHTSENSOR_FIELD_NUMBER = 6;
+    // required bool fogLightSensor = 7;
+    public static final int FOGLIGHTSENSOR_FIELD_NUMBER = 7;
     private boolean fogLightSensor_;
     public boolean hasFogLightSensor() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
+      return ((bitField0_ & 0x00000040) == 0x00000040);
     }
     public boolean getFogLightSensor() {
       return fogLightSensor_;
     }
     
-    // required float fuelFilling = 7;
-    public static final int FUELFILLING_FIELD_NUMBER = 7;
+    // required float fuelFilling = 8;
+    public static final int FUELFILLING_FIELD_NUMBER = 8;
     private float fuelFilling_;
     public boolean hasFuelFilling() {
-      return ((bitField0_ & 0x00000040) == 0x00000040);
+      return ((bitField0_ & 0x00000080) == 0x00000080);
     }
     public float getFuelFilling() {
       return fuelFilling_;
     }
     
-    // required .PROTO_API.gpsPosition gpsPos = 8;
-    public static final int GPSPOS_FIELD_NUMBER = 8;
+    // required .PROTO_API.gpsPosition gpsPos = 9;
+    public static final int GPSPOS_FIELD_NUMBER = 9;
     private com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition gpsPos_;
     public boolean hasGpsPos() {
-      return ((bitField0_ & 0x00000080) == 0x00000080);
+      return ((bitField0_ & 0x00000100) == 0x00000100);
     }
     public com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition getGpsPos() {
       return gpsPos_;
@@ -2747,11 +3013,11 @@ public final class PROTO_API {
       return gpsPos_;
     }
     
-    // required .PROTO_API.warningType warning = 9;
-    public static final int WARNING_FIELD_NUMBER = 9;
+    // required .PROTO_API.warningType warning = 10;
+    public static final int WARNING_FIELD_NUMBER = 10;
     private com.testingtech.ttworkbench.play.generated.PROTO_API.warningType warning_;
     public boolean hasWarning() {
-      return ((bitField0_ & 0x00000100) == 0x00000100);
+      return ((bitField0_ & 0x00000200) == 0x00000200);
     }
     public com.testingtech.ttworkbench.play.generated.PROTO_API.warningType getWarning() {
       return warning_;
@@ -2761,6 +3027,7 @@ public final class PROTO_API {
     }
     
     private void initFields() {
+      carId_ = 0L;
       engineStatus_ = false;
       speed_ = 0F;
       absSensor_ = false;
@@ -2828,31 +3095,34 @@ public final class PROTO_API {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBool(1, engineStatus_);
+        output.writeSInt64(1, carId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeFloat(2, speed_);
+        output.writeBool(2, engineStatus_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBool(3, absSensor_);
+        output.writeFloat(3, speed_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBool(4, espSensor_);
+        output.writeBool(4, absSensor_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeBool(5, lightSensor_);
+        output.writeBool(5, espSensor_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeBool(6, fogLightSensor_);
+        output.writeBool(6, lightSensor_);
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        output.writeFloat(7, fuelFilling_);
+        output.writeBool(7, fogLightSensor_);
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
-        output.writeMessage(8, gpsPos_);
+        output.writeFloat(8, fuelFilling_);
       }
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
-        output.writeMessage(9, warning_);
+        output.writeMessage(9, gpsPos_);
+      }
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+        output.writeMessage(10, warning_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -2865,39 +3135,43 @@ public final class PROTO_API {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(1, engineStatus_);
+          .computeSInt64Size(1, carId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(2, speed_);
+          .computeBoolSize(2, engineStatus_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(3, absSensor_);
+          .computeFloatSize(3, speed_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(4, espSensor_);
+          .computeBoolSize(4, absSensor_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(5, lightSensor_);
+          .computeBoolSize(5, espSensor_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(6, fogLightSensor_);
+          .computeBoolSize(6, lightSensor_);
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(7, fuelFilling_);
+          .computeBoolSize(7, fogLightSensor_);
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(8, gpsPos_);
+          .computeFloatSize(8, fuelFilling_);
       }
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(9, warning_);
+          .computeMessageSize(9, gpsPos_);
+      }
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(10, warning_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -3025,32 +3299,34 @@ public final class PROTO_API {
       
       public Builder clear() {
         super.clear();
-        engineStatus_ = false;
+        carId_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000001);
-        speed_ = 0F;
+        engineStatus_ = false;
         bitField0_ = (bitField0_ & ~0x00000002);
-        absSensor_ = false;
+        speed_ = 0F;
         bitField0_ = (bitField0_ & ~0x00000004);
-        espSensor_ = false;
+        absSensor_ = false;
         bitField0_ = (bitField0_ & ~0x00000008);
-        lightSensor_ = false;
+        espSensor_ = false;
         bitField0_ = (bitField0_ & ~0x00000010);
-        fogLightSensor_ = false;
+        lightSensor_ = false;
         bitField0_ = (bitField0_ & ~0x00000020);
-        fuelFilling_ = 0F;
+        fogLightSensor_ = false;
         bitField0_ = (bitField0_ & ~0x00000040);
+        fuelFilling_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000080);
         if (gpsPosBuilder_ == null) {
           gpsPos_ = com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.getDefaultInstance();
         } else {
           gpsPosBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000080);
+        bitField0_ = (bitField0_ & ~0x00000100);
         if (warningBuilder_ == null) {
           warning_ = com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.getDefaultInstance();
         } else {
           warningBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000100);
+        bitField0_ = (bitField0_ & ~0x00000200);
         return this;
       }
       
@@ -3092,41 +3368,45 @@ public final class PROTO_API {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.engineStatus_ = engineStatus_;
+        result.carId_ = carId_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.speed_ = speed_;
+        result.engineStatus_ = engineStatus_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.absSensor_ = absSensor_;
+        result.speed_ = speed_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.espSensor_ = espSensor_;
+        result.absSensor_ = absSensor_;
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
         }
-        result.lightSensor_ = lightSensor_;
+        result.espSensor_ = espSensor_;
         if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
           to_bitField0_ |= 0x00000020;
         }
-        result.fogLightSensor_ = fogLightSensor_;
+        result.lightSensor_ = lightSensor_;
         if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
           to_bitField0_ |= 0x00000040;
         }
-        result.fuelFilling_ = fuelFilling_;
+        result.fogLightSensor_ = fogLightSensor_;
         if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
           to_bitField0_ |= 0x00000080;
+        }
+        result.fuelFilling_ = fuelFilling_;
+        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
+          to_bitField0_ |= 0x00000100;
         }
         if (gpsPosBuilder_ == null) {
           result.gpsPos_ = gpsPos_;
         } else {
           result.gpsPos_ = gpsPosBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
-          to_bitField0_ |= 0x00000100;
+        if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
+          to_bitField0_ |= 0x00000200;
         }
         if (warningBuilder_ == null) {
           result.warning_ = warning_;
@@ -3149,6 +3429,9 @@ public final class PROTO_API {
       
       public Builder mergeFrom(com.testingtech.ttworkbench.play.generated.PROTO_API.carStatusType other) {
         if (other == com.testingtech.ttworkbench.play.generated.PROTO_API.carStatusType.getDefaultInstance()) return this;
+        if (other.hasCarId()) {
+          setCarId(other.getCarId());
+        }
         if (other.hasEngineStatus()) {
           setEngineStatus(other.getEngineStatus());
         }
@@ -3253,40 +3536,45 @@ public final class PROTO_API {
             }
             case 8: {
               bitField0_ |= 0x00000001;
+              carId_ = input.readSInt64();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
               engineStatus_ = input.readBool();
               break;
             }
-            case 21: {
-              bitField0_ |= 0x00000002;
-              speed_ = input.readFloat();
-              break;
-            }
-            case 24: {
+            case 29: {
               bitField0_ |= 0x00000004;
-              absSensor_ = input.readBool();
+              speed_ = input.readFloat();
               break;
             }
             case 32: {
               bitField0_ |= 0x00000008;
-              espSensor_ = input.readBool();
+              absSensor_ = input.readBool();
               break;
             }
             case 40: {
               bitField0_ |= 0x00000010;
-              lightSensor_ = input.readBool();
+              espSensor_ = input.readBool();
               break;
             }
             case 48: {
               bitField0_ |= 0x00000020;
+              lightSensor_ = input.readBool();
+              break;
+            }
+            case 56: {
+              bitField0_ |= 0x00000040;
               fogLightSensor_ = input.readBool();
               break;
             }
-            case 61: {
-              bitField0_ |= 0x00000040;
+            case 69: {
+              bitField0_ |= 0x00000080;
               fuelFilling_ = input.readFloat();
               break;
             }
-            case 66: {
+            case 74: {
               com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.Builder subBuilder = com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.newBuilder();
               if (hasGpsPos()) {
                 subBuilder.mergeFrom(getGpsPos());
@@ -3295,7 +3583,7 @@ public final class PROTO_API {
               setGpsPos(subBuilder.buildPartial());
               break;
             }
-            case 74: {
+            case 82: {
               com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.Builder subBuilder = com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.newBuilder();
               if (hasWarning()) {
                 subBuilder.mergeFrom(getWarning());
@@ -3310,159 +3598,180 @@ public final class PROTO_API {
       
       private int bitField0_;
       
-      // required bool engineStatus = 1;
+      // optional sint64 carId = 1;
+      private long carId_ ;
+      public boolean hasCarId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public long getCarId() {
+        return carId_;
+      }
+      public Builder setCarId(long value) {
+        bitField0_ |= 0x00000001;
+        carId_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearCarId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        carId_ = 0L;
+        onChanged();
+        return this;
+      }
+      
+      // required bool engineStatus = 2;
       private boolean engineStatus_ ;
       public boolean hasEngineStatus() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       public boolean getEngineStatus() {
         return engineStatus_;
       }
       public Builder setEngineStatus(boolean value) {
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         engineStatus_ = value;
         onChanged();
         return this;
       }
       public Builder clearEngineStatus() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         engineStatus_ = false;
         onChanged();
         return this;
       }
       
-      // required float speed = 2;
+      // required float speed = 3;
       private float speed_ ;
       public boolean hasSpeed() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       public float getSpeed() {
         return speed_;
       }
       public Builder setSpeed(float value) {
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         speed_ = value;
         onChanged();
         return this;
       }
       public Builder clearSpeed() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         speed_ = 0F;
         onChanged();
         return this;
       }
       
-      // required bool absSensor = 3;
+      // required bool absSensor = 4;
       private boolean absSensor_ ;
       public boolean hasAbsSensor() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       public boolean getAbsSensor() {
         return absSensor_;
       }
       public Builder setAbsSensor(boolean value) {
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         absSensor_ = value;
         onChanged();
         return this;
       }
       public Builder clearAbsSensor() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         absSensor_ = false;
         onChanged();
         return this;
       }
       
-      // required bool espSensor = 4;
+      // required bool espSensor = 5;
       private boolean espSensor_ ;
       public boolean hasEspSensor() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       public boolean getEspSensor() {
         return espSensor_;
       }
       public Builder setEspSensor(boolean value) {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         espSensor_ = value;
         onChanged();
         return this;
       }
       public Builder clearEspSensor() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000010);
         espSensor_ = false;
         onChanged();
         return this;
       }
       
-      // required bool lightSensor = 5;
+      // required bool lightSensor = 6;
       private boolean lightSensor_ ;
       public boolean hasLightSensor() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return ((bitField0_ & 0x00000020) == 0x00000020);
       }
       public boolean getLightSensor() {
         return lightSensor_;
       }
       public Builder setLightSensor(boolean value) {
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         lightSensor_ = value;
         onChanged();
         return this;
       }
       public Builder clearLightSensor() {
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000020);
         lightSensor_ = false;
         onChanged();
         return this;
       }
       
-      // required bool fogLightSensor = 6;
+      // required bool fogLightSensor = 7;
       private boolean fogLightSensor_ ;
       public boolean hasFogLightSensor() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
+        return ((bitField0_ & 0x00000040) == 0x00000040);
       }
       public boolean getFogLightSensor() {
         return fogLightSensor_;
       }
       public Builder setFogLightSensor(boolean value) {
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000040;
         fogLightSensor_ = value;
         onChanged();
         return this;
       }
       public Builder clearFogLightSensor() {
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000040);
         fogLightSensor_ = false;
         onChanged();
         return this;
       }
       
-      // required float fuelFilling = 7;
+      // required float fuelFilling = 8;
       private float fuelFilling_ ;
       public boolean hasFuelFilling() {
-        return ((bitField0_ & 0x00000040) == 0x00000040);
+        return ((bitField0_ & 0x00000080) == 0x00000080);
       }
       public float getFuelFilling() {
         return fuelFilling_;
       }
       public Builder setFuelFilling(float value) {
-        bitField0_ |= 0x00000040;
+        bitField0_ |= 0x00000080;
         fuelFilling_ = value;
         onChanged();
         return this;
       }
       public Builder clearFuelFilling() {
-        bitField0_ = (bitField0_ & ~0x00000040);
+        bitField0_ = (bitField0_ & ~0x00000080);
         fuelFilling_ = 0F;
         onChanged();
         return this;
       }
       
-      // required .PROTO_API.gpsPosition gpsPos = 8;
+      // required .PROTO_API.gpsPosition gpsPos = 9;
       private com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition gpsPos_ = com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition, com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.Builder, com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPositionOrBuilder> gpsPosBuilder_;
       public boolean hasGpsPos() {
-        return ((bitField0_ & 0x00000080) == 0x00000080);
+        return ((bitField0_ & 0x00000100) == 0x00000100);
       }
       public com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition getGpsPos() {
         if (gpsPosBuilder_ == null) {
@@ -3481,7 +3790,7 @@ public final class PROTO_API {
         } else {
           gpsPosBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000080;
+        bitField0_ |= 0x00000100;
         return this;
       }
       public Builder setGpsPos(
@@ -3492,12 +3801,12 @@ public final class PROTO_API {
         } else {
           gpsPosBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000080;
+        bitField0_ |= 0x00000100;
         return this;
       }
       public Builder mergeGpsPos(com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition value) {
         if (gpsPosBuilder_ == null) {
-          if (((bitField0_ & 0x00000080) == 0x00000080) &&
+          if (((bitField0_ & 0x00000100) == 0x00000100) &&
               gpsPos_ != com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.getDefaultInstance()) {
             gpsPos_ =
               com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.newBuilder(gpsPos_).mergeFrom(value).buildPartial();
@@ -3508,7 +3817,7 @@ public final class PROTO_API {
         } else {
           gpsPosBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000080;
+        bitField0_ |= 0x00000100;
         return this;
       }
       public Builder clearGpsPos() {
@@ -3518,11 +3827,11 @@ public final class PROTO_API {
         } else {
           gpsPosBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000080);
+        bitField0_ = (bitField0_ & ~0x00000100);
         return this;
       }
       public com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.Builder getGpsPosBuilder() {
-        bitField0_ |= 0x00000080;
+        bitField0_ |= 0x00000100;
         onChanged();
         return getGpsPosFieldBuilder().getBuilder();
       }
@@ -3547,12 +3856,12 @@ public final class PROTO_API {
         return gpsPosBuilder_;
       }
       
-      // required .PROTO_API.warningType warning = 9;
+      // required .PROTO_API.warningType warning = 10;
       private com.testingtech.ttworkbench.play.generated.PROTO_API.warningType warning_ = com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           com.testingtech.ttworkbench.play.generated.PROTO_API.warningType, com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.Builder, com.testingtech.ttworkbench.play.generated.PROTO_API.warningTypeOrBuilder> warningBuilder_;
       public boolean hasWarning() {
-        return ((bitField0_ & 0x00000100) == 0x00000100);
+        return ((bitField0_ & 0x00000200) == 0x00000200);
       }
       public com.testingtech.ttworkbench.play.generated.PROTO_API.warningType getWarning() {
         if (warningBuilder_ == null) {
@@ -3571,7 +3880,7 @@ public final class PROTO_API {
         } else {
           warningBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000100;
+        bitField0_ |= 0x00000200;
         return this;
       }
       public Builder setWarning(
@@ -3582,12 +3891,12 @@ public final class PROTO_API {
         } else {
           warningBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000100;
+        bitField0_ |= 0x00000200;
         return this;
       }
       public Builder mergeWarning(com.testingtech.ttworkbench.play.generated.PROTO_API.warningType value) {
         if (warningBuilder_ == null) {
-          if (((bitField0_ & 0x00000100) == 0x00000100) &&
+          if (((bitField0_ & 0x00000200) == 0x00000200) &&
               warning_ != com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.getDefaultInstance()) {
             warning_ =
               com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.newBuilder(warning_).mergeFrom(value).buildPartial();
@@ -3598,7 +3907,7 @@ public final class PROTO_API {
         } else {
           warningBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000100;
+        bitField0_ |= 0x00000200;
         return this;
       }
       public Builder clearWarning() {
@@ -3608,11 +3917,11 @@ public final class PROTO_API {
         } else {
           warningBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000100);
+        bitField0_ = (bitField0_ & ~0x00000200);
         return this;
       }
       public com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.Builder getWarningBuilder() {
-        bitField0_ |= 0x00000100;
+        bitField0_ |= 0x00000200;
         onChanged();
         return getWarningFieldBuilder().getBuilder();
       }
@@ -3651,31 +3960,35 @@ public final class PROTO_API {
   public interface carInitTypeOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // required bool absSensorExists = 1;
+    // required sint64 ttcnEventsPort = 1;
+    boolean hasTtcnEventsPort();
+    long getTtcnEventsPort();
+    
+    // required bool absSensorExists = 2;
     boolean hasAbsSensorExists();
     boolean getAbsSensorExists();
     
-    // required bool espSensorExists = 2;
+    // required bool espSensorExists = 3;
     boolean hasEspSensorExists();
     boolean getEspSensorExists();
     
-    // required bool lightSensorExists = 3;
+    // required bool lightSensorExists = 4;
     boolean hasLightSensorExists();
     boolean getLightSensorExists();
     
-    // required bool fogLightSensorExists = 4;
+    // required bool fogLightSensorExists = 5;
     boolean hasFogLightSensorExists();
     boolean getFogLightSensorExists();
     
-    // required float fuelFilling = 5;
+    // required float fuelFilling = 6;
     boolean hasFuelFilling();
     float getFuelFilling();
     
-    // required float fuelConsumption = 6;
+    // required float fuelConsumption = 7;
     boolean hasFuelConsumption();
     float getFuelConsumption();
     
-    // required float maxSpeed = 7;
+    // required float maxSpeed = 8;
     boolean hasMaxSpeed();
     float getMaxSpeed();
   }
@@ -3708,77 +4021,88 @@ public final class PROTO_API {
     }
     
     private int bitField0_;
-    // required bool absSensorExists = 1;
-    public static final int ABSSENSOREXISTS_FIELD_NUMBER = 1;
+    // required sint64 ttcnEventsPort = 1;
+    public static final int TTCNEVENTSPORT_FIELD_NUMBER = 1;
+    private long ttcnEventsPort_;
+    public boolean hasTtcnEventsPort() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public long getTtcnEventsPort() {
+      return ttcnEventsPort_;
+    }
+    
+    // required bool absSensorExists = 2;
+    public static final int ABSSENSOREXISTS_FIELD_NUMBER = 2;
     private boolean absSensorExists_;
     public boolean hasAbsSensorExists() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
+      return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     public boolean getAbsSensorExists() {
       return absSensorExists_;
     }
     
-    // required bool espSensorExists = 2;
-    public static final int ESPSENSOREXISTS_FIELD_NUMBER = 2;
+    // required bool espSensorExists = 3;
+    public static final int ESPSENSOREXISTS_FIELD_NUMBER = 3;
     private boolean espSensorExists_;
     public boolean hasEspSensorExists() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     public boolean getEspSensorExists() {
       return espSensorExists_;
     }
     
-    // required bool lightSensorExists = 3;
-    public static final int LIGHTSENSOREXISTS_FIELD_NUMBER = 3;
+    // required bool lightSensorExists = 4;
+    public static final int LIGHTSENSOREXISTS_FIELD_NUMBER = 4;
     private boolean lightSensorExists_;
     public boolean hasLightSensorExists() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     public boolean getLightSensorExists() {
       return lightSensorExists_;
     }
     
-    // required bool fogLightSensorExists = 4;
-    public static final int FOGLIGHTSENSOREXISTS_FIELD_NUMBER = 4;
+    // required bool fogLightSensorExists = 5;
+    public static final int FOGLIGHTSENSOREXISTS_FIELD_NUMBER = 5;
     private boolean fogLightSensorExists_;
     public boolean hasFogLightSensorExists() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+      return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     public boolean getFogLightSensorExists() {
       return fogLightSensorExists_;
     }
     
-    // required float fuelFilling = 5;
-    public static final int FUELFILLING_FIELD_NUMBER = 5;
+    // required float fuelFilling = 6;
+    public static final int FUELFILLING_FIELD_NUMBER = 6;
     private float fuelFilling_;
     public boolean hasFuelFilling() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
+      return ((bitField0_ & 0x00000020) == 0x00000020);
     }
     public float getFuelFilling() {
       return fuelFilling_;
     }
     
-    // required float fuelConsumption = 6;
-    public static final int FUELCONSUMPTION_FIELD_NUMBER = 6;
+    // required float fuelConsumption = 7;
+    public static final int FUELCONSUMPTION_FIELD_NUMBER = 7;
     private float fuelConsumption_;
     public boolean hasFuelConsumption() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
+      return ((bitField0_ & 0x00000040) == 0x00000040);
     }
     public float getFuelConsumption() {
       return fuelConsumption_;
     }
     
-    // required float maxSpeed = 7;
-    public static final int MAXSPEED_FIELD_NUMBER = 7;
+    // required float maxSpeed = 8;
+    public static final int MAXSPEED_FIELD_NUMBER = 8;
     private float maxSpeed_;
     public boolean hasMaxSpeed() {
-      return ((bitField0_ & 0x00000040) == 0x00000040);
+      return ((bitField0_ & 0x00000080) == 0x00000080);
     }
     public float getMaxSpeed() {
       return maxSpeed_;
     }
     
     private void initFields() {
+      ttcnEventsPort_ = 0L;
       absSensorExists_ = false;
       espSensorExists_ = false;
       lightSensorExists_ = false;
@@ -3792,6 +4116,10 @@ public final class PROTO_API {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
       
+      if (!hasTtcnEventsPort()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
       if (!hasAbsSensorExists()) {
         memoizedIsInitialized = 0;
         return false;
@@ -3828,25 +4156,28 @@ public final class PROTO_API {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBool(1, absSensorExists_);
+        output.writeSInt64(1, ttcnEventsPort_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBool(2, espSensorExists_);
+        output.writeBool(2, absSensorExists_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBool(3, lightSensorExists_);
+        output.writeBool(3, espSensorExists_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBool(4, fogLightSensorExists_);
+        output.writeBool(4, lightSensorExists_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeFloat(5, fuelFilling_);
+        output.writeBool(5, fogLightSensorExists_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeFloat(6, fuelConsumption_);
+        output.writeFloat(6, fuelFilling_);
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        output.writeFloat(7, maxSpeed_);
+        output.writeFloat(7, fuelConsumption_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        output.writeFloat(8, maxSpeed_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -3859,31 +4190,35 @@ public final class PROTO_API {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(1, absSensorExists_);
+          .computeSInt64Size(1, ttcnEventsPort_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(2, espSensorExists_);
+          .computeBoolSize(2, absSensorExists_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(3, lightSensorExists_);
+          .computeBoolSize(3, espSensorExists_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(4, fogLightSensorExists_);
+          .computeBoolSize(4, lightSensorExists_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(5, fuelFilling_);
+          .computeBoolSize(5, fogLightSensorExists_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(6, fuelConsumption_);
+          .computeFloatSize(6, fuelFilling_);
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(7, maxSpeed_);
+          .computeFloatSize(7, fuelConsumption_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(8, maxSpeed_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -4009,20 +4344,22 @@ public final class PROTO_API {
       
       public Builder clear() {
         super.clear();
-        absSensorExists_ = false;
+        ttcnEventsPort_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000001);
-        espSensorExists_ = false;
+        absSensorExists_ = false;
         bitField0_ = (bitField0_ & ~0x00000002);
-        lightSensorExists_ = false;
+        espSensorExists_ = false;
         bitField0_ = (bitField0_ & ~0x00000004);
-        fogLightSensorExists_ = false;
+        lightSensorExists_ = false;
         bitField0_ = (bitField0_ & ~0x00000008);
-        fuelFilling_ = 0F;
+        fogLightSensorExists_ = false;
         bitField0_ = (bitField0_ & ~0x00000010);
-        fuelConsumption_ = 0F;
+        fuelFilling_ = 0F;
         bitField0_ = (bitField0_ & ~0x00000020);
-        maxSpeed_ = 0F;
+        fuelConsumption_ = 0F;
         bitField0_ = (bitField0_ & ~0x00000040);
+        maxSpeed_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000080);
         return this;
       }
       
@@ -4064,29 +4401,33 @@ public final class PROTO_API {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.absSensorExists_ = absSensorExists_;
+        result.ttcnEventsPort_ = ttcnEventsPort_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.espSensorExists_ = espSensorExists_;
+        result.absSensorExists_ = absSensorExists_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.lightSensorExists_ = lightSensorExists_;
+        result.espSensorExists_ = espSensorExists_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.fogLightSensorExists_ = fogLightSensorExists_;
+        result.lightSensorExists_ = lightSensorExists_;
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
         }
-        result.fuelFilling_ = fuelFilling_;
+        result.fogLightSensorExists_ = fogLightSensorExists_;
         if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
           to_bitField0_ |= 0x00000020;
         }
-        result.fuelConsumption_ = fuelConsumption_;
+        result.fuelFilling_ = fuelFilling_;
         if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
           to_bitField0_ |= 0x00000040;
+        }
+        result.fuelConsumption_ = fuelConsumption_;
+        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
+          to_bitField0_ |= 0x00000080;
         }
         result.maxSpeed_ = maxSpeed_;
         result.bitField0_ = to_bitField0_;
@@ -4105,6 +4446,9 @@ public final class PROTO_API {
       
       public Builder mergeFrom(com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType other) {
         if (other == com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType.getDefaultInstance()) return this;
+        if (other.hasTtcnEventsPort()) {
+          setTtcnEventsPort(other.getTtcnEventsPort());
+        }
         if (other.hasAbsSensorExists()) {
           setAbsSensorExists(other.getAbsSensorExists());
         }
@@ -4131,6 +4475,10 @@ public final class PROTO_API {
       }
       
       public final boolean isInitialized() {
+        if (!hasTtcnEventsPort()) {
+          
+          return false;
+        }
         if (!hasAbsSensorExists()) {
           
           return false;
@@ -4187,36 +4535,41 @@ public final class PROTO_API {
             }
             case 8: {
               bitField0_ |= 0x00000001;
-              absSensorExists_ = input.readBool();
+              ttcnEventsPort_ = input.readSInt64();
               break;
             }
             case 16: {
               bitField0_ |= 0x00000002;
-              espSensorExists_ = input.readBool();
+              absSensorExists_ = input.readBool();
               break;
             }
             case 24: {
               bitField0_ |= 0x00000004;
-              lightSensorExists_ = input.readBool();
+              espSensorExists_ = input.readBool();
               break;
             }
             case 32: {
               bitField0_ |= 0x00000008;
-              fogLightSensorExists_ = input.readBool();
+              lightSensorExists_ = input.readBool();
               break;
             }
-            case 45: {
+            case 40: {
               bitField0_ |= 0x00000010;
-              fuelFilling_ = input.readFloat();
+              fogLightSensorExists_ = input.readBool();
               break;
             }
             case 53: {
               bitField0_ |= 0x00000020;
-              fuelConsumption_ = input.readFloat();
+              fuelFilling_ = input.readFloat();
               break;
             }
             case 61: {
               bitField0_ |= 0x00000040;
+              fuelConsumption_ = input.readFloat();
+              break;
+            }
+            case 69: {
+              bitField0_ |= 0x00000080;
               maxSpeed_ = input.readFloat();
               break;
             }
@@ -4226,148 +4579,169 @@ public final class PROTO_API {
       
       private int bitField0_;
       
-      // required bool absSensorExists = 1;
+      // required sint64 ttcnEventsPort = 1;
+      private long ttcnEventsPort_ ;
+      public boolean hasTtcnEventsPort() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public long getTtcnEventsPort() {
+        return ttcnEventsPort_;
+      }
+      public Builder setTtcnEventsPort(long value) {
+        bitField0_ |= 0x00000001;
+        ttcnEventsPort_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearTtcnEventsPort() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        ttcnEventsPort_ = 0L;
+        onChanged();
+        return this;
+      }
+      
+      // required bool absSensorExists = 2;
       private boolean absSensorExists_ ;
       public boolean hasAbsSensorExists() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       public boolean getAbsSensorExists() {
         return absSensorExists_;
       }
       public Builder setAbsSensorExists(boolean value) {
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         absSensorExists_ = value;
         onChanged();
         return this;
       }
       public Builder clearAbsSensorExists() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         absSensorExists_ = false;
         onChanged();
         return this;
       }
       
-      // required bool espSensorExists = 2;
+      // required bool espSensorExists = 3;
       private boolean espSensorExists_ ;
       public boolean hasEspSensorExists() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       public boolean getEspSensorExists() {
         return espSensorExists_;
       }
       public Builder setEspSensorExists(boolean value) {
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         espSensorExists_ = value;
         onChanged();
         return this;
       }
       public Builder clearEspSensorExists() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         espSensorExists_ = false;
         onChanged();
         return this;
       }
       
-      // required bool lightSensorExists = 3;
+      // required bool lightSensorExists = 4;
       private boolean lightSensorExists_ ;
       public boolean hasLightSensorExists() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       public boolean getLightSensorExists() {
         return lightSensorExists_;
       }
       public Builder setLightSensorExists(boolean value) {
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         lightSensorExists_ = value;
         onChanged();
         return this;
       }
       public Builder clearLightSensorExists() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         lightSensorExists_ = false;
         onChanged();
         return this;
       }
       
-      // required bool fogLightSensorExists = 4;
+      // required bool fogLightSensorExists = 5;
       private boolean fogLightSensorExists_ ;
       public boolean hasFogLightSensorExists() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       public boolean getFogLightSensorExists() {
         return fogLightSensorExists_;
       }
       public Builder setFogLightSensorExists(boolean value) {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         fogLightSensorExists_ = value;
         onChanged();
         return this;
       }
       public Builder clearFogLightSensorExists() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000010);
         fogLightSensorExists_ = false;
         onChanged();
         return this;
       }
       
-      // required float fuelFilling = 5;
+      // required float fuelFilling = 6;
       private float fuelFilling_ ;
       public boolean hasFuelFilling() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return ((bitField0_ & 0x00000020) == 0x00000020);
       }
       public float getFuelFilling() {
         return fuelFilling_;
       }
       public Builder setFuelFilling(float value) {
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         fuelFilling_ = value;
         onChanged();
         return this;
       }
       public Builder clearFuelFilling() {
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000020);
         fuelFilling_ = 0F;
         onChanged();
         return this;
       }
       
-      // required float fuelConsumption = 6;
+      // required float fuelConsumption = 7;
       private float fuelConsumption_ ;
       public boolean hasFuelConsumption() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
+        return ((bitField0_ & 0x00000040) == 0x00000040);
       }
       public float getFuelConsumption() {
         return fuelConsumption_;
       }
       public Builder setFuelConsumption(float value) {
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000040;
         fuelConsumption_ = value;
         onChanged();
         return this;
       }
       public Builder clearFuelConsumption() {
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000040);
         fuelConsumption_ = 0F;
         onChanged();
         return this;
       }
       
-      // required float maxSpeed = 7;
+      // required float maxSpeed = 8;
       private float maxSpeed_ ;
       public boolean hasMaxSpeed() {
-        return ((bitField0_ & 0x00000040) == 0x00000040);
+        return ((bitField0_ & 0x00000080) == 0x00000080);
       }
       public float getMaxSpeed() {
         return maxSpeed_;
       }
       public Builder setMaxSpeed(float value) {
-        bitField0_ |= 0x00000040;
+        bitField0_ |= 0x00000080;
         maxSpeed_ = value;
         onChanged();
         return this;
       }
       public Builder clearMaxSpeed() {
-        bitField0_ = (bitField0_ & ~0x00000040);
+        bitField0_ = (bitField0_ & ~0x00000080);
         maxSpeed_ = 0F;
         onChanged();
         return this;
@@ -4386,6 +4760,10 @@ public final class PROTO_API {
   
   public interface widgetExitOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
+    
+    // required sint64 carId = 1;
+    boolean hasCarId();
+    long getCarId();
   }
   public static final class widgetExit extends
       com.google.protobuf.GeneratedMessage
@@ -4415,13 +4793,29 @@ public final class PROTO_API {
       return com.testingtech.ttworkbench.play.generated.PROTO_API.internal_static_PROTO_API_widgetExit_fieldAccessorTable;
     }
     
+    private int bitField0_;
+    // required sint64 carId = 1;
+    public static final int CARID_FIELD_NUMBER = 1;
+    private long carId_;
+    public boolean hasCarId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public long getCarId() {
+      return carId_;
+    }
+    
     private void initFields() {
+      carId_ = 0L;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
       
+      if (!hasCarId()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -4429,6 +4823,9 @@ public final class PROTO_API {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeSInt64(1, carId_);
+      }
       getUnknownFields().writeTo(output);
     }
     
@@ -4438,6 +4835,10 @@ public final class PROTO_API {
       if (size != -1) return size;
     
       size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeSInt64Size(1, carId_);
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
       return size;
@@ -4562,6 +4963,8 @@ public final class PROTO_API {
       
       public Builder clear() {
         super.clear();
+        carId_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
       
@@ -4598,6 +5001,13 @@ public final class PROTO_API {
       
       public com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit buildPartial() {
         com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit result = new com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.carId_ = carId_;
+        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -4613,11 +5023,18 @@ public final class PROTO_API {
       
       public Builder mergeFrom(com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit other) {
         if (other == com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit.getDefaultInstance()) return this;
+        if (other.hasCarId()) {
+          setCarId(other.getCarId());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
       
       public final boolean isInitialized() {
+        if (!hasCarId()) {
+          
+          return false;
+        }
         return true;
       }
       
@@ -4644,10 +5061,37 @@ public final class PROTO_API {
               }
               break;
             }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              carId_ = input.readSInt64();
+              break;
+            }
           }
         }
       }
       
+      private int bitField0_;
+      
+      // required sint64 carId = 1;
+      private long carId_ ;
+      public boolean hasCarId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public long getCarId() {
+        return carId_;
+      }
+      public Builder setCarId(long value) {
+        bitField0_ |= 0x00000001;
+        carId_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearCarId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        carId_ = 0L;
+        onChanged();
+        return this;
+      }
       
       // @@protoc_insertion_point(builder_scope:PROTO_API.widgetExit)
     }
@@ -5767,36 +6211,39 @@ public final class PROTO_API {
       ".EnumValue\"I\n\tEnumValue\022\010\n\004deer\020\001\022\010\n\004rai" +
       "n\020\002\022\007\n\003ice\020\003\022\014\n\010accident\020\004\022\007\n\003fog\020\005\022\010\n\004s" +
       "now\020\006\"2\n\013gpsPosition\022\020\n\010latitude\030\001 \002(\002\022\021" +
-      "\n\tlongitude\030\002 \002(\002\"\'\n\017onOffEngineType\022\024\n\014" +
-      "engineStatus\030\001 \002(\010\"\032\n\tspeedType\022\r\n\005speed" +
-      "\030\001 \002(\002\"\036\n\ttrackType\022\021\n\ttrackName\030\001 \002(\t\"p" +
-      "\n\013warningType\022\'\n\013warningName\030\001 \002(\0132\022.PRO" +
-      "TO_API.warning\022&\n\006gpsPos\030\002 \002(\0132\026.PROTO_A",
-      "PI.gpsPosition\022\020\n\010priority\030\003 \002(\022\"\355\001\n\rcar" +
-      "StatusType\022\024\n\014engineStatus\030\001 \002(\010\022\r\n\005spee" +
-      "d\030\002 \002(\002\022\021\n\tabsSensor\030\003 \002(\010\022\021\n\tespSensor\030" +
-      "\004 \002(\010\022\023\n\013lightSensor\030\005 \002(\010\022\026\n\016fogLightSe" +
-      "nsor\030\006 \002(\010\022\023\n\013fuelFilling\030\007 \002(\002\022&\n\006gpsPo" +
-      "s\030\010 \002(\0132\026.PROTO_API.gpsPosition\022\'\n\007warni" +
-      "ng\030\t \002(\0132\026.PROTO_API.warningType\"\270\001\n\013car" +
-      "InitType\022\027\n\017absSensorExists\030\001 \002(\010\022\027\n\017esp" +
-      "SensorExists\030\002 \002(\010\022\031\n\021lightSensorExists\030" +
-      "\003 \002(\010\022\034\n\024fogLightSensorExists\030\004 \002(\010\022\023\n\013f",
-      "uelFilling\030\005 \002(\002\022\027\n\017fuelConsumption\030\006 \002(" +
-      "\002\022\020\n\010maxSpeed\030\007 \002(\002\"\014\n\nwidgetExit\"\006\n\004Voi" +
-      "d2\357\002\n\007ACTIONS\022B\n\023API_onOffEngineType\022\032.P" +
-      "ROTO_API.onOffEngineType\032\017.PROTO_API.Voi" +
-      "d\0226\n\rAPI_speedType\022\024.PROTO_API.speedType" +
-      "\032\017.PROTO_API.Void\0226\n\rAPI_trackType\022\024.PRO" +
-      "TO_API.trackType\032\017.PROTO_API.Void\022:\n\017API" +
-      "_warningType\022\026.PROTO_API.warningType\032\017.P" +
-      "ROTO_API.Void\022:\n\017API_carInitType\022\026.PROTO" +
-      "_API.carInitType\032\017.PROTO_API.Void\0228\n\016API",
-      "_widgetExit\022\025.PROTO_API.widgetExit\032\017.PRO" +
-      "TO_API.Void2H\n\006EVENTS\022>\n\021API_carStatusTy" +
-      "pe\022\030.PROTO_API.carStatusType\032\017.PROTO_API" +
-      ".VoidB:\n*com.testingtech.ttworkbench.pla" +
-      "y.generatedB\tPROTO_API\210\001\001"
+      "\n\tlongitude\030\002 \002(\002\"6\n\017onOffEngineType\022\r\n\005" +
+      "carId\030\001 \002(\022\022\024\n\014engineStatus\030\002 \002(\010\")\n\tspe" +
+      "edType\022\r\n\005carId\030\001 \002(\022\022\r\n\005speed\030\002 \002(\002\"-\n\t" +
+      "trackType\022\r\n\005carId\030\001 \002(\022\022\021\n\ttrackName\030\002 " +
+      "\002(\t\"\177\n\013warningType\022\r\n\005carId\030\001 \001(\022\022\'\n\013war",
+      "ningName\030\002 \002(\0132\022.PROTO_API.warning\022&\n\006gp" +
+      "sPos\030\003 \002(\0132\026.PROTO_API.gpsPosition\022\020\n\010pr" +
+      "iority\030\004 \002(\022\"\374\001\n\rcarStatusType\022\r\n\005carId\030" +
+      "\001 \001(\022\022\024\n\014engineStatus\030\002 \002(\010\022\r\n\005speed\030\003 \002" +
+      "(\002\022\021\n\tabsSensor\030\004 \002(\010\022\021\n\tespSensor\030\005 \002(\010" +
+      "\022\023\n\013lightSensor\030\006 \002(\010\022\026\n\016fogLightSensor\030" +
+      "\007 \002(\010\022\023\n\013fuelFilling\030\010 \002(\002\022&\n\006gpsPos\030\t \002" +
+      "(\0132\026.PROTO_API.gpsPosition\022\'\n\007warning\030\n " +
+      "\002(\0132\026.PROTO_API.warningType\"\320\001\n\013carInitT" +
+      "ype\022\026\n\016ttcnEventsPort\030\001 \002(\022\022\027\n\017absSensor",
+      "Exists\030\002 \002(\010\022\027\n\017espSensorExists\030\003 \002(\010\022\031\n" +
+      "\021lightSensorExists\030\004 \002(\010\022\034\n\024fogLightSens" +
+      "orExists\030\005 \002(\010\022\023\n\013fuelFilling\030\006 \002(\002\022\027\n\017f" +
+      "uelConsumption\030\007 \002(\002\022\020\n\010maxSpeed\030\010 \002(\002\"\033" +
+      "\n\nwidgetExit\022\r\n\005carId\030\001 \002(\022\"\006\n\004Void2\357\002\n\007" +
+      "ACTIONS\022B\n\023API_onOffEngineType\022\032.PROTO_A" +
+      "PI.onOffEngineType\032\017.PROTO_API.Void\0226\n\rA" +
+      "PI_speedType\022\024.PROTO_API.speedType\032\017.PRO" +
+      "TO_API.Void\0226\n\rAPI_trackType\022\024.PROTO_API" +
+      ".trackType\032\017.PROTO_API.Void\022:\n\017API_warni",
+      "ngType\022\026.PROTO_API.warningType\032\017.PROTO_A" +
+      "PI.Void\022:\n\017API_carInitType\022\026.PROTO_API.c" +
+      "arInitType\032\017.PROTO_API.Void\0228\n\016API_widge" +
+      "tExit\022\025.PROTO_API.widgetExit\032\017.PROTO_API" +
+      ".Void2H\n\006EVENTS\022>\n\021API_carStatusType\022\030.P" +
+      "ROTO_API.carStatusType\032\017.PROTO_API.VoidB" +
+      ":\n*com.testingtech.ttworkbench.play.gene" +
+      "ratedB\tPROTO_API\210\001\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -5824,7 +6271,7 @@ public final class PROTO_API {
           internal_static_PROTO_API_onOffEngineType_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_PROTO_API_onOffEngineType_descriptor,
-              new java.lang.String[] { "EngineStatus", },
+              new java.lang.String[] { "CarId", "EngineStatus", },
               com.testingtech.ttworkbench.play.generated.PROTO_API.onOffEngineType.class,
               com.testingtech.ttworkbench.play.generated.PROTO_API.onOffEngineType.Builder.class);
           internal_static_PROTO_API_speedType_descriptor =
@@ -5832,7 +6279,7 @@ public final class PROTO_API {
           internal_static_PROTO_API_speedType_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_PROTO_API_speedType_descriptor,
-              new java.lang.String[] { "Speed", },
+              new java.lang.String[] { "CarId", "Speed", },
               com.testingtech.ttworkbench.play.generated.PROTO_API.speedType.class,
               com.testingtech.ttworkbench.play.generated.PROTO_API.speedType.Builder.class);
           internal_static_PROTO_API_trackType_descriptor =
@@ -5840,7 +6287,7 @@ public final class PROTO_API {
           internal_static_PROTO_API_trackType_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_PROTO_API_trackType_descriptor,
-              new java.lang.String[] { "TrackName", },
+              new java.lang.String[] { "CarId", "TrackName", },
               com.testingtech.ttworkbench.play.generated.PROTO_API.trackType.class,
               com.testingtech.ttworkbench.play.generated.PROTO_API.trackType.Builder.class);
           internal_static_PROTO_API_warningType_descriptor =
@@ -5848,7 +6295,7 @@ public final class PROTO_API {
           internal_static_PROTO_API_warningType_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_PROTO_API_warningType_descriptor,
-              new java.lang.String[] { "WarningName", "GpsPos", "Priority", },
+              new java.lang.String[] { "CarId", "WarningName", "GpsPos", "Priority", },
               com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.class,
               com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.Builder.class);
           internal_static_PROTO_API_carStatusType_descriptor =
@@ -5856,7 +6303,7 @@ public final class PROTO_API {
           internal_static_PROTO_API_carStatusType_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_PROTO_API_carStatusType_descriptor,
-              new java.lang.String[] { "EngineStatus", "Speed", "AbsSensor", "EspSensor", "LightSensor", "FogLightSensor", "FuelFilling", "GpsPos", "Warning", },
+              new java.lang.String[] { "CarId", "EngineStatus", "Speed", "AbsSensor", "EspSensor", "LightSensor", "FogLightSensor", "FuelFilling", "GpsPos", "Warning", },
               com.testingtech.ttworkbench.play.generated.PROTO_API.carStatusType.class,
               com.testingtech.ttworkbench.play.generated.PROTO_API.carStatusType.Builder.class);
           internal_static_PROTO_API_carInitType_descriptor =
@@ -5864,7 +6311,7 @@ public final class PROTO_API {
           internal_static_PROTO_API_carInitType_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_PROTO_API_carInitType_descriptor,
-              new java.lang.String[] { "AbsSensorExists", "EspSensorExists", "LightSensorExists", "FogLightSensorExists", "FuelFilling", "FuelConsumption", "MaxSpeed", },
+              new java.lang.String[] { "TtcnEventsPort", "AbsSensorExists", "EspSensorExists", "LightSensorExists", "FogLightSensorExists", "FuelFilling", "FuelConsumption", "MaxSpeed", },
               com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType.class,
               com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType.Builder.class);
           internal_static_PROTO_API_widgetExit_descriptor =
@@ -5872,7 +6319,7 @@ public final class PROTO_API {
           internal_static_PROTO_API_widgetExit_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_PROTO_API_widgetExit_descriptor,
-              new java.lang.String[] { },
+              new java.lang.String[] { "CarId", },
               com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit.class,
               com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit.Builder.class);
           internal_static_PROTO_API_Void_descriptor =
