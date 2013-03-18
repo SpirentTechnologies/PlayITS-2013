@@ -27,6 +27,7 @@ module API {
 	
 	/**
 	 * @desc States the status of the engine.
+     * @member carId The Id of the car, such that many cars can be differentiated.
 	 * @member engineStatus True, if engine is on, false else.
 	 */
     type record onOffEngineType {
@@ -36,6 +37,7 @@ module API {
     
     /**
      * @desc Type for current speed of the car.
+     * @member carId The Id of the car, such that many cars can be differentiated.
      * @member speed Speed in double precision.
      */
     type record speedType {
@@ -45,6 +47,7 @@ module API {
     
     /**
      * @desc The type of the track could simply be the number or the name of the track.
+     * @member carId The Id of the car, such that many cars can be differentiated.
      * @member trackName Only charstring is provided.
      */
     type record trackType {
@@ -54,6 +57,7 @@ module API {
     
     /**
      * @desc The message of a single warning.
+     * @member carId The Id of the car, such that many cars can be differentiated.
      * @member warningName Type of a warning, see type record warning for possible members.
      * @member gpsPos Stores the location of the warning.
      * @member priority Warnings of higher priority need to be served first.
@@ -67,6 +71,7 @@ module API {
     
     /**
      * @desc Describes the overall status of one car.
+     * @member carId The Id of the car, such that many cars can be differentiated.
      * @member engineStatus Is the engine going or not.
      * @member speed Current speed of the car.
      * @member absSensor Is the ABS sensor triggered? 
@@ -89,7 +94,19 @@ module API {
         gpsPosition gpsPos,
         warningType warning
     }
-    
+
+    /**
+     * @desc Type to be sent from the widget to the SUT to initialize a car.
+     * @member ttcnEventsHostName The hostname of the ttcn events server the SUT connects to.
+     * @member ttcnEventsPort The port number of the ttcn events server the SUT connects to.
+     * @member absSensorExists Does the car have an abs sensor?
+     * @member espSensorExists Does the car have an esp sensor?
+     * @member lightSensorExists Does the car have a light sensor?
+     * @member fogLightSensorExists Does the car have a fog light sensor?
+     * @member fuelFilling The fuel filling of the car.
+     * @member fuelConsumption Fuel comsumption of the car in litres.
+     * @member maxSpeed Maximum speed of the car. 
+     */
     type record carInitType {
         charstring ttcnEventsHostName optional,
         integer ttcnEventsPort optional,
@@ -102,13 +119,16 @@ module API {
         float maxSpeed
     }
     
+    
+    /**
+     * @desc Internal record to disconnect the ports when a car is disposed.
+     * @member carId Which car is disposed.
+     */
     type record widgetExit {
         integer carId
     }
     
-    /**
-     * 
-     */
+
     type port widgetPort message {
         out carStatusType;
         in onOffEngineType, speedType, trackType, warningType, carInitType, widgetExit;
