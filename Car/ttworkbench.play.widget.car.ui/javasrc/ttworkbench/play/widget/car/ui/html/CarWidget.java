@@ -34,6 +34,12 @@ public class CarWidget {
 	private final File wwwRoot;
 	protected WidgetController widgetController;
 	private final DashboardWidgetFactoryDescriptor descriptor;
+	
+	UIController uiController;
+
+	public UIController getUiController() {
+		return uiController;
+	}
 
 	/**
 	 * @param wwwRoot
@@ -89,13 +95,13 @@ public class CarWidget {
 	 * @return
 	 */
 	public Control createControl(Composite parent) {
-    Group group = AbstractConfigurationBlock.addGroup(parent, descriptor.getName());
-    ((GridData)group.getLayoutData()).widthHint = 500;
-    ((GridData)group.getLayoutData()).heightHint = 400;
-    group.setToolTipText(descriptor.getDescription());
-    GridData gd = new GridData(GridData.FILL_BOTH);
-    gd.horizontalSpan = 2;
-    group.setLayoutData(gd);
+	    Group group = AbstractConfigurationBlock.addGroup(parent, descriptor.getName());
+	    ((GridData)group.getLayoutData()).widthHint = 500;
+	    ((GridData)group.getLayoutData()).heightHint = 400;
+	    group.setToolTipText(descriptor.getDescription());
+	    GridData gd = new GridData(GridData.FILL_BOTH);
+	    gd.horizontalSpan = 2;
+	    group.setLayoutData(gd);
 
 		Browser bw;
 		try {
@@ -112,27 +118,37 @@ public class CarWidget {
 			public void completed (ProgressEvent event) {}
 		});
 		
-		final UIController uiController = new UIController(browser);
+		uiController = new UIController(browser);
 
 		//Define each JavaScript function
-		new CustomFunction(bw, "motor", uiController);
+		//INIT:
+		new CustomFunction(bw, "carType");
+		new CustomFunction(bw, "trackType");
+		
+		//DYNAMIC:
+		new CustomFunction(bw, "motor");
+		new CustomFunction(bw, "abs");
+		new CustomFunction(bw, "esp");
+		new CustomFunction(bw, "speed");
+		new CustomFunction(bw, "fogLight");
+		new CustomFunction(bw, "lightSensor");
+		new CustomFunction(bw, "warning");
+		new CustomFunction(bw, "widgetExit");
 
 		browser.setUrl(new File(wwwRoot, "car.html").toURI().toString());
 		return browser;
 	}
 	
 	//Define JS Functions
-	static class CustomFunction extends BrowserFunction {
-		UIController uiControl;
-		
-		/**
+	class CustomFunction extends BrowserFunction {
+	    
+	    /**
 		 * @param browser
 		 * @param name
 		 * @param uiController
 		 */
-		CustomFunction (Browser browser, String name, UIController uiController) {
+		CustomFunction (Browser browser, String name) {
 			super (browser, name);
-			uiControl = uiController;
 		}
 		
 		/* (non-Javadoc)
@@ -140,14 +156,100 @@ public class CarWidget {
 		 */
 		public Object function(Object[] args) {
 			
+			Object returnValue = null;
+			
 			//Get the name of the function and invoke that function in JAVA
+			
+			/**
+			 * MOTOR
+			 */
 			if(this.getName() == "motor") {
-				uiControl.motor(Boolean.parseBoolean(args[0].toString()));
+				boolean motorOn = Boolean.parseBoolean(args[0].toString());
+				
+				try {
+					if(motorOn) {
+						widgetController.startEngine();
+					} else {
+						widgetController.stopEngine();
+					}
+				} catch(Exception e) {
+					//TODO: handle exception in widgetController
+				}
+			
+			/**
+			 * ABS
+			 */
+			} else if(this.getName() == "abs") {
+				boolean absOn = Boolean.parseBoolean(args[0].toString());
+				
+				if(absOn) {
+					widgetController.enableABS();
+				} else {
+					widgetController.disableABS();
+				}
+				
+			/**
+			 * ESP
+			 */
+			} else if(this.getName() == "esp") {
+				boolean espOn = Boolean.parseBoolean(args[0].toString());
+				
+				if(espOn) {
+					widgetController.enableESP();
+				} else {
+					widgetController.disableESP();
+				}
+				
+			/**
+			 * SPEED
+			 */
+			} else if(this.getName() == "speed") {
+				float speed = Float.parseFloat(args[0].toString());
+				widgetController.changeSpeed(speed);
+			
+			/**
+			 * FOG LIGHT
+			 */
+			} else if(this.getName() == "fogLight") {
+				boolean fogLightOn = Boolean.parseBoolean((args[0].toString()));
+				
+				if(fogLightOn) {
+					widgetController.enableFogLight();
+				} else {
+					widgetController.disableFogLight();
+				}
+			
+			/**
+			 * LIGHT SENSOR
+			 */
+			} else if(this.getName() == "lightSensor") {
+				boolean lightSensorOn = Boolean.parseBoolean((args[0].toString()));
+				
+				if(lightSensorOn) {
+					widgetController.enableLightSensor();
+				} else {
+					widgetController.disableLightSensor();
+				}
+			
+			/**
+			 * WARNING
+			 */
+			} else if(this.getName() == "warning") {
+				String warning = args[0].toString();
+				
+				//deer, rain, accident, snow, fog 
+				
+				if(warning == "deer") {
+					widgetController.enableLightSensor();
+				} else {
+					widgetController.disableLightSensor();
+				}
+				
 			} else {
-				System.out.println("ELSE");
+				System.out.println("Invalid function!");
 			}
 			
-			return null;
+			return returnValue;
 		}
 	}
 

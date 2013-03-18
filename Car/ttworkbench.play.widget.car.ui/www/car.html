@@ -32,7 +32,7 @@
     <script type="text/javascript">
     var map, marker;
     
-    
+    /*
       
  function OnSliderChanged(slider) {
            var sliderValue = document.getElementById (slider.id + "Value");
@@ -42,6 +42,7 @@
  function Init() {
             $('#slider1Value').html(0);
          	}
+    */
  
     
     $(document).ready(function() {
@@ -65,30 +66,18 @@
             map: map
         });
         
-        /*
         $("#speed").knob({
             inputColor: '#66CC66',
             fgColor: '#66CC66',
             angleOffset: -125,
             angleArc: 250,
-            width: 100,
-            change: function(v) {
-                console.log("!");
-                if(v > 80) {
-                    this.o.fgColor = '#ff0000';
-                    $('#speed').css('color', '#ff0000');
-                } else {
-                    this.o.fgColor = '#66CC66';
-                    $('#speed').css('color', '#66CC66');
-                }
-            }
+            width: 100
         });
         
         $('#slider').on('change', function() {
             $('#speed').val( $(this).val() );
             $('#speed').trigger('change');
         });
-        */
         
         
         $('#callMotor').on('click', function(){
