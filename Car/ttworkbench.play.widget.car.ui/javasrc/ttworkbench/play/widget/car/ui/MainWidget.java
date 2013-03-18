@@ -100,7 +100,7 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 	@Override
 	public void notifyEngineStatusChange() {
-		// TODO Auto-generated method stub
+		uiController.motor(model.getStatus().isEngineStarted());
 	}
 
 	@Override
