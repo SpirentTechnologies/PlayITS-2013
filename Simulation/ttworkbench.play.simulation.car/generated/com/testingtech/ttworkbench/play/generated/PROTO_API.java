@@ -3960,35 +3960,39 @@ public final class PROTO_API {
   public interface carInitTypeOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // required sint64 ttcnEventsPort = 1;
+    // optional string ttcnEventsHostName = 1;
+    boolean hasTtcnEventsHostName();
+    String getTtcnEventsHostName();
+    
+    // optional sint64 ttcnEventsPort = 2;
     boolean hasTtcnEventsPort();
     long getTtcnEventsPort();
     
-    // required bool absSensorExists = 2;
+    // required bool absSensorExists = 3;
     boolean hasAbsSensorExists();
     boolean getAbsSensorExists();
     
-    // required bool espSensorExists = 3;
+    // required bool espSensorExists = 4;
     boolean hasEspSensorExists();
     boolean getEspSensorExists();
     
-    // required bool lightSensorExists = 4;
+    // required bool lightSensorExists = 5;
     boolean hasLightSensorExists();
     boolean getLightSensorExists();
     
-    // required bool fogLightSensorExists = 5;
+    // required bool fogLightSensorExists = 6;
     boolean hasFogLightSensorExists();
     boolean getFogLightSensorExists();
     
-    // required float fuelFilling = 6;
+    // required float fuelFilling = 7;
     boolean hasFuelFilling();
     float getFuelFilling();
     
-    // required float fuelConsumption = 7;
+    // required float fuelConsumption = 8;
     boolean hasFuelConsumption();
     float getFuelConsumption();
     
-    // required float maxSpeed = 8;
+    // required float maxSpeed = 9;
     boolean hasMaxSpeed();
     float getMaxSpeed();
   }
@@ -4021,87 +4025,120 @@ public final class PROTO_API {
     }
     
     private int bitField0_;
-    // required sint64 ttcnEventsPort = 1;
-    public static final int TTCNEVENTSPORT_FIELD_NUMBER = 1;
+    // optional string ttcnEventsHostName = 1;
+    public static final int TTCNEVENTSHOSTNAME_FIELD_NUMBER = 1;
+    private java.lang.Object ttcnEventsHostName_;
+    public boolean hasTtcnEventsHostName() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public String getTtcnEventsHostName() {
+      java.lang.Object ref = ttcnEventsHostName_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          ttcnEventsHostName_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getTtcnEventsHostNameBytes() {
+      java.lang.Object ref = ttcnEventsHostName_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        ttcnEventsHostName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional sint64 ttcnEventsPort = 2;
+    public static final int TTCNEVENTSPORT_FIELD_NUMBER = 2;
     private long ttcnEventsPort_;
     public boolean hasTtcnEventsPort() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
+      return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     public long getTtcnEventsPort() {
       return ttcnEventsPort_;
     }
     
-    // required bool absSensorExists = 2;
-    public static final int ABSSENSOREXISTS_FIELD_NUMBER = 2;
+    // required bool absSensorExists = 3;
+    public static final int ABSSENSOREXISTS_FIELD_NUMBER = 3;
     private boolean absSensorExists_;
     public boolean hasAbsSensorExists() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     public boolean getAbsSensorExists() {
       return absSensorExists_;
     }
     
-    // required bool espSensorExists = 3;
-    public static final int ESPSENSOREXISTS_FIELD_NUMBER = 3;
+    // required bool espSensorExists = 4;
+    public static final int ESPSENSOREXISTS_FIELD_NUMBER = 4;
     private boolean espSensorExists_;
     public boolean hasEspSensorExists() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     public boolean getEspSensorExists() {
       return espSensorExists_;
     }
     
-    // required bool lightSensorExists = 4;
-    public static final int LIGHTSENSOREXISTS_FIELD_NUMBER = 4;
+    // required bool lightSensorExists = 5;
+    public static final int LIGHTSENSOREXISTS_FIELD_NUMBER = 5;
     private boolean lightSensorExists_;
     public boolean hasLightSensorExists() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+      return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     public boolean getLightSensorExists() {
       return lightSensorExists_;
     }
     
-    // required bool fogLightSensorExists = 5;
-    public static final int FOGLIGHTSENSOREXISTS_FIELD_NUMBER = 5;
+    // required bool fogLightSensorExists = 6;
+    public static final int FOGLIGHTSENSOREXISTS_FIELD_NUMBER = 6;
     private boolean fogLightSensorExists_;
     public boolean hasFogLightSensorExists() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
+      return ((bitField0_ & 0x00000020) == 0x00000020);
     }
     public boolean getFogLightSensorExists() {
       return fogLightSensorExists_;
     }
     
-    // required float fuelFilling = 6;
-    public static final int FUELFILLING_FIELD_NUMBER = 6;
+    // required float fuelFilling = 7;
+    public static final int FUELFILLING_FIELD_NUMBER = 7;
     private float fuelFilling_;
     public boolean hasFuelFilling() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
+      return ((bitField0_ & 0x00000040) == 0x00000040);
     }
     public float getFuelFilling() {
       return fuelFilling_;
     }
     
-    // required float fuelConsumption = 7;
-    public static final int FUELCONSUMPTION_FIELD_NUMBER = 7;
+    // required float fuelConsumption = 8;
+    public static final int FUELCONSUMPTION_FIELD_NUMBER = 8;
     private float fuelConsumption_;
     public boolean hasFuelConsumption() {
-      return ((bitField0_ & 0x00000040) == 0x00000040);
+      return ((bitField0_ & 0x00000080) == 0x00000080);
     }
     public float getFuelConsumption() {
       return fuelConsumption_;
     }
     
-    // required float maxSpeed = 8;
-    public static final int MAXSPEED_FIELD_NUMBER = 8;
+    // required float maxSpeed = 9;
+    public static final int MAXSPEED_FIELD_NUMBER = 9;
     private float maxSpeed_;
     public boolean hasMaxSpeed() {
-      return ((bitField0_ & 0x00000080) == 0x00000080);
+      return ((bitField0_ & 0x00000100) == 0x00000100);
     }
     public float getMaxSpeed() {
       return maxSpeed_;
     }
     
     private void initFields() {
+      ttcnEventsHostName_ = "";
       ttcnEventsPort_ = 0L;
       absSensorExists_ = false;
       espSensorExists_ = false;
@@ -4116,10 +4153,6 @@ public final class PROTO_API {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
       
-      if (!hasTtcnEventsPort()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
       if (!hasAbsSensorExists()) {
         memoizedIsInitialized = 0;
         return false;
@@ -4156,28 +4189,31 @@ public final class PROTO_API {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeSInt64(1, ttcnEventsPort_);
+        output.writeBytes(1, getTtcnEventsHostNameBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBool(2, absSensorExists_);
+        output.writeSInt64(2, ttcnEventsPort_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBool(3, espSensorExists_);
+        output.writeBool(3, absSensorExists_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBool(4, lightSensorExists_);
+        output.writeBool(4, espSensorExists_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeBool(5, fogLightSensorExists_);
+        output.writeBool(5, lightSensorExists_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeFloat(6, fuelFilling_);
+        output.writeBool(6, fogLightSensorExists_);
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        output.writeFloat(7, fuelConsumption_);
+        output.writeFloat(7, fuelFilling_);
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
-        output.writeFloat(8, maxSpeed_);
+        output.writeFloat(8, fuelConsumption_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        output.writeFloat(9, maxSpeed_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -4190,35 +4226,39 @@ public final class PROTO_API {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeSInt64Size(1, ttcnEventsPort_);
+          .computeBytesSize(1, getTtcnEventsHostNameBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(2, absSensorExists_);
+          .computeSInt64Size(2, ttcnEventsPort_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(3, espSensorExists_);
+          .computeBoolSize(3, absSensorExists_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(4, lightSensorExists_);
+          .computeBoolSize(4, espSensorExists_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(5, fogLightSensorExists_);
+          .computeBoolSize(5, lightSensorExists_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(6, fuelFilling_);
+          .computeBoolSize(6, fogLightSensorExists_);
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(7, fuelConsumption_);
+          .computeFloatSize(7, fuelFilling_);
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(8, maxSpeed_);
+          .computeFloatSize(8, fuelConsumption_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(9, maxSpeed_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -4344,22 +4384,24 @@ public final class PROTO_API {
       
       public Builder clear() {
         super.clear();
-        ttcnEventsPort_ = 0L;
+        ttcnEventsHostName_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
-        absSensorExists_ = false;
+        ttcnEventsPort_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000002);
-        espSensorExists_ = false;
+        absSensorExists_ = false;
         bitField0_ = (bitField0_ & ~0x00000004);
-        lightSensorExists_ = false;
+        espSensorExists_ = false;
         bitField0_ = (bitField0_ & ~0x00000008);
-        fogLightSensorExists_ = false;
+        lightSensorExists_ = false;
         bitField0_ = (bitField0_ & ~0x00000010);
-        fuelFilling_ = 0F;
+        fogLightSensorExists_ = false;
         bitField0_ = (bitField0_ & ~0x00000020);
-        fuelConsumption_ = 0F;
+        fuelFilling_ = 0F;
         bitField0_ = (bitField0_ & ~0x00000040);
-        maxSpeed_ = 0F;
+        fuelConsumption_ = 0F;
         bitField0_ = (bitField0_ & ~0x00000080);
+        maxSpeed_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000100);
         return this;
       }
       
@@ -4401,33 +4443,37 @@ public final class PROTO_API {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.ttcnEventsPort_ = ttcnEventsPort_;
+        result.ttcnEventsHostName_ = ttcnEventsHostName_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.absSensorExists_ = absSensorExists_;
+        result.ttcnEventsPort_ = ttcnEventsPort_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.espSensorExists_ = espSensorExists_;
+        result.absSensorExists_ = absSensorExists_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.lightSensorExists_ = lightSensorExists_;
+        result.espSensorExists_ = espSensorExists_;
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
         }
-        result.fogLightSensorExists_ = fogLightSensorExists_;
+        result.lightSensorExists_ = lightSensorExists_;
         if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
           to_bitField0_ |= 0x00000020;
         }
-        result.fuelFilling_ = fuelFilling_;
+        result.fogLightSensorExists_ = fogLightSensorExists_;
         if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
           to_bitField0_ |= 0x00000040;
         }
-        result.fuelConsumption_ = fuelConsumption_;
+        result.fuelFilling_ = fuelFilling_;
         if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
           to_bitField0_ |= 0x00000080;
+        }
+        result.fuelConsumption_ = fuelConsumption_;
+        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
+          to_bitField0_ |= 0x00000100;
         }
         result.maxSpeed_ = maxSpeed_;
         result.bitField0_ = to_bitField0_;
@@ -4446,6 +4492,9 @@ public final class PROTO_API {
       
       public Builder mergeFrom(com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType other) {
         if (other == com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType.getDefaultInstance()) return this;
+        if (other.hasTtcnEventsHostName()) {
+          setTtcnEventsHostName(other.getTtcnEventsHostName());
+        }
         if (other.hasTtcnEventsPort()) {
           setTtcnEventsPort(other.getTtcnEventsPort());
         }
@@ -4475,10 +4524,6 @@ public final class PROTO_API {
       }
       
       public final boolean isInitialized() {
-        if (!hasTtcnEventsPort()) {
-          
-          return false;
-        }
         if (!hasAbsSensorExists()) {
           
           return false;
@@ -4533,43 +4578,48 @@ public final class PROTO_API {
               }
               break;
             }
-            case 8: {
+            case 10: {
               bitField0_ |= 0x00000001;
-              ttcnEventsPort_ = input.readSInt64();
+              ttcnEventsHostName_ = input.readBytes();
               break;
             }
             case 16: {
               bitField0_ |= 0x00000002;
-              absSensorExists_ = input.readBool();
+              ttcnEventsPort_ = input.readSInt64();
               break;
             }
             case 24: {
               bitField0_ |= 0x00000004;
-              espSensorExists_ = input.readBool();
+              absSensorExists_ = input.readBool();
               break;
             }
             case 32: {
               bitField0_ |= 0x00000008;
-              lightSensorExists_ = input.readBool();
+              espSensorExists_ = input.readBool();
               break;
             }
             case 40: {
               bitField0_ |= 0x00000010;
-              fogLightSensorExists_ = input.readBool();
+              lightSensorExists_ = input.readBool();
               break;
             }
-            case 53: {
+            case 48: {
               bitField0_ |= 0x00000020;
-              fuelFilling_ = input.readFloat();
+              fogLightSensorExists_ = input.readBool();
               break;
             }
             case 61: {
               bitField0_ |= 0x00000040;
-              fuelConsumption_ = input.readFloat();
+              fuelFilling_ = input.readFloat();
               break;
             }
             case 69: {
               bitField0_ |= 0x00000080;
+              fuelConsumption_ = input.readFloat();
+              break;
+            }
+            case 77: {
+              bitField0_ |= 0x00000100;
               maxSpeed_ = input.readFloat();
               break;
             }
@@ -4579,169 +4629,205 @@ public final class PROTO_API {
       
       private int bitField0_;
       
-      // required sint64 ttcnEventsPort = 1;
+      // optional string ttcnEventsHostName = 1;
+      private java.lang.Object ttcnEventsHostName_ = "";
+      public boolean hasTtcnEventsHostName() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public String getTtcnEventsHostName() {
+        java.lang.Object ref = ttcnEventsHostName_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          ttcnEventsHostName_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setTtcnEventsHostName(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        ttcnEventsHostName_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearTtcnEventsHostName() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        ttcnEventsHostName_ = getDefaultInstance().getTtcnEventsHostName();
+        onChanged();
+        return this;
+      }
+      void setTtcnEventsHostName(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        ttcnEventsHostName_ = value;
+        onChanged();
+      }
+      
+      // optional sint64 ttcnEventsPort = 2;
       private long ttcnEventsPort_ ;
       public boolean hasTtcnEventsPort() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       public long getTtcnEventsPort() {
         return ttcnEventsPort_;
       }
       public Builder setTtcnEventsPort(long value) {
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         ttcnEventsPort_ = value;
         onChanged();
         return this;
       }
       public Builder clearTtcnEventsPort() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         ttcnEventsPort_ = 0L;
         onChanged();
         return this;
       }
       
-      // required bool absSensorExists = 2;
+      // required bool absSensorExists = 3;
       private boolean absSensorExists_ ;
       public boolean hasAbsSensorExists() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       public boolean getAbsSensorExists() {
         return absSensorExists_;
       }
       public Builder setAbsSensorExists(boolean value) {
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         absSensorExists_ = value;
         onChanged();
         return this;
       }
       public Builder clearAbsSensorExists() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         absSensorExists_ = false;
         onChanged();
         return this;
       }
       
-      // required bool espSensorExists = 3;
+      // required bool espSensorExists = 4;
       private boolean espSensorExists_ ;
       public boolean hasEspSensorExists() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       public boolean getEspSensorExists() {
         return espSensorExists_;
       }
       public Builder setEspSensorExists(boolean value) {
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         espSensorExists_ = value;
         onChanged();
         return this;
       }
       public Builder clearEspSensorExists() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         espSensorExists_ = false;
         onChanged();
         return this;
       }
       
-      // required bool lightSensorExists = 4;
+      // required bool lightSensorExists = 5;
       private boolean lightSensorExists_ ;
       public boolean hasLightSensorExists() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       public boolean getLightSensorExists() {
         return lightSensorExists_;
       }
       public Builder setLightSensorExists(boolean value) {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         lightSensorExists_ = value;
         onChanged();
         return this;
       }
       public Builder clearLightSensorExists() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000010);
         lightSensorExists_ = false;
         onChanged();
         return this;
       }
       
-      // required bool fogLightSensorExists = 5;
+      // required bool fogLightSensorExists = 6;
       private boolean fogLightSensorExists_ ;
       public boolean hasFogLightSensorExists() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return ((bitField0_ & 0x00000020) == 0x00000020);
       }
       public boolean getFogLightSensorExists() {
         return fogLightSensorExists_;
       }
       public Builder setFogLightSensorExists(boolean value) {
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         fogLightSensorExists_ = value;
         onChanged();
         return this;
       }
       public Builder clearFogLightSensorExists() {
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000020);
         fogLightSensorExists_ = false;
         onChanged();
         return this;
       }
       
-      // required float fuelFilling = 6;
+      // required float fuelFilling = 7;
       private float fuelFilling_ ;
       public boolean hasFuelFilling() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
+        return ((bitField0_ & 0x00000040) == 0x00000040);
       }
       public float getFuelFilling() {
         return fuelFilling_;
       }
       public Builder setFuelFilling(float value) {
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000040;
         fuelFilling_ = value;
         onChanged();
         return this;
       }
       public Builder clearFuelFilling() {
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000040);
         fuelFilling_ = 0F;
         onChanged();
         return this;
       }
       
-      // required float fuelConsumption = 7;
+      // required float fuelConsumption = 8;
       private float fuelConsumption_ ;
       public boolean hasFuelConsumption() {
-        return ((bitField0_ & 0x00000040) == 0x00000040);
+        return ((bitField0_ & 0x00000080) == 0x00000080);
       }
       public float getFuelConsumption() {
         return fuelConsumption_;
       }
       public Builder setFuelConsumption(float value) {
-        bitField0_ |= 0x00000040;
+        bitField0_ |= 0x00000080;
         fuelConsumption_ = value;
         onChanged();
         return this;
       }
       public Builder clearFuelConsumption() {
-        bitField0_ = (bitField0_ & ~0x00000040);
+        bitField0_ = (bitField0_ & ~0x00000080);
         fuelConsumption_ = 0F;
         onChanged();
         return this;
       }
       
-      // required float maxSpeed = 8;
+      // required float maxSpeed = 9;
       private float maxSpeed_ ;
       public boolean hasMaxSpeed() {
-        return ((bitField0_ & 0x00000080) == 0x00000080);
+        return ((bitField0_ & 0x00000100) == 0x00000100);
       }
       public float getMaxSpeed() {
         return maxSpeed_;
       }
       public Builder setMaxSpeed(float value) {
-        bitField0_ |= 0x00000080;
+        bitField0_ |= 0x00000100;
         maxSpeed_ = value;
         onChanged();
         return this;
       }
       public Builder clearMaxSpeed() {
-        bitField0_ = (bitField0_ & ~0x00000080);
+        bitField0_ = (bitField0_ & ~0x00000100);
         maxSpeed_ = 0F;
         onChanged();
         return this;
@@ -6224,26 +6310,27 @@ public final class PROTO_API {
       "\022\023\n\013lightSensor\030\006 \002(\010\022\026\n\016fogLightSensor\030" +
       "\007 \002(\010\022\023\n\013fuelFilling\030\010 \002(\002\022&\n\006gpsPos\030\t \002" +
       "(\0132\026.PROTO_API.gpsPosition\022\'\n\007warning\030\n " +
-      "\002(\0132\026.PROTO_API.warningType\"\320\001\n\013carInitT" +
-      "ype\022\026\n\016ttcnEventsPort\030\001 \002(\022\022\027\n\017absSensor",
-      "Exists\030\002 \002(\010\022\027\n\017espSensorExists\030\003 \002(\010\022\031\n" +
-      "\021lightSensorExists\030\004 \002(\010\022\034\n\024fogLightSens" +
-      "orExists\030\005 \002(\010\022\023\n\013fuelFilling\030\006 \002(\002\022\027\n\017f" +
-      "uelConsumption\030\007 \002(\002\022\020\n\010maxSpeed\030\010 \002(\002\"\033" +
-      "\n\nwidgetExit\022\r\n\005carId\030\001 \002(\022\"\006\n\004Void2\357\002\n\007" +
-      "ACTIONS\022B\n\023API_onOffEngineType\022\032.PROTO_A" +
-      "PI.onOffEngineType\032\017.PROTO_API.Void\0226\n\rA" +
-      "PI_speedType\022\024.PROTO_API.speedType\032\017.PRO" +
-      "TO_API.Void\0226\n\rAPI_trackType\022\024.PROTO_API" +
-      ".trackType\032\017.PROTO_API.Void\022:\n\017API_warni",
-      "ngType\022\026.PROTO_API.warningType\032\017.PROTO_A" +
-      "PI.Void\022:\n\017API_carInitType\022\026.PROTO_API.c" +
-      "arInitType\032\017.PROTO_API.Void\0228\n\016API_widge" +
-      "tExit\022\025.PROTO_API.widgetExit\032\017.PROTO_API" +
-      ".Void2H\n\006EVENTS\022>\n\021API_carStatusType\022\030.P" +
-      "ROTO_API.carStatusType\032\017.PROTO_API.VoidB" +
-      ":\n*com.testingtech.ttworkbench.play.gene" +
-      "ratedB\tPROTO_API\210\001\001"
+      "\002(\0132\026.PROTO_API.warningType\"\354\001\n\013carInitT" +
+      "ype\022\032\n\022ttcnEventsHostName\030\001 \001(\t\022\026\n\016ttcnE",
+      "ventsPort\030\002 \001(\022\022\027\n\017absSensorExists\030\003 \002(\010" +
+      "\022\027\n\017espSensorExists\030\004 \002(\010\022\031\n\021lightSensor" +
+      "Exists\030\005 \002(\010\022\034\n\024fogLightSensorExists\030\006 \002" +
+      "(\010\022\023\n\013fuelFilling\030\007 \002(\002\022\027\n\017fuelConsumpti" +
+      "on\030\010 \002(\002\022\020\n\010maxSpeed\030\t \002(\002\"\033\n\nwidgetExit" +
+      "\022\r\n\005carId\030\001 \002(\022\"\006\n\004Void2\357\002\n\007ACTIONS\022B\n\023A" +
+      "PI_onOffEngineType\022\032.PROTO_API.onOffEngi" +
+      "neType\032\017.PROTO_API.Void\0226\n\rAPI_speedType" +
+      "\022\024.PROTO_API.speedType\032\017.PROTO_API.Void\022" +
+      "6\n\rAPI_trackType\022\024.PROTO_API.trackType\032\017",
+      ".PROTO_API.Void\022:\n\017API_warningType\022\026.PRO" +
+      "TO_API.warningType\032\017.PROTO_API.Void\022:\n\017A" +
+      "PI_carInitType\022\026.PROTO_API.carInitType\032\017" +
+      ".PROTO_API.Void\0228\n\016API_widgetExit\022\025.PROT" +
+      "O_API.widgetExit\032\017.PROTO_API.Void2H\n\006EVE" +
+      "NTS\022>\n\021API_carStatusType\022\030.PROTO_API.car" +
+      "StatusType\032\017.PROTO_API.VoidB:\n*com.testi" +
+      "ngtech.ttworkbench.play.generatedB\tPROTO" +
+      "_API\210\001\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -6311,7 +6398,7 @@ public final class PROTO_API {
           internal_static_PROTO_API_carInitType_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_PROTO_API_carInitType_descriptor,
-              new java.lang.String[] { "TtcnEventsPort", "AbsSensorExists", "EspSensorExists", "LightSensorExists", "FogLightSensorExists", "FuelFilling", "FuelConsumption", "MaxSpeed", },
+              new java.lang.String[] { "TtcnEventsHostName", "TtcnEventsPort", "AbsSensorExists", "EspSensorExists", "LightSensorExists", "FogLightSensorExists", "FuelFilling", "FuelConsumption", "MaxSpeed", },
               com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType.class,
               com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType.Builder.class);
           internal_static_PROTO_API_widgetExit_descriptor =
