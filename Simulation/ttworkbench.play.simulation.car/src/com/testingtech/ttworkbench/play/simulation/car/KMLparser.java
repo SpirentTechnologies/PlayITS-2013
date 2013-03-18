@@ -86,7 +86,7 @@ public class KMLparser {
 			String[] splitted = text.replace("<coordinates>", "")
 					.replace("</coordinates>", "").replace("\t ", "")
 					.replace(" ", "").split(",");
-			// if coordinates begin add the gps positions to the positions array
+			// if coordinates begin, add the GPSpositions to the array
 			if (open) {
 				GPSposition gps = new GPSposition(
 						Double.parseDouble(splitted[0]),

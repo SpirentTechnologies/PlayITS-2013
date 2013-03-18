@@ -9,4 +9,7 @@ public class Tires {
 		this.rightBack = rightBack;
 		this.rightFront = rightFront;
 	}
+	public Tires(){
+		this.leftBack = this.rightBack = this.leftFront = this.rightFront = 2.5;
+	}
 }

@@ -58,9 +58,8 @@ public class ActionsServiceImpl implements BlockingInterface {
 	@Override
 	public Void aPICarInitType(RpcController controller, carInitType request)
 			throws ServiceException {
-		// TODO generate the car or update all the fields see into it how to do
-		// that, check how to use this message to init the car
-		
+		// updates the initial car setup with the wanted field values
+		car.setCar	(0, request.getMaxSpeed(), request.getFuelFilling(), request.getFuelConsumption(), request.getLightSensorExists(), true, request.hasFuelFilling(), true, request.getEspSensorExists(), request.getAbsSensorExists(), false, request.getFogLightSensorExists());
 		return nil();
 	}
 

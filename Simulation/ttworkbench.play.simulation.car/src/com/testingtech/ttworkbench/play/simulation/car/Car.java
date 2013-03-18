@@ -18,6 +18,7 @@ public class Car implements CarInterface {
 	// if this boolean is set the car will be removed from the simulation
 	private boolean destroyCar = false;
 
+		
 	public Car(double speed, double maxSpeed, double tirePressure,
 			double tankFill, double petrolUsage, boolean lightExists,
 			boolean rainExists, boolean tankFillExists,
@@ -37,6 +38,21 @@ public class Car implements CarInterface {
 		position = new GPSpositionOfCar(positions);
 	}
 
+	public void setCar(double speed, double maxSpeed,
+			double tankFill, double petrolUsage, boolean lightExists,
+			boolean rainExists, boolean tankFillExists,
+			boolean tirePressureExists, boolean espExists, boolean absExists,
+			boolean airbagExists, boolean fogLightExists) {
+
+		this.speed = speed;
+		this.maxSpeed = maxSpeed;
+		this.petrolUsage = petrolUsage;
+		this.sensors = new Sensors(lightExists, rainExists, tankFillExists,
+				airbagExists, espExists, absExists, fogLightExists,
+				new Tires(), tankFill);
+	}
+
+	
 	@Override
 	public boolean toggleEngine() {
 		if (!engine) {

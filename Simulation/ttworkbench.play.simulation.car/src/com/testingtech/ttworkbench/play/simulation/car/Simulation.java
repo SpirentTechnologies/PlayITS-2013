@@ -50,7 +50,7 @@ public class Simulation {
 			// parse map file
 			ArrayList<GPSposition> map = getMap(mapFile);
 
-			Socket testCar1 = new Socket(new Car(100, 200, 2.5, 100, 6, true,
+			Socket testCar1 = new Socket(new Car(0, 200, 2.5, 100, 6, true,
 					true, true, true, true, true, true, true, map));
 			testCar1.run(clientPort, clientHost, serverPort);
 			/*
