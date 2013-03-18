@@ -13,31 +13,31 @@ module ACTIONS_API {
     function ACTION_API__onOffEngineType(API.onOffEngineType p_value) runs on COMPONENT {
         log("ACTION_API__onOffEngineType was called by the widget");
         calltimer.start;
-        car.call(ACTIONS__API_onOffEngineType:{toProto_onOffEngineType(p_value)}, nowait);
+        carActions.call(ACTIONS__API_onOffEngineType:{toProto_onOffEngineType(p_value)}, nowait);
     }
 
     function ACTION_API__speedType(API.speedType p_value) runs on COMPONENT {
         log("ACTION_API__speedType was called by the widget");
         calltimer.start;
-        car.call(ACTIONS__API_speedType:{toProto_speedType(p_value)}, nowait);
+        carActions.call(ACTIONS__API_speedType:{toProto_speedType(p_value)}, nowait);
     }
 
     function ACTION_API__trackType(API.trackType p_value) runs on COMPONENT {
         log("ACTION_API__trackType was called by the widget");
         calltimer.start;
-        car.call(ACTIONS__API_trackType:{toProto_trackType(p_value)}, nowait);
+        carActions.call(ACTIONS__API_trackType:{toProto_trackType(p_value)}, nowait);
     }
 
     function ACTION_API__warningType(API.warningType p_value) runs on COMPONENT {
         log("ACTION_API__warningType was called by the widget");
         calltimer.start;
-        car.call(ACTIONS__API_warningType:{toProto_warningType(p_value)}, nowait);
+        carActions.call(ACTIONS__API_warningType:{toProto_warningType(p_value)}, nowait);
     }
     
     function ACTION_API__carInitType(API.carInitType p_value) runs on COMPONENT {
         log("ACTION_API__carInitType was called by the widget");
         calltimer.start;
-        car.call(ACTIONS__API_carInitType:{toProto_carInitType(p_value)}, nowait);
+        carActions.call(ACTIONS__API_carInitType:{toProto_carInitType(p_value)}, nowait);
     }
     
     function ACTION_API__widgetExit(API.widgetExit p_value) runs on COMPONENT {
@@ -47,15 +47,15 @@ module ACTIONS_API {
 
     altstep handleCarEvents() runs on COMPONENT {
         var PROTO_API.carStatusType status;
-        [] car.getcall (EVENTS__API_carStatusType:{?}) -> param (status){
+        [] carEvents.getcall (EVENTS__API_carStatusType:{?}) -> param (status){
             calltimer.start;
             EVENTS_PORT_widgetPort.call(EVENTS__API_carStatusType:{status}, nowait);
-            car.reply (EVENTS__API_carStatusType:{-} value {}) ;
+            carEvents.reply (EVENTS__API_carStatusType:{-} value {}) ;
         }
     }
 
     altstep handleTimeout () runs on COMPONENT {
-        [] car.getreply {}
+        [] carActions.getreply {}
         [] calltimer.timeout {
             setverdict(fail);
         }
