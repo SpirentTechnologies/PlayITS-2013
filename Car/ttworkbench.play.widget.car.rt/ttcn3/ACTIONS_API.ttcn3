@@ -65,24 +65,6 @@ module ACTIONS_API {
     }
 
     function PREAMBLE() runs on COMPONENT {
-
-        var integer res := xf_startSimulation(ACTIONS_CAR_TCP_PORT);
-        
-        select (res) {
-            case (0) {
-                log("Simulation started");
-            }
-            case (-1) {
-                log("Error while starting simulation");
-            }
-            case (-2) {
-                log("Simulation already started");
-            }
-            case else {
-                testcase.stop("Unexpected result value " & int2str(res) & " from start simulation");
-            }
-        }
-        
         map(mtc:ACTIONS_PORT_widgetPort, system:ACTIONS_PORT_widgetPort);
         map(mtc:EVENTS_PORT_widgetPort, system:EVENTS_PORT_widgetPort);
         
@@ -99,23 +81,5 @@ module ACTIONS_API {
         unmap(mtc:car, system:car);
         
         deactivate;
-        
-        // simulation shutdown
-        var integer res := xf_stopSimulation(ACTIONS_CAR_TCP_PORT);
-        
-        select (res) {
-			case (0) {
-                log("Simulation stoped");
-			}
-			case (-1) {
-                log("Error while shuting down simulation");
-			}
-			case (-2) {
-                log("Simulation not running");
-            }
-			case else {
-				testcase.stop("Unexpected result value " & int2str(res) & " from stop simulation");
-			}
-		}
     }
 }
