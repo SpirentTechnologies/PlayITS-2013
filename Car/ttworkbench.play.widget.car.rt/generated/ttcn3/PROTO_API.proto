@@ -56,13 +56,14 @@ message carStatusType {
 }
 
 message carInitType {
-  required bool absSensorExists = 1;
-  required bool espSensorExists = 2;
-  required bool lightSensorExists = 3;
-  required bool fogLightSensorExists = 4;
-  required float fuelFilling = 5;
-  required float fuelConsumption = 6;
-  required float maxSpeed = 7;
+  required sint64 ttcnEventsPort = 1;
+  required bool absSensorExists = 2;
+  required bool espSensorExists = 3;
+  required bool lightSensorExists = 4;
+  required bool fogLightSensorExists = 5;
+  required float fuelFilling = 6;
+  required float fuelConsumption = 7;
+  required float maxSpeed = 8;
 }
 
 message widgetExit {

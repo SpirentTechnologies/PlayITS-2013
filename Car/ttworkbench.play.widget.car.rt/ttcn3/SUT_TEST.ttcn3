@@ -1,6 +1,6 @@
 module SUT_TEST {
     import from ACTIONS_API all;
-
+	import from Parameters all;
     import from CONFIG_API all;
     import from PROTO_API language "PROTO" all;
     import from HANDLE_API all;
@@ -67,6 +67,7 @@ module SUT_TEST {
 
     template ACTIONS__API_carInitType carInitTemplate := {
         p_carInitType := {
+            ttcnEventsPort := EVENTS_CAR_TCP_PORT,
             absSensorExists := true,
             espSensorExists := false,
             lightSensorExists := true,
