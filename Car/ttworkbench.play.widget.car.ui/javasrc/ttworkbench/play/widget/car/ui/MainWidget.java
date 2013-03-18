@@ -49,7 +49,7 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 	public Control createWidgetControl(Composite parent) {
 		try {
 			URL wwwLocation = ResourceUtil.getLocation(Activator.getDefault().getBundle().getSymbolicName(), "/www");
-			File wwwRoot = new File(wwwLocation.toURI());
+			File wwwRoot = new File(wwwLocation.getFile());
 			//System.out.println(wwwRoot.toString()+"\n"+wwwRoot.exists());
 			carWidget = new CarWidget(wwwRoot, getFactory().getDescriptor());
 			carWidget.setController(new WidgetController(this));
@@ -65,10 +65,6 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 			return control;
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			throw new RuntimeException("Cannot instantiate car", e);
-		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new RuntimeException("Cannot instantiate car", e);
