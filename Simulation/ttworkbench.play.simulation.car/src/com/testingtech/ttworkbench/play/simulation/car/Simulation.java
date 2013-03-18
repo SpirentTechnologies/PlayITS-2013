@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.concurrent.Executors;
-import java.util.concurrent.locks.Condition;
 
 import com.googlecode.protobuf.socketrpc.RpcServer;
 import com.googlecode.protobuf.socketrpc.ServerRpcConnectionFactory;
@@ -16,6 +15,7 @@ import com.testingtech.ttworkbench.play.generated.PROTO_API;
 public class Simulation {
 
 	private RpcServer server;
+	private int serverPort;
 
 	private static ArrayList<GPSposition> getMap(File mapFile) {
 		try {
@@ -84,6 +84,7 @@ public class Simulation {
 	}
 
 	private void createServer(int p_serverPort) {
+		this.serverPort = p_serverPort;
 		CarModel carModel = new CarModel();
 
 		ServerRpcConnectionFactory rpcConnectionFactory = SocketRpcConnectionFactories
@@ -100,6 +101,10 @@ public class Simulation {
 			server.shutDown();
 		}
 		server = null;
+	}
+
+	public int getServerPort() {
+		return serverPort;
 	}
 
 }
