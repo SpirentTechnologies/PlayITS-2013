@@ -92,14 +92,12 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 	@Override
 	protected void disableActions() {
-		// TODO Auto-generated method stub
-
+		carWidget.disableActions();
 	}
 
 	@Override
 	protected void enableActions() {
-		// TODO Auto-generated method stub
-
+		carWidget.enableActions();
 	}
 
 	@Override

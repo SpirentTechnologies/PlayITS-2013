@@ -34,6 +34,7 @@ public class CarWidget {
 	private final File wwwRoot;
 	protected WidgetController widgetController;
 	private final DashboardWidgetFactoryDescriptor descriptor;
+	private Browser browser;
 
 	/**
 	 * @param wwwRoot
@@ -69,7 +70,7 @@ public class CarWidget {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		shell.open();
 
 		while (!shell.isDisposed ()) {
@@ -89,42 +90,40 @@ public class CarWidget {
 	 * @return
 	 */
 	public Control createControl(Composite parent) {
-    Group group = AbstractConfigurationBlock.addGroup(parent, descriptor.getName());
-    ((GridData)group.getLayoutData()).widthHint = 500;
-    ((GridData)group.getLayoutData()).heightHint = 400;
-    group.setToolTipText(descriptor.getDescription());
-    GridData gd = new GridData(GridData.FILL_BOTH);
-    gd.horizontalSpan = 2;
-    group.setLayoutData(gd);
+		Group group = AbstractConfigurationBlock.addGroup(parent, descriptor.getName());
+		((GridData)group.getLayoutData()).widthHint = 500;
+		((GridData)group.getLayoutData()).heightHint = 400;
+		group.setToolTipText(descriptor.getDescription());
+		GridData gd = new GridData(GridData.FILL_BOTH);
+		gd.horizontalSpan = 2;
+		group.setLayoutData(gd);
 
-		Browser bw;
 		try {
-			bw = new Browser (group, SWT.WEBKIT);
+			browser = new Browser (group, SWT.WEBKIT);
 		} catch (SWTError e) {
-			bw = new Browser (group, SWT.NONE);
+			browser = new Browser (group, SWT.NONE);
 			System.out.println ("Could not instantiate Browser: " + e.getMessage ());
 		}
-		
-		bw.setLayoutData(new GridData(GridData.FILL_BOTH));
-		
-		final Browser browser = bw;
+
+		browser.setLayoutData(new GridData(GridData.FILL_BOTH));
+
 		browser.addProgressListener (new ProgressAdapter () {
 			public void completed (ProgressEvent event) {}
 		});
-		
+
 		final UIController uiController = new UIController(browser);
 
 		//Define each JavaScript function
-		new CustomFunction(bw, "motor", uiController);
+		new CustomFunction(browser, "motor", uiController);
 
 		browser.setUrl(new File(wwwRoot, "car.html").toURI().toString());
 		return browser;
 	}
-	
+
 	//Define JS Functions
-	static class CustomFunction extends BrowserFunction {
+	class CustomFunction extends BrowserFunction {
 		UIController uiControl;
-		
+
 		/**
 		 * @param browser
 		 * @param name
@@ -134,19 +133,20 @@ public class CarWidget {
 			super (browser, name);
 			uiControl = uiController;
 		}
-		
+
 		/* (non-Javadoc)
 		 * @see org.eclipse.swt.browser.BrowserFunction#function(java.lang.Object[])
 		 */
 		public Object function(Object[] args) {
-			
+
 			//Get the name of the function and invoke that function in JAVA
 			if(this.getName() == "motor") {
-				uiControl.motor(Boolean.parseBoolean(args[0].toString()));
+				widgetController.setTrack(new File(wwwRoot, "../maps/RoutenachArnimallee.txt"));
+				widgetController.startEngine();
 			} else {
 				System.out.println("ELSE");
 			}
-			
+
 			return null;
 		}
 	}
@@ -156,5 +156,15 @@ public class CarWidget {
 	 */
 	public void setController(WidgetController widgetController) {
 		this.widgetController = widgetController;
+	}
+
+	public void disableActions() {
+		// TODO disable HTML buttons
+		browser.setEnabled(false);
+	}
+
+	public void enableActions() {
+		// TODO enable HTML buttons
+		browser.setEnabled(true);
 	}
 }
