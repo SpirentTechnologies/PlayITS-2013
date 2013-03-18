@@ -44,8 +44,10 @@ module ACTIONS_API {
     }
     
     function ACTION_API__widgetExit(API.widgetExit p_value) runs on COMPONENT {
-        widgetExit := true;
         log("ACTION_API__widgetExit was called by the widget");
+        widgetExit := true;
+        calltimer.start;
+        carActions.call(ACTIONS__API_widgetExit:{toProto_widgetExit(p_value)}, nowait);
     }
 
     altstep handleCarEvents() runs on COMPONENT {
@@ -86,7 +88,8 @@ module ACTIONS_API {
         map(mtc:ACTIONS_PORT_widgetPort, system:ACTIONS_PORT_widgetPort);
         map(mtc:EVENTS_PORT_widgetPort, system:EVENTS_PORT_widgetPort);
         
-        map(mtc:car, system:car);
+        map(mtc:carEvents, system:carEvents);
+        map(mtc:carActions, system:carActions);
         
         activate(handleTimeout());
         activate(handleCarEvents());
@@ -96,7 +99,8 @@ module ACTIONS_API {
         unmap(mtc:ACTIONS_PORT_widgetPort, system:ACTIONS_PORT_widgetPort);
         unmap(mtc:EVENTS_PORT_widgetPort, system:EVENTS_PORT_widgetPort);
         
-        unmap(mtc:car, system:car);
+        unmap(mtc:carEvents, system:carEvents);
+        unmap(mtc:carActions, system:carActions);        
         
         deactivate;
         
