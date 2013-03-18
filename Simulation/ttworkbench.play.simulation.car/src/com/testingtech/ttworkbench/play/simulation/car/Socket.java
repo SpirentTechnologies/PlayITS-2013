@@ -14,19 +14,26 @@ import com.googlecode.protobuf.socketrpc.SocketRpcController;
 import com.testingtech.ttworkbench.play.generated.PROTO_API;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.carStatusType;
 
-public class Socket {
+public class Socket extends Thread{
 
 	/**
 	 * @param args
 	 *            run in car
 	 */
 	Car car;
-
-	public Socket(Car car) {
+	
+	private int serverPort;
+	private int clientPort;
+	private String clientHost;
+	
+	public Socket(Car car,int clientPort, String clientHost, int serverPort) {
 		this.car = car;
+		this.clientHost = clientHost;
+		this.serverPort = serverPort;
+		this.clientPort = clientPort;
 	}
 
-	void run(int clientPort, String clientHost, int serverPort) {
+	public void run() {
 		startActionService(serverPort);
 		createEventsClient(clientPort, clientHost);
 	}

@@ -51,8 +51,8 @@ public class Simulation {
 			ArrayList<GPSposition> map = getMap(mapFile);
 
 			Socket testCar1 = new Socket(new Car(0, 200, 2.5, 100, 6, true,
-					true, true, true, true, true, true, true, map));
-			testCar1.run(clientPort, clientHost, serverPort);
+					true, true, true, true, true, true, true, map),clientPort, clientHost, serverPort);
+			testCar1.start();
 			/*
 			 * FIXME Car destruction Simulation: either fix it here or in socket
 			 * testCar1.car.doDestroyCar(); == true -> destroy/stop create
