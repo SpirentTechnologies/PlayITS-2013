@@ -78,6 +78,7 @@ public class ActionsServiceImpl implements BlockingInterface {
 		Socket socket = new Socket(car,(int) request.getTtcnEventsPort(),request.getTtcnEventsHostName());
 		carSocket.put(car, socket);
 		new Thread(socket).start();
+		//TODO send id as message
 		return nil();
 	}
 

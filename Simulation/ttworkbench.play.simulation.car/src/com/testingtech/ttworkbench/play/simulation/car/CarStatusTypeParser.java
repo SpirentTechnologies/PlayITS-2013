@@ -16,6 +16,7 @@ public class CarStatusTypeParser {
 		cst.setEspSensor(car.sensors.esp);
 		cst.setFogLightSensor(car.sensors.fogLight);
 		cst.setFuelFilling((float) car.getTankFill());
+		cst.setCarId(car.customID);
 		//set gps position
 		com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.Builder gps = gpsPosition.newBuilder();
 		gps.setLatitude((float) car.currentPosition.latitude);

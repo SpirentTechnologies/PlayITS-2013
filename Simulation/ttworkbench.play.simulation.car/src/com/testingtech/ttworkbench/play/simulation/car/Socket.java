@@ -58,7 +58,6 @@ public class Socket implements Runnable {
 				.createRpcConnectionFactory(host, port);
 		BlockingRpcChannel channel = RpcChannels
 				.newBlockingRpcChannel(connectionFactory);
-
 		service = PROTO_API.EVENTS
 				.newBlockingStub(channel);
 		rpcController = new SocketRpcController();
