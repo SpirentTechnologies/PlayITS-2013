@@ -63,9 +63,9 @@ public class ActionsServiceImpl implements BlockingInterface {
 		 * FIXME add to WarningType a gpsPosition for the map at least or let it
 		 * stay at this implementation
 		 */
-	//	Tupel<Warnings, GPSposition> warning = new Tupel<Warnings, GPSposition>(
-	//			danger, carModel.position.getNextWorldPosition());
-	//	carModel.addWarning(warning);
+		Tupel<Warnings, GPSposition> warning = new Tupel<Warnings, GPSposition>(
+				danger, new GPSposition(request.getGpsPos().getLongitude(), request.getGpsPos().getLatitude()));
+		carModel.addWarning(warning);
 		return nil();
 	}
 
