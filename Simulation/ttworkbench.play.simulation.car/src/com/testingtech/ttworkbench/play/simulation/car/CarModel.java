@@ -22,4 +22,6 @@ public class CarModel {
 			c.addWarning(warning);
 		}
 	}
+	//TODO if (engine && speed == 0) tell all the other cars that there is a standing car at the position 
+	
 }

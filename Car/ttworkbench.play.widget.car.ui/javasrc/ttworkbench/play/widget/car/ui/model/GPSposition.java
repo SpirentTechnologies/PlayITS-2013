@@ -29,6 +29,13 @@ public class GPSposition {
 		}
 		return super.equals(obj);
 	}
+
+	public double getLatitude() {
+		return this.latitude;
+	}
 	
+	public double getLongitude() {
+		return this.longitude;
+	}
 	
 }

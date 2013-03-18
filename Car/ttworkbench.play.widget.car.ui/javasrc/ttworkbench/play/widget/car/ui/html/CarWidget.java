@@ -111,10 +111,20 @@ public class CarWidget {
 			public void completed (ProgressEvent event) {}
 		});
 
-		final UIController uiController = new UIController(browser);
-
 		//Define each JavaScript function
-		new CustomFunction(browser, "motor", uiController);
+		//INIT:
+		new CustomFunction(browser, "carType");
+		new CustomFunction(browser, "trackType");
+		
+		//DYNAMIC:
+		new CustomFunction(browser, "motor");
+		new CustomFunction(browser, "abs");
+		new CustomFunction(browser, "esp");
+		new CustomFunction(browser, "speed");
+		new CustomFunction(browser, "fogLight");
+		new CustomFunction(browser, "lightSensor");
+		new CustomFunction(browser, "warning");
+		new CustomFunction(browser, "widgetExit");
 
 		browser.setUrl(new File(wwwRoot, "car.html").toURI().toString());
 		return browser;
@@ -122,32 +132,115 @@ public class CarWidget {
 
 	//Define JS Functions
 	class CustomFunction extends BrowserFunction {
-		UIController uiControl;
-
-		/**
-		 * @param browser
+		 /** @param browser
 		 * @param name
 		 * @param uiController
 		 */
-		CustomFunction (Browser browser, String name, UIController uiController) {
+		CustomFunction (Browser browser, String name) {
 			super (browser, name);
-			uiControl = uiController;
 		}
 
 		/* (non-Javadoc)
 		 * @see org.eclipse.swt.browser.BrowserFunction#function(java.lang.Object[])
 		 */
 		public Object function(Object[] args) {
-
+			
+			Object returnValue = null;
+			
 			//Get the name of the function and invoke that function in JAVA
+			
+			/**
+			 * MOTOR
+			 */
 			if(this.getName() == "motor") {
-				widgetController.setTrack(new File(wwwRoot, "../maps/RoutenachArnimallee.txt"));
-				widgetController.startEngine();
-			} else {
-				System.out.println("ELSE");
-			}
 
-			return null;
+				boolean motorOn = Boolean.parseBoolean(args[0].toString());
+				
+				try {
+					if(motorOn) {
+						widgetController.setTrack(new File(wwwRoot, "../maps/RoutenachArnimallee.txt"));
+						widgetController.startEngine();
+					} else {
+						widgetController.stopEngine();
+					}
+				} catch(Exception e) {
+					//TODO: handle exception in widgetController
+				}
+			
+			/**
+			 * ABS
+			 */
+			} else if(this.getName() == "abs") {
+				boolean absOn = Boolean.parseBoolean(args[0].toString());
+				
+				if(absOn) {
+					widgetController.enableABS();
+				} else {
+					widgetController.disableABS();
+				}
+				
+			/**
+			 * ESP
+			 */
+			} else if(this.getName() == "esp") {
+				boolean espOn = Boolean.parseBoolean(args[0].toString());
+				
+				if(espOn) {
+					widgetController.enableESP();
+				} else {
+					widgetController.disableESP();
+				}
+				
+			/**
+			 * SPEED
+			 */
+			} else if(this.getName() == "speed") {
+				float speed = Float.parseFloat(args[0].toString());
+				widgetController.changeSpeed(speed);
+			
+			/**
+			 * FOG LIGHT
+			 */
+			} else if(this.getName() == "fogLight") {
+				boolean fogLightOn = Boolean.parseBoolean((args[0].toString()));
+				
+				if(fogLightOn) {
+					widgetController.enableFogLight();
+				} else {
+					widgetController.disableFogLight();
+				}
+			
+			/**
+			 * LIGHT SENSOR
+			 */
+			} else if(this.getName() == "lightSensor") {
+				boolean lightSensorOn = Boolean.parseBoolean((args[0].toString()));
+				
+				if(lightSensorOn) {
+					widgetController.enableLightSensor();
+				} else {
+					widgetController.disableLightSensor();
+				}
+			
+			/**
+			 * WARNING
+			 */
+			} else if(this.getName() == "warning") {
+				String warning = args[0].toString();
+				
+				//deer, rain, accident, snow, fog 
+				
+				if(warning == "deer") {
+					widgetController.enableLightSensor();
+				} else {
+					widgetController.disableLightSensor();
+				}
+				
+			} else {
+				System.out.println("Invalid function!");
+			}
+			
+			return returnValue;
 		}
 	}
 
