@@ -5,9 +5,17 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.concurrent.Executors;
 import java.util.concurrent.locks.Condition;
 
+import com.googlecode.protobuf.socketrpc.RpcServer;
+import com.googlecode.protobuf.socketrpc.ServerRpcConnectionFactory;
+import com.googlecode.protobuf.socketrpc.SocketRpcConnectionFactories;
+import com.testingtech.ttworkbench.play.generated.PROTO_API;
+
 public class Simulation {
+
+	private RpcServer server;
 
 	private static ArrayList<GPSposition> getMap(File mapFile) {
 		try {
@@ -34,36 +42,26 @@ public class Simulation {
 
 	public static void main(String[] args) {
 
-		if (args.length == 4) {
+		if (args.length == 1) {
 			int index = 0;
 
-			int clientPort = parsePort(args, index++);
-			String clientHost = args[index++];
-
-			// actually we only need this port number
 			int serverPort = parsePort(args, index++);
 
 			// a service implementation should be able to handle multiple cars
 			// that's why map file, client host and port should be
 			// delivered by the initCarType or another init function
-			File mapFile = new File(args[index++]);
-			// parse map file
-			ArrayList<GPSposition> map = getMap(mapFile);
 
-			Socket testCar1 = new Socket(new Car(0, 200, 2.5, 100, 6, true,
-					true, true, true, true, true, true, true, map),clientPort, clientHost, serverPort);
-			testCar1.start();
-			/*
-			 * FIXME Car destruction Simulation: either fix it here or in socket
-			 * testCar1.car.doDestroyCar(); == true -> destroy/stop create
-			 * somthing like monitor condition to be awaited for destruction of
-			 * the car, maybe change destroyCar from bool to Semaphore -> no
-			 * active waiting
-			 */
+			new Simulation().startServerBlocking(serverPort);
+
 		} else {
 			System.out
-					.println("Usage: java -jar Simulation.jar <clientPort> <clientHost> <serverPort> <kmlFile>");
+					.println("Usage: java -jar Simulation.jar <serverPort>");
 		}
+	}
+
+	private void startServerBlocking(int serverPort) {
+		createServer(serverPort);
+		server.run();
 	}
 
 	private static int parsePort(String[] args, int argIndex)
@@ -80,15 +78,28 @@ public class Simulation {
 		}
 	}
 
-	//FIXME Are these to functions even needed?
 	public void startServer(int p_serverPort) throws IOException {
-		// TODO Auto-generated method stub
+		createServer(p_serverPort);
+		server.startServer();
+	}
 
+	private void createServer(int p_serverPort) {
+		CarModel carModel = new CarModel();
+
+		ServerRpcConnectionFactory rpcConnectionFactory = SocketRpcConnectionFactories
+				.createServerRpcConnectionFactory(p_serverPort);
+		server = new RpcServer(rpcConnectionFactory,
+				Executors.newFixedThreadPool(10), true);
+		ActionsServiceImpl asi = new ActionsServiceImpl(carModel);
+		server.registerBlockingService(PROTO_API.ACTIONS
+				.newReflectiveBlockingService(asi)); // For blocking impl
 	}
 
 	public void stopServer() throws IOException {
-		// TODO Auto-generated method stub
-
+		if (server != null) {
+			server.shutDown();
+		}
+		server = null;
 	}
 
 }

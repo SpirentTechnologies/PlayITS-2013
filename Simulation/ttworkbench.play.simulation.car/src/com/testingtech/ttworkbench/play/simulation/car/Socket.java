@@ -14,28 +14,38 @@ import com.googlecode.protobuf.socketrpc.SocketRpcController;
 import com.testingtech.ttworkbench.play.generated.PROTO_API;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.carStatusType;
 
-public class Socket extends Thread{
+public class Socket implements Runnable {
 
 	/**
 	 * @param args
 	 *            run in car
 	 */
 	Car car;
-	
-	private int serverPort;
+
 	private int clientPort;
 	private String clientHost;
-	
-	public Socket(Car car,int clientPort, String clientHost, int serverPort) {
+
+	private RpcController rpcController;
+
+	private PROTO_API.EVENTS.BlockingInterface service;
+
+	public Socket(Car car, int clientPort, String clientHost) {
 		this.car = car;
 		this.clientHost = clientHost;
-		this.serverPort = serverPort;
 		this.clientPort = clientPort;
 	}
 
 	public void run() {
-		startActionService(serverPort);
+		
 		createEventsClient(clientPort, clientHost);
+		while(!car.doDestroyCar()){
+			sendUpdate();
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				break;
+			}
+		}
 	}
 
 	/*
@@ -53,11 +63,13 @@ public class Socket extends Thread{
 		BlockingRpcChannel channel = RpcChannels
 				.newBlockingRpcChannel(connectionFactory);
 
-		// Call service
-		PROTO_API.EVENTS.BlockingInterface service = PROTO_API.EVENTS
+		service = PROTO_API.EVENTS
 				.newBlockingStub(channel);
-		RpcController rpcController = new SocketRpcController();
+		rpcController = new SocketRpcController();
+		
+	}
 
+	public void sendUpdate() {
 		// Call the cars update methode before the widget needs new information
 		// about the car
 		car.update();
@@ -78,21 +90,6 @@ public class Socket extends Thread{
 			System.err.println(String.format("Rpc failed %s",
 					rpcController.errorText()));
 		}
-	}
-
-	// Server, the "API" connects to us
-	// action
-	// "API" sets values
-	public void startActionService(int port) {
-		// Start server
-		ServerRpcConnectionFactory rpcConnectionFactory = SocketRpcConnectionFactories
-				.createServerRpcConnectionFactory(port);
-		RpcServer server = new RpcServer(rpcConnectionFactory,
-				Executors.newFixedThreadPool(10), true);
-		ActionsServiceImpl asi = new ActionsServiceImpl(car);
-		server.registerBlockingService(PROTO_API.ACTIONS
-				.newReflectiveBlockingService(asi)); // For blocking impl
-		server.run();
 
 	}
 }

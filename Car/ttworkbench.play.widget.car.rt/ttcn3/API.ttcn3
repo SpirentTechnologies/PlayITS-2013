@@ -91,6 +91,7 @@ module API {
     }
     
     type record carInitType {
+        integer ttcnEventsPort optional,
         boolean absSensorExists,
         boolean espSensorExists,
         boolean lightSensorExists,
