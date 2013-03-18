@@ -7,6 +7,8 @@ module API {
     
     import from CONFIG_CAR {type CarComponent;}
     import from Parameters all;
+    
+    type integer carId;
 
     /**
      * @desc The warning type lists the possible modes of a warning.
@@ -30,6 +32,7 @@ module API {
 	 * @member engineStatus True, if engine is on, false else.
 	 */
     type record onOffEngineType {
+        carId carId,
         boolean engineStatus
     }
     
@@ -38,6 +41,7 @@ module API {
      * @member speed Speed in double precision.
      */
     type record speedType {
+        carId carId,
         float speed
     }
     
@@ -46,6 +50,7 @@ module API {
      * @member trackName Only charstring is provided.
      */
     type record trackType {
+        carId carId,
         charstring trackName
     }
     
@@ -56,6 +61,7 @@ module API {
      * @member priority Warnings of higher priority need to be served first.
      */
     type record warningType {
+        carId carId,
         warning warningName,
         gpsPosition gpsPos,
         integer priority
@@ -74,6 +80,7 @@ module API {
      * @member warning What warning is triggered?
      */
     type record carStatusType {
+        carId carId,
         boolean engineStatus,
         float speed,
         boolean absSensor,
@@ -95,7 +102,9 @@ module API {
         float maxSpeed
     }
     
-    type record widgetExit { }
+    type record widgetExit {
+    	carId carId
+    }
     
     /**
      * 
