@@ -10,7 +10,8 @@ module CONFIG_CAR {
         PROTO_API.ACTIONS__API_speedType,
         PROTO_API.ACTIONS__API_warningType,
         PROTO_API.ACTIONS__API_trackType,
-        PROTO_API.ACTIONS__API_carInitType;
+        PROTO_API.ACTIONS__API_carInitType,
+        PROTO_API.ACTIONS__API_widgetExit;
     }
 
     type component CarComponent {
@@ -19,18 +20,4 @@ module CONFIG_CAR {
         port carEventsPort carEvents;
         timer calltimer := 1.0;
     }
-    
-    /**
-     * @desc Start the simulator on given port
-     * @param p_serverPort the server port
-     * @return -1 on error, 0 means OK, -2 already running
-     */
-    external function xf_startSimulation(integer p_serverPort) return integer;
-    /**
-     * @desc Stops the simulator on given port
-     * @param p_serverPort the server port
-     * @return -1 on error, 0 means OK, -2 not running
-     */
-    external function xf_stopSimulation(integer p_serverPort) return integer;
-
 }
