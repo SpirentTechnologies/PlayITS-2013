@@ -1,5 +1,6 @@
 package ttworkbench.play.widget.car.ui;
 
+import java.io.File;
 import java.io.IOException;
 
 import com.google.protobuf.ServiceException;
@@ -18,6 +19,8 @@ import com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit;
 public class WidgetController {
 
 	private final ICommunication comm;
+	private boolean initialized;
+	private File trackFile;
 
 	public WidgetController(ICommunication comm) {
 		this.comm = comm;
@@ -29,6 +32,8 @@ public class WidgetController {
 	 * @throws IOException
 	 */
 	public void startEngine(){	
+		
+		initCar();
 
 		try {
 			onOffEngineType.Builder request = onOffEngineType.newBuilder();
@@ -53,6 +58,7 @@ public class WidgetController {
 	 * @throws IOException
 	 */
 	public void stopEngine() throws IOException{	
+		initCar();
 
 		try {
 			onOffEngineType.Builder request = onOffEngineType.newBuilder();
@@ -71,6 +77,7 @@ public class WidgetController {
 	 * @param client
 	 */
 	public void enableLightSensor(){
+		initCar();
 		try {
 			carInitType.Builder request = carInitType.newBuilder();
 
@@ -88,11 +95,12 @@ public class WidgetController {
 	 * @param client
 	 */
 	public void disableLightSensor(){
+		initCar();
 		try {
 			carInitType.Builder request = carInitType.newBuilder();
+			request.setLightSensorExists(false);
 
 			client().getActionsService().aPICarInitType(client().getController(), request.build());
-			request.setLightSensorExists(false);
 
 		} catch (ServiceException e) {
 
@@ -105,11 +113,12 @@ public class WidgetController {
 	 * @param client
 	 */
 	public void enableFogLight(){
+		initCar();
 		try {
 			carInitType.Builder request = carInitType.newBuilder();
+			request.setFogLightSensorExists(true);
 
 			client().getActionsService().aPICarInitType(client().getController(), request.build());
-			request.setFogLightSensorExists(true);
 
 		} catch (ServiceException e) {
 
@@ -123,11 +132,12 @@ public class WidgetController {
 	 */
 
 	public void disableFogLight(){
+		initCar();
 		try {
 			carInitType.Builder request = carInitType.newBuilder();
+			request.setFogLightSensorExists(false);
 
 			client().getActionsService().aPICarInitType(client().getController(), request.build());
-			request.setFogLightSensorExists(false);
 
 		} catch (ServiceException e) {
 
@@ -141,11 +151,12 @@ public class WidgetController {
 	 * @param speed
 	 */
 	public void setMaxSpeed(float speed){
+		initCar();
 		try {
 			carInitType.Builder request = carInitType.newBuilder();
+			request.setMaxSpeed(speed);
 
 			client().getActionsService().aPICarInitType(client().getController(), request.build());
-			request.setMaxSpeed(speed);
 
 		} catch (ServiceException e) {
 
@@ -159,11 +170,12 @@ public class WidgetController {
 	 * @param speed
 	 */
 	public void changeSpeed(float speed){
+		initCar();
 		try {
 			speedType.Builder request = speedType.newBuilder();
+			request.setSpeed(speed);
 
 			client().getActionsService().aPISpeedType(client().getController(), request.build());
-			request.setSpeed(speed);
 
 		} catch (ServiceException e) {
 
@@ -171,17 +183,22 @@ public class WidgetController {
 		}
 	}
 
-	/**
-	 * 
-	 * @param client
-	 * @param value
-	 */
-	public void setTrack(String value){
+	public void setTrack(File trackFile){
+		this.trackFile = trackFile;
+
+		boolean sendTrack = !initialized;
+			
+		initCar();
+		
+		if (!sendTrack) {
+			return;
+		}
+
 		try {
 			trackType.Builder request = trackType.newBuilder();
+			request.setTrackName(trackFile.getAbsolutePath());
 
 			client().getActionsService().aPITrackType(client().getController(), request.build());
-			request.setTrackName(value);
 
 		} catch (ServiceException e) {
 
@@ -194,11 +211,12 @@ public class WidgetController {
 	 * @param client
 	 */
 	public void enableABS(){
+		initCar();
 		try {
 			carInitType.Builder request = carInitType.newBuilder();
+			request.setAbsSensorExists(true);
 
 			client().getActionsService().aPICarInitType(client().getController(), request.build());
-			request.setAbsSensorExists(true);
 
 		} catch (ServiceException e) {
 
@@ -211,11 +229,12 @@ public class WidgetController {
 	 * @param client
 	 */
 	public void disableABS(){
+		initCar();
 		try {
 			carInitType.Builder request = carInitType.newBuilder();
+			request.setAbsSensorExists(false);
 
 			client().getActionsService().aPICarInitType(client().getController(), request.build());
-			request.setAbsSensorExists(false);
 
 		} catch (ServiceException e) {
 
@@ -228,11 +247,12 @@ public class WidgetController {
 	 * @param client
 	 */
 	public void enableESP(){
+		initCar();
 		try {
 			carInitType.Builder request = carInitType.newBuilder();
+			request.setEspSensorExists(true);
 
 			client().getActionsService().aPICarInitType(client().getController(), request.build());
-			request.setEspSensorExists(true);
 
 		} catch (ServiceException e) {
 
@@ -245,11 +265,38 @@ public class WidgetController {
 	 * @param client
 	 */
 	public void disableESP(){
+		initCar();
 		try {
 			carInitType.Builder request = carInitType.newBuilder();
+			request.setEspSensorExists(false);
+
+			// TODO removed init car type
+			client().getActionsService().aPICarInitType(client().getController(), request.build());
+
+		} catch (ServiceException e) {
+
+			e.printStackTrace();
+		}
+	}
+	
+	private synchronized void initCar() {
+		if (initialized) {
+			return;
+		}
+		try {
+			carInitType.Builder request = carInitType.newBuilder();
+			request.setEspSensorExists(false);
+			request.setAbsSensorExists(true);
+			request.setLightSensorExists(false);
+			request.setFogLightSensorExists(true);
+			request.setFuelFilling(25);
+			request.setFuelConsumption(5);
+			request.setMaxSpeed(210.9f);
+			request.setTrackName(trackFile.getAbsolutePath());
 
 			client().getActionsService().aPICarInitType(client().getController(), request.build());
-			request.setEspSensorExists(false);
+			
+			initialized = true;
 
 		} catch (ServiceException e) {
 
@@ -262,6 +309,7 @@ public class WidgetController {
 	 * @param client
 	 */
 	public void exitWidget(){
+		initCar();
 		try {
 			widgetExit.Builder request = widgetExit.newBuilder();
 
@@ -272,6 +320,5 @@ public class WidgetController {
 			e.printStackTrace();
 		}
 	}
-	
 
 }

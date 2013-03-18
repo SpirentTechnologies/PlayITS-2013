@@ -1,11 +1,13 @@
 
 package ttworkbench.play.widget.car.ui;
 
+import java.util.List;
+
 import ttworkbench.play.widget.car.ui.model.CarStatusModel;
 import ttworkbench.play.widget.car.ui.model.GPSposition;
 import ttworkbench.play.widget.car.ui.model.NotifyAttributes;
-import ttworkbench.play.widget.car.ui.model.Warnings;
 import ttworkbench.play.widget.car.ui.model.WarningType;
+import ttworkbench.play.widget.car.ui.model.Warnings;
 
 import com.google.protobuf.RpcController;
 import com.google.protobuf.ServiceException;
@@ -34,9 +36,9 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 	
 	if(request != null){
 		
-		if(request.hasWarning()){
-			warningType reqWarning = request.getWarning();
-			if(reqWarning != null){
+		if(request.getWarningCount() > 0){
+			List<warningType> reqWarnings = request.getWarningList();
+			for (warningType reqWarning : reqWarnings) {
 				WarningType warning = new WarningType();
 				warning.setWarning(Warnings.getWarning((reqWarning.getWarningName().getEnumValue().getNumber())));
 				warning.setGpsPosition(new GPSposition(reqWarning.getGpsPos().getLatitude(),reqWarning.getGpsPos().getLongitude()));
