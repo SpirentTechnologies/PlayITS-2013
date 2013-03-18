@@ -1,5 +1,7 @@
 package com.testingtech.ttworkbench.play.simulation.car;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Map;
 
@@ -72,8 +74,14 @@ public class ActionsServiceImpl implements BlockingInterface {
 	@Override
 	public Void aPICarInitType(RpcController controller, carInitType request)
 			throws ServiceException {
+		ArrayList<GPSposition> positions;
+		try {
+			positions = KMLparser.parseFile(new File(request.getTrackName()));
+		} catch (Throwable e) {
+			throw new ServiceException("Could not read map", e);
+		}
 		// updates the initial car setup with the wanted field values
-		Car car = new Car(0, request.getMaxSpeed(), request.getFuelFilling(), request.getFuelConsumption(), request.getLightSensorExists(), true, request.hasFuelFilling(), true, request.getEspSensorExists(), request.getAbsSensorExists(), false, request.getFogLightSensorExists());
+		Car car = new Car(0, request.getMaxSpeed(), 2.0, request.getFuelFilling(), request.getFuelConsumption(), request.getLightSensorExists(), true, request.hasFuelFilling(), true, request.getEspSensorExists(), request.getAbsSensorExists(), false, request.getFogLightSensorExists(), positions);
 		long id = carModel.addCar(car);
 		Socket socket = new Socket(car,(int) request.getTtcnEventsPort(),request.getTtcnEventsHostName());
 		carSocket.put(car, socket);
