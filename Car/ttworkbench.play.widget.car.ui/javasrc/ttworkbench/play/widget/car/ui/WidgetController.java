@@ -28,7 +28,7 @@ public class WidgetController {
 	 * @param client from com.testingtech.ttworkbench.play.dashboard.widget.AbstractDashboardWidget.getActionsClient()
 	 * @throws IOException
 	 */
-	public void startEngine() throws IOException {	
+	public void startEngine(){	
 
 		try {
 			onOffEngineType.Builder request = onOffEngineType.newBuilder();
@@ -39,7 +39,7 @@ public class WidgetController {
 
 		} catch (ServiceException e) {
 
-			throw new IOException("Unable to start engine", e);
+			System.err.println("Unable to start engine! \n" + e.getMessage());
 		}
 	}
 
@@ -61,7 +61,7 @@ public class WidgetController {
 			// TODO response check
 		} catch (ServiceException e) {
 
-			e.printStackTrace();
+			System.err.println("Unable to stop Engine! \n" + e.getMessage());
 		}
 
 	}
@@ -79,7 +79,7 @@ public class WidgetController {
 
 		} catch (ServiceException e) {
 
-			e.printStackTrace();
+			System.err.println("Unable to enable light sensor! \n" + e.getMessage());
 		}
 	}
 
@@ -96,7 +96,7 @@ public class WidgetController {
 
 		} catch (ServiceException e) {
 
-			e.printStackTrace();
+			System.err.println("Unable to disable light sensor! \n" + e.getMessage());
 		}
 	}
 
@@ -113,7 +113,7 @@ public class WidgetController {
 
 		} catch (ServiceException e) {
 
-			e.printStackTrace();
+			System.err.println("Unable to enable fog light! \n" + e.getMessage());
 		}
 	}
 
@@ -131,7 +131,7 @@ public class WidgetController {
 
 		} catch (ServiceException e) {
 
-			e.printStackTrace();
+			System.err.println("Unable to disable fog light! \n" + e.getMessage());
 		}
 	}
 
@@ -266,12 +266,12 @@ public class WidgetController {
 			widgetExit.Builder request = widgetExit.newBuilder();
 
 			client().getActionsService().aPIWidgetExit(client().getController(), request.build());
-
+			
 		} catch (ServiceException e) {
 
 			e.printStackTrace();
 		}
 	}
-
+	
 
 }
