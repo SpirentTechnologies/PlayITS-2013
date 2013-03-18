@@ -56,7 +56,7 @@ message carStatusType {
 }
 
 message carInitType {
-  required sint64 ttcnEventsPort = 1;
+  optional sint64 ttcnEventsPort = 1;
   required bool absSensorExists = 2;
   required bool espSensorExists = 3;
   required bool lightSensorExists = 4;
