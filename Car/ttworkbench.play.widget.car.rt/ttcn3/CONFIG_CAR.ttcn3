@@ -18,6 +18,6 @@ module CONFIG_CAR {
         var boolean widgetExit := false;
         port carActionsPort carActions;
         port carEventsPort carEvents;
-        timer calltimer := 1.0;
+        timer calltimer := 10.0;
     }
 }

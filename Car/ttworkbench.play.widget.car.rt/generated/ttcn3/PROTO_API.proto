@@ -52,7 +52,7 @@ message carStatusType {
   required bool fogLightSensor = 7;
   required float fuelFilling = 8;
   required PROTO_API.gpsPosition gpsPos = 9;
-  required PROTO_API.warningType warning = 10;
+  repeated PROTO_API.warningType warning = 10;
 }
 
 message carInitType {
@@ -65,6 +65,7 @@ message carInitType {
   required float fuelFilling = 7;
   required float fuelConsumption = 8;
   required float maxSpeed = 9;
+  required string trackName = 10;
 }
 
 message widgetExit {

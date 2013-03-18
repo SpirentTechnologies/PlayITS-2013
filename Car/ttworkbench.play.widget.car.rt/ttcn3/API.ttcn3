@@ -92,7 +92,7 @@ module API {
         boolean fogLightSensor,
         float fuelFilling,
         gpsPosition gpsPos,
-        warningType warning
+        record of warningType warning
     }
 
     /**
@@ -116,7 +116,8 @@ module API {
         boolean fogLightSensorExists,
         float fuelFilling,
         float fuelConsumption,
-        float maxSpeed
+        float maxSpeed,
+        charstring trackName
     }
     
     

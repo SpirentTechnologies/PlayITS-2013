@@ -67,6 +67,12 @@ module ACTIONS_API {
     }
 
     function PREAMBLE() runs on COMPONENT {
+        log("ACTIONS_WIDGET_TCP_PORT ", ACTIONS_WIDGET_TCP_PORT);
+        log("EVENTS_WIDGET_TCP_PORT ", EVENTS_WIDGET_TCP_PORT);
+        log("ACTIONS_CAR_TCP_PORT ", ACTIONS_CAR_TCP_PORT);
+        log("EVENTS_CAR_TCP_PORT ", EVENTS_CAR_TCP_PORT);
+        
+        
         map(mtc:ACTIONS_PORT_widgetPort, system:ACTIONS_PORT_widgetPort);
         map(mtc:EVENTS_PORT_widgetPort, system:EVENTS_PORT_widgetPort);
         
