@@ -6,7 +6,14 @@
     
     <style type="text/css">
       html { height: 100%; }
-      body { height: 100%; margin: 0; padding: 0; overflow: hidden; }
+      body {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+          font-size: 12px;
+      }
       #map_canvas {
           height: 100%;
           position: absolute;
@@ -19,7 +26,19 @@
       #speedContainer {
           width: 100px;
           height: 100px;
-          margin: 50px 0 0 115px;
+          margin: 25px 0 0 115px;
+      }
+      #speedSlider {
+          margin: 10px 0 10px 100px;
+      }
+      #leftContainer {
+          width: 330px;
+      }
+      .center_text {
+          text-align: center;
+      }
+      .margin_top_20 {
+          margin-top: 20px;
       }
     </style>
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -31,19 +50,6 @@
     
     <script type="text/javascript">
     var map, marker;
-    
-    /*
-      
- function OnSliderChanged(slider) {
-           var sliderValue = document.getElementById (slider.id + "Value");
-           sliderValue.innerHTML = slider.value;
-        }
-
- function Init() {
-            $('#slider1Value').html(0);
-         	}
-    */
- 
     
     $(document).ready(function() {
         var lat = 52.515;
@@ -71,32 +77,29 @@
             fgColor: '#66CC66',
             angleOffset: -125,
             angleArc: 250,
-            width: 100
+            width: 100,
+            change: function(v) {
+              $('#speedSlider').val(v);
+              speed(v);
+            }
         });
         
-        $('#slider').on('change', function() {
+        $('#speedSlider').on('change', function() {
             $('#speed').val( $(this).val() );
             $('#speed').trigger('change');
+            speed( $(this).val() );
         });
         
-        
-        $('#callMotor').on('click', function(){
-			motor($(this).is(':checked'));
+        $('#motor').on('click', function(){
+			motor( $(this).is(':checked') );
 		});
 
-		$('#callABS').on('click', function(){
-			abs($(this).is(':checked'));
-		});
-		$('#callESP').on('click', function(){		
-			esp($(this).is(':checked'));
-		});
-		$('#sliderSpeed').on('change', function(){		
-			speed($(this).val());
-		$('#slider1Value').html($(this).val());
+		$('#fogLights').on('click', function(){
+			fogLights( $(this).is(':checked') );
 		});
     });
     
-    function updateMarker(lat, lng) {
+    function carPosition(lat, lng) {
         var latLng = new google.maps.LatLng(lat, lng);
         marker.setPosition(latLng);
         map.setCenter(latLng);
@@ -105,52 +108,33 @@
     
     </script>
   </head>
-  <body onload="Init ()">
-  	<!-- ---------------------Speed----------------- 
-       <div id="speedContainer">
-          <input type="text" value="50" id="speed">
-      </div>
-      -->
+  <body>
+    <div id="leftContainer">
+        <div id="speedContainer">
+          <input type="text" value="40" id="speed">
+        </div>
+        <div class="center_text">SPEED</div>
+        <input type="range" min="0" max="100" step="1" id="speedSlider" value="40" />
 
-<p>Motor:</p>
-<div class="onoffswitch">
-    	<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="callMotor">
-    		<label class="onoffswitch-label" for="callMotor">
-    			<div class="onoffswitch-inner"></div>
-    			<div class="onoffswitch-switch"></div>
-    		</label>
-</div>
-<br>
-
-
-<!-- --------------------------------Control buttons------------------------- -->
-<p>Control Lamps:</p>
-
-<br>
-	<p>ABS:</p>
-    <div class="onoffswitch">
-    	<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="callABS">
-    		<label class="onoffswitch-label" for="callABS">
-    			<div class="onoffswitch-inner"></div>
-    			<div class="onoffswitch-switch"></div>
-    		</label>
+        <div class="center_text margin_top_20">MOTOR</div>
+        <div class="onoffswitch">
+          <input type="checkbox" name="motor" class="onoffswitch-checkbox" id="motor">
+          <label class="onoffswitch-label" for="motor">
+              <div class="onoffswitch-inner"></div>
+              <div class="onoffswitch-switch"></div>
+          </label>
+        </div>
+        
+        <div class="center_text margin_top_20">FOG LIGHTS</div>
+        <div class="onoffswitch">
+          <input type="checkbox" name="fogLights" class="onoffswitch-checkbox" id="fogLights">
+          <label class="onoffswitch-label" for="fogLights">
+              <div class="onoffswitch-inner"></div>
+              <div class="onoffswitch-switch"></div>
+          </label>
+        </div>
     </div>
-   <br>
-   <p>ESP:</p>
-     <div class="onoffswitch">
-    	<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="callESP">
-    		<label class="onoffswitch-label" for="callESP">
-    			<div class="onoffswitch-inner"></div>
-    			<div class="onoffswitch-switch"></div>
-    		</label>
-    </div>
-    <br><br>
-    <!-- --------------------------------------  Slider bar --------------------------- -->
-    0 <input type="range" id="sliderSpeed" min="0" max="230" step="1"  value="0" /> 230
-    <span id="slider1Value" class="sliderValue"></span>
-       
-     
-     
-      <div id="map_canvas" style="width:534px; height:534px;"></div>
+    
+    <div id="map_canvas" style="width:534px; height:534px;"></div>
   </body>
 </html>

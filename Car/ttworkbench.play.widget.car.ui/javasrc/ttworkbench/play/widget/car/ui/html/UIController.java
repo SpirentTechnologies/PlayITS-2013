@@ -15,4 +15,8 @@ public class UIController {
 	public void warning(WarningType warning) {
 		browser.execute("warning(" + Warnings.getId(warning.getWarning()) + ", " + warning.getGpsPosition().getLatitude() + ", " + warning.getGpsPosition().getLongitude() + ", " + warning.getPriority() + ")");
 	}
+	
+	public void updatePosition(double latitude, double longitude) {
+		browser.execute("carPosition(" + latitude + ", " + longitude + ")");
+	}
 }
