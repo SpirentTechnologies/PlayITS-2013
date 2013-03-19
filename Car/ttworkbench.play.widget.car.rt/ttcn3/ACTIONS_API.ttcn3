@@ -53,9 +53,15 @@ module ACTIONS_API {
     altstep handleCarEvents() runs on COMPONENT {
         var PROTO_API.carStatusType status;
         [] carEvents.getcall (EVENTS__API_carStatusType:{?}) -> param (status){
-            calltimer.start;
-            EVENTS_PORT_widgetPort.call(EVENTS__API_carStatusType:{status}, nowait);
-            carEvents.reply (EVENTS__API_carStatusType:{-} value {}) ;
+            calltimer.stop;
+            EVENTS_PORT_widgetPort.call (EVENTS__API_carStatusType:{status}, 10.0) {
+                [] EVENTS_PORT_widgetPort.getreply (EVENTS__API_carStatusType:?) {
+                    carEvents.reply (EVENTS__API_carStatusType:{-} value {}) ;
+                }
+                [] EVENTS_PORT_widgetPort.catch (timeout) {
+                    testcase.stop("No response from widget for car status type");
+                }
+			}
         }
     }
 
