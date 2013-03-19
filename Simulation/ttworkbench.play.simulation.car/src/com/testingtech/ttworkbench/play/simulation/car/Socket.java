@@ -35,16 +35,21 @@ public class Socket implements Runnable {
 	public void run() {
 		
 		createEventsClient(clientPort, clientHost);
-		while(!car.doDestroyCar()){
+		while(!car.isCarDisposed()){
 			sendUpdate();
 			try {
-				Thread.sleep(2000);
+				Thread.sleep(10000);
 			} catch (InterruptedException e) {
 				break;
 			}
 		}
+		cleanupEventsClient();
 	}
 
+
+	private void cleanupEventsClient() {
+		// TODO close the client service and rpccontr
+	}
 
 	// Client connection to the server "API"
 	// event
@@ -55,10 +60,8 @@ public class Socket implements Runnable {
 				PersistentRpcConnectionFactory.createInstance(
 				SocketRpcConnectionFactories.createRpcConnectionFactory(host, port));
 
-		BlockingRpcChannel channel = RpcChannels
-				.newBlockingRpcChannel(connectionFactory);
-		service = PROTO_API.EVENTS
-				.newBlockingStub(channel);
+		BlockingRpcChannel channel = RpcChannels.newBlockingRpcChannel(connectionFactory);
+		service = PROTO_API.EVENTS.newBlockingStub(channel);
 		rpcController = new SocketRpcController();
 		
 	}
@@ -71,11 +74,10 @@ public class Socket implements Runnable {
 		carStatusType request = CarStatusTypeParser.parseToStatusType(car);
 
 		try {
-			Object myResponse = service
-					.aPICarStatusType(rpcController, request);
+			@SuppressWarnings("unused")
+			Object myResponse = service.aPICarStatusType(rpcController, request);
 		} catch (ServiceException e) {
-			System.out
-					.println("some error with sending the parsed package the car");
+			System.out.println("some error with sending the parsed package the car");
 			e.printStackTrace();
 		}
 

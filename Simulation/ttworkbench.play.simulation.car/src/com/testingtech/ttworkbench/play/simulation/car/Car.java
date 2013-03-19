@@ -15,7 +15,7 @@ public class Car implements CarInterface {
 	GPSpositionOfCar position;
 	GPSposition currentPosition;
 	// if this boolean is set the car will be removed from the simulation
-	private boolean destroyCar = false;
+	private boolean carDisposed = false;
 	private String trackName;
 
 	public Car(double speed, double maxSpeed, double tirePressure,
@@ -189,12 +189,12 @@ public class Car implements CarInterface {
 		this.warning.add(t);
 	}
 
-	public boolean doDestroyCar() {
-		return destroyCar;
+	public boolean isCarDisposed() {
+		return carDisposed;
 	}
 
-	public void setDestroyCar(boolean destroyCar) {
-		this.destroyCar = destroyCar;
+	public void disposeCar() {
+		this.carDisposed = true;
 	}
 
 	public void setTrack(String trackName) {

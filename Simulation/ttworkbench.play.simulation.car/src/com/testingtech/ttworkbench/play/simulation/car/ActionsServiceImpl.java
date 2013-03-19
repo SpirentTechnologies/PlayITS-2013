@@ -97,7 +97,7 @@ public class ActionsServiceImpl implements BlockingInterface {
 		// (depending on simulation)
 		long id = request.getCarId();
 		Car car = getCar(id);
-		car.setDestroyCar(true);
+		car.disposeCar();
 		return nil();
 	}
 
