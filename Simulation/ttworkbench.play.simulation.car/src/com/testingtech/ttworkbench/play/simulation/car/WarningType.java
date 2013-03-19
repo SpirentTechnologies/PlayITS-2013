@@ -50,4 +50,21 @@ public class WarningType {
 	public void setGpsPosition(GPSposition gpsPosition) {
 		this.gpsPosition = gpsPosition;
 	}
+	
+	public int compareTo(WarningType wt1){
+		final int BEFORE = -1;
+		final int EQUAL = 0;
+		final int AFTER = 1;
+		
+		if(this.getGpsPosition().latitude == wt1.getGpsPosition().latitude && this.getGpsPosition().longitude == wt1.getGpsPosition().longitude){
+			return EQUAL;
+		}
+		if(this.getGpsPosition().latitude <= wt1.getGpsPosition().latitude && this.getGpsPosition().longitude <= wt1.getGpsPosition().longitude){
+			return BEFORE;
+		}
+		if(this.getGpsPosition().latitude >= wt1.getGpsPosition().latitude && this.getGpsPosition().longitude >= wt1.getGpsPosition().longitude){
+			return AFTER;
+		}
+		return EQUAL;
+	}
 }

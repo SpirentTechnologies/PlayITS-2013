@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class CarModel {
 	private Map<Integer, Car> map = new Hashtable<Integer, Car>();
-		
+	
 	
 	public int addCar(Car car) {
 		map.put(car.customID, car);
@@ -16,11 +16,9 @@ public class CarModel {
 		return map.get((int) id);
 	}
 	
-	public void addWarning(Tupel<Warnings,GPSposition> warning){
+	public void addWarning(WarningType warning, long id){
 		//Add the warning to every car
-		for(Car c : map.values()){
-			c.addWarning(warning);
-		}
+		map.get((int) id).setWarning(warning);
 	}
 	//TODO if (engine && speed == 0) tell all the other cars that there is a standing car at the position 
 	

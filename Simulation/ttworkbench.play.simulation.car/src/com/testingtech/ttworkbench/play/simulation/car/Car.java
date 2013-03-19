@@ -8,7 +8,7 @@ public class Car implements CarInterface {
 	final int customID;
 
 	double speed, maxSpeed, petrolUsage;
-	private ConcurrentLinkedQueue<Tupel<Warnings, GPSposition>> warning = new ConcurrentLinkedQueue<Tupel<Warnings,GPSposition>>();
+
 	Sensors sensors;
 	boolean engine;
 
@@ -137,13 +137,16 @@ public class Car implements CarInterface {
 			System.out.println("No route set");
 			return;
 		}
-		
+
 		// check warnings[], Sensors, damage,
 		Tupel<GPSposition, Double> gpsPositionOfCarUpdate;
 		Tupel<Warnings, GPSposition> nextWarning;
 
 		// ---------- Update Process starts here-------------//
-		if (engine) {
+		// update with speed and everything only if the engine is turned on and
+		// there is still petrol in the tank
+		if (engine && sensors.tankFillLevel > 0) {
+
 			// get the new tankfill level
 			gpsPositionOfCarUpdate = position.updateEverything(
 					sensors.tankFillLevel, petrolUsage, speed);
@@ -153,9 +156,12 @@ public class Car implements CarInterface {
 
 			// update the current gpsPosition
 			currentPosition = gpsPositionOfCarUpdate.first;
+			// TODO add queue with all warnings in it to GPSpositionOfCar for
+			// this functionality only
 			nextWarning = warning.peek();
 		} else {
-			// get the new tankfill level, if engine off then the car cannot drive
+			// get the new tankfill level, if engine off then the car cannot
+			// drive
 			gpsPositionOfCarUpdate = position.updateEverything(
 					sensors.tankFillLevel, petrolUsage, 0);
 
@@ -167,7 +173,8 @@ public class Car implements CarInterface {
 			nextWarning = warning.peek();
 		}
 
-		if (nextWarning !=null && currentPosition.latitude == nextWarning.second.latitude
+		if (nextWarning != null
+				&& currentPosition.latitude == nextWarning.second.latitude
 				&& currentPosition.longitude == nextWarning.second.longitude) {
 			// remove warning because it will be handled now
 			warning.poll();
@@ -176,17 +183,8 @@ public class Car implements CarInterface {
 		}
 	}
 
-	public Warnings getWarning() {
-		return warning.peek().first;
-	}
-
-	public void setWarning(
-			ConcurrentLinkedQueue<Tupel<Warnings, GPSposition>> warning) {
-		this.warning = warning;
-	}
-
-	public void addWarning(Tupel<Warnings, GPSposition> t) {
-		this.warning.add(t);
+	public void addWarning(WarningType wt) {
+		this.position.setWarning(wt);
 	}
 
 	public boolean isCarDisposed() {
@@ -204,5 +202,4 @@ public class Car implements CarInterface {
 	public String getTrackName() {
 		return trackName;
 	}
-
 }

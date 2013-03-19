@@ -7,14 +7,17 @@ public class GPSpositionOfCar {
 	private GPSposition worldDestination;
 	private GPSposition oldPosition;
 	private double angle;
-	private ArrayList<GPSposition> positions;
+	private ArrayList<WarningType> positions;
 	private int positionsCounter = 2;
 
 	public GPSpositionOfCar(ArrayList<GPSposition> positions) {
 		this.worldDestination = positions.get(1);
 		this.oldPosition = positions.get(0);
-		this.positions = positions;
-
+		for(GPSposition g : positions){
+			WarningType wt = new WarningType();
+			wt.setGpsPosition(g);
+			this.positions.add(wt);
+		}
 		updateAngleAndDirections(worldDestination, oldPosition);
 	}
 
@@ -22,8 +25,11 @@ public class GPSpositionOfCar {
 			GPSposition startPosition, ArrayList<GPSposition> positions) {
 		this.worldDestination = destinationPositions;
 		this.oldPosition = startPosition;
-		this.positions = positions;
-
+		for(GPSposition g : positions){
+			WarningType wt = new WarningType();
+			wt.setGpsPosition(g);
+			this.positions.add(wt);
+		}
 		// calculate the angle needed for calculating the distance
 		double lon1 = startPosition.longitude;
 		double lon2 = destinationPositions.longitude;
@@ -179,8 +185,8 @@ public class GPSpositionOfCar {
 		// validation of position
 		if (oldPosition.latitude == worldDestination.latitude
 				&& oldPosition.longitude == worldDestination.longitude) {
-			worldDestination.latitude = positions.get(positionsCounter).latitude;
-			worldDestination.longitude = positions.get(positionsCounter).longitude;
+			worldDestination.latitude = positions.get(positionsCounter).getGpsPosition().latitude;
+			worldDestination.longitude = positions.get(positionsCounter).getGpsPosition().longitude;
 			updateAngleAndDirections(oldPosition, worldDestination);
 			positionsCounter++;
 
@@ -201,6 +207,20 @@ public class GPSpositionOfCar {
 		this.oldPosition = oldPosition;
 	}
 	public GPSposition getNextWorldPosition(){
-		return positions.get(positionsCounter+1);
+		return positions.get(positionsCounter+1).getGpsPosition();
+	}
+
+	public void setWarning(WarningType wt) {
+		for(int i = 0; i < positions.size()-1; i++){
+			int result = positions.get(i).compareTo(wt);
+			if( result ==-1){
+				//TODO check which position value is wrong
+			}else if(result == 0){
+				//TODO same as before
+			}else if(result ==1){
+				//TODO same as before
+			}
+		}
+		
 	}
 }

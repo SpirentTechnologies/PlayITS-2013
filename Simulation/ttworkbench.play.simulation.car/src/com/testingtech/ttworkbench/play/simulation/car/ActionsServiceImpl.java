@@ -60,14 +60,15 @@ public class ActionsServiceImpl implements BlockingInterface {
 		Car car = getCar(id);
 		Warnings danger = Warnings.valueOf(request.getWarningName()
 				.getEnumValue().toString());
-		// add the warning to the next possible position
-		/*
-		 * FIXME add to WarningType a gpsPosition for the map at least or let it
-		 * stay at this implementation
-		 */
-		Tupel<Warnings, GPSposition> warning = new Tupel<Warnings, GPSposition>(
-				danger, new GPSposition(request.getGpsPos().getLongitude(), request.getGpsPos().getLatitude()));
-		carModel.addWarning(warning);
+		
+		GPSposition position = new GPSposition(request.getGpsPos().getLongitude(), request.getGpsPos().getLatitude());
+		WarningType wt = new WarningType();
+		wt.setGpsPosition(position);
+		wt.setPriority(request.getPriority());
+		Warnings warning  = Warnings.valueOf( request.getWarningName().getEnumValue().toString());
+		
+		wt.setWarning(warning);
+		carModel.addWarning(wt,request.getCarId());
 		return nil();
 	}
 
