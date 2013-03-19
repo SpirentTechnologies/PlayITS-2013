@@ -21,7 +21,7 @@ public class CarStatusModel {
 	/**
 	 * @param engineStarted the engineStarted to set
 	 */
-	public void setEngineStarted(boolean engineStarted) {
+	public synchronized void setEngineStarted(boolean engineStarted) {
 		this.engineStarted = engineStarted;
 	}
 	/**
@@ -34,7 +34,7 @@ public class CarStatusModel {
 	/**
 	 * @param aBSenabled the aBSenabled to set
 	 */
-	public void setABSenabled(boolean aBSenabled) {
+	public synchronized void setABSenabled(boolean aBSenabled) {
 		this.aBSenabled = aBSenabled;
 	}
 	
@@ -48,7 +48,7 @@ public class CarStatusModel {
 	/**
 	 * @param eSPenabled the eSPenabled to set
 	 */
-	public void setESPenabled(boolean eSPenabled) {
+	public synchronized void setESPenabled(boolean eSPenabled) {
 		this.eSPenabled = eSPenabled;
 	}
 
@@ -62,7 +62,7 @@ public class CarStatusModel {
 	/**
 	 * @param actualSpeed the actualSpeed to set
 	 */
-	public void setActualSpeed(float actualSpeed) {
+	public synchronized void setActualSpeed(float actualSpeed) {
 		this.speed = actualSpeed;
 	}
 
@@ -77,7 +77,7 @@ public class CarStatusModel {
 	/**
 	 * @param gpsPosition the gpsPosition to set
 	 */
-	public void setGpsPosition(GPSposition gpsPosition) {
+	public synchronized void setGpsPosition(GPSposition gpsPosition) {
 		this.gpsPosition = gpsPosition;
 	}
 
@@ -91,7 +91,7 @@ public class CarStatusModel {
 	/**
 	 * @param fogLightEnabled the fogLightEnabled to set
 	 */
-	public void setFogLightEnabled(boolean fogLightEnabled) {
+	public synchronized void setFogLightEnabled(boolean fogLightEnabled) {
 		this.fogLightEnabled = fogLightEnabled;
 	}
 
@@ -105,7 +105,7 @@ public class CarStatusModel {
 	/**
 	 * @param lightSensorEnabled the lightSensorEnabled to set
 	 */
-	public void setLightSensorEnabled(boolean lightSensorEnabled) {
+	public synchronized void setLightSensorEnabled(boolean lightSensorEnabled) {
 		this.lightEnabled = lightSensorEnabled;
 	}
 
@@ -119,7 +119,7 @@ public class CarStatusModel {
 	/**
 	 * @param fuel the fuel to set
 	 */
-	public void setFuel(float fuel) {
+	public synchronized void setFuel(float fuel) {
 		this.fuel = fuel;
 	}
 

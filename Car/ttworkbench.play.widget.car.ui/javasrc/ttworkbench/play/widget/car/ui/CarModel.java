@@ -1,7 +1,9 @@
 package ttworkbench.play.widget.car.ui;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 
 import ttworkbench.play.widget.car.ui.model.CarStatusModel;
 import ttworkbench.play.widget.car.ui.model.GPSposition;
@@ -15,9 +17,24 @@ import ttworkbench.play.widget.car.ui.model.WarningType;
  */
 public class CarModel {
 	
-	private CarStatusModel status = new CarStatusModel();;
-	private LinkedList<WarningType> warnings = new LinkedList<WarningType>();
+	private CarStatusModel status = new CarStatusModel();
+	
+	private PriorityQueue<WarningType> warnings = new PriorityQueue<WarningType>(11,new Comparator<WarningType>() {
+		
+		/**
+		 * Sorts warnings for their priority
+		 * @param o1
+		 * @param o2
+		 * @return
+		 */
+		@Override
+		public int compare(WarningType o1, WarningType o2) {
+			return Long.compare(o1.getPriority(),o2.getPriority());
+		}
+	});
+	
 	private LinkedList<ICarModelListener> listeners = new LinkedList<ICarModelListener>();
+	
 	
 
 	/**
@@ -32,8 +49,16 @@ public class CarModel {
 	 * Adds Warning to Warninglist
 	 * @param warning
 	 */
-	public void addWarning(WarningType warning){
+	public synchronized void addWarning(WarningType warning){
 		warnings.add(warning);
+	}
+	
+	/**
+	 * Returns warning with highest priority
+	 * @return
+	 */
+	public WarningType getWarning(){
+		return warnings.peek();
 	}
 	
 	/**
@@ -42,7 +67,7 @@ public class CarModel {
 	 * @param latitude
 	 * @param longitude
 	 */
-	public void setGPSPostion(float latitude, float longitude){
+	public synchronized void setGPSPostion(float latitude, float longitude){
 		Iterator<WarningType> iterator = warnings.iterator();
 		
 		while(iterator.hasNext()){
@@ -59,7 +84,7 @@ public class CarModel {
 	 * Add Listener, that imports ICarModelListener to List.
 	 * @param listener
 	 */
-	public void addListener(ICarModelListener listener){
+	public synchronized void addListener(ICarModelListener listener){
 		this.listeners.add(listener);
 	}
 	

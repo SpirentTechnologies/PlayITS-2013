@@ -102,7 +102,7 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 	@Override
 	public void notifyEngineStatusChange() {
-		uiController.motor(model.getStatus().isEngineStarted());
+		
 	}
 
 	@Override
@@ -121,8 +121,7 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 	@Override
 	public void notifyGpsPositionChange() {
-		// TODO Auto-generated method stub
-
+		uiController.updatePosition(model.getStatus().getGpsPosition().getLatitude(), model.getStatus().getGpsPosition().getLatitude());
 	}
 
 
@@ -137,15 +136,12 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 	@Override
 	public void notifySpeedChange() {
-		
-		uiController.carSpeed(new Double(model.getStatus().getActualSpeed()).intValue());
 
 	}
 
 	@Override
 	public void notifyWarningAdded() {
-		// TODO Auto-generated method stub
-
+		uiController.warning(model.getWarning());
 	}
 
 	@Override

@@ -44,8 +44,8 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 				warning.setGpsPosition(new GPSposition(reqWarning.getGpsPos().getLatitude(),reqWarning.getGpsPos().getLongitude()));
 				warning.setPriority(reqWarning.getPriority());
 				model.addWarning(warning);
-				model.notifyListener(NotifyAttributes.WARNING);
 			}
+			model.notifyListener(NotifyAttributes.WARNING);
 		}
 
 		//get actual Status from Model
