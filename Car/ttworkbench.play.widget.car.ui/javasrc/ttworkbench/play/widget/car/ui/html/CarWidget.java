@@ -127,7 +127,7 @@ public class CarWidget {
 		new CustomFunction(browser, "widgetExit");
 
 		browser.setUrl(new File(wwwRoot, "car.html").toURI().toString());
-		return browser;
+		return group;
 	}
 
 	//Define JS Functions
@@ -252,6 +252,9 @@ public class CarWidget {
 	}
 
 	public void disableActions() {
+		if (browser.isDisposed()) {
+			return;
+		}
 		// TODO disable HTML buttons
 		browser.setEnabled(false);
 	}
