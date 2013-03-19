@@ -41,7 +41,7 @@ module HANDLE_API {
 
   testcase TESTCASE() runs on COMPONENT system COMPONENT {
     PREAMBLE();
-    while (true) {
+    while (not widgetExit) {
        handleAction();
     }
     POSTAMBLE();
