@@ -1,6 +1,7 @@
 package com.testingtech.ttworkbench.play.simulation.car;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class GPSpositionOfCar {
 	private double directionX, directionY;
@@ -13,7 +14,7 @@ public class GPSpositionOfCar {
 	public GPSpositionOfCar(ArrayList<GPSposition> positions) {
 		this.worldDestination = positions.get(1);
 		this.oldPosition = positions.get(0);
-		for(GPSposition g : positions){
+		for (GPSposition g : positions) {
 			WarningType wt = new WarningType();
 			wt.setGpsPosition(g);
 			this.positions.add(wt);
@@ -25,7 +26,7 @@ public class GPSpositionOfCar {
 			GPSposition startPosition, ArrayList<GPSposition> positions) {
 		this.worldDestination = destinationPositions;
 		this.oldPosition = startPosition;
-		for(GPSposition g : positions){
+		for (GPSposition g : positions) {
 			WarningType wt = new WarningType();
 			wt.setGpsPosition(g);
 			this.positions.add(wt);
@@ -185,8 +186,10 @@ public class GPSpositionOfCar {
 		// validation of position
 		if (oldPosition.latitude == worldDestination.latitude
 				&& oldPosition.longitude == worldDestination.longitude) {
-			worldDestination.latitude = positions.get(positionsCounter).getGpsPosition().latitude;
-			worldDestination.longitude = positions.get(positionsCounter).getGpsPosition().longitude;
+			worldDestination.latitude = positions.get(positionsCounter)
+					.getGpsPosition().latitude;
+			worldDestination.longitude = positions.get(positionsCounter)
+					.getGpsPosition().longitude;
 			updateAngleAndDirections(oldPosition, worldDestination);
 			positionsCounter++;
 
@@ -206,21 +209,29 @@ public class GPSpositionOfCar {
 	public void setOldPosition(GPSposition oldPosition) {
 		this.oldPosition = oldPosition;
 	}
-	public GPSposition getNextWorldPosition(){
-		return positions.get(positionsCounter+1).getGpsPosition();
+
+	public GPSposition getNextWorldPosition() {
+		return positions.get(positionsCounter + 1).getGpsPosition();
 	}
 
 	public void setWarning(WarningType wt) {
-		for(int i = 0; i < positions.size()-1; i++){
+		for (int i = 0; i < positions.size() - 1; i++) {
+
+			//TODO force warnings to be set on kml positions from kml file
 			int result = positions.get(i).compareTo(wt);
-			if( result ==-1){
-				//TODO check which position value is wrong
-			}else if(result == 0){
-				//TODO same as before
-			}else if(result ==1){
-				//TODO same as before
+			if (result == -1) {				
+				if ( i == 0){
+					positions.add(0, wt);
+				}
+			} else if (result == 0) {
+				positions.get(i).setWarning(wt.getWarning());
+			} else if (result == 1) {
+				//compare with next
+				// if smaller than next position than add between them
+				if (positions.get(i+1).compareTo(wt) == (-1)){
+					positions.add(i+1, wt);
+				}
 			}
 		}
-		
 	}
 }
