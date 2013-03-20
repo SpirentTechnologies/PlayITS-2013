@@ -20,6 +20,4 @@ public class CarModel {
 		//Add the warning to every car
 		map.get((int) id).addWarning(warning);
 	}
-	//TODO if (engine && speed == 0) tell all the other cars that there is a standing car at the position 
-	
 }
