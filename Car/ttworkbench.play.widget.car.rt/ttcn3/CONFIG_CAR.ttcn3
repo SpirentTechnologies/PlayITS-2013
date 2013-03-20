@@ -13,7 +13,12 @@ module CONFIG_CAR {
         PROTO_API.ACTIONS__API_carInitType,
         PROTO_API.ACTIONS__API_widgetExit;
     }
-
+/**
+ * 
+ * @desc CarComponent combine carActionsPort and carEventsPort
+ * 
+ * @see carActionsPort, carEventsPort 
+ */
     type component CarComponent {
         var boolean widgetExit := false;
         port carActionsPort carActions;

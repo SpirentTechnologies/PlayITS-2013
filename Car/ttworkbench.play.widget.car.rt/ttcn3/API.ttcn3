@@ -57,21 +57,21 @@ module API {
     
     /**
      * @desc The message of a single warning.
-     * @member carId The Id of the car, such that many cars can be differentiated.
+     * @member carId (optional)The Id of the car, such that many cars can be differentiated.
      * @member warningName Type of a warning, see type record warning for possible members.
      * @member gpsPos Stores the location of the warning.
-     * @member priority Warnings of higher priority need to be served first.
+     * @member priority (optional) Warnings of higher priority need to be served first.
      */
     type record warningType {
         integer carId optional,
         warning warningName,
         gpsPosition gpsPos,
-        integer priority
+        integer priority optional
     }
     
     /**
      * @desc Describes the overall status of one car.
-     * @member carId The Id of the car, such that many cars can be differentiated.
+     * @member carId (Optional) The Id of the car, such that many cars can be differentiated.
      * @member engineStatus Is the engine going or not.
      * @member speed Current speed of the car.
      * @member absSensor Is the ABS sensor triggered? 
@@ -106,6 +106,7 @@ module API {
      * @member fuelFilling The fuel filling of the car.
      * @member fuelConsumption Fuel comsumption of the car in litres.
      * @member maxSpeed Maximum speed of the car. 
+     * @member trackName is the complete Path of the current track
      */
     type record carInitType {
         charstring ttcnEventsHostName optional,
@@ -129,7 +130,12 @@ module API {
         integer carId
     }
     
-
+/**
+ * 
+ * @desc widgetPort can receive	(IN)onOffEngineType, speedType, trackType, warningType, carInitType, widgetExit
+ * 					can send 	(OUT)carStatusType
+ *  
+ */
     type port widgetPort message {
         out carStatusType;
         in onOffEngineType, speedType, trackType, warningType, carInitType, widgetExit;
