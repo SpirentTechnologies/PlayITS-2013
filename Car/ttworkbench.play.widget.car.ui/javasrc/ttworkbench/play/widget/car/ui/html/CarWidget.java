@@ -166,30 +166,7 @@ public class CarWidget {
 				} catch(Exception e) {
 					//TODO: handle exception in widgetController
 				}
-			
-			/**
-			 * ABS
-			 */
-			} else if(this.getName() == "abs") {
-				boolean absOn = Boolean.parseBoolean(args[0].toString());
-				
-				if(absOn) {
-					widgetController.enableABS();
-				} else {
-					widgetController.disableABS();
-				}
-				
-			/**
-			 * ESP
-			 */
-			} else if(this.getName() == "esp") {
-				boolean espOn = Boolean.parseBoolean(args[0].toString());
-				
-				if(espOn) {
-					widgetController.enableESP();
-				} else {
-					widgetController.disableESP();
-				}
+
 				
 			/**
 			 * SPEED
@@ -198,47 +175,7 @@ public class CarWidget {
 				float speed = Float.parseFloat(args[0].toString());
 				widgetController.changeSpeed(speed);
 			
-			/**
-			 * FOG LIGHT
-			 */
-			} else if(this.getName() == "fogLight") {
-				boolean fogLightOn = Boolean.parseBoolean((args[0].toString()));
-				
-				if(fogLightOn) {
-					widgetController.enableFogLight();
-				} else {
-					widgetController.disableFogLight();
-				}
-			
-			/**
-			 * LIGHT SENSOR
-			 */
-			} else if(this.getName() == "lightSensor") {
-				boolean lightSensorOn = Boolean.parseBoolean((args[0].toString()));
-				
-				if(lightSensorOn) {
-					widgetController.enableLightSensor();
-				} else {
-					widgetController.disableLightSensor();
-				}
-			
-			/**
-			 * WARNING
-			 */
-			} else if(this.getName() == "warning") {
-				String warning = args[0].toString();
-				
-				//deer, rain, accident, snow, fog 
-				
-				if(warning == "deer") {
-					widgetController.enableLightSensor();
-				} else {
-					widgetController.disableLightSensor();
-				}
-				
-			} else {
-				System.out.println("Invalid function!");
-			}
+
 			
 			return returnValue;
 		}
@@ -247,8 +184,8 @@ public class CarWidget {
 	/**
 	 * @param widgetController
 	 */
-	public void setController(WidgetController widgetController) {
-		this.widgetController = widgetController;
+	public void setController(WidgetController widgetControl) {
+		widgetController = widgetControl;
 	}
 
 	public void disableActions() {
