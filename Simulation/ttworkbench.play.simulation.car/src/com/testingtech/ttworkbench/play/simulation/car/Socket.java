@@ -68,12 +68,18 @@ public class Socket implements Runnable {
 	}
 
 	public void sendUpdate() {
+		if (car.isCarDisposed() || rpcController.isCanceled()) {
+			return;
+		}
 		// Call the cars update methode before the widget needs new information
 		// about the car
 		car.update();
 		// parse the car into a carStatusType message and make the rpc call
 		carStatusType request = CarStatusTypeParser.parseToStatusType(car);
 
+		if (car.isCarDisposed() || rpcController.isCanceled()) {
+			return;
+		}
 		try {
 			@SuppressWarnings("unused")
 			Object myResponse = service.aPICarStatusType(rpcController, request);

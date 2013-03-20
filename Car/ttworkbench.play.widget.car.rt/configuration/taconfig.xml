@@ -39,7 +39,7 @@
         <parameter id="TCP_LOCAL_PORT">
           <value>
             <Values:integer xmlns:Values="Values.xsd" type="integer">
-              <Values:value>5003</Values:value>
+              <Values:value>0</Values:value>
             </Values:integer>
           </value>
         </parameter>
