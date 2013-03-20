@@ -1,5 +1,7 @@
 package ttworkbench.play.widget.car.ui.model;
 
+import java.io.File;
+
 public class CarStatusModel {
 	
 	private boolean engineStarted;
@@ -10,7 +12,22 @@ public class CarStatusModel {
 	private boolean lightEnabled;
 	private boolean fogLightEnabled;
 	private float fuel;
+	private float maxSpeed;
+	private float fuelConsumption;
+	
+
+
+	private File trackFile;
 		
+	
+	public float getMaxSpeed() {
+		return maxSpeed;
+	}
+
+	public void setMaxSpeed(float maxSpeed) {
+		this.maxSpeed = maxSpeed;
+	}
+	
 	/**
 	 * @return the engineStarted
 	 */
@@ -84,7 +101,7 @@ public class CarStatusModel {
 	/**
 	 * @return the fogLightEnabled
 	 */
-	public boolean isFogLightEnabled() {
+	public boolean isFogLightSensorEnabled() {
 		return fogLightEnabled;
 	}
 
@@ -121,6 +138,34 @@ public class CarStatusModel {
 	 */
 	public synchronized void setFuel(float fuel) {
 		this.fuel = fuel;
+	}
+
+	/**
+	 * @return the trackFile
+	 */
+	public File getTrackFile() {
+		return trackFile;
+	}
+
+	/**
+	 * @param trackFile the trackFile to set
+	 */
+	public void setTrackFile(File trackFile) {
+		this.trackFile = trackFile;
+	}
+
+	/**
+	 * @return the fuelConsumption
+	 */
+	public float getFuelConsumption() {
+		return fuelConsumption;
+	}
+
+	/**
+	 * @param fuelConsumption the fuelConsumption to set
+	 */
+	public void setFuelConsumption(float fuelConsumption) {
+		this.fuelConsumption = fuelConsumption;
 	}
 
 

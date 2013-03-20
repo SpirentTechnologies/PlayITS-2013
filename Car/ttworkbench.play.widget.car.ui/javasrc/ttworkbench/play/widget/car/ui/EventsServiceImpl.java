@@ -89,7 +89,7 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 		}
 		
 		if(request.getFogLightSensor()){
-			if(request.getFogLightSensor() != status.isFogLightEnabled()){
+			if(request.getFogLightSensor() != status.isFogLightSensorEnabled()){
 				status.setFogLightEnabled(request.getFogLightSensor());
 				model.notifyListener(NotifyAttributes.FOG);
 			}
