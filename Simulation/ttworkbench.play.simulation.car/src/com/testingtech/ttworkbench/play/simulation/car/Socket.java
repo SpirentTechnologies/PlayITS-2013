@@ -54,8 +54,7 @@ public class Socket implements Runnable {
 
 
 	private void cleanupEventsClient() {
-<<<<<<< master
-<<<<<<< master
+
 	    if (service != null) {
 	      try {
 	        if (connectionFactory instanceof Closeable) {
@@ -69,11 +68,7 @@ public class Socket implements Runnable {
 	        // ignore exception
 	      }
 	    }
-=======
-=======
->>>>>>> 934a17d updated files
-		rpcController.startCancel();
->>>>>>> 934a17d updated files
+
 	}
 
 	// Client connection to the server "API"
