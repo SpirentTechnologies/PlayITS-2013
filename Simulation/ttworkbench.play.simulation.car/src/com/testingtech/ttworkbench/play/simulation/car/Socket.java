@@ -55,6 +55,7 @@ public class Socket implements Runnable {
 
 	private void cleanupEventsClient() {
 <<<<<<< master
+<<<<<<< master
 	    if (service != null) {
 	      try {
 	        if (connectionFactory instanceof Closeable) {
@@ -69,6 +70,8 @@ public class Socket implements Runnable {
 	      }
 	    }
 =======
+=======
+>>>>>>> 934a17d updated files
 		rpcController.startCancel();
 >>>>>>> 934a17d updated files
 	}
