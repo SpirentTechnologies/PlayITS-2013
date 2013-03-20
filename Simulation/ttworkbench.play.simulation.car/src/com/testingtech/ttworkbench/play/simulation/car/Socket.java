@@ -4,7 +4,6 @@ import java.io.Closeable;
 
 import com.google.protobuf.BlockingRpcChannel;
 import com.google.protobuf.RpcController;
-import com.google.protobuf.ServiceException;
 import com.googlecode.protobuf.socketrpc.PersistentRpcConnectionFactory;
 import com.googlecode.protobuf.socketrpc.RpcChannels;
 import com.googlecode.protobuf.socketrpc.RpcConnectionFactory;
@@ -99,16 +98,16 @@ public class Socket implements Runnable {
 		try {
 			@SuppressWarnings("unused")
 			Object myResponse = service.aPICarStatusType(rpcController, request);
-		} catch (ServiceException e) {
+
+			// Check success
+			if (rpcController.failed()) {
+				System.err.println(String.format("Rpc failed %s",
+						rpcController.errorText()));
+			}
+		} catch (Throwable e) {
 			System.out.println("some error with sending the parsed package the car");
 			car.disposeCar();
 			cleanupEventsClient();
-		}
-
-		// Check success
-		if (rpcController.failed()) {
-			System.err.println(String.format("Rpc failed %s",
-					rpcController.errorText()));
 		}
 
 	}
