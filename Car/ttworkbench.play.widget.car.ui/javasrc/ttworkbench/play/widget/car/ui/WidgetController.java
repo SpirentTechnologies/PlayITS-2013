@@ -20,7 +20,6 @@ public class WidgetController {
 
 	private final ICommunication comm;
 	private boolean initialized;
-	private File trackFile;
 
 	public WidgetController(ICommunication comm) {
 		this.comm = comm;
@@ -93,7 +92,7 @@ public class WidgetController {
 	}
 
 	public void setTrack(File trackFile){
-		this.trackFile = trackFile;
+		comm.getCarModel().getStatus().setTrackFile(trackFile);
 
 		boolean sendTrack = !initialized;
 			
@@ -105,7 +104,7 @@ public class WidgetController {
 
 		try {
 			trackType.Builder request = trackType.newBuilder();
-			request.setTrackName(trackFile.getAbsolutePath());
+			request.setTrackName(comm.getCarModel().getStatus().getTrackFile().getAbsolutePath());
 
 			client().getActionsService().aPITrackType(client().getController(), request.build());
 
@@ -115,20 +114,32 @@ public class WidgetController {
 		}
 	}
 	
-	private synchronized void initCar() {
+	public void initializeCar(boolean abs,boolean esp,boolean light,
+			boolean fogLight,float maxSpeed,
+			float fuel,float fuelConsumption,File trackFile){
+		comm.getCarModel().getStatus().setABSenabled(abs);
+		comm.getCarModel().getStatus().setESPenabled(esp);
+		comm.getCarModel().getStatus().setLightSensorEnabled(light);
+		comm.getCarModel().getStatus().setFogLightEnabled(fogLight);
+		comm.getCarModel().getStatus().setTrackFile(trackFile);
+		comm.getCarModel().getStatus().setMaxSpeed(maxSpeed);
+		comm.getCarModel().getStatus().setFuelConsumption(fuelConsumption);		
+	}
+	
+	private void initCar() {
 		if (initialized) {
 			return;
 		}
 		try {
 			carInitType.Builder request = carInitType.newBuilder();
-			request.setEspSensorExists(false);
-			request.setAbsSensorExists(true);
-			request.setLightSensorExists(false);
-			request.setFogLightSensorExists(true);
-			request.setFuelFilling(25);
-			request.setFuelConsumption(5);
-			request.setMaxSpeed(210.9f);
-			request.setTrackName(trackFile.getAbsolutePath());
+			request.setEspSensorExists(comm.getCarModel().getStatus().isESPenabled());
+			request.setAbsSensorExists(comm.getCarModel().getStatus().isABSenabled());
+			request.setLightSensorExists(comm.getCarModel().getStatus().isLightSensorEnabled());
+			request.setFogLightSensorExists(comm.getCarModel().getStatus().isFogLightSensorEnabled());
+			request.setFuelFilling(comm.getCarModel().getStatus().getFuel());
+			request.setFuelConsumption(comm.getCarModel().getStatus().getFuelConsumption());
+			request.setMaxSpeed(comm.getCarModel().getStatus().getMaxSpeed());
+			request.setTrackName(comm.getCarModel().getStatus().getTrackFile().getAbsolutePath());
 
 			client().getActionsService().aPICarInitType(client().getController(), request.build());
 			
