@@ -2,7 +2,7 @@
     /*-----------------------------Start: switch button/ checkbox ----------------------------*/
     .onoffswitch {
       position: relative;
-      margin: 5px 0 20px 120px;
+      margin: 5px 0 20px 0;
       width: 89px;
       -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
     }
@@ -31,7 +31,7 @@
     .onoffswitch-inner:before {
       content: "ON";
       padding-left: 12px;
-      background-color: #EEEEEE; color: #66CC66;
+      background-color: #EEEEEE; color: #2ECC71;
     }
 
     .onoffswitch-inner:after {
@@ -56,8 +56,22 @@
 
     .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
       right: 0px; 
-      background-color: #66CC66; 
+      background-color: #2ECC71; 
     }
+    
+    input[type='text'] {
+        width: 80px;
+        padding: 5px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 15px;
+        font-weight: bold;
+        text-align: center;
+    }
+    
+    #track {
+        margin-bottom: 20px;
+    }
+    
     /*----------------------------- End: switch button/checkbox ----------------------------*/
     
     /*-----------------------------  START: Speed Slider ----------------------------------- */

@@ -23,6 +23,9 @@
       #map_canvas > div > div:nth-child(3n) {
           visibility: hidden;
       }
+      #speedometer {
+          display: none;
+      }
       #speedContainer {
           width: 100px;
           height: 100px;
@@ -31,9 +34,36 @@
       #speedSlider {
           margin: 10px 0 10px 100px;
       }
-      #leftContainer {
+      #menuContainer {
           width: 330px;
       }
+      #leftContainer {
+          float: left;
+          width: 135px;
+          padding-left: 30px;
+      }
+      #rightContainer {
+          float: left;
+          width: 135px;
+          padding-left: 30px;
+      }
+      
+      #initialize {
+          background: #2ECC71;
+          color: #fff;
+          padding: 8px 14px;
+          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+          font-size: 13px;
+          text-align: center;
+          border: 0;
+          cursor: pointer;
+          border-radius: 50px;
+      }
+      
+      #initialize:hover {
+          background: #55d98d;
+      }
+      
       .center_text {
           text-align: center;
       }
@@ -43,10 +73,7 @@
     </style>
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="jquery.knob.js"></script>
-    
-    <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?sensor=false">
-    </script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
     
     <script type="text/javascript">
     var map, marker;
@@ -72,30 +99,70 @@
             map: map
         });
         
-        $("#speed").knob({
-            inputColor: '#66CC66',
-            fgColor: '#66CC66',
-            angleOffset: -125,
-            angleArc: 250,
-            width: 100,
-            change: function(v) {
-              $('#speedSlider').val(v);
-              speed(v);
-            }
-        });
+        function initSpeed(maxSpeed) {
+            console.log(maxSpeed);
+            
+            $('#speedSlider').attr('max', maxSpeed);
+            
+            $("#speed").knob({
+                inputColor: '#2ECC71',
+                fgColor: '#2ECC71',
+                angleOffset: -125,
+                angleArc: 250,
+                width: 100,
+                height: 100,
+                max: maxSpeed,
+                change: function(v) {
+                  $('#speedSlider').val(v);
+                  //speed(v);
+                }
+            });
+        }
         
         $('#speedSlider').on('change', function() {
             $('#speed').val( $(this).val() );
             $('#speed').trigger('change');
-            speed( $(this).val() );
+            //speed( $(this).val() );
         });
         
-        $('#motor').on('click', function(){
+        $('#motor').on('click', function() {
 			motor( $(this).is(':checked') );
 		});
-
-		$('#fogLights').on('click', function(){
-			fogLights( $(this).is(':checked') );
+		
+		$('#initialize').on('click', function() {
+		    var abs, esp, light, fogLight, maxSpeed, fuel, fuelConsumption;
+		    
+		    abs = $('#abs').val();
+		    esp = $('#esp').val();
+		    light = $('#light').val();
+		    fogLight = $('#fogLight').val();
+		    maxSpeed = parseInt($('#maxSpeed').val());
+		    fuel = parseFloat($('#fuel').val());
+		    fuelConsumption = parseFloat($('#fuelConsumption').val());
+		    track = parseInt($('#track').val());
+		    
+		    if(!maxSpeed) {
+		        maxSpeed = 200;
+		    }
+		    
+		    if(!fuel) {
+		        fuel = 50;
+		    }
+		    
+		    if(!fuelConsumption) {
+		        fuelConsumption = 1.2;
+		    }
+		    
+		    if(track === 0) {
+		        alert("Select a track");
+		        return;
+		    }
+		    //initialize(abs, esp, light, fogLight, maxSpeed, fuel, fuelConsumption, track);		    
+		    initSpeed(maxSpeed);
+		    
+		    $('.configuration').fadeOut(function() {
+		        $('#speedometer').fadeIn();
+		    }); 
 		});
     });
     
@@ -109,30 +176,86 @@
     </script>
   </head>
   <body>
-    <div id="leftContainer">
-        <div id="speedContainer">
-          <input type="text" value="40" id="speed">
-        </div>
-        <div class="center_text">SPEED</div>
-        <input type="range" min="0" max="100" step="1" id="speedSlider" value="40" />
-
-        <div class="center_text margin_top_20">MOTOR</div>
-        <div class="onoffswitch">
-          <input type="checkbox" name="motor" class="onoffswitch-checkbox" id="motor">
-          <label class="onoffswitch-label" for="motor">
-              <div class="onoffswitch-inner"></div>
-              <div class="onoffswitch-switch"></div>
-          </label>
+    <div id="menuContainer">
+        <div id="speedometer">
+            <div id="speedContainer">
+              <input type="text" value="0" id="speed">
+            </div>
+            <div class="center_text">SPEED</div>
+            <input type="range" min="0" max="100" step="1" id="speedSlider" class="center_text" value="0" />
         </div>
         
-        <div class="center_text margin_top_20">FOG LIGHTS</div>
-        <div class="onoffswitch">
-          <input type="checkbox" name="fogLights" class="onoffswitch-checkbox" id="fogLights">
-          <label class="onoffswitch-label" for="fogLights">
-              <div class="onoffswitch-inner"></div>
-              <div class="onoffswitch-switch"></div>
-          </label>
+        <div class="configuration center_text">
+            <h1>CREATE A CAR</h1>
+            
+            <div class="center_text margin_top_20">MAX SPEED</div>
+            <input type="text" name="maxSpeed" id="maxSpeed" value="200">
         </div>
+        
+        <div id="leftContainer">
+            
+            <div class="configuration">
+                <div class=" margin_top_20">FUEL</div>
+                <input type="text" name="fuelFilling" id="fuelFilling" value="50">
+            
+                <div class=" margin_top_20">ABS</div>
+                <div class="onoffswitch">
+                  <input type="checkbox" name="abs" class="onoffswitch-checkbox" id="abs">
+                  <label class="onoffswitch-label" for="abs">
+                      <div class="onoffswitch-inner"></div>
+                      <div class="onoffswitch-switch"></div>
+                  </label>
+                </div>
+            
+                <div class=" margin_top_20">LIGHT</div>
+                <div class="onoffswitch">
+                  <input type="checkbox" name="light" class="onoffswitch-checkbox" id="light">
+                  <label class="onoffswitch-label" for="light">
+                      <div class="onoffswitch-inner"></div>
+                      <div class="onoffswitch-switch"></div>
+                  </label>
+                </div>
+            </div>
+        </div>
+        
+        <div id="rightContainer">
+            <div class="configuration">
+                <div class=" margin_top_20">FUEL CONS.</div>
+                <input type="text" name="fuelConsumption" id="fuelConsumption" value="1.2">
+            
+                <div class="margin_top_20">ESP</div>
+                <div class="onoffswitch">
+                  <input type="checkbox" name="esp" class="onoffswitch-checkbox center_text" id="esp">
+                  <label class="onoffswitch-label" for="esp">
+                      <div class="onoffswitch-inner"></div>
+                      <div class="onoffswitch-switch"></div>
+                  </label>
+                </div>
+            
+                <div class="margin_top_20">FOG LIGHT</div>
+                <div class="onoffswitch">
+                  <input type="checkbox" name="fogLight" class="onoffswitch-checkbox center_text" id="fogLight">
+                  <label class="onoffswitch-label" for="fogLight">
+                      <div class="onoffswitch-inner"></div>
+                      <div class="onoffswitch-switch"></div>
+                  </label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="configuration center_text">
+            <select name="track" id="track">
+                <option value="0">Select track</option>
+                <option value="1">Track 1</option>
+                <option value="2">Track 2</option>
+                <option value="3">Track 3</option>
+             </select>
+        </div>
+        
+        <div class="configuration center_text">
+             <input type="button" id="initialize" value="INITIALIZE" />
+        </div>
+        
     </div>
     
     <div id="map_canvas" style="width:534px; height:534px;"></div>
