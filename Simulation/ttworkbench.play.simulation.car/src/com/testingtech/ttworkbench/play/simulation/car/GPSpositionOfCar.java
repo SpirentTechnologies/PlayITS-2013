@@ -3,6 +3,8 @@ package com.testingtech.ttworkbench.play.simulation.car;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import org.apache.tools.ant.taskdefs.War;
+
 public class GPSpositionOfCar {
 	private double directionX, directionY;
 	private GPSposition worldDestination;
@@ -10,6 +12,7 @@ public class GPSpositionOfCar {
 	private double angle;
 	private ArrayList<WarningType> positions;
 	private int positionsCounter = 2;
+	private WarningType nextWarning;
 
 	public GPSpositionOfCar(ArrayList<GPSposition> positions) {
 		this.worldDestination = positions.get(1);
@@ -186,15 +189,21 @@ public class GPSpositionOfCar {
 		// validation of position
 		if (oldPosition.latitude == worldDestination.latitude
 				&& oldPosition.longitude == worldDestination.longitude) {
+			
 			worldDestination.latitude = positions.get(positionsCounter)
 					.getGpsPosition().latitude;
+			
 			worldDestination.longitude = positions.get(positionsCounter)
 					.getGpsPosition().longitude;
+			
 			updateAngleAndDirections(oldPosition, worldDestination);
 			positionsCounter++;
-
+			for(WarningType gps : positions){
+				if(gps.getGpsPosition().equals(worldDestination)){
+					nextWarning = gps;
+				}
+			}
 		}
-
 		return new Tupel<GPSposition, Double>(first, second);
 	}
 
@@ -215,23 +224,14 @@ public class GPSpositionOfCar {
 	}
 
 	public void setWarning(WarningType wt) {
-		for (int i = 0; i < positions.size() - 1; i++) {
-
-			//TODO force warnings to be set on kml positions from kml file
-			int result = positions.get(i).compareTo(wt);
-			if (result == -1) {				
-				if ( i == 0){
-					positions.add(0, wt);
-				}
-			} else if (result == 0) {
-				positions.get(i).setWarning(wt.getWarning());
-			} else if (result == 1) {
-				//compare with next
-				// if smaller than next position than add between them
-				if (positions.get(i+1).compareTo(wt) == (-1)){
-					positions.add(i+1, wt);
-				}
+		for (int i = 0; i < positions.size()-1; i++) {
+			if (positions.get(i).getGpsPosition().latitude == wt.getGpsPosition().latitude && positions.get(i).getGpsPosition().longitude == wt.getGpsPosition().longitude){
+				positions.set(i, wt);
 			}
 		}
+	}
+
+	public WarningType getNextWarning() {
+		return nextWarning;
 	}
 }

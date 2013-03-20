@@ -32,12 +32,11 @@ public class KMLparser {
 
 	private static String getExtension(String fileName) {
 		String extension = "";
-		/*
-		 * FIXME We are only assuming basic Windows file and folder structure
-		 * with nothing like "foo.tar.gz" or "/home/.foo/bar"
-		 */
+
 		int i = fileName.lastIndexOf('.');
-		if (i > 0) {
+		int p = Math.max(fileName.lastIndexOf('/'), fileName.lastIndexOf('\\'));
+
+		if (i > p) {
 			extension = fileName.substring(i + 1);
 		}
 		return extension;
@@ -63,7 +62,8 @@ public class KMLparser {
 	// "coordinates" and
 	// adds them only, if the KML file might be not in correct format this will
 	// not work
-	private static ArrayList<GPSposition> parseKML(File file) throws NumberFormatException, IOException {
+	private static ArrayList<GPSposition> parseKML(File file)
+			throws NumberFormatException, IOException {
 		ArrayList<GPSposition> positions = new ArrayList<GPSposition>();
 		StringBuilder contents = new StringBuilder();
 		BufferedReader reader = null;

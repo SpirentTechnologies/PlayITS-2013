@@ -26,12 +26,12 @@ public class CarStatusTypeParser {
 		cst.setLightSensor(car.sensors.light);
 		cst.setSpeed((float)car.speed);
 		// TODO add eventual warnings
-//		com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.Builder warningBuilder = warningType.newBuilder();
-//		com.testingtech.ttworkbench.play.generated.PROTO_API.warning.Builder warn = warning.newBuilder();
-//		EnumValue ev = EnumValue.valueOf(car.getWarning().toString());
-//		warn.setEnumValue(ev);
-//		warningBuilder.setWarningName(warn.build());
-//		cst.addWarning(warningBuilder.build());
-		return cst.build();
+	/*	com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.Builder warningBuilder = warningType.newBuilder();
+		com.testingtech.ttworkbench.play.generated.PROTO_API.warning.Builder warn = warning.newBuilder();
+		EnumValue ev = EnumValue.valueOf(car.getWarning().toString());
+		warn.setEnumValue(ev);
+		warningBuilder.setWarningName(warn.build());
+		cst.addWarning(warningBuilder.build());
+	*/	return cst.build();
 	}
 }

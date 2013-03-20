@@ -3,6 +3,8 @@ package com.testingtech.ttworkbench.play.simulation.car;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+import org.apache.tools.ant.taskdefs.War;
+
 public class Car implements CarInterface {
 	static int carID;
 	final int customID;
@@ -17,6 +19,7 @@ public class Car implements CarInterface {
 	// if this boolean is set the car will be removed from the simulation
 	private boolean carDisposed = false;
 	private String trackName;
+	private double oldSpeed;
 
 	public Car(double speed, double maxSpeed, double tirePressure,
 			double tankFill, double petrolUsage, boolean lightExists,
@@ -140,7 +143,7 @@ public class Car implements CarInterface {
 
 		// check warnings[], Sensors, damage,
 		Tupel<GPSposition, Double> gpsPositionOfCarUpdate;
-		Tupel<Warnings, GPSposition> nextWarning;
+		WarningType currentCommingWarning;
 
 		// ---------- Update Process starts here-------------//
 		// update with speed and everything only if the engine is turned on and
@@ -156,9 +159,9 @@ public class Car implements CarInterface {
 
 			// update the current gpsPosition
 			currentPosition = gpsPositionOfCarUpdate.first;
-			// TODO add queue with all warnings in it to GPSpositionOfCar for
+			// TODO check whether next world position has a warning
 			// this functionality only
-			nextWarning = warning.peek();
+			currentCommingWarning = position.getNextWarning();
 		} else {
 			// get the new tankfill level, if engine off then the car cannot
 			// drive
@@ -170,17 +173,46 @@ public class Car implements CarInterface {
 
 			// update the current gpsPosition
 			currentPosition = gpsPositionOfCarUpdate.first;
-			nextWarning = warning.peek();
+			currentCommingWarning = position.getNextWarning();
 		}
 
-		if (nextWarning != null
-				&& currentPosition.latitude == nextWarning.second.latitude
-				&& currentPosition.longitude == nextWarning.second.longitude) {
-			// remove warning because it will be handled now
-			warning.poll();
-
+		if (currentCommingWarning != null
+				&& currentPosition.latitude == currentCommingWarning
+						.getGpsPosition().latitude
+				&& currentPosition.longitude == currentCommingWarning
+						.getGpsPosition().longitude) {
 			// TODO check warning and enable counter meassures
+			if (currentCommingWarning.equals(Warnings.ACCIDENT)
+					|| currentCommingWarning.equals(Warnings.DEER)) {
+				doBreak();
+			} else if (currentCommingWarning.equals(Warnings.FOG)) {
+				turnFogLampOn();
+			} else if (currentCommingWarning.equals(Warnings.ICE)) {
+		//		if (oldSpeed ) {
+					doSlowDown(80);
+		//		}
+			} else if (currentCommingWarning.equals(Warnings.RAIN)) {
+				doSlowDown(10);
+			} else if (currentCommingWarning.equals(Warnings.SNOW)) {
+				doSlowDown(20);
+			}
+		} else {
+
 		}
+	}
+
+	private void doSlowDown(int i) {
+		this.oldSpeed = speed;
+		this.speed *= (i / 100);
+	}
+
+	private void turnFogLampOn() {
+		this.sensors.fogLight = true;
+	}
+
+	private void doBreak() {
+		this.oldSpeed = speed;
+		this.speed = 0;
 	}
 
 	public void addWarning(WarningType wt) {
