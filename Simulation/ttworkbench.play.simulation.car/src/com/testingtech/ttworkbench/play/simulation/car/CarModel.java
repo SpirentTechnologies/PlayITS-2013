@@ -18,7 +18,7 @@ public class CarModel {
 	public void addWarning(WarningType warning, long id) {
 		// Add the warning to every car
 		for (Car c : map.values()) {
-			c.addWarning(warning);
+			c.addWar3ning(warning);
 		}
 	}
 }

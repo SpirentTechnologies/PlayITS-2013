@@ -217,10 +217,9 @@ public class Car implements CarInterface {
 		this.speed = 0;
 	}
 
-	/**public void addWarning(WarningType wt) {
-		for(GPSposition c : position)
+	public void addWarning(WarningType wt) {
 		this.position.setWarning(wt);
-	}**/
+	}
 
 	public boolean isCarDisposed() {
 		return carDisposed;
