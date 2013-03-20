@@ -185,5 +185,10 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 	      newModuleParameter("Parameters.ACTIONS_CAR_TCP_PORT", simulationPort)
 	      );
 	}
+
+	@Override
+	public CarModel getCarModel() {
+		return model;
+	}
 	
 }
