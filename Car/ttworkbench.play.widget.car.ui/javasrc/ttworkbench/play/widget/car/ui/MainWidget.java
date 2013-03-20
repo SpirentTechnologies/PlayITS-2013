@@ -117,7 +117,10 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 	@Override
 	public void notifyGpsPositionChange() {
-		uiController.updatePosition(model.getStatus().getGpsPosition().getLatitude(), model.getStatus().getGpsPosition().getLatitude());
+		if (uiController != null) {
+			// dropped update if no GUI initialized yet
+			uiController.updatePosition(model.getStatus().getGpsPosition().getLatitude(), model.getStatus().getGpsPosition().getLatitude());
+		}
 	}
 
 
