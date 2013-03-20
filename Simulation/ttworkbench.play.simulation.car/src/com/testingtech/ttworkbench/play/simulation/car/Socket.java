@@ -44,7 +44,7 @@ public class Socket implements Runnable {
 		while(!car.isCarDisposed()){
 			sendUpdate();
 			try {
-				Thread.sleep(10000);
+				Thread.sleep(500);
 			} catch (InterruptedException e) {
 				break;
 			}

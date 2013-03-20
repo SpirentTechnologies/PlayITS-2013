@@ -88,17 +88,6 @@ public class Car implements CarInterface {
 		return sensors.esp;
 	}
 
-	@Override
-	public boolean toggleWarningSender() {
-		// TODO toggleWaningSender
-		return false;
-	}
-
-	@Override
-	public boolean toggleWarningReceiver() {
-		// TODO toggleWarningReceiver
-		return false;
-	}
 
 	@Override
 	public boolean toggleLightSensor() {
@@ -242,7 +231,6 @@ public class Car implements CarInterface {
 
 	public void setTrack(String trackName) {
 		this.trackName = trackName;
-		//TODO use Trackname to parse it into the car, i.e. change the current map
 	}
 
 	public String getTrackName() {
