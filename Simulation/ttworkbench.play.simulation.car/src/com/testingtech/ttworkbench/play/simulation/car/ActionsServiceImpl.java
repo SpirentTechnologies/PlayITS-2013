@@ -46,6 +46,7 @@ public class ActionsServiceImpl implements BlockingInterface {
 	public Void aPITrackType(RpcController controller, trackType request)
 			throws ServiceException {
 		// TODO set car track depending on name of the track/map
+		// 		-> just init the car again
 		long id = request.getCarId();
 		Car car = getCar(id);
 		car.setTrack(request.getTrackName());

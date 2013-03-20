@@ -1,6 +1,13 @@
 package ttworkbench.play.widget.car.ui.model;
 
+
 import java.io.File;
+
+
+/**
+ * @author Björn, Andre
+ *
+ */
 
 public class CarStatusModel {
 	
@@ -29,55 +36,55 @@ public class CarStatusModel {
 	}
 	
 	/**
-	 * @return the engineStarted
+	 * @return engineStarted its value
 	 */
 	public boolean isEngineStarted() {
 		return engineStarted;
 	}
 	
 	/**
-	 * @param engineStarted the engineStarted to set
+	 * @param engineStarted value to be set
 	 */
 	public synchronized void setEngineStarted(boolean engineStarted) {
 		this.engineStarted = engineStarted;
 	}
 	/**
-	 * @return the aBSenabled
+	 * @return aBSenabled its value
 	 */
 	public boolean isABSenabled() {
 		return aBSenabled;
 	}
 	
 	/**
-	 * @param aBSenabled the aBSenabled to set
+	 * @param aBSenabled value to be set
 	 */
 	public synchronized void setABSenabled(boolean aBSenabled) {
 		this.aBSenabled = aBSenabled;
 	}
 	
 	/**
-	 * @return the eSPenabled
+	 * @return eSPenabled its value
 	 */
 	public boolean isESPenabled() {
 		return eSPenabled;
 	}
 	
 	/**
-	 * @param eSPenabled the eSPenabled to set
+	 * @param eSPenabled value to be set
 	 */
 	public synchronized void setESPenabled(boolean eSPenabled) {
 		this.eSPenabled = eSPenabled;
 	}
 
 	/**
-	 * @return the actualSpeed
+	 * @return actualSpeed its value
 	 */
 	public double getActualSpeed() {
 		return speed;
 	}
 
 	/**
-	 * @param actualSpeed the actualSpeed to set
+	 * @param actualSpeed value to be set
 	 */
 	public synchronized void setActualSpeed(float actualSpeed) {
 		this.speed = actualSpeed;
@@ -85,56 +92,56 @@ public class CarStatusModel {
 
 
 	/**
-	 * @return the gpsPosition
+	 * @return gpsPosition its value
 	 */
 	public GPSposition getGpsPosition() {
 		return gpsPosition;
 	}
 
 	/**
-	 * @param gpsPosition the gpsPosition to set
+	 * @param gpsPosition value to be set
 	 */
 	public synchronized void setGpsPosition(GPSposition gpsPosition) {
 		this.gpsPosition = gpsPosition;
 	}
 
 	/**
-	 * @return the fogLightEnabled
+	 * @return fogLightEnabled its value
 	 */
 	public boolean isFogLightSensorEnabled() {
 		return fogLightEnabled;
 	}
 
 	/**
-	 * @param fogLightEnabled the fogLightEnabled to set
+	 * @param fogLightEnabled value to be set
 	 */
 	public synchronized void setFogLightEnabled(boolean fogLightEnabled) {
 		this.fogLightEnabled = fogLightEnabled;
 	}
 
 	/**
-	 * @return the lightSensorEnabled
+	 * @return lightSensorEnabled its value
 	 */
 	public boolean isLightSensorEnabled() {
 		return lightEnabled;
 	}
 
 	/**
-	 * @param lightSensorEnabled the lightSensorEnabled to set
+	 * @param lightSensorEnabled value to be set
 	 */
 	public synchronized void setLightSensorEnabled(boolean lightSensorEnabled) {
 		this.lightEnabled = lightSensorEnabled;
 	}
 
 	/**
-	 * @return the fuel
+	 * @return fuel its value
 	 */
 	public float getFuel() {
 		return fuel;
 	}
 
 	/**
-	 * @param fuel the fuel to set
+	 * @param fuel value to be set
 	 */
 	public synchronized void setFuel(float fuel) {
 		this.fuel = fuel;
@@ -168,7 +175,5 @@ public class CarStatusModel {
 		this.fuelConsumption = fuelConsumption;
 	}
 
-
-	
-	
 }
+

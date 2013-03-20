@@ -25,7 +25,7 @@ public class CarModel {
 		 * Sorts warnings for their priority
 		 * @param o1
 		 * @param o2
-		 * @return
+		 * @return Difference of both the priorities: o1-o2
 		 */
 		@Override
 		public int compare(WarningType o1, WarningType o2) {
@@ -46,7 +46,7 @@ public class CarModel {
 	}
 	
 	/**
-	 * Adds Warning to Warninglist
+	 * Adds warning to warninglist
 	 * @param warning
 	 */
 	public synchronized void addWarning(WarningType warning){
@@ -98,7 +98,7 @@ public class CarModel {
 	
 	/**
 	 * Notifies every Listener in List.
-	 * @param attr
+	 * @param attr Enumeration of NotifyAttributes
 	 */
 	public void notifyListener(NotifyAttributes attr){
 		for(ICarModelListener listener: listeners){
@@ -113,9 +113,7 @@ public class CarModel {
 			case LIGHT: listener.notifyLightChange(); break;
 			case FUEL: listener.notifyFillingStatusChange(); break;			
 			default:;
-			}
-			
+			}			
 		}
-	}
-	
+	}	
 }

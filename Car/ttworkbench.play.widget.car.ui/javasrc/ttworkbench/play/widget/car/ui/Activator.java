@@ -44,7 +44,9 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator extends AbstractUIPlugin {
 
-	// The plug-in ID
+	/**
+	 * The plug-in ID
+	 */
 	public static final String PLUGIN_ID = "com.testingtech.ttworkbench.play.widget.car.ui"; //$NON-NLS-1$
 
 	// The shared instance
@@ -77,10 +79,9 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * Returns the shared instance
 	 *
-	 * @return the shared instance
+	 * @return plugin the shared instance
 	 */
 	public static Activator getDefault() {
 		return plugin;
 	}
-
 }
