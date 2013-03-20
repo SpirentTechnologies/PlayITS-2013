@@ -57,7 +57,7 @@ public class WidgetController {
 	 * @param client from com.testingtech.ttworkbench.play.dashboard.widget.AbstractDashboardWidget.getActionsClient()
 	 * @throws IOException
 	 */
-	public void stopEngine() throws IOException{	
+	public void stopEngine(){	
 		initCar();
 
 		try {

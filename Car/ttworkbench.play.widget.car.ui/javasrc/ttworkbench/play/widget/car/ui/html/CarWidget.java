@@ -156,26 +156,15 @@ public class CarWidget {
 
 				boolean motorOn = Boolean.parseBoolean(args[0].toString());
 				
-				try {
 					if(motorOn) {
 						widgetController.setTrack(new File(wwwRoot, "../maps/RoutenachArnimallee.txt"));
 						widgetController.startEngine();
 					} else {
 						widgetController.stopEngine();
 					}
-				} catch(Exception e) {
-					//TODO: handle exception in widgetController
-				}
 
-				
-			/**
-			 * SPEED
-			 */
-			} else if(this.getName() == "speed") {
-				float speed = Float.parseFloat(args[0].toString());
-				widgetController.changeSpeed(speed);
-			
 
+			}
 			
 			return returnValue;
 		}
@@ -184,8 +173,8 @@ public class CarWidget {
 	/**
 	 * @param widgetController
 	 */
-	public void setController(WidgetController widgetControl) {
-		widgetController = widgetControl;
+	public void setController(WidgetController widgetController) {
+		this.widgetController = widgetController;
 	}
 
 	public void disableActions() {
