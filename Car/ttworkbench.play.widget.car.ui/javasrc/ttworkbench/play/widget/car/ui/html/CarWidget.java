@@ -127,6 +127,24 @@ public class CarWidget {
 		new CustomFunction(browser, "lightSensor");
 		new CustomFunction(browser, "warning");
 		new CustomFunction(browser, "widgetExit");
+		
+		new CustomFunction(browser, "initialize") {
+			@Override
+			public Object function(Object[] args) {
+
+				widgetController.initializeCar(parseOnOff((String) args[0]), 
+						parseOnOff((String) args[1]), 
+						parseOnOff((String) args[2]), 
+						parseOnOff((String) args[3]), 
+						((Double)args[4]).floatValue(), 
+						((Double)args[5]).floatValue(), 
+						((Double)args[6]).floatValue(), 
+						new File(wwwRoot, "../maps/RoutenachArnimallee.txt"));
+				
+				return null;
+			}
+		};
+		
 
 		browser.setUrl(new File(wwwRoot, "car.html").toURI().toString());
 		return group;
@@ -156,7 +174,7 @@ public class CarWidget {
 			 */
 			if(this.getName() == "motor") {
 
-				boolean motorOn = Boolean.parseBoolean(args[0].toString());
+				boolean motorOn = parseOnOff(args[0].toString());
 				
 					if(motorOn) {
 						widgetController.setTrack(new File(wwwRoot, "../maps/RoutenachArnimallee.txt"));
@@ -177,6 +195,10 @@ public class CarWidget {
 	 */
 	public void setController(WidgetController widgetController) {
 		this.widgetController = widgetController;
+	}
+
+	public boolean parseOnOff(String string) {
+		return string.equals("on");
 	}
 
 	public void disableActions() {
