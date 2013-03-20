@@ -22,13 +22,16 @@ public class WidgetController {
 	private boolean initialized;
 	private File trackFile;
 
+	/**
+	 * The constructor
+	 * @param comm Communication to be built up
+	 */
 	public WidgetController(ICommunication comm) {
 		this.comm = comm;
 	}
 
 	/**
-	 * 
-	 * @param client from com.testingtech.ttworkbench.play.dashboard.widget.AbstractDashboardWidget.getActionsClient()
+	 * Sets engine status to started
 	 * @throws IOException
 	 */
 	public void startEngine(){	
@@ -53,8 +56,7 @@ public class WidgetController {
 	}
 
 	/**
-	 * 
-	 * @param client from com.testingtech.ttworkbench.play.dashboard.widget.AbstractDashboardWidget.getActionsClient()
+	 * Sets engine status to stopped
 	 * @throws IOException
 	 */
 	public void stopEngine(){	
@@ -74,8 +76,7 @@ public class WidgetController {
 
 
 	/**
-	 * 
-	 * @param client
+	 * Changes speed status
 	 * @param speed
 	 */
 	public void changeSpeed(float speed){
@@ -92,6 +93,10 @@ public class WidgetController {
 		}
 	}
 
+	/**
+	 * Sets the track file
+	 * @param trackFile
+	 */
 	public void setTrack(File trackFile){
 		this.trackFile = trackFile;
 
@@ -141,8 +146,7 @@ public class WidgetController {
 	}
 
 	/**
-	 * 
-	 * @param client
+	 * Exits the widget
 	 */
 	public void exitWidget(){
 		initCar();

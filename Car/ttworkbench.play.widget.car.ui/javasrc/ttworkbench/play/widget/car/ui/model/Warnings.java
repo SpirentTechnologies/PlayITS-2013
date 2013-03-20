@@ -2,7 +2,7 @@ package ttworkbench.play.widget.car.ui.model;
 
 /**
  * 
- * @author kensan
+ * @author Björn, Andre
  *
  */
 public enum Warnings {
@@ -10,8 +10,8 @@ public enum Warnings {
 	
 	/**
 	 * 
-	 * @param value
-	 * @return Warnings
+	 * @param value 0-5
+	 * @return warning
 	 */
 	public static Warnings getWarning(int value){
 		switch(value){
@@ -25,6 +25,10 @@ public enum Warnings {
 		}
 	}
 	
+	/**
+	 * @param warning
+	 * @return id
+	 */
 	public static int getId(Warnings warning) {
 		switch(warning) {
 			case DEER:		return 0;
