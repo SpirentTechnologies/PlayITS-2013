@@ -7,6 +7,7 @@ public class GPSpositionOfCar {
 	private GPSposition worldDestination;
 	private GPSposition oldPosition;
 	private double angle;
+	//TODO make it possible to have multiple warnings per position
 	private ArrayList<WarningType> positions = new ArrayList<WarningType>();
 	private int positionsCounter = 2;
 	private WarningType nextWarning;
@@ -231,4 +232,5 @@ public class GPSpositionOfCar {
 	public WarningType getNextWarning() {
 		return nextWarning;
 	}
+	//public void addWarning()
 }

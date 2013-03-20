@@ -218,6 +218,7 @@ public class Car implements CarInterface {
 	}
 
 	public void addWarning(WarningType wt) {
+		for(GPSposition c : position)
 		this.position.setWarning(wt);
 	}
 
