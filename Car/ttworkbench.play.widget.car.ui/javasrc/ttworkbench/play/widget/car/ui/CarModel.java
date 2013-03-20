@@ -29,7 +29,7 @@ public class CarModel {
 		 */
 		@Override
 		public int compare(WarningType o1, WarningType o2) {
-			return Long.compare(o1.getPriority(),o2.getPriority());
+			return (int) (o1.getPriority() - o2.getPriority());
 		}
 	});
 	
