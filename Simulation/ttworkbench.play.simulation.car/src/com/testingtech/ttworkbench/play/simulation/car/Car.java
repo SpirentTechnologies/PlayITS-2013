@@ -7,7 +7,8 @@ public class Car implements CarInterface {
 	final int customID;
 
 	double speed, maxSpeed, petrolUsage;
-
+	WarningType currentCommingWarning;
+	
 	Sensors sensors;
 	boolean engine;
 
@@ -16,7 +17,7 @@ public class Car implements CarInterface {
 	// if this boolean is set the car will be removed from the simulation
 	private boolean carDisposed = false;
 	private String trackName;
-	private double oldSpeed;
+	private double oldSpeed = Double.NaN;
 
 	public Car(double speed, double maxSpeed, double tirePressure,
 			double tankFill, double petrolUsage, boolean lightExists,
@@ -140,7 +141,7 @@ public class Car implements CarInterface {
 
 		// check warnings[], Sensors, damage,
 		Tupel<GPSposition, Double> gpsPositionOfCarUpdate;
-		WarningType currentCommingWarning;
+		
 
 		// ---------- Update Process starts here-------------//
 		// update with speed and everything only if the engine is turned on and
@@ -156,7 +157,7 @@ public class Car implements CarInterface {
 
 			// update the current gpsPosition
 			currentPosition = gpsPositionOfCarUpdate.first;
-			// TODO check whether next world position has a warning
+			// get next world positions warning
 			// this functionality only
 			currentCommingWarning = position.getNextWarning();
 		} else {
@@ -178,23 +179,33 @@ public class Car implements CarInterface {
 						.getGpsPosition().latitude
 				&& currentPosition.longitude == currentCommingWarning
 						.getGpsPosition().longitude) {
-			// TODO check warning and enable counter meassures
+			// check warning and enable counter meassures
 			if (currentCommingWarning.equals(Warnings.ACCIDENT)
 					|| currentCommingWarning.equals(Warnings.DEER)) {
 				doBreak();
 			} else if (currentCommingWarning.equals(Warnings.FOG)) {
 				turnFogLampOn();
 			} else if (currentCommingWarning.equals(Warnings.ICE)) {
-		//		if (oldSpeed ) {
+				// only reduce speed if oldSpeed is not set
+				if (Double.isNaN(oldSpeed)) {
 					doSlowDown(80);
-		//		}
+				}
 			} else if (currentCommingWarning.equals(Warnings.RAIN)) {
-				doSlowDown(10);
+				if (Double.isNaN(oldSpeed)) {
+					doSlowDown(10);
+				}
+
 			} else if (currentCommingWarning.equals(Warnings.SNOW)) {
-				doSlowDown(20);
+				if (Double.isNaN(oldSpeed)) {
+					doSlowDown(20);
+				}
 			}
 		} else {
-
+			if (oldSpeed >= 0) {
+				speed = oldSpeed;
+				oldSpeed = Double.NaN;
+			}
+			sensors.fogLight = false;
 		}
 	}
 
@@ -226,6 +237,7 @@ public class Car implements CarInterface {
 
 	public void setTrack(String trackName) {
 		this.trackName = trackName;
+		//TODO use Trackname to parse it into the car, i.e. change the current map
 	}
 
 	public String getTrackName() {
