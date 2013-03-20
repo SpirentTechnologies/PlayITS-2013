@@ -35,6 +35,7 @@ public class CarWidget {
 	protected WidgetController widgetController;
 	private final DashboardWidgetFactoryDescriptor descriptor;
 	private Browser browser;
+	private UIController uiController;
 
 	/**
 	 * @param wwwRoot
@@ -104,7 +105,8 @@ public class CarWidget {
 			browser = new Browser (group, SWT.NONE);
 			System.out.println ("Could not instantiate Browser: " + e.getMessage ());
 		}
-
+		
+		uiController = new UIController(browser);
 		browser.setLayoutData(new GridData(GridData.FILL_BOTH));
 
 		browser.addProgressListener (new ProgressAdapter () {
@@ -189,4 +191,13 @@ public class CarWidget {
 		// TODO enable HTML buttons
 		browser.setEnabled(true);
 	}
+
+	/**
+	 * @return the uiController
+	 */
+	public UIController getUiController() {
+		return uiController;
+	}
+
+
 }

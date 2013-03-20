@@ -1,13 +1,17 @@
 package com.testingtech.ttworkbench.play.simulation.car;
 
 import java.util.ArrayList;
+import java.util.concurrent.LinkedBlockingDeque;
+
+import org.apache.bcel.generic.NEW;
 
 public class Car implements CarInterface {
 	static int carID;
 	final int customID;
 
 	double speed, maxSpeed, petrolUsage;
-
+	WarningType currentComingWarning;
+	
 	Sensors sensors;
 	boolean engine;
 
@@ -16,8 +20,10 @@ public class Car implements CarInterface {
 	// if this boolean is set the car will be removed from the simulation
 	private boolean carDisposed = false;
 	private String trackName;
-	private double oldSpeed;
-
+	private double oldSpeed = Double.NaN;
+	// queue for incoming Warnings sent to this car
+	private LinkedBlockingDeque<WarningType> incomingQueue = new LinkedBlockingDeque<WarningType>();
+	
 	public Car(double speed, double maxSpeed, double tirePressure,
 			double tankFill, double petrolUsage, boolean lightExists,
 			boolean rainExists, boolean tankFillExists,
@@ -140,7 +146,7 @@ public class Car implements CarInterface {
 
 		// check warnings[], Sensors, damage,
 		Tupel<GPSposition, Double> gpsPositionOfCarUpdate;
-		WarningType currentCommingWarning;
+		
 
 		// ---------- Update Process starts here-------------//
 		// update with speed and everything only if the engine is turned on and
@@ -156,9 +162,9 @@ public class Car implements CarInterface {
 
 			// update the current gpsPosition
 			currentPosition = gpsPositionOfCarUpdate.first;
-			// TODO check whether next world position has a warning
+			// get next world positions warning
 			// this functionality only
-			currentCommingWarning = position.getNextWarning();
+			currentComingWarning = position.getNextWarning();
 		} else {
 			// get the new tankfill level, if engine off then the car cannot
 			// drive
@@ -170,31 +176,41 @@ public class Car implements CarInterface {
 
 			// update the current gpsPosition
 			currentPosition = gpsPositionOfCarUpdate.first;
-			currentCommingWarning = position.getNextWarning();
+			currentComingWarning = position.getNextWarning();
 		}
 
-		if (currentCommingWarning != null
-				&& currentPosition.latitude == currentCommingWarning
+		if (currentComingWarning != null
+				&& currentPosition.latitude == currentComingWarning
 						.getGpsPosition().latitude
-				&& currentPosition.longitude == currentCommingWarning
+				&& currentPosition.longitude == currentComingWarning
 						.getGpsPosition().longitude) {
-			// TODO check warning and enable counter meassures
-			if (currentCommingWarning.equals(Warnings.ACCIDENT)
-					|| currentCommingWarning.equals(Warnings.DEER)) {
+			// check warning and enable counter meassures
+			if (currentComingWarning.equals(Warnings.ACCIDENT)
+					|| currentComingWarning.equals(Warnings.DEER)) {
 				doBreak();
-			} else if (currentCommingWarning.equals(Warnings.FOG)) {
+			} else if (currentComingWarning.equals(Warnings.FOG)) {
 				turnFogLampOn();
-			} else if (currentCommingWarning.equals(Warnings.ICE)) {
-		//		if (oldSpeed ) {
+			} else if (currentComingWarning.equals(Warnings.ICE)) {
+				// only reduce speed if oldSpeed is not set
+				if (Double.isNaN(oldSpeed)) {
 					doSlowDown(80);
-		//		}
-			} else if (currentCommingWarning.equals(Warnings.RAIN)) {
-				doSlowDown(10);
-			} else if (currentCommingWarning.equals(Warnings.SNOW)) {
-				doSlowDown(20);
+				}
+			} else if (currentComingWarning.equals(Warnings.RAIN)) {
+				if (Double.isNaN(oldSpeed)) {
+					doSlowDown(10);
+				}
+
+			} else if (currentComingWarning.equals(Warnings.SNOW)) {
+				if (Double.isNaN(oldSpeed)) {
+					doSlowDown(20);
+				}
 			}
 		} else {
-
+			if (oldSpeed >= 0) {
+				speed = oldSpeed;
+				oldSpeed = Double.NaN;
+			}
+			sensors.fogLight = false;
 		}
 	}
 
@@ -226,6 +242,7 @@ public class Car implements CarInterface {
 
 	public void setTrack(String trackName) {
 		this.trackName = trackName;
+		//TODO use Trackname to parse it into the car, i.e. change the current map
 	}
 
 	public String getTrackName() {

@@ -11,6 +11,7 @@ public class CarStatusTypeParser {
 	public static carStatusType parseToStatusType(Car car){
 		//Build the message with the updated car
 		Builder cst = carStatusType.newBuilder();
+		cst.setCarId(car.customID);
 		cst.setAbsSensor(car.sensors.abs);
 		cst.setEngineStatus(car.engine);
 		cst.setEspSensor(car.sensors.esp);
@@ -25,13 +26,32 @@ public class CarStatusTypeParser {
 		//set the rest of the fields
 		cst.setLightSensor(car.sensors.light);
 		cst.setSpeed((float)car.speed);
-		// TODO add eventual warnings
-	/*	com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.Builder warningBuilder = warningType.newBuilder();
+		
+		//warningTyp
+		//	-> GPSposition
+		//	-> warning
+		//	-> priority
+		com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.Builder warningBuilder = warningType.newBuilder();
 		com.testingtech.ttworkbench.play.generated.PROTO_API.warning.Builder warn = warning.newBuilder();
-		EnumValue ev = EnumValue.valueOf(car.getWarning().toString());
+		com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.Builder gpsPos = gpsPosition.newBuilder();
+		
+		//create GPS-Position
+		gpsPos.setLatitude((float) car.currentPosition.latitude);
+		gpsPos.setLongitude((float) car.currentPosition.longitude);
+		
+		
+		//create Warning
+		EnumValue ev = EnumValue.valueOf(car.position.getNextWarning().toString());
 		warn.setEnumValue(ev);
+		
+		//set the values
 		warningBuilder.setWarningName(warn.build());
+		warningBuilder.setCarId(car.customID);
+		warningBuilder.setGpsPos(gpsPos.build());
+		warningBuilder.setPriority((long) Warnings.getId(car.position.getNextWarning().getWarning()));
+		
+		
 		cst.addWarning(warningBuilder.build());
-	*/	return cst.build();
+		return cst.build();
 	}
 }

@@ -60,11 +60,7 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 			Control control = carWidget.createControl(parent);
 			model.addListener(this);
 			
-			if(control instanceof Browser){
-				uiController = new UIController((Browser)control);
-			}else{
-				System.err.println("Can't initiate incoming Eventservice!");
-			}
+			uiController = carWidget.getUiController();
 			
 			return control;
 			
@@ -121,7 +117,10 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 	@Override
 	public void notifyGpsPositionChange() {
-		uiController.updatePosition(model.getStatus().getGpsPosition().getLatitude(), model.getStatus().getGpsPosition().getLatitude());
+		if (uiController != null) {
+			// dropped update if no GUI initialized yet
+			uiController.updatePosition(model.getStatus().getGpsPosition().getLatitude(), model.getStatus().getGpsPosition().getLatitude());
+		}
 	}
 
 
