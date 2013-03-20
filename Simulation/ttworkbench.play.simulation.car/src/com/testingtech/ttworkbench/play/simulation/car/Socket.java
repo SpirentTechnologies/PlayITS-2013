@@ -1,5 +1,7 @@
 package com.testingtech.ttworkbench.play.simulation.car;
 
+import java.io.Closeable;
+
 import com.google.protobuf.BlockingRpcChannel;
 import com.google.protobuf.RpcController;
 import com.google.protobuf.ServiceException;
@@ -26,6 +28,10 @@ public class Socket implements Runnable {
 
 	private PROTO_API.EVENTS.BlockingInterface service;
 
+	private BlockingRpcChannel channel;
+
+	private RpcConnectionFactory connectionFactory;
+
 	public Socket(Car car, int clientPort, String clientHost) {
 		this.car = car;
 		this.clientHost = clientHost;
@@ -38,7 +44,7 @@ public class Socket implements Runnable {
 		while(!car.isCarDisposed()){
 			sendUpdate();
 			try {
-				Thread.sleep(10000);
+				Thread.sleep(500);
 			} catch (InterruptedException e) {
 				break;
 			}
@@ -48,26 +54,35 @@ public class Socket implements Runnable {
 
 
 	private void cleanupEventsClient() {
-		rpcController.startCancel();
+	    if (service != null) {
+	      try {
+	        if (connectionFactory instanceof Closeable) {
+	          ((Closeable) connectionFactory).close();
+	        }
+	        connectionFactory = null;
+	        channel = null;
+	        service = null;
+	        rpcController = null;
+	      } catch (Throwable e) {
+	        // ignore exception
+	      }
+	    }
 	}
 
 	// Client connection to the server "API"
 	// event
 	// We return values to "API"
 	public void createEventsClient(int port, String host) {
-		// Create channel
-		RpcConnectionFactory connectionFactory = 
-				PersistentRpcConnectionFactory.createInstance(
-				SocketRpcConnectionFactories.createRpcConnectionFactory(host, port));
+		connectionFactory = PersistentRpcConnectionFactory.createInstance(
+		SocketRpcConnectionFactories.createRpcConnectionFactory(host, port));
 
-		BlockingRpcChannel channel = RpcChannels.newBlockingRpcChannel(connectionFactory);
+		channel = RpcChannels.newBlockingRpcChannel(connectionFactory);
 		service = PROTO_API.EVENTS.newBlockingStub(channel);
 		rpcController = new SocketRpcController();
-		
 	}
 
 	public void sendUpdate() {
-		if (car.isCarDisposed() || rpcController.isCanceled()) {
+		if (car.isCarDisposed() || rpcController == null) {
 			return;
 		}
 		// Call the cars update methode before the widget needs new information
@@ -76,7 +91,7 @@ public class Socket implements Runnable {
 		// parse the car into a carStatusType message and make the rpc call
 		carStatusType request = CarStatusTypeParser.parseToStatusType(car);
 
-		if (car.isCarDisposed() || rpcController.isCanceled()) {
+		if (car.isCarDisposed() || rpcController == null) {
 			return;
 		}
 		try {
@@ -85,6 +100,7 @@ public class Socket implements Runnable {
 		} catch (ServiceException e) {
 			System.out.println("some error with sending the parsed package the car");
 			car.disposeCar();
+			cleanupEventsClient();
 		}
 
 		// Check success
