@@ -10,7 +10,7 @@ public class GPSpositionOfCar {
 	private GPSposition worldDestination;
 	private GPSposition oldPosition;
 	private double angle;
-	private ArrayList<WarningType> positions;
+	private ArrayList<WarningType> positions = new ArrayList<WarningType>();
 	private int positionsCounter = 2;
 	private WarningType nextWarning;
 

@@ -49,6 +49,7 @@ public class Socket implements Runnable {
 
 	private void cleanupEventsClient() {
 		// TODO close the client service and rpccontr
+		rpcController.startCancel();
 	}
 
 	// Client connection to the server "API"
