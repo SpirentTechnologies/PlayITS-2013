@@ -1,16 +1,13 @@
 package com.testingtech.ttworkbench.play.simulation.car;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-
-import org.apache.tools.ant.taskdefs.War;
 
 public class GPSpositionOfCar {
 	private double directionX, directionY;
 	private GPSposition worldDestination;
 	private GPSposition oldPosition;
 	private double angle;
-	private ArrayList<WarningType> positions;
+	private ArrayList<WarningType> positions = new ArrayList<WarningType>();
 	private int positionsCounter = 2;
 	private WarningType nextWarning;
 
