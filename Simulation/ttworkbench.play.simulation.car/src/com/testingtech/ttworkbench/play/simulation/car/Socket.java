@@ -100,6 +100,7 @@ public class Socket implements Runnable {
 		} catch (ServiceException e) {
 			System.out.println("some error with sending the parsed package the car");
 			car.disposeCar();
+			cleanupEventsClient();
 		}
 
 		// Check success
