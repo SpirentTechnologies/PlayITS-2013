@@ -41,17 +41,21 @@ public class CarStatusTypeParser {
 		
 		
 		//create Warning
-		EnumValue ev = EnumValue.valueOf(car.position.getNextWarning().toString());
-		warn.setEnumValue(ev);
-		
-		//set the values
-		warningBuilder.setWarningName(warn.build());
-		warningBuilder.setCarId(car.customID);
-		warningBuilder.setGpsPos(gpsPos.build());
-		warningBuilder.setPriority((long) Warnings.getId(car.position.getNextWarning().getWarning()));
-		
-		
-		cst.addWarning(warningBuilder.build());
+		WarningType nextWarning = car.position.getNextWarning();
+		if (nextWarning != null) {
+			
+			EnumValue ev = EnumValue.valueOf(nextWarning.toString());
+			warn.setEnumValue(ev);
+			
+			//set the values
+			warningBuilder.setWarningName(warn.build());
+			warningBuilder.setCarId(car.customID);
+			warningBuilder.setGpsPos(gpsPos.build());
+			warningBuilder.setPriority((long) Warnings.getId(nextWarning.getWarning()));
+			
+			
+			cst.addWarning(warningBuilder.build());
+		}
 		return cst.build();
 	}
 }
