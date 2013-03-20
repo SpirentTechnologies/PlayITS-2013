@@ -60,11 +60,7 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 			Control control = carWidget.createControl(parent);
 			model.addListener(this);
 			
-			if(control instanceof Browser){
-				uiController = new UIController((Browser)control);
-			}else{
-				System.err.println("Can't initiate incoming Eventservice!");
-			}
+			uiController = carWidget.getUiController();
 			
 			return control;
 			
