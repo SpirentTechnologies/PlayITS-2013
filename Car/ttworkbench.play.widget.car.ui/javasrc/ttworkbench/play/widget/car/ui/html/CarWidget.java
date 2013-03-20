@@ -106,7 +106,7 @@ public class CarWidget {
 			System.out.println ("Could not instantiate Browser: " + e.getMessage ());
 		}
 		
-		setUiController(new UIController(browser));
+		uiController = new UIController(browser);
 		browser.setLayoutData(new GridData(GridData.FILL_BOTH));
 
 		browser.addProgressListener (new ProgressAdapter () {
