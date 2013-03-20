@@ -1,5 +1,7 @@
 package com.testingtech.ttworkbench.play.simulation.car;
 
+import java.util.LinkedList;
+
 import com.testingtech.ttworkbench.play.simulation.car.Warnings;;
 
 /**
@@ -10,21 +12,28 @@ import com.testingtech.ttworkbench.play.simulation.car.Warnings;;
 
 public class WarningType {
 	
-	private Warnings warning;
+	private LinkedList<Warnings> warning;
 	private long priority;
 	private GPSposition gpsPosition;
+	
+	public WarningType(){
+		warning = new LinkedList<Warnings>();
+		priority = 0;
+		gpsPosition = new GPSposition(0, 0);
+	}
 
 	/**
 	 * @return the warning
 	 */
 	public Warnings getWarning() {
-		return warning;
+		return warning.getFirst();
 	}
 	/**
 	 * @param warning the warning to set
 	 */
 	public void setWarning(Warnings warning) {
-		this.warning = warning;
+		this.warning.remove();
+		this.warning.add(warning);
 	}
 	/**
 	 * @return the priority
