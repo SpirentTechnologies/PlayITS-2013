@@ -78,7 +78,7 @@ public class Socket implements Runnable {
 			Object myResponse = service.aPICarStatusType(rpcController, request);
 		} catch (ServiceException e) {
 			System.out.println("some error with sending the parsed package the car");
-			e.printStackTrace();
+			car.disposeCar();
 		}
 
 		// Check success
