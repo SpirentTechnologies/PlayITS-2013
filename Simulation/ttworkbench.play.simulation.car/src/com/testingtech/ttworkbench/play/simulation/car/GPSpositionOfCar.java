@@ -1,9 +1,6 @@
 package com.testingtech.ttworkbench.play.simulation.car;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-
-import org.apache.tools.ant.taskdefs.War;
 
 public class GPSpositionOfCar {
 	private double directionX, directionY;
