@@ -23,7 +23,7 @@
       #map_canvas > div > div:nth-child(3n) {
           visibility: hidden;
       }
-      #speedometer {
+      .main {
           display: none;
       }
       #speedContainer {
@@ -32,7 +32,7 @@
           margin: 25px 0 0 115px;
       }
       #speedSlider {
-          margin: 10px 0 10px 100px;
+          margin: 5px 0 20px 100px;
       }
       #menuContainer {
           width: 330px;
@@ -62,6 +62,11 @@
       
       #initialize:hover {
           background: #55d98d;
+      }
+      
+      #motorContainer {
+          width: 89px;
+          margin: 0 0 0 120px;
       }
       
       .center_text {
@@ -126,6 +131,7 @@
         });
         
         $('#motor').on('click', function() {
+            console.log('MOTOR: ' + $(this).is(':checked'));
 			motor( $(this).is(':checked') );
 		});
 		
@@ -155,13 +161,13 @@
 		    
 		    if(track === 0) {
 		        alert("Select a track");
-		        return;
+		        //return;
 		    }
 		    initialize(abs, esp, light, fogLight, maxSpeed, fuel, fuelConsumption, track);		    
 		    initSpeed(maxSpeed);
 		    
-		    $('.configuration').fadeOut(function() {
-		        $('#speedometer').fadeIn();
+		    $('.configuration').hide(function() {
+		        $('.main').show();
 		    }); 
 		});
     });
@@ -177,7 +183,7 @@
   </head>
   <body>
     <div id="menuContainer">
-        <div id="speedometer">
+        <div class="main">
             <div id="speedContainer">
               <input type="text" value="0" id="speed">
             </div>
@@ -185,20 +191,31 @@
             <input type="range" min="0" max="100" step="1" id="speedSlider" class="center_text" value="0" />
         </div>
         
+        <div id="motorContainer" class="main">
+            <div class="center_text">MOTOR</div>
+            <div class="onoffswitch">
+              <input type="checkbox" name="motor" class="onoffswitch-checkbox" id="motor">
+              <label class="onoffswitch-label" for="motor">
+                  <div class="onoffswitch-inner"></div>
+                  <div class="onoffswitch-switch"></div>
+              </label>
+            </div>
+        </div>
+        
         <div class="configuration center_text">
             <h1>CREATE A CAR</h1>
             
-            <div class="center_text margin_top_20">MAX SPEED</div>
+            <div class="center_text margin_top_20">MAX SPEED (km/h)</div>
             <input type="text" name="maxSpeed" id="maxSpeed" value="200">
         </div>
         
         <div id="leftContainer">
             
             <div class="configuration">
-                <div class=" margin_top_20">FUEL</div>
+                <div class=" margin_top_20">FUEL (Liter)</div>
                 <input type="text" name="fuelFilling" id="fuelFilling" value="50">
             
-                <div class=" margin_top_20">ABS</div>
+                <div class="margin_top_20">ABS</div>
                 <div class="onoffswitch">
                   <input type="checkbox" name="abs" class="onoffswitch-checkbox" id="abs">
                   <label class="onoffswitch-label" for="abs">
@@ -207,7 +224,7 @@
                   </label>
                 </div>
             
-                <div class=" margin_top_20">LIGHT</div>
+                <div class="margin_top_20">LIGHT</div>
                 <div class="onoffswitch">
                   <input type="checkbox" name="light" class="onoffswitch-checkbox" id="light">
                   <label class="onoffswitch-label" for="light">
@@ -220,7 +237,7 @@
         
         <div id="rightContainer">
             <div class="configuration">
-                <div class=" margin_top_20">FUEL CONS.</div>
+                <div class="margin_top_20">FUEL CONS. (km/l)</div>
                 <input type="text" name="fuelConsumption" id="fuelConsumption" value="1.2">
             
                 <div class="margin_top_20">ESP</div>
