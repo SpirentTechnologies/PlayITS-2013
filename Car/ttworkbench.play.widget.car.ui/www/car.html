@@ -119,7 +119,7 @@
                 max: maxSpeed,
                 change: function(v) {
                   $('#speedSlider').val(v);
-                  //speed(v);
+                  speed(v);
                 }
             });
         }
@@ -127,7 +127,7 @@
         $('#speedSlider').on('change', function() {
             $('#speed').val( $(this).val() );
             $('#speed').trigger('change');
-            //speed( $(this).val() );
+            speed( $(this).val() );
         });
         
         $('#motor').on('click', function() {
@@ -163,6 +163,7 @@
 		        alert("Select a track");
 		        //return;
 		    }
+		    
 		    initialize(abs, esp, light, fogLight, maxSpeed, fuel, fuelConsumption, track);		    
 		    initSpeed(maxSpeed);
 		    
