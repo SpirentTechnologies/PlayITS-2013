@@ -21,6 +21,7 @@ public class CarStatusModel {
 	private float fuel;
 	private float maxSpeed;
 	private float fuelConsumption;
+	private long id = -1;
 	
 
 
@@ -173,6 +174,20 @@ public class CarStatusModel {
 	 */
 	public void setFuelConsumption(float fuelConsumption) {
 		this.fuelConsumption = fuelConsumption;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
 	}
 
 }
