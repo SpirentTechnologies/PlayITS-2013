@@ -1,9 +1,8 @@
 package ttworkbench.play.widget.car.ui;
 
-import java.util.Comparator;
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.PriorityQueue;
+import java.util.List;
 
 import ttworkbench.play.widget.car.ui.model.CarStatusModel;
 import ttworkbench.play.widget.car.ui.model.GPSposition;
@@ -19,19 +18,7 @@ public class CarModel {
 	
 	private CarStatusModel status = new CarStatusModel();
 	
-	private PriorityQueue<WarningType> warnings = new PriorityQueue<WarningType>(11,new Comparator<WarningType>() {
-		
-		/**
-		 * Sorts warnings for their priority
-		 * @param o1
-		 * @param o2
-		 * @return Difference of both the priorities: o1-o2
-		 */
-		@Override
-		public int compare(WarningType o1, WarningType o2) {
-			return (int) (o1.getPriority() - o2.getPriority());
-		}
-	});
+	private List<WarningType> warnings = new ArrayList<WarningType>();
 	
 	private LinkedList<ICarModelListener> listeners = new LinkedList<ICarModelListener>();
 	
@@ -58,7 +45,7 @@ public class CarModel {
 	 * @return
 	 */
 	public WarningType getWarning(){
-		return warnings.peek();
+		return warnings.get(0);
 	}
 	
 	/**
@@ -68,15 +55,7 @@ public class CarModel {
 	 * @param longitude
 	 */
 	public synchronized void setGPSPostion(float latitude, float longitude){
-		Iterator<WarningType> iterator = warnings.iterator();
-		
-		while(iterator.hasNext()){
-			WarningType warning = iterator.next();
-			if(warning.getGpsPosition().equals(new GPSposition(latitude, longitude))){
-				warnings.remove(warning);
-			}
-		}
-		
+
 		status.setGpsPosition(new GPSposition(latitude, longitude));
 	}
 	
@@ -116,4 +95,28 @@ public class CarModel {
 			}			
 		}
 	}	
+	
+	/**
+	 * Calculate the air distance of two GPS Positions 
+	 * @param src
+	 * @param dest
+	 * @return distance
+	 */
+	public double calculateDistance(GPSposition src, GPSposition dest){
+		double r = 6371; // Earthradius in km
+		double dLat = Math.toRadians(dest.getLatitude()-src.getLatitude());
+		double dLon = Math.toRadians(dest.getLongitude()-src.getLongitude());
+		double srcLat = Math.toRadians(src.getLatitude());
+		double destLat = Math.toRadians(dest.getLatitude());
+
+		double a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+		        Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(srcLat) * Math.cos(destLat); 
+		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+		return r * c;
+	}
+
+	public void clearWarnings() {
+		warnings.clear();
+		
+	}
 }
