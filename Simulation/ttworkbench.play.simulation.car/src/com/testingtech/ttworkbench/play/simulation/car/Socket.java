@@ -96,8 +96,7 @@ public class Socket implements Runnable {
 			return;
 		}
 		try {
-			@SuppressWarnings("unused")
-			Object myResponse = service.aPICarStatusType(rpcController, request);
+			service.aPICarStatusType(rpcController, request);
 
 			// Check success
 			if (rpcController.failed()) {

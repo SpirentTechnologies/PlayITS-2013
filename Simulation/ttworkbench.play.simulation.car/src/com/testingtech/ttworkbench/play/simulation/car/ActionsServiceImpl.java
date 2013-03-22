@@ -57,15 +57,10 @@ public class ActionsServiceImpl implements BlockingInterface {
 	@Override
 	public Void aPIWarningType(RpcController controller, warningType request)
 			throws ServiceException {
-		long id = request.getCarId();
-		Car car = getCar(id);
-		Warnings danger = Warnings.valueOf(request.getWarningName()
-				.getEnumValue().toString());
 		
 		GPSposition position = new GPSposition(request.getGpsPos().getLongitude(), request.getGpsPos().getLatitude());
 		WarningType wt = new WarningType();
 		wt.setGpsPosition(position);
-		wt.setPriority(request.getPriority());
 		Warnings warning  = Warnings.valueOf( request.getWarningName().getEnumValue().toString());
 		
 		wt.setWarning(warning);
@@ -84,7 +79,7 @@ public class ActionsServiceImpl implements BlockingInterface {
 		}
 		// updates the initial car setup with the wanted field values
 		Car car = new Car(0, request.getMaxSpeed(), 2.0, request.getFuelFilling(), request.getFuelConsumption(), request.getLightSensorExists(), true, request.hasFuelFilling(), true, request.getEspSensorExists(), request.getAbsSensorExists(), false, request.getFogLightSensorExists(), positions);
-		long id = carModel.addCar(car);
+		carModel.addCar(car);
 		Socket socket = new Socket(car,(int) request.getTtcnEventsPort(),request.getTtcnEventsHostName());
 		carSocket.put(car, socket);
 		new Thread(socket).start();

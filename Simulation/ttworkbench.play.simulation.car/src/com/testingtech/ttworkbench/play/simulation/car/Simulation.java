@@ -17,6 +17,7 @@ public class Simulation {
 	private RpcServer server;
 	private int serverPort;
 
+	@SuppressWarnings("unused")
 	private static ArrayList<GPSposition> getMap(File mapFile) {
 		try {
 			return KMLparser.parseFile(mapFile);

@@ -1,9 +1,6 @@
 package com.testingtech.ttworkbench.play.simulation.car;
 
 import java.util.ArrayList;
-import java.util.concurrent.LinkedBlockingDeque;
-
-import org.apache.bcel.generic.NEW;
 
 public class Car implements CarInterface {
 	static int carID;
@@ -21,8 +18,7 @@ public class Car implements CarInterface {
 	private boolean carDisposed = false;
 	private String trackName;
 	private double oldSpeed = Double.NaN;
-	// queue for incoming Warnings sent to this car
-	private LinkedBlockingDeque<WarningType> incomingQueue = new LinkedBlockingDeque<WarningType>();
+
 	
 	public Car(double speed, double maxSpeed, double tirePressure,
 			double tankFill, double petrolUsage, boolean lightExists,
@@ -103,13 +99,13 @@ public class Car implements CarInterface {
 
 	@Override
 	public GPSposition getGPSPosition() {
-		return position.getOldPosition();
+		return position.getCurrentPosition();
 	}
 
 	@Override
 	public GPSposition setGPSPosition(GPSposition position) {
-		this.position.setOldPosition(position);
-		return this.position.getOldPosition();
+		this.position.setCurrentPosition(position);
+		return this.position.getCurrentPosition();
 	}
 
 	@Override
@@ -218,7 +214,7 @@ public class Car implements CarInterface {
 	}
 
 	public void addWarning(WarningType wt) {
-		this.position.setWarning(wt);
+		this.position.addWarning(wt);
 	}
 
 	public boolean isCarDisposed() {
