@@ -42,7 +42,7 @@ public class WidgetController {
 		try {
 			onOffEngineType.Builder request = onOffEngineType.newBuilder();
 			request.setEngineStatus(true);
-
+			//request.setCarId(comm.getCarModel().getStatus().getId());
 			client().getActionsService().aPIOnOffEngineType(client().getController(), request.build());
 			// TODO response check
 
@@ -66,6 +66,7 @@ public class WidgetController {
 		try {
 			onOffEngineType.Builder request = onOffEngineType.newBuilder();
 			request.setEngineStatus(false);
+			request.setCarId(comm.getCarModel().getStatus().getId());
 			client().getActionsService().aPIOnOffEngineType(client().getController(), request.build());
 			// TODO response check
 		} catch (ServiceException e) {
@@ -85,12 +86,13 @@ public class WidgetController {
 		try {
 			speedType.Builder request = speedType.newBuilder();
 			request.setSpeed(speed);
+			request.setCarId(comm.getCarModel().getStatus().getId());
 
 			client().getActionsService().aPISpeedType(client().getController(), request.build());
 
 		} catch (ServiceException e) {
 
-			e.printStackTrace();
+			System.out.println("Can't change speed! " + e.getMessage());
 		}
 	}
 
@@ -99,7 +101,8 @@ public class WidgetController {
 	 * @param trackFile
 	 */
 	public void setTrack(File trackFile){
-		comm.getCarModel().getStatus().setTrackFile(trackFile);
+		CarStatusModel status = comm.getCarModel().getStatus();
+		status.setTrackFile(trackFile);
 
 		boolean sendTrack = !initialized;
 			
@@ -111,16 +114,28 @@ public class WidgetController {
 
 		try {
 			trackType.Builder request = trackType.newBuilder();
-			request.setTrackName(comm.getCarModel().getStatus().getTrackFile().getAbsolutePath());
+			request.setTrackName(status.getTrackFile().getAbsolutePath());
+			request.setCarId(status.getId());
 
 			client().getActionsService().aPITrackType(client().getController(), request.build());
 
 		} catch (ServiceException e) {
 
-			e.printStackTrace();
+			System.out.println("Can't set track! " + e.getMessage());
 		}
 	}
 	
+	/**
+	 * is called from view, to initialize a new car, sets the car status attributes
+	 * @param abs
+	 * @param esp
+	 * @param light
+	 * @param fogLight
+	 * @param maxSpeed
+	 * @param fuel
+	 * @param fuelConsumption
+	 * @param trackFile
+	 */
 	public void initializeCar(boolean abs,boolean esp,boolean light,
 			boolean fogLight,float maxSpeed,
 			float fuel,float fuelConsumption,File trackFile){
@@ -131,8 +146,9 @@ public class WidgetController {
 		status.setFogLightEnabled(fogLight);
 		status.setTrackFile(trackFile);
 		status.setMaxSpeed(maxSpeed);
-		status.setFuelConsumption(fuelConsumption);	
+		status.setFuelConsumption(fuelConsumption);
 		initCar();
+
 	}
 	
 	
@@ -162,7 +178,7 @@ public class WidgetController {
 
 		} catch (ServiceException e) {
 
-			e.printStackTrace();
+			System.out.println("Initialize failed! " + e.getMessage());
 		}
 	}
 
