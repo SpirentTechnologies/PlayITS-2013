@@ -1,37 +1,44 @@
 package com.testingtech.ttworkbench.play.simulation.car;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+
 
 public class GPSpositionOfCar {
 	private double directionX, directionY;
-	private GPSposition worldDestination;
-	private GPSposition oldPosition;
+	private GPSposition nextGPSDestination;
+	private GPSposition currentPosition;
 	private double angle;
-	//TODO make it possible to have multiple warnings per position
-	private ArrayList<WarningType> positions = new ArrayList<WarningType>();
+	private List<WarningType> warnings = new ArrayList<WarningType>();
+	private List<GPSposition> positions = null;
 	private int positionsCounter = 2;
-	private WarningType nextWarning;
+
 
 	public GPSpositionOfCar(ArrayList<GPSposition> positions) {
-		this.worldDestination = positions.get(1);
-		this.oldPosition = positions.get(0);
-		for (GPSposition g : positions) {
-			WarningType wt = new WarningType();
-			wt.setGpsPosition(g);
-			this.positions.add(wt);
-		}
-		updateAngleAndDirections(worldDestination, oldPosition);
+		this.nextGPSDestination = positions.get(1);
+		this.currentPosition = positions.get(0);
+		this.positions = positions;
+//		for (GPSposition g : positions) {
+//			WarningType wt = new WarningType();
+//			wt.setGpsPosition(g);
+//			this.warnings.add(wt);
+//		}
+		updateAngleAndDirections(nextGPSDestination, currentPosition);
 	}
 
 	public GPSpositionOfCar(GPSposition destinationPositions,
 			GPSposition startPosition, ArrayList<GPSposition> positions) {
-		this.worldDestination = destinationPositions;
-		this.oldPosition = startPosition;
-		for (GPSposition g : positions) {
-			WarningType wt = new WarningType();
-			wt.setGpsPosition(g);
-			this.positions.add(wt);
-		}
+		this.nextGPSDestination = destinationPositions;
+		this.currentPosition = startPosition;
+		this.positions = positions;
+//		for (GPSposition g : positions) {
+//			WarningType wt = new WarningType();
+//			wt.setGpsPosition(g);
+//			this.warnings.add(wt);
+//		}
 		// calculate the angle needed for calculating the distance
 		double lon1 = startPosition.longitude;
 		double lon2 = destinationPositions.longitude;
@@ -54,8 +61,8 @@ public class GPSpositionOfCar {
 
 	private void updateAngleAndDirections(GPSposition destinationPositions,
 			GPSposition startPosition) {
-		this.worldDestination = destinationPositions;
-		this.oldPosition = startPosition;
+		this.nextGPSDestination = destinationPositions;
+		this.currentPosition = startPosition;
 
 		// calculate the angle needed for calculating the distance
 		double lon1 = startPosition.longitude;
@@ -87,7 +94,7 @@ public class GPSpositionOfCar {
 		return tankFillLevel;
 	}
 
-	// calculate the new position of the car
+	// calculate the next position of the car
 	private GPSposition calculatePosition(double length,
 			GPSposition currentPositon) {
 
@@ -112,60 +119,60 @@ public class GPSpositionOfCar {
 		// check if destination reached
 
 		double directionXlocal = Math.abs(newPos.longitude)
-				- Math.abs(worldDestination.longitude);
+				- Math.abs(nextGPSDestination.longitude);
 		double directionYlocal = Math.abs(newPos.latitude)
-				- Math.abs(worldDestination.latitude);
+				- Math.abs(nextGPSDestination.latitude);
 
 		if (directionX < 0 && directionXlocal >= 0) {
 			if (directionY < 0 && directionYlocal >= 0) {
-				newPos = worldDestination;
+				newPos = nextGPSDestination;
 			}
 			if (directionY > 0 && directionYlocal <= 0) {
-				newPos = worldDestination;
+				newPos = nextGPSDestination;
 			}
 			if (directionY == 0 && directionYlocal <= 0) {
-				newPos = worldDestination;
+				newPos = nextGPSDestination;
 			}
 			if (directionY == 0 && directionYlocal >= 0) {
-				newPos = worldDestination;
+				newPos = nextGPSDestination;
 			}
 			if (directionY == 0 && directionYlocal == 0) {
-				newPos = worldDestination;
+				newPos = nextGPSDestination;
 			}
 		}
 		if (directionX > 0 && directionXlocal <= 0) {
 			if (directionY < 0 && directionYlocal >= 0) {
-				newPos = worldDestination;
+				newPos = nextGPSDestination;
 			}
 			if (directionY > 0 && directionYlocal <= 0) {
-				newPos = worldDestination;
+				newPos = nextGPSDestination;
 			}
 			if (directionY == 0 && directionYlocal <= 0) {
-				newPos = worldDestination;
+				newPos = nextGPSDestination;
 			}
 			if (directionY == 0 && directionYlocal >= 0) {
-				newPos = worldDestination;
+				newPos = nextGPSDestination;
 			}
 			if (directionY == 0 && directionYlocal == 0) {
-				newPos = worldDestination;
+				newPos = nextGPSDestination;
 			}
 		}
 
 		if (directionX == 0 && directionXlocal == 0) {
 			if (directionY < 0 && directionYlocal >= 0) {
-				newPos = worldDestination;
+				newPos = nextGPSDestination;
 			}
 			if (directionY > 0 && directionYlocal <= 0) {
-				newPos = worldDestination;
+				newPos = nextGPSDestination;
 			}
 			if (directionY == 0 && directionYlocal <= 0) {
-				newPos = worldDestination;
+				newPos = nextGPSDestination;
 			}
 			if (directionY == 0 && directionYlocal >= 0) {
-				newPos = worldDestination;
+				newPos = nextGPSDestination;
 			}
 			if (directionY == 0 && directionYlocal == 0) {
-				newPos = worldDestination;
+				newPos = nextGPSDestination;
 			}
 		}
 
@@ -178,59 +185,116 @@ public class GPSpositionOfCar {
 		// already just add function call
 		double length = speed * 0.000277777778; // km/s
 
-		Double second = tankFillUpdate(tankFillLevel, petrolUsage, length);
-		GPSposition first = calculatePosition(length, oldPosition);
-		// set old position on current position for next update
-		oldPosition.longitude = first.longitude;
-		oldPosition.latitude = first.latitude;
+		Double fillLevel = tankFillUpdate(tankFillLevel, petrolUsage, length);
+		
+		// set new current position for next update
+		currentPosition = calculatePosition(length, currentPosition);
 
-		// validation of position
-		if (oldPosition.latitude == worldDestination.latitude
-				&& oldPosition.longitude == worldDestination.longitude) {
+		// if nextGPSDestination is reached or passed, set new nextGPSDestination
+		//is reached, when distance for the next Position is larger then the current one
+		if (calculateDistance(currentPosition, nextGPSDestination) < 
+				calculateDistance(calculatePosition(length, currentPosition), nextGPSDestination)) {
 			
-			worldDestination.latitude = positions.get(positionsCounter)
-					.getGpsPosition().latitude;
+			nextGPSDestination.latitude = positions.get(positionsCounter)
+					.latitude;
 			
-			worldDestination.longitude = positions.get(positionsCounter)
-					.getGpsPosition().longitude;
+			nextGPSDestination.longitude = positions.get(positionsCounter)
+					.longitude;
 			
-			updateAngleAndDirections(oldPosition, worldDestination);
+			updateAngleAndDirections(currentPosition, nextGPSDestination);
 			positionsCounter++;
-			for(WarningType gps : positions){
-				if(gps.getGpsPosition().equals(worldDestination)){
-					nextWarning = gps;
-				}
+		}
+		
+		// if warning is reached or passed, remove
+		Iterator<WarningType> iterator = warnings.iterator();
+		
+		WarningType warning;
+		while(iterator.hasNext()){
+			warning = iterator.next();
+			GPSposition warningPos = warning.getGpsPosition();
+			
+			if(calculateDistance(currentPosition, warningPos) < 
+				calculateDistance(calculatePosition(length, currentPosition), warningPos)){
+				warnings.remove(warning);
+	
 			}
 		}
-		return new Tupel<GPSposition, Double>(first, second);
+		
+		return new Tupel<GPSposition, Double>(currentPosition, fillLevel);
 	}
 
 	public double getAngle() {
 		return angle;
 	}
 
-	public GPSposition getOldPosition() {
-		return oldPosition;
+	public GPSposition getCurrentPosition() {
+		return currentPosition;
 	}
 
-	public void setOldPosition(GPSposition oldPosition) {
-		this.oldPosition = oldPosition;
+	public void setCurrentPosition(GPSposition currentPosition) {
+		this.currentPosition = currentPosition;
 	}
 
-	public GPSposition getNextWorldPosition() {
-		return positions.get(positionsCounter + 1).getGpsPosition();
+	public GPSposition getNextGPSPosition() {
+		return positions.get(positionsCounter + 1);
 	}
 
-	public void setWarning(WarningType wt) {
-		for (int i = 0; i < positions.size()-1; i++) {
-			if (positions.get(i).getGpsPosition().latitude == wt.getGpsPosition().latitude && positions.get(i).getGpsPosition().longitude == wt.getGpsPosition().longitude){
-				positions.set(i, wt);
-			}
-		}
-	}
+	public void addWarning(WarningType wt) {
+//		for (int i = 0; i < positions.size()-1; i++) {
+//			if (positions.get(i).getGpsPosition().latitude == wt.getGpsPosition().latitude && positions.get(i).getGpsPosition().longitude == wt.getGpsPosition().longitude){
+//				positions.set(i, wt);
+//			}
+//		}
+		wt.setPriority(Warnings.getPriority(wt.getWarning()));
+		warnings.add(wt);
+		
+		//sort List
+		Collections.sort(warnings, new Comparator<WarningType>() {
 
+			@Override
+			public int compare(WarningType o1, WarningType o2) {
+				
+					double o1Distance = calculateDistance(o1.getGpsPosition(), currentPosition);
+					double o2Distance = calculateDistance(o2.getGpsPosition(), currentPosition);
+					if(o1Distance == o2Distance) {
+						if(o1.getPriority() == o2.getPriority()){
+							return 0;
+						}else{
+							return (int) (o1.getPriority() - o2.getPriority());
+						}
+					}else{
+						return (int) (o2Distance - o1Distance);
+					}
+				}
+		});
+		
+	}
+	
+	/**
+	 * @return the nearest warning
+	 */
 	public WarningType getNextWarning() {
-		return nextWarning;
+		if(warnings.isEmpty()) return null;
+		return warnings.get(0);
 	}
-	//public void addWarning()
+
+	
+	/**
+	 * Calculate the air distance of two GPS Positions 
+	 * @param src
+	 * @param dest
+	 * @return distance
+	 */
+	public double calculateDistance(GPSposition src, GPSposition dest){
+		double r = 6371; // Earthradius in km
+		double dLat = Math.toRadians(dest.latitude-src.latitude);
+		double dLon = Math.toRadians(dest.longitude-src.longitude);
+		double srcLat = Math.toRadians(src.latitude);
+		double destLat = Math.toRadians(dest.latitude);
+
+		double a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+		        Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(srcLat) * Math.cos(destLat); 
+		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+		return r * c;
+	}
 }

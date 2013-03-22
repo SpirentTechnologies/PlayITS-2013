@@ -60,6 +60,7 @@ public class WarningType {
 		this.gpsPosition = gpsPosition;
 	}
 	
+	
 	public int compareTo(WarningType wt1){
 		final int BEFORE = -1;
 		final int EQUAL = 0;

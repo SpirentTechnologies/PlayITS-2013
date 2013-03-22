@@ -35,4 +35,16 @@ public enum Warnings {
 			default: 		return -1;
 		}
 	}
+	
+	public static int getPriority(Warnings warning){
+		switch(warning) {
+		case DEER:		return 5;
+		case RAIN:		return 3;
+		case ICE:		return 4;
+		case ACCIDENT:	return 6;
+		case FOG:		return 4;
+		case SNOW:		return 3;
+		}
+		return 0;
+	}
 }
