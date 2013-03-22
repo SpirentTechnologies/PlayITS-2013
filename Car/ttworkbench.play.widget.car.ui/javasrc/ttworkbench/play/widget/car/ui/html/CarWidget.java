@@ -25,10 +25,7 @@ import ttworkbench.play.widget.car.ui.WidgetController;
 import com.testingtech.ttworkbench.core.ui.preferences.common.AbstractConfigurationBlock;
 import com.testingtech.ttworkbench.play.dashboard.widget.DashboardWidgetFactoryDescriptor;
 
-/**
- * @author kensan, andre
- *
- */
+
 public class CarWidget {
 
 	private final File wwwRoot;
@@ -128,22 +125,7 @@ public class CarWidget {
 		new CustomFunction(browser, "warning");
 		new CustomFunction(browser, "widgetExit");
 		
-		new CustomFunction(browser, "initialize") {
-			@Override
-			public Object function(Object[] args) {
-
-				widgetController.initializeCar(parseOnOff((String) args[0]), 
-						parseOnOff((String) args[1]), 
-						parseOnOff((String) args[2]), 
-						parseOnOff((String) args[3]), 
-						((Double)args[4]).floatValue(), 
-						((Double)args[5]).floatValue(), 
-						((Double)args[6]).floatValue(), 
-						new File(wwwRoot, "../maps/RoutenachArnimallee.txt"));
-				
-				return null;
-			}
-		};
+		new CustomFunction(browser, "initialize");
 		
 
 		browser.setUrl(new File(wwwRoot, "car.html").toURI().toString());
@@ -165,8 +147,6 @@ public class CarWidget {
 		 */
 		public Object function(Object[] args) {
 			
-			Object returnValue = null;
-			
 			//Get the name of the function and invoke that function in JAVA
 			
 			/**
@@ -184,9 +164,21 @@ public class CarWidget {
 					}
 
 
+			}else{
+				if(this.getName() == "initialize"){
+					widgetController.initializeCar(parseOnOff((String) args[0]), 
+							parseOnOff((String) args[1]), 
+							parseOnOff((String) args[2]), 
+							parseOnOff((String) args[3]), 
+							((Double)args[4]).floatValue(), 
+							((Double)args[5]).floatValue(), 
+							((Double)args[6]).floatValue(), 
+							new File(wwwRoot, "../maps/RoutenachArnimallee.txt"));
+				}
+				
 			}
 			
-			return returnValue;
+			return null;
 		}
 	}
 

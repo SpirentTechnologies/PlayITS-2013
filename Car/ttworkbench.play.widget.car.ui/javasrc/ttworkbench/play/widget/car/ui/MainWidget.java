@@ -6,12 +6,12 @@ import java.net.URL;
 import java.util.Set;
 
 import org.eclipse.jdt.launching.SocketUtil;
-import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
 import ttworkbench.play.widget.car.ui.html.CarWidget;
 import ttworkbench.play.widget.car.ui.html.UIController;
+import ttworkbench.play.widget.car.ui.model.GPSposition;
 
 import com.google.protobuf.BlockingService;
 import com.testingtech.ttworkbench.core.ui.SWTUtil;
@@ -119,7 +119,8 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 	public void notifyGpsPositionChange() {
 		if (uiController != null) {
 			// dropped update if no GUI initialized yet
-			uiController.updatePosition(model.getStatus().getGpsPosition().getLatitude(), model.getStatus().getGpsPosition().getLatitude());
+			GPSposition gpsPosition = model.getStatus().getGpsPosition();
+			uiController.updatePosition(gpsPosition.getLatitude(), gpsPosition.getLongitude());
 		}
 	}
 

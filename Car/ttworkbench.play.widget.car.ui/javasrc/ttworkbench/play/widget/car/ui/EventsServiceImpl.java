@@ -30,32 +30,41 @@ public class EventsServiceImpl implements BlockingInterface {
     this.model = model;
   }
 
+
 @Override
 public Void aPICarStatusType(RpcController controller, carStatusType request)
 		throws ServiceException {
 	
+//	String debug = new String(); 
+	
 	if(request != null){
-		
+		CarStatusModel status = model.getStatus();
+		//first communication sets car id
+		if(status.getId() == -1){
+			status.setId(request.getCarId());
+		}
 		if(request.getWarningCount() > 0){
 			List<warningType> reqWarnings = request.getWarningList();
+			model.clearWarnings();
 			for (warningType reqWarning : reqWarnings) {
 				WarningType warning = new WarningType();
 				warning.setWarning(Warnings.getWarning((reqWarning.getWarningName().getEnumValue().getNumber())));
 				warning.setGpsPosition(new GPSposition(reqWarning.getGpsPos().getLatitude(),reqWarning.getGpsPos().getLongitude()));
 				warning.setPriority(reqWarning.getPriority());
 				model.addWarning(warning);
+//				debug = debug.concat(warning.toString() + " : ");
 			}
 			model.notifyListener(NotifyAttributes.WARNING);
 		}
 
-		//get actual Status from Model
-		CarStatusModel status = model.getStatus();
 		
 		//change Model only if attributes are different from event status
 		if(request.hasAbsSensor()){
+//			debug = debug.concat("ABS : " + status.isABSenabled() + "  :");
 			if(request.getAbsSensor() != status.isABSenabled()){
 				status.setABSenabled(request.getAbsSensor());
 				model.notifyListener(NotifyAttributes.ABS);
+				
 			}
 		}
 		
@@ -67,9 +76,11 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 		}
 		
 		if(request.hasEngineStatus()){
+//			debug = debug.concat("Engine : " + status.isEngineStarted() + "  :");
 			if(request.getEngineStatus() != status.isEngineStarted()){
 				status.setEngineStarted(request.getEngineStatus());
 				model.notifyListener(NotifyAttributes.ENGINE);
+				
 			}
 		}
 		
@@ -105,12 +116,14 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 		}
 		
 		if(request.hasGpsPos()){
+//			debug = debug.concat("GPS : " + request.getGpsPos().toString() + "  :");
 			if(!(new GPSposition(request.getGpsPos().getLatitude(), request.getGpsPos().getLongitude()).equals(status.getGpsPosition()))){
 				model.setGPSPostion(request.getGpsPos().getLatitude(), request.getGpsPos().getLongitude());
 				model.notifyListener(NotifyAttributes.GPS);
 			}
 		}
 		
+		//System.out.println(debug);
 		
 	}
 	return nil();
