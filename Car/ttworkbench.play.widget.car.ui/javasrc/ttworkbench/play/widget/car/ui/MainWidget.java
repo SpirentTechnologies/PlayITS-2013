@@ -1,22 +1,25 @@
 package ttworkbench.play.widget.car.ui;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.util.Set;
 
 import org.eclipse.jdt.launching.SocketUtil;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Group;
 
 import ttworkbench.play.widget.car.ui.html.CarWidget;
 import ttworkbench.play.widget.car.ui.html.UIController;
 import ttworkbench.play.widget.car.ui.model.GPSposition;
 
 import com.google.protobuf.BlockingService;
+import com.testingtech.ttworkbench.core.ui.CommonColors;
 import com.testingtech.ttworkbench.core.ui.SWTUtil;
-import com.testingtech.ttworkbench.core.util.ResourceUtil;
+import com.testingtech.ttworkbench.core.ui.preferences.common.AbstractConfigurationBlock;
 import com.testingtech.ttworkbench.play.dashboard.widget.AbstractDashboardWidget;
+import com.testingtech.ttworkbench.play.dashboard.widget.DashboardWidgetFactoryDescriptor;
 import com.testingtech.ttworkbench.play.dashboard.widget.IDashboard;
 import com.testingtech.ttworkbench.play.dashboard.widget.IDashboardWidgetFactory;
 import com.testingtech.ttworkbench.play.generated.PROTO_API;
@@ -33,7 +36,9 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 	private CarModel model = new CarModel();
 	private CarWidget carWidget;
+	private WidgetController widgetController;
 	private UIController uiController = null;
+	private InitializeFrame initializeFrame;
 
 	public MainWidget(
 			IDashboardWidgetFactory<CarModel, BlockingInterface> dashboardWidgetFactory,
@@ -52,22 +57,19 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 	@Override
 	public Control createWidgetControl(Composite parent) {
 		try {
-			URL wwwLocation = ResourceUtil.getLocation(Activator.getDefault().getBundle().getSymbolicName(), "/www");
-			File wwwRoot = new File(wwwLocation.getFile());
-			//System.out.println(wwwRoot.toString()+"\n"+wwwRoot.exists());
-			carWidget = new CarWidget(wwwRoot, getFactory().getDescriptor());
-			carWidget.setController(new WidgetController(this));
-			Control control = carWidget.createControl(parent);
+			DashboardWidgetFactoryDescriptor descriptor = getFactory().getDescriptor();
+			Group group = AbstractConfigurationBlock.addGroup(parent, descriptor.getName());
+	    ((GridData)group.getLayoutData()).widthHint = 500;
+	    ((GridData)group.getLayoutData()).heightHint = 400;
+			group.setToolTipText(descriptor.getDescription());
+			group.setBackground(CommonColors.LOGGING_GREY);
+			
+			widgetController = new WidgetController(this);
+			initializeFrame = new InitializeFrame(group,SWT.NO_BACKGROUND,this);
 			model.addListener(this);
 			
-			uiController = carWidget.getUiController();
+			return group;
 			
-			return control;
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			throw new RuntimeException("Cannot instantiate car", e);
 		} catch (Throwable e) {
 			e.printStackTrace();
 			throw new RuntimeException("Cannot instantiate car", e);
@@ -88,13 +90,12 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 	@Override
 	protected void disableActions() {
-		carWidget.disableActions();
+		initializeFrame.setEnabled(false);
 	}
 
 	@Override
 	protected void enableActions() {
-		carWidget.enableActions();
-	}
+		initializeFrame.setEnabled(true);	}
 
 	@Override
 	public void notifyEngineStatusChange() {
@@ -190,6 +191,18 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 	@Override
 	public CarModel getCarModel() {
 		return model;
+	}
+
+	@Override
+	public WidgetController getWidgetController() {
+		// TODO Auto-generated method stub
+		return widgetController;
+	}
+
+	@Override
+	public void firstMessageFromSUT() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

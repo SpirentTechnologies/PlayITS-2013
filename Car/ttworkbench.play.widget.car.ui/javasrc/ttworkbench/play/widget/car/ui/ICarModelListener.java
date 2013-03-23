@@ -50,4 +50,11 @@ public interface ICarModelListener {
 	 * Called, when light is enabled or disabled
 	 */
 	public void notifyLightChange();
+	
+	/**
+	 * Called, when first message from SUT arrived,
+	 * only called once, initialize the widget view
+	 */
+	public void firstMessageFromSUT();
+	
 }
