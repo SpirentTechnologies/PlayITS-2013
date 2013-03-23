@@ -81,7 +81,7 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
     
     <script type="text/javascript">
-    var map, marker;
+    var map, marker, kml;
     
     $(document).ready(function() {
         var lat = 52.515;
@@ -125,8 +125,12 @@
         }
         
         function initTrack(track) {
+            if(kml) {
+                kml.setMap(null);
+            }
+            
             var githubURL = 'https://raw.github.com/TestingTechnologies/PlayITS/master/Car/ttworkbench.play.widget.car.ui/www/track'
-            var kml = new google.maps.KmlLayer(githubURL + track + '.kml');
+            kml = new google.maps.KmlLayer(githubURL + track + '.kml');
             kml.setMap(map);
         }
         
@@ -139,6 +143,10 @@
         $('#motor').on('click', function() {
             console.log('MOTOR: ' + $(this).is(':checked'));
 			motor( $(this).is(':checked') );
+		});
+		
+		$('#track').on('change', function() {
+		    initTrack( $(this).val() );
 		});
 		
 		$('#initialize').on('click', function() {
@@ -167,7 +175,7 @@
 		    
 		    if(track === 0) {
 		        alert("Select a track");
-		        //return;
+		        return;
 		    }
 		    
 		    initialize(abs, esp, light, fogLight, maxSpeed, fuel, fuelConsumption, track);		    
