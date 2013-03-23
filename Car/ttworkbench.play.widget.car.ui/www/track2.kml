@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+<Document>
+  <name>Driving directions to Nollendorfplatz, Berlin, Germany</name>
+  <description><![CDATA[]]></description>
+  <Style id="style1">
+    <IconStyle>
+      <Icon>
+        <href></href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="style2">
+    <LineStyle>
+      <color>73FF0000</color>
+      <width>5</width>
+    </LineStyle>
+  </Style>
+  <Style id="style3">
+    <IconStyle>
+      <Icon>
+        <href></href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Placemark>
+    <name>From: Siegessäule, Straße des 17. Juni, Berlin, Germany</name>
+    <styleUrl>#style1</styleUrl>
+    <Point>
+      <coordinates>13.351057,52.514828,0.000000</coordinates>
+    </Point>
+  </Placemark>
+  <Placemark>
+    <name>Driving directions to Nollendorfplatz, Berlin, Germany</name>
+    <styleUrl>#style2</styleUrl>
+    <ExtendedData>
+      <Data name="_SnapToRoads">
+        <value>true</value>
+      </Data>
+    </ExtendedData>
+    <LineString>
+      <tessellate>1</tessellate>
+      <coordinates>
+        13.351060,52.514832,0.000000
+        13.350920,52.514961,0.000000
+        13.350710,52.515072,0.000000
+        13.350250,52.515179,0.000000
+        13.349930,52.515179,0.000000
+        13.349660,52.515141,0.000000
+        13.349490,52.515091,0.000000
+        13.349240,52.514938,0.000000
+        13.349050,52.514740,0.000000
+        13.349010,52.514561,0.000000
+        13.349040,52.514370,0.000000
+        13.349140,52.514198,0.000000
+        13.349290,52.514061,0.000000
+        13.349430,52.513988,0.000000
+        13.349990,52.513870,0.000000
+        13.349990,52.513870,0.000000
+        13.350250,52.513618,0.000000
+        13.351290,52.509529,0.000000
+        13.351290,52.509529,0.000000
+        13.351400,52.509071,0.000000
+        13.351400,52.509071,0.000000
+        13.351280,52.508862,0.000000
+        13.351690,52.507061,0.000000
+        13.351800,52.506229,0.000000
+        13.351790,52.505939,0.000000
+        13.351890,52.505852,0.000000
+        13.351890,52.505852,0.000000
+        13.351780,52.505451,0.000000
+        13.350990,52.504349,0.000000
+        13.350990,52.504349,0.000000
+        13.350730,52.504009,0.000000
+        13.350310,52.503590,0.000000
+        13.349730,52.503159,0.000000
+        13.349730,52.503159,0.000000
+        13.349090,52.502762,0.000000
+        13.348030,52.502270,0.000000
+        13.347230,52.501839,0.000000
+        13.346640,52.501419,0.000000
+        13.346230,52.501041,0.000000
+        13.346230,52.501041,0.000000
+        13.351270,52.499981,0.000000
+        13.352660,52.499538,0.000000
+        13.352660,52.499538,0.000000
+        13.353590,52.499290,0.000000
+      </coordinates>
+    </LineString>
+  </Placemark>
+  <Placemark>
+    <name>To: Nollendorfplatz, Berlin, Germany</name>
+    <styleUrl>#style3</styleUrl>
+    <Point>
+      <coordinates>13.353586,52.499290,0.000000</coordinates>
+    </Point>
+  </Placemark>
+</Document>
+</kml>

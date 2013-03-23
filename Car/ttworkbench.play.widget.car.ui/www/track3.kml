@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+<Document>
+  <name>Driving directions to Ernst-Reuter-Platz, Berlin, Germany</name>
+  <description><![CDATA[]]></description>
+  <Style id="style2">
+    <IconStyle>
+      <Icon>
+        <href></href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="style1">
+    <LineStyle>
+      <color>73FF0000</color>
+      <width>5</width>
+    </LineStyle>
+  </Style>
+  <Style id="style3">
+    <IconStyle>
+      <Icon>
+        <href></href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Placemark>
+    <name>From: Siegessäule, Straße des 17. Juni, Berlin, Germany</name>
+    <styleUrl>#style2</styleUrl>
+    <Point>
+      <coordinates>13.351057,52.514828,0.000000</coordinates>
+    </Point>
+  </Placemark>
+  <Placemark>
+    <name>Driving directions to Ernst-Reuter-Platz, Berlin, Germany</name>
+    <styleUrl>#style1</styleUrl>
+    <ExtendedData>
+      <Data name="_SnapToRoads">
+        <value>true</value>
+      </Data>
+    </ExtendedData>
+    <LineString>
+      <tessellate>1</tessellate>
+      <coordinates>
+        13.351060,52.514832,0.000000
+        13.350920,52.514961,0.000000
+        13.350630,52.515099,0.000000
+        13.350350,52.515171,0.000000
+        13.349930,52.515179,0.000000
+        13.349660,52.515141,0.000000
+        13.349350,52.515018,0.000000
+        13.349040,52.514702,0.000000
+        13.349040,52.514702,0.000000
+        13.348740,52.514542,0.000000
+        13.348480,52.514469,0.000000
+        13.347270,52.514381,0.000000
+        13.323470,52.512772,0.000000
+        13.323120,52.512772,0.000000
+        13.322860,52.512852,0.000000
+        13.322860,52.512852,0.000000
+        13.322660,52.513050,0.000000
+        13.322320,52.513168,0.000000
+        13.322170,52.513199,0.000000
+        13.321650,52.513191,0.000000
+      </coordinates>
+    </LineString>
+  </Placemark>
+  <Placemark>
+    <name>To: Ernst-Reuter-Platz, Berlin, Germany</name>
+    <styleUrl>#style3</styleUrl>
+    <Point>
+      <coordinates>13.321649,52.513191,0.000000</coordinates>
+    </Point>
+  </Placemark>
+</Document>
+</kml>

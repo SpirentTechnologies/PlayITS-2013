@@ -104,7 +104,7 @@
             map: map
         });
         
-        function initSpeed(maxSpeed) {
+        function initCar(maxSpeed) {
             console.log(maxSpeed);
             
             $('#speedSlider').attr('max', maxSpeed);
@@ -122,6 +122,12 @@
                   speed(v);
                 }
             });
+        }
+        
+        function initTrack(track) {
+            var githubURL = 'https://raw.github.com/TestingTechnologies/PlayITS/master/Car/ttworkbench.play.widget.car.ui/www/track'
+            var kml = new google.maps.KmlLayer(githubURL + track + '.kml');
+            kml.setMap(map);
         }
         
         $('#speedSlider').on('change', function() {
@@ -165,7 +171,8 @@
 		    }
 		    
 		    initialize(abs, esp, light, fogLight, maxSpeed, fuel, fuelConsumption, track);		    
-		    initSpeed(maxSpeed);
+		    initCar(maxSpeed);
+		    initTrack(track);
 		    
 		    $('.configuration').hide(function() {
 		        $('.main').show();
