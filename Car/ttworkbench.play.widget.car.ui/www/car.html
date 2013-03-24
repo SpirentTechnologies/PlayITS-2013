@@ -47,6 +47,16 @@
           width: 135px;
           padding-left: 30px;
       }
+      #smallLeftContainer {
+          float: left;
+          width: 80px;
+          padding-left: 30px;
+      }
+      #fatRightContainer {
+          float: left;
+          width: 190px;
+          padding-left: 30px;
+      }
       
       #initialize {
           background: #2ECC71;
@@ -66,8 +76,20 @@
       
       #motorContainer {
           width: 89px;
-          margin: 0 0 0 120px;
+          margin: 0 0 0 50px;
       }
+      
+      .status_on {
+          background: url('img/light_on.png') no-repeat left center;
+          padding-top: 1px;
+          padding-left: 15px;
+      }
+      
+      .status_off {
+            background: url('img/light_off.png') no-repeat left center;
+            padding-top: 1px;
+            padding-left: 15px;
+        }
       
       .center_text {
           text-align: center;
@@ -105,8 +127,6 @@
         });
         
         function initCar(maxSpeed) {
-            console.log(maxSpeed);
-            
             $('#speedSlider').attr('max', maxSpeed);
             
             $("#speed").knob({
@@ -134,6 +154,18 @@
             kml.setMap(map);
         }
         
+        function turnOn(id) {
+            light = $('#' + id);
+            light.removeClass('status_off');
+            light.addClass('status_on');
+        }
+        
+        function turnOff(id) {
+            light = $('#' + id);
+            light.removeClass('status_on');
+            light.addClass('status_off');
+        }
+        
         $('#speedSlider').on('change', function() {
             $('#speed').val( $(this).val() );
             $('#speed').trigger('change');
@@ -141,7 +173,6 @@
         });
         
         $('#motor').on('click', function() {
-            console.log('MOTOR: ' + $(this).is(':checked'));
 			motor( $(this).is(':checked') );
 		});
 		
@@ -152,14 +183,30 @@
 		$('#initialize').on('click', function() {
 		    var abs, esp, light, fogLight, maxSpeed, fuel, fuelConsumption;
 		    
-		    abs = $('#abs').val();
-		    esp = $('#esp').val();
-		    light = $('#light').val();
-		    fogLight = $('#fogLight').val();
+		    abs = $('#abs').is(':checked');
+		    esp = $('#esp').is(':checked');
+		    light = $('#light').is(':checked');
+		    fogLight = $('#fogLight').is(':checked');
 		    maxSpeed = parseInt($('#maxSpeed').val());
 		    fuel = parseFloat($('#fuel').val());
 		    fuelConsumption = parseFloat($('#fuelConsumption').val());
 		    track = parseInt($('#track').val());
+		    
+		    if(abs) {
+		        turnOn('abs_status');
+		    }
+		    
+		    if(esp) {
+		        turnOn('esp_status');
+		    }
+		    
+		    if(light) {
+		        turnOn('light_status');
+		    }
+		
+		    if(fogLight) {
+		        turnOn('fog_light_status');
+		    }
 		    
 		    if(!maxSpeed) {
 		        maxSpeed = 200;
@@ -178,7 +225,7 @@
 		        return;
 		    }
 		    
-		    initialize(abs, esp, light, fogLight, maxSpeed, fuel, fuelConsumption, track);		    
+		    initialize(abs, esp, light, fogLight, maxSpeed, fuel, fuelConsumption, track);
 		    initCar(maxSpeed);
 		    initTrack(track);
 		    
@@ -207,17 +254,6 @@
             <input type="range" min="0" max="100" step="1" id="speedSlider" class="center_text" value="0" />
         </div>
         
-        <div id="motorContainer" class="main">
-            <div class="center_text">MOTOR</div>
-            <div class="onoffswitch">
-              <input type="checkbox" name="motor" class="onoffswitch-checkbox" id="motor">
-              <label class="onoffswitch-label" for="motor">
-                  <div class="onoffswitch-inner"></div>
-                  <div class="onoffswitch-switch"></div>
-              </label>
-            </div>
-        </div>
-        
         <div class="configuration center_text">
             <h1>CREATE A CAR</h1>
             
@@ -225,8 +261,22 @@
             <input type="text" name="maxSpeed" id="maxSpeed" value="200">
         </div>
         
+        <div id="smallLeftContainer">
+            <div id="abs_status" class="status_off main">
+                ABS
+            </div>
+            <div id="esp_status" class="status_off main">
+                ESP
+            </div>
+            <div id="light_status" class="status_off main">
+                LIGHT
+            </div>
+            <div id="fog_light_status" class="status_off main">
+                FOG LIGHT
+            </div>
+        </div>
+        
         <div id="leftContainer">
-            
             <div class="configuration">
                 <div class=" margin_top_20">FUEL (Liter)</div>
                 <input type="text" name="fuelFilling" id="fuelFilling" value="50">
@@ -287,6 +337,19 @@
         
         <div class="configuration center_text">
              <input type="button" id="initialize" value="INITIALIZE" />
+        </div>
+        
+        <div id="fatRightContainer">
+            <div id="motorContainer" class="main">
+                <div class="center_text">MOTOR</div>
+                <div class="onoffswitch">
+                  <input type="checkbox" name="motor" class="onoffswitch-checkbox" id="motor">
+                  <label class="onoffswitch-label" for="motor">
+                      <div class="onoffswitch-inner"></div>
+                      <div class="onoffswitch-switch"></div>
+                  </label>
+                </div>
+            </div>
         </div>
         
     </div>
