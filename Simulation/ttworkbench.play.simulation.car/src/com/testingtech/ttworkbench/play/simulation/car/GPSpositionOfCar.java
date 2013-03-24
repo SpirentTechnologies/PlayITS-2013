@@ -13,19 +13,19 @@ public class GPSpositionOfCar {
 	private GPSposition currentPosition;
 	private double angle;
 	private List<WarningType> warnings = new ArrayList<WarningType>();
-	private List<GPSposition> positions = null;
+	//private List<GPSposition> positions = null;
 	private int positionsCounter = 2;
 
 
 	public GPSpositionOfCar(ArrayList<GPSposition> positions) {
 		this.nextGPSDestination = positions.get(1);
 		this.currentPosition = positions.get(0);
-		this.positions = positions;
-//		for (GPSposition g : positions) {
-//			WarningType wt = new WarningType();
-//			wt.setGpsPosition(g);
-//			this.warnings.add(wt);
-//		}
+//		this.positions = positions;
+		for (GPSposition g : positions) {
+			WarningType wt = new WarningType();
+			wt.setGpsPosition(g);
+			this.warnings.add(wt);
+		}
 		updateAngleAndDirections(nextGPSDestination, currentPosition);
 	}
 
@@ -33,12 +33,12 @@ public class GPSpositionOfCar {
 			GPSposition startPosition, ArrayList<GPSposition> positions) {
 		this.nextGPSDestination = destinationPositions;
 		this.currentPosition = startPosition;
-		this.positions = positions;
-//		for (GPSposition g : positions) {
-//			WarningType wt = new WarningType();
-//			wt.setGpsPosition(g);
-//			this.warnings.add(wt);
-//		}
+//		this.positions = positions;
+		for (GPSposition g : positions) {
+			WarningType wt = new WarningType();
+			wt.setGpsPosition(g);
+			this.warnings.add(wt);
+		}
 		// calculate the angle needed for calculating the distance
 		double lon1 = startPosition.longitude;
 		double lon2 = destinationPositions.longitude;
@@ -195,10 +195,10 @@ public class GPSpositionOfCar {
 		if (calculateDistance(currentPosition, nextGPSDestination) < 
 				calculateDistance(calculatePosition(length, currentPosition), nextGPSDestination)) {
 			
-			nextGPSDestination.latitude = positions.get(positionsCounter)
+			nextGPSDestination.latitude = warnings.get(positionsCounter).getGpsPosition()
 					.latitude;
 			
-			nextGPSDestination.longitude = positions.get(positionsCounter)
+			nextGPSDestination.longitude = warnings.get(positionsCounter).getGpsPosition()
 					.longitude;
 			
 			updateAngleAndDirections(currentPosition, nextGPSDestination);
@@ -236,15 +236,15 @@ public class GPSpositionOfCar {
 	}
 
 	public GPSposition getNextGPSPosition() {
-		return positions.get(positionsCounter + 1);
+		return warnings.get(positionsCounter + 1).getGpsPosition();
 	}
 
 	public void addWarning(WarningType wt) {
-//		for (int i = 0; i < positions.size()-1; i++) {
-//			if (positions.get(i).getGpsPosition().latitude == wt.getGpsPosition().latitude && positions.get(i).getGpsPosition().longitude == wt.getGpsPosition().longitude){
-//				positions.set(i, wt);
-//			}
-//		}
+		for (int i = 0; i < warnings.size()-1; i++) {
+			if (warnings.get(i).getGpsPosition().latitude == wt.getGpsPosition().latitude && warnings.get(i).getGpsPosition().longitude == wt.getGpsPosition().longitude){
+				warnings.set(i, wt);
+			}
+		}
 		wt.setPriority(Warnings.getPriority(wt.getWarning()));
 		warnings.add(wt);
 		
