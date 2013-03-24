@@ -17,6 +17,8 @@ import org.eclipse.swt.widgets.ProgressBar;
 import org.eclipse.swt.widgets.Slider;
 
 import ttworkbench.play.widget.car.ui.model.CarStatusModel;
+import ttworkbench.play.widget.car.ui.model.WarningType;
+import ttworkbench.play.widget.car.ui.model.enumWarning;
 
 public class CarWidgetFrame extends Composite implements IUIController{
 
@@ -59,8 +61,8 @@ public class CarWidgetFrame extends Composite implements IUIController{
 		
 		browser = new Browser(this, SWT.NONE);
 		browser.setUrl("E:\\Users\\kensan.Phenom-PC\\git\\PlayITS\\Car\\ttworkbench.play.widget.car.ui\\www\\car.html");
-		GridData gd_browser = new GridData(SWT.CENTER, SWT.CENTER, false, false, 2, 11);
-		gd_browser.heightHint = 230;
+		GridData gd_browser = new GridData(SWT.CENTER, SWT.CENTER, false, false, 2, 12);
+		gd_browser.heightHint = 269;
 		gd_browser.widthHint = 284;
 		browser.setLayoutData(gd_browser);
 		
@@ -99,7 +101,7 @@ public class CarWidgetFrame extends Composite implements IUIController{
 				}
 			}
 		});
-		btnEngine.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
+		btnEngine.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		btnEngine.setText("Engine");
 		
 		lblOnOff = new Label(this, SWT.NONE);
@@ -151,14 +153,35 @@ public class CarWidgetFrame extends Composite implements IUIController{
 		consumptionMeter.setText("0");
 		
 		Button btnIce = new Button(this, SWT.NONE);
-		btnIce.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
-		btnIce.setText("Ice");
+		btnIce.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				WarningType warning = new WarningType();
+				warning.setWarning(enumWarning.ICE);
+			}
+		});
+		btnIce.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		btnIce.setText("ice");
 		
 		Button btnNewButton_1 = new Button(this, SWT.NONE);
-		btnNewButton_1.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
-		btnNewButton_1.setText("DEER");
-		new Label(this, SWT.NONE);
-		new Label(this, SWT.NONE);
+		btnNewButton_1.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		btnNewButton_1.setText("deercrossing");
+		
+		Button btnFog = new Button(this, SWT.NONE);
+		btnFog.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		btnFog.setText("fog");
+		
+		Button btnSnow = new Button(this, SWT.NONE);
+		btnSnow.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		btnSnow.setText("snow");
+		
+		Button btnAccident = new Button(this, SWT.NONE);
+		btnAccident.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		btnAccident.setText("accident");
+		
+		Button btnRain = new Button(this, SWT.NONE);
+		btnRain.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		btnRain.setText("rain");
 		new Label(this, SWT.NONE);
 		new Label(this, SWT.NONE);
 		new Label(this, SWT.NONE);

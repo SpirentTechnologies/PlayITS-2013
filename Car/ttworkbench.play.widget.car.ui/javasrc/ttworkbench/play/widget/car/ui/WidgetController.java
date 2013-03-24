@@ -10,6 +10,8 @@ import com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.onOffEngineType;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.speedType;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.trackType;
+import com.testingtech.ttworkbench.play.generated.PROTO_API.warning;
+import com.testingtech.ttworkbench.play.generated.PROTO_API.warningType;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit;
 
 
@@ -94,6 +96,20 @@ public class WidgetController {
 			System.out.println("Can't change speed! " + e.getMessage());
 		}
 	}
+	
+//	public void sendWarning(WarningType warning){
+//		initCar();
+//		try {
+//			warningType.Builder request = warningType.newBuilder();
+//			request.setCarId(comm.getCarModel().getStatus().getId());
+//
+//			client().getActionsService().aPIWarningType(client().getController(), request.build());
+//
+//		} catch (ServiceException e) {
+//
+//			System.out.println("Can't change speed! " + e.getMessage());
+//		}
+//	}
 
 	/**
 	 * Sets the track file

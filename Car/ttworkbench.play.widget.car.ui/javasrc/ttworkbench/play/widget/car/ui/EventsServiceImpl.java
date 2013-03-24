@@ -7,7 +7,7 @@ import ttworkbench.play.widget.car.ui.model.CarStatusModel;
 import ttworkbench.play.widget.car.ui.model.GPSposition;
 import ttworkbench.play.widget.car.ui.model.NotifyAttributes;
 import ttworkbench.play.widget.car.ui.model.WarningType;
-import ttworkbench.play.widget.car.ui.model.Warnings;
+import ttworkbench.play.widget.car.ui.model.enumWarning;
 
 import com.google.protobuf.RpcController;
 import com.google.protobuf.ServiceException;
@@ -49,7 +49,7 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 			model.clearWarnings();
 			for (warningType reqWarning : reqWarnings) {
 				WarningType warning = new WarningType();
-				warning.setWarning(Warnings.getWarning((reqWarning.getWarningName().getEnumValue().getNumber())));
+				warning.setWarning(enumWarning.getWarning((reqWarning.getWarningName().getEnumValue().getNumber())));
 				warning.setGpsPosition(new GPSposition(reqWarning.getGpsPos().getLatitude(),reqWarning.getGpsPos().getLongitude()));
 				warning.setPriority(reqWarning.getPriority());
 				model.addWarning(warning);
