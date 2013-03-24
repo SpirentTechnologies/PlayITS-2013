@@ -8,6 +8,7 @@ import java.util.Set;
 import org.eclipse.jdt.launching.SocketUtil;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 
 import ttworkbench.play.widget.car.ui.html.CarWidget;
 import ttworkbench.play.widget.car.ui.html.UIController;
@@ -117,11 +118,16 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 	@Override
 	public void notifyGpsPositionChange() {
-		if (uiController != null) {
-			// dropped update if no GUI initialized yet
-			GPSposition gpsPosition = model.getStatus().getGpsPosition();
-			uiController.updatePosition(gpsPosition.getLatitude(), gpsPosition.getLongitude());
-		}
+		Display.getDefault().syncExec(new Runnable() {
+		    public void run() {
+		    	if (uiController != null) {
+					// dropped update if no GUI initialized yet
+					GPSposition gpsPosition = model.getStatus().getGpsPosition();
+					uiController.updatePosition(gpsPosition.getLatitude(), gpsPosition.getLongitude());
+				}
+		    }
+		});
+		
 	}
 
 

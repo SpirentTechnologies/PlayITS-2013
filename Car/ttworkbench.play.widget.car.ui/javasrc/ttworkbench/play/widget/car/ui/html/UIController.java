@@ -17,8 +17,6 @@ public class UIController {
 	}
 	
 	public void updatePosition(double latitude, double longitude) {
-		//TODO: error
-		//browser.execute("carPosition(" + latitude + ", " + longitude + ")");
-		System.out.println(latitude + ":" + longitude);
+		browser.execute("carPosition(" + latitude + ", " + longitude + ")");
 	}
 }
