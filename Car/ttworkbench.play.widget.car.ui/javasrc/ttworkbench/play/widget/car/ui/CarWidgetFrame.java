@@ -125,8 +125,10 @@ public class CarWidgetFrame extends Composite implements IUIController{
 		sliderSpeed.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseUp(MouseEvent e) {
-				lblSpeed.setText(""+sliderSpeed.getSelection() * status.getMaxSpeed()/100);
+				float speed = sliderSpeed.getSelection() * status.getMaxSpeed()/100;
+				lblSpeed.setText(""+ speed);
 				lblSpeed.setBackground(red);
+				controller.changeSpeed(speed);
 			}
 		});
 
