@@ -16,6 +16,10 @@ public class GPSpositionOfCar {
 	//private List<GPSposition> positions = null;
 	private int positionsCounter = 2;
 
+	public int warningsSize(){
+		return warnings.size();
+	}
+	
 
 	public GPSpositionOfCar(ArrayList<GPSposition> positions) {
 		this.nextGPSDestination = positions.get(1);
