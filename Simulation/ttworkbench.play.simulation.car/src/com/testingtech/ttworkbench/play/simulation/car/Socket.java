@@ -41,6 +41,10 @@ public class Socket implements Runnable {
 		
 		createEventsClient(clientPort, clientHost);
 		while(!car.isCarDisposed()){
+			// Call the cars update method before the widget needs new information
+			// about the car
+			car.update();
+			//send updated information to widget
 			sendUpdate();
 			try {
 				Thread.sleep(500);
@@ -86,9 +90,7 @@ public class Socket implements Runnable {
 		if (car.isCarDisposed() || rpcController == null) {
 			return;
 		}
-		// Call the cars update methode before the widget needs new information
-		// about the car
-		car.update();
+
 		// parse the car into a carStatusType message and make the rpc call
 		carStatusType request = CarStatusTypeParser.parseToStatusType(car);
 

@@ -55,6 +55,6 @@ public interface ICarModelListener {
 	 * Called, when first message from SUT arrived,
 	 * only called once, initialize the widget view
 	 */
-	public void firstMessageFromSUT();
+	public void notifyFirstMessageFromSUT();
 	
 }

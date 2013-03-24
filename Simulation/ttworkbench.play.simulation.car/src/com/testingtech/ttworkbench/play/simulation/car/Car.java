@@ -12,6 +12,20 @@ public class Car implements CarInterface {
 	Sensors sensors;
 	boolean engine;
 
+	/**
+	 * @return the engine
+	 */
+	public synchronized boolean isEngine() {
+		return engine;
+	}
+
+	/**
+	 * @param engine the engine to set
+	 */
+	public synchronized void setEngine(boolean engine) {
+		this.engine = engine;
+	}
+
 	GPSpositionOfCar position;
 	GPSposition currentPosition;
 	// if this boolean is set the car will be removed from the simulation

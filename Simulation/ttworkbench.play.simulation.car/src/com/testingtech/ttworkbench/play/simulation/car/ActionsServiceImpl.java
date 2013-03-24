@@ -29,7 +29,7 @@ public class ActionsServiceImpl implements BlockingInterface {
 			onOffEngineType request) throws ServiceException {
 		long id = request.getCarId();
 		Car car = getCar(id);
-		car.engine = request.getEngineStatus();
+		car.setEngine(request.getEngineStatus());
 		return nil();
 	}
 
@@ -79,6 +79,8 @@ public class ActionsServiceImpl implements BlockingInterface {
 		}
 		// updates the initial car setup with the wanted field values
 		Car car = new Car(0, request.getMaxSpeed(), 2.0, request.getFuelFilling(), request.getFuelConsumption(), request.getLightSensorExists(), true, request.hasFuelFilling(), true, request.getEspSensorExists(), request.getAbsSensorExists(), false, request.getFogLightSensorExists(), positions);
+		car.setEngine(true);
+		car.setSpeed(30);
 		carModel.addCar(car);
 		Socket socket = new Socket(car,(int) request.getTtcnEventsPort(),request.getTtcnEventsHostName());
 		carSocket.put(car, socket);

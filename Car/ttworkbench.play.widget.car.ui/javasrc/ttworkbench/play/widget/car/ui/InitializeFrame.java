@@ -39,9 +39,9 @@ public class InitializeFrame extends Composite{
 		setBackground(SWTResourceManager.getColor(SWT.COLOR_WIDGET_LIGHT_SHADOW));
 		me = this;
 		controller = comm.getWidgetController();
+		setLayout(null);
 		
 		Button btnInitialize = new Button(this, SWT.NONE);
-		
 		btnInitialize.setBounds(176, 254, 75, 25);
 		btnInitialize.setText("initialize");
 		
@@ -49,14 +49,14 @@ public class InitializeFrame extends Composite{
 		fuel.setBounds(280, 61, 76, 21);
 		
 		Label lblFuel = new Label(this, SWT.CENTER);
-		lblFuel.setAlignment(SWT.CENTER);
 		lblFuel.setBounds(190, 67, 75, 15);
+		lblFuel.setAlignment(SWT.CENTER);
 		lblFuel.setText("fuel");
 		
 		Label lblSpeed = new Label(this, SWT.CENTER);
+		lblSpeed.setBounds(190, 104, 81, 15);
 		lblSpeed.setText("max. speed");
 		lblSpeed.setAlignment(SWT.CENTER);
-		lblSpeed.setBounds(190, 104, 81, 15);
 		
 		maxspeed = new Text(this, SWT.BORDER | SWT.CENTER);
 		maxspeed.setBounds(280, 104, 76, 21);
@@ -74,12 +74,12 @@ public class InitializeFrame extends Composite{
 		btnFoglightSensor.setText("Foglight Sensor");
 		
 		 btnLightSensor = new Button(this, SWT.CHECK | SWT.CENTER);
-		btnLightSensor.setBounds(70, 200, 93, 16);
+		 btnLightSensor.setBounds(70, 200, 93, 16);
 		btnLightSensor.setText("Light Sensor");
 		
 		Label lblInitializeCar = new Label(this, SWT.SHADOW_IN | SWT.CENTER);
-		lblInitializeCar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		lblInitializeCar.setBounds(73, 10, 283, 33);
+		lblInitializeCar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		lblInitializeCar.setText("Initialize Car");
 		
 		lblFuelConsumption = new Label(this, SWT.CENTER);
@@ -87,19 +87,18 @@ public class InitializeFrame extends Composite{
 		lblFuelConsumption.setText("fuel \r\nconsumption");
 		
 		consumption = new Text(this, SWT.BORDER | SWT.CENTER);
-		consumption.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 		consumption.setBounds(280, 150, 76, 21);
+		consumption.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 		
 		btnTrackfile = new Button(this, SWT.NONE);
-		
 		btnTrackfile.setBounds(190, 200, 75, 25);
 		btnTrackfile.setText("Trackfile");
 		
 		lblFileName = new Label(this, SWT.NONE);
+		lblFileName.setBounds(280, 201, 139, 24);
 		lblFileName.setAlignment(SWT.CENTER);
 		lblFileName.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.NORMAL));
 		lblFileName.setText("none");
-		lblFileName.setBounds(280, 201, 139, 24);
 
 		btnInitialize.addSelectionListener(new SelectionAdapter() {
 			@Override

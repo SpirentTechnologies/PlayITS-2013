@@ -5,10 +5,13 @@ import java.util.Set;
 
 import org.eclipse.jdt.launching.SocketUtil;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Layout;
 
 import ttworkbench.play.widget.car.ui.html.CarWidget;
 import ttworkbench.play.widget.car.ui.html.UIController;
@@ -39,6 +42,8 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 	private WidgetController widgetController;
 	private UIController uiController = null;
 	private InitializeFrame initializeFrame;
+	private CarWidgetFrame carWidgetFrame;
+	private Group group;
 
 	public MainWidget(
 			IDashboardWidgetFactory<CarModel, BlockingInterface> dashboardWidgetFactory,
@@ -58,14 +63,18 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 	public Control createWidgetControl(Composite parent) {
 		try {
 			DashboardWidgetFactoryDescriptor descriptor = getFactory().getDescriptor();
-			Group group = AbstractConfigurationBlock.addGroup(parent, descriptor.getName());
-	    ((GridData)group.getLayoutData()).widthHint = 500;
-	    ((GridData)group.getLayoutData()).heightHint = 400;
+			group = AbstractConfigurationBlock.addGroup(parent, descriptor.getName());
 			group.setToolTipText(descriptor.getDescription());
 			group.setBackground(CommonColors.LOGGING_GREY);
+			group.setLayout(null);
 			
 			widgetController = new WidgetController(this);
 			initializeFrame = new InitializeFrame(group,SWT.NO_BACKGROUND,this);
+			initializeFrame.setBounds(0, 0, 500, 400);
+			carWidgetFrame = new CarWidgetFrame(group, SWT.NO_BACKGROUND,this);
+			carWidgetFrame.setBounds(0, 0, 500, 400);
+			carWidgetFrame.setVisible(false);
+			
 			model.addListener(this);
 			
 			return group;
@@ -99,6 +108,11 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 	@Override
 	public void notifyEngineStatusChange() {
+		Display.getDefault().syncExec(new Runnable() {
+		    public void run() {
+		    	carWidgetFrame.changeEngineView(model.getStatus().isEngineStarted());				
+		    }
+		});
 		
 	}
 
@@ -118,11 +132,14 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 	@Override
 	public void notifyGpsPositionChange() {
-		if (uiController != null) {
+		Display.getDefault().syncExec(new Runnable() {
+		    public void run() {
+		    	GPSposition gpsPosition = model.getStatus().getGpsPosition();
+				carWidgetFrame.changeMapLocation(gpsPosition.getLatitude(), gpsPosition.getLongitude());		
+		    }
+		});
 			// dropped update if no GUI initialized yet
-			GPSposition gpsPosition = model.getStatus().getGpsPosition();
-			uiController.updatePosition(gpsPosition.getLatitude(), gpsPosition.getLongitude());
-		}
+			
 	}
 
 
@@ -200,9 +217,13 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 	}
 
 	@Override
-	public void firstMessageFromSUT() {
-		// TODO Auto-generated method stub
-		
+	public synchronized void notifyFirstMessageFromSUT() {
+		Display.getDefault().syncExec(new Runnable() {
+		    public void run() {
+				carWidgetFrame.setVisible(true);				
+		    }
+		});
+
 	}
 	
 }

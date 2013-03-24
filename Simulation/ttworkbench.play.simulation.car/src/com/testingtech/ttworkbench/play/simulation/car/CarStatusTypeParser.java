@@ -13,11 +13,10 @@ public class CarStatusTypeParser {
 		Builder cst = carStatusType.newBuilder();
 		cst.setCarId(car.customID);
 		cst.setAbsSensor(car.sensors.abs);
-		cst.setEngineStatus(car.engine);
+		cst.setEngineStatus(car.isEngine());
 		cst.setEspSensor(car.sensors.esp);
 		cst.setFogLightSensor(car.sensors.fogLight);
 		cst.setFuelFilling((float) car.getTankFill());
-		cst.setCarId(car.customID);
 		//set gps position
 		com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.Builder gps = gpsPosition.newBuilder();
 		gps.setLatitude((float) car.currentPosition.latitude);
