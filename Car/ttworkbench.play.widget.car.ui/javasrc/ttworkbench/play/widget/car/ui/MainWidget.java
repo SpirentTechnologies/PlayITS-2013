@@ -5,16 +5,11 @@ import java.util.Set;
 
 import org.eclipse.jdt.launching.SocketUtil;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.Layout;
 
-import ttworkbench.play.widget.car.ui.html.CarWidget;
-import ttworkbench.play.widget.car.ui.html.UIController;
 import ttworkbench.play.widget.car.ui.model.GPSposition;
 
 import com.google.protobuf.BlockingService;
@@ -38,9 +33,7 @@ import com.testingtech.util.SetUtil;
 public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTIONS.BlockingInterface> implements ICarModelListener, ICommunication {
 
 	private CarModel model = new CarModel();
-	private CarWidget carWidget;
 	private WidgetController widgetController;
-	private UIController uiController = null;
 	private InitializeFrame initializeFrame;
 	private CarWidgetFrame carWidgetFrame;
 	private Group group;
@@ -159,7 +152,7 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 	@Override
 	public void notifyWarningAdded() {
-		uiController.warning(model.getWarning());
+
 	}
 
 	@Override
