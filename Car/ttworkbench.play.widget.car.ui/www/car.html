@@ -238,14 +238,14 @@
 		        alert("Select a track");
 		        return;
 		    }
-		    
+		     $('.configuration').hide(function() {
+		        $('.main').show();
+		    }); 
 		    initialize(abs, esp, light, fogLight, maxSpeed, fuel, fuelConsumption, track);
 		    initCar(maxSpeed);
 		    initTrack(track);
 		    
-		    $('.configuration').hide(function() {
-		        $('.main').show();
-		    }); 
+		   
 		});
     });
     
