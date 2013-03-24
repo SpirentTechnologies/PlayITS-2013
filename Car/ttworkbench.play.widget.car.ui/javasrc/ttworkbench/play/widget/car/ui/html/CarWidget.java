@@ -157,7 +157,6 @@ public class CarWidget {
 				boolean motorOn = parseOnOff(args[0].toString());
 				
 					if(motorOn) {
-						widgetController.setTrack(new File(wwwRoot, "../maps/RoutenachArnimallee.txt"));
 						widgetController.startEngine();
 					} else {
 						widgetController.stopEngine();
@@ -173,7 +172,9 @@ public class CarWidget {
 							((Double)args[4]).floatValue(), 
 							((Double)args[5]).floatValue(), 
 							((Double)args[6]).floatValue(), 
-							new File(wwwRoot, "../maps/RoutenachArnimallee.txt"));
+							new File((String)args[7]));
+					//args[7] liefert nicht den Pfad
+					System.out.println((String)args[7]);
 				}
 				
 			}
