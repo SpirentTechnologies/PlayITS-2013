@@ -10,7 +10,6 @@
           height: 100%;
           margin: 0;
           padding: 0;
-          overflow: hidden;
           font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
           font-size: 12px;
       }
@@ -33,6 +32,33 @@
       }
       #speedSlider {
           margin: 5px 0 20px 100px;
+      }
+      #warning {
+          width: 270px;
+          height: 150px;
+          margin: 20px 30px 80px;
+          background-color: #eee;
+          -webkit-border-radius: 10px;
+          -moz-border-radius: 10px;
+          border-radius: 10px;
+      }
+      .warning_0 {
+          background: url('img/deer.png') no-repeat center center;
+      }
+      .warning_1 {
+          background: url('img/rain.png') no-repeat center center;
+      }
+      .warning_2 {
+          background: url('img/ice.png') no-repeat center center;
+      }
+      .warning_3 {
+          background: url('img/accident.png') no-repeat center center;
+      }
+      .warning_4 {
+          background: url('img/fog.png') no-repeat center center;
+      }
+      .warning_5 {
+          background: url('img/snow.png') no-repeat center center;
       }
       #menuContainer {
           width: 330px;
@@ -154,18 +180,6 @@
             kml.setMap(map);
         }
         
-        function turnOn(id) {
-            light = $('#' + id);
-            light.removeClass('status_off');
-            light.addClass('status_on');
-        }
-        
-        function turnOff(id) {
-            light = $('#' + id);
-            light.removeClass('status_on');
-            light.addClass('status_off');
-        }
-        
         $('#speedSlider').on('change', function() {
             $('#speed').val( $(this).val() );
             $('#speed').trigger('change');
@@ -173,7 +187,7 @@
         });
         
         $('#motor').on('click', function() {
-			motor( $(this).is(':checked') );
+			  motor( $(this).is(':checked') );
 		});
 		
 		$('#track').on('change', function() {
@@ -235,6 +249,21 @@
 		});
     });
     
+    function turnOn(id) {
+        $('#' + id).removeClass('status_off');
+        $('#' + id).addClass('status_on');
+    }
+    
+    function turnOff(id) {
+        $('#' + id).removeClass('status_on');
+        $('#' + id).addClass('status_off');
+    }
+    
+    function warning(type) {
+        $('#warning').removeClass();
+        $('#warning').addClass('warning_' + type);
+    }
+    
     function carPosition(lat, lng) {
         var latLng = new google.maps.LatLng(lat, lng);
         marker.setPosition(latLng);
@@ -253,6 +282,8 @@
             <div class="center_text">SPEED</div>
             <input type="range" min="0" max="100" step="1" id="speedSlider" class="center_text" value="0" />
         </div>
+        
+        <div id="warning" class="main"></div>
         
         <div class="configuration center_text">
             <h1>CREATE A CAR</h1>
