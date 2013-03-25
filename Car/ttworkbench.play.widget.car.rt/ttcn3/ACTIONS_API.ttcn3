@@ -13,41 +13,76 @@ module ACTIONS_API {
 
     function ACTION_API__onOffEngineType(API.onOffEngineType p_value) runs on COMPONENT {
         log("ACTION_API__onOffEngineType was called by the widget");
-        calltimer.start;
-        carActions.call(ACTIONS__API_onOffEngineType:{toProto_onOffEngineType(p_value)}, nowait);
+        
+        carActions.call(ACTIONS__API_onOffEngineType:{toProto_onOffEngineType(p_value)}, 1.0){
+            [] carActions.getreply {}
+
+            [] carActions.catch(timeout){
+                testcase.stop("Timeout")
+        }
+        }
+        
     }
 
     function ACTION_API__speedType(API.speedType p_value) runs on COMPONENT {
         log("ACTION_API__speedType was called by the widget");
-        calltimer.start;
-        carActions.call(ACTIONS__API_speedType:{toProto_speedType(p_value)}, nowait);
+        
+        carActions.call(ACTIONS__API_speedType:{toProto_speedType(p_value)}, 1.0){
+            [] carActions.getreply {}
+            
+            [] carActions.catch(timeout){
+                testcase.stop("Timeout")
+        }
     }
-
+    }
     function ACTION_API__trackType(API.trackType p_value) runs on COMPONENT {
         log("ACTION_API__trackType was called by the widget");
-        calltimer.start;
-        carActions.call(ACTIONS__API_trackType:{toProto_trackType(p_value)}, nowait);
+        
+        carActions.call(ACTIONS__API_trackType:{toProto_trackType(p_value)}, 1.0){
+            [] carActions.getreply {}
+
+            [] carActions.catch(timeout){
+                testcase.stop("Timeout")
+        }
+        }
     }
 
     function ACTION_API__warningType(API.warningType p_value) runs on COMPONENT {
         log("ACTION_API__warningType was called by the widget");
-        calltimer.start;
-        carActions.call(ACTIONS__API_warningType:{toProto_warningType(p_value)}, nowait);
+        
+        carActions.call(ACTIONS__API_warningType:{toProto_warningType(p_value)}, 1.0){
+            [] carActions.getreply {}
+
+            [] carActions.catch(timeout){
+                testcase.stop("Timeout")
+        }
+        }
     }
     
     function ACTION_API__carInitType(API.carInitType p_value) runs on COMPONENT {
         log("ACTION_API__carInitType was called by the widget");
-        calltimer.start;
+        
         p_value.ttcnEventsPort := EVENTS_CAR_TCP_PORT;
         p_value.ttcnEventsHostName := TTlibrary_Net.hostAddress("localhost");
-        carActions.call(ACTIONS__API_carInitType:{toProto_carInitType(p_value)}, nowait);
+        carActions.call(ACTIONS__API_carInitType:{toProto_carInitType(p_value)}, 1.0){
+            [] carActions.getreply {}
+
+            [] carActions.catch(timeout){
+                testcase.stop("Timeout")
+        }
+        }
     }
     
     function ACTION_API__widgetExit(API.widgetExit p_value) runs on COMPONENT {
         log("ACTION_API__widgetExit was called by the widget");
         widgetExit := true;
-        calltimer.start;
-        carActions.call(ACTIONS__API_widgetExit:{toProto_widgetExit(p_value)}, nowait);
+        
+        carActions.call(ACTIONS__API_widgetExit:{toProto_widgetExit(p_value)}, 1.0){
+            [] carActions.getreply {}
+            [] carActions.catch(timeout){
+                testcase.stop("Timeout")
+        }
+        }
     }
 
     altstep handleCarEvents() runs on COMPONENT {
@@ -61,16 +96,11 @@ module ACTIONS_API {
                 [] EVENTS_PORT_widgetPort.catch (timeout) {
                     testcase.stop("No response from widget for car status type");
                 }
-			}
+            }
         }
     }
 
-    altstep handleTimeout () runs on COMPONENT {
-        [] carActions.getreply {}
-        [] calltimer.timeout {
-            setverdict(fail);
-        }
-    }
+  
 
     function PREAMBLE() runs on COMPONENT {
         log("ACTIONS_WIDGET_TCP_PORT ", ACTIONS_WIDGET_TCP_PORT);
@@ -85,8 +115,7 @@ module ACTIONS_API {
         map(mtc:carEvents, system:carEvents);
         map(mtc:carActions, system:carActions);
         
-        activate(handleTimeout());
-        activate(handleCarEvents());
+       activate(handleCarEvents());
     }
 
     function POSTAMBLE() runs on COMPONENT {
@@ -94,7 +123,7 @@ module ACTIONS_API {
         unmap(mtc:EVENTS_PORT_widgetPort, system:EVENTS_PORT_widgetPort);
         
         unmap(mtc:carEvents, system:carEvents);
-        unmap(mtc:carActions, system:carActions);        
+        unmap(mtc:carActions, system:carActions);
         
         deactivate;
     }
