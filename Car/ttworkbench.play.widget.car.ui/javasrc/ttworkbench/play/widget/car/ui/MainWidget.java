@@ -111,14 +111,20 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 	@Override
 	public void notifyABSStatusChange() {
-		// TODO Auto-generated method stub
-
+		Display.getDefault().syncExec(new Runnable() {
+		    public void run() {
+		    	carWidgetFrame.changeABS(model.getStatus().isABSenabled());				
+		    }
+		});
 	}
 
 	@Override
 	public void notifyESPStatusChange() {
-		// TODO Auto-generated method stub
-
+		Display.getDefault().syncExec(new Runnable() {
+		    public void run() {
+		    	carWidgetFrame.changeESP(model.getStatus().isESPenabled());				
+		    }
+		});
 	}
 
 
@@ -131,15 +137,18 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 				carWidgetFrame.changeMapLocation(gpsPosition.getLatitude(), gpsPosition.getLongitude());		
 		    }
 		});
-			// dropped update if no GUI initialized yet
-			
+	
 	}
 
 
 
 	@Override
 	public void notifyFillingStatusChange() {
-		// TODO Auto-generated method stub
+		Display.getDefault().syncExec(new Runnable() {
+		    public void run() {
+				carWidgetFrame.changeFuelLevel(model.getStatus().getFuel());		
+		    }
+		});
 
 	}
 
@@ -147,7 +156,11 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 	@Override
 	public void notifySpeedChange() {
-
+		Display.getDefault().syncExec(new Runnable() {
+		    public void run() {
+				carWidgetFrame.changeSpeed(new Float(model.getStatus().getActualSpeed()).intValue());			
+		    }
+		});
 	}
 
 	@Override
@@ -157,13 +170,20 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 	@Override
 	public void notifyFogLightChange() {
-		// TODO Auto-generated method stub
-
+		Display.getDefault().syncExec(new Runnable() {
+		    public void run() {
+				carWidgetFrame.changeFogLight(model.getStatus().isFogLightSensorEnabled());	
+		    }
+		});
 	}
 
 	@Override
 	public void notifyLightChange() {
-		// TODO Auto-generated method stub
+		Display.getDefault().syncExec(new Runnable() {
+		    public void run() {
+		    	carWidgetFrame.changeLight(model.getStatus().isLightSensorEnabled());				
+		    }
+		});
 
 	}
 
@@ -205,7 +225,6 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 	@Override
 	public WidgetController getWidgetController() {
-		// TODO Auto-generated method stub
 		return widgetController;
 	}
 

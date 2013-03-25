@@ -36,7 +36,7 @@ public class EventsServiceImpl implements BlockingInterface {
 public Void aPICarStatusType(RpcController controller, carStatusType request)
 		throws ServiceException {
 	
-	String debug = new String(); 
+	//String debug = new String(); 
 	
 	if(request != null){
 		CarStatusModel status = model.getStatus();
@@ -77,7 +77,7 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 		}
 		
 		if(request.hasEngineStatus()){
-			debug = debug.concat("Engine : " + status.isEngineStarted() + "  :");
+			//debug = debug.concat("Engine : " + status.isEngineStarted() + "  :");
 			if(request.getEngineStatus() != status.isEngineStarted()){
 				status.setEngineStarted(request.getEngineStatus());
 				model.notifyListener(NotifyAttributes.ENGINE);
@@ -124,7 +124,7 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 			}
 		}
 		
-		System.out.println(debug);
+		//System.out.println(debug);
 		
 		if(isFirstCall){
 			model.notifyListener(NotifyAttributes.FIRST);

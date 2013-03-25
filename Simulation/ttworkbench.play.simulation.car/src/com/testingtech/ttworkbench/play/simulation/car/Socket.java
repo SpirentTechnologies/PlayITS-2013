@@ -2,6 +2,8 @@ package com.testingtech.ttworkbench.play.simulation.car;
 
 import java.io.Closeable;
 
+import org.eclipse.swt.widgets.Display;
+
 import com.google.protobuf.BlockingRpcChannel;
 import com.google.protobuf.RpcController;
 import com.googlecode.protobuf.socketrpc.PersistentRpcConnectionFactory;
@@ -31,10 +33,12 @@ public class Socket implements Runnable {
 
 	private RpcConnectionFactory connectionFactory;
 
-	public Socket(Car car, int clientPort, String clientHost) {
-		this.car = car;
+	public Socket(Car carInit, int clientPort, String clientHost) {
+		this.car = carInit;
 		this.clientHost = clientHost;
 		this.clientPort = clientPort;
+
+	
 	}
 
 	public void run() {

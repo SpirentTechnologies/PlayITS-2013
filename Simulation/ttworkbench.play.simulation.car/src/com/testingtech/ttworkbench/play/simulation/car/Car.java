@@ -1,6 +1,8 @@
 package com.testingtech.ttworkbench.play.simulation.car;
 
-import java.util.ArrayList;
+import java.util.Queue;
+
+import org.eclipse.swt.widgets.Display;
 
 public class Car implements CarInterface {
 	static int carID;
@@ -15,10 +17,27 @@ public class Car implements CarInterface {
 	/**
 	 * @return the engine
 	 */
-	public synchronized boolean isEngine() {
+	public boolean isEngine() {
 		return engine;
 	}
+	
+	public boolean isABS(){
+		return sensors.abs;
+	}
+	
+	public boolean isESP(){
+		return sensors.esp;
+	}
 
+	public boolean isFogLight(){
+		return sensors.fogLight;
+	}
+	
+	public boolean isLight(){
+		return sensors.light;
+	}
+	
+	
 	/**
 	 * @param engine the engine to set
 	 */
@@ -32,6 +51,8 @@ public class Car implements CarInterface {
 	private boolean carDisposed = false;
 	private String trackName;
 	private double oldSpeed = Double.NaN;
+	private Display display;
+	private IWidget iWidget;
 
 	
 	public Car(double speed, double maxSpeed, double tirePressure,
@@ -39,7 +60,7 @@ public class Car implements CarInterface {
 			boolean rainExists, boolean tankFillExists,
 			boolean tirePressureExists, boolean espExists, boolean absExists,
 			boolean airbagExists, boolean fogLightExists,
-			ArrayList<GPSposition> positions) {
+			Queue<GPSposition> positions) {
 
 		this.speed = speed;
 		this.maxSpeed = maxSpeed;
@@ -49,8 +70,8 @@ public class Car implements CarInterface {
 				tirePressure, tankFill);
 		carID++;
 		customID = carID;
-		currentPosition = positions.get(0);
-		position = new GPSpositionOfCar(positions);
+		currentPosition = positions.peek();
+		position = new GPSpositionOfCar(positions,this);
 	}
 
 	@Override
@@ -82,9 +103,8 @@ public class Car implements CarInterface {
 	}
 
 	@Override
-	public double setSpeed(double speed) {
+	public void setSpeed(double speed) {
 		this.speed = speed;
-		return this.speed;
 	}
 
 	@Override
@@ -117,12 +137,6 @@ public class Car implements CarInterface {
 	}
 
 	@Override
-	public GPSposition setGPSPosition(GPSposition position) {
-		this.position.setCurrentPosition(position);
-		return this.position.getCurrentPosition();
-	}
-
-	@Override
 	public double getTankFill() {
 		return sensors.tankFillLevel;
 	}
@@ -142,47 +156,39 @@ public class Car implements CarInterface {
 			System.out.println("No route set");
 			return;
 		}
-
-		// check warnings[], Sensors, damage,
-		Tupel<GPSposition, Double> gpsPositionOfCarUpdate;
 		
+		//get time for distance check
+		long time = System.currentTimeMillis();
+		
+		//Update View
+		if(display != null){
+			display.syncExec(new Runnable() {
+				public void run() {
+					iWidget.updateView();				
+				}
+			});
+		}
+
+
 
 		// ---------- Update Process starts here-------------//
 		// update with speed and everything only if the engine is turned on and
 		// there is still petrol in the tank
-		if (engine && sensors.tankFillLevel > 0) {
+		if (isEngine() && (getFuelLevel() > 0)) {
 
-			// get the new tankfill level
-			gpsPositionOfCarUpdate = position.updateEverything(
-					sensors.tankFillLevel, petrolUsage, speed);
+			position.updateEverything(time);
 
-			// update the current tankFill level
-			sensors.tankFillLevel = gpsPositionOfCarUpdate.second;
-
-			// update the current gpsPosition
-			currentPosition = gpsPositionOfCarUpdate.first;
 			// get next world positions warning
 			// this functionality only
 			currentComingWarning = position.getNextWarning();
 		} else {
-			// get the new tankfill level, if engine off then the car cannot
-			// drive
-			gpsPositionOfCarUpdate = position.updateEverything(
-					sensors.tankFillLevel, petrolUsage, 0);
+			
+			if(engine) toggleEngine();
+			setSpeed(0);
 
-			// update the current tankFill level
-			sensors.tankFillLevel = gpsPositionOfCarUpdate.second;
-
-			// update the current gpsPosition
-			currentPosition = gpsPositionOfCarUpdate.first;
-			currentComingWarning = position.getNextWarning();
 		}
 
-		if (currentComingWarning != null
-				&& currentPosition.latitude == currentComingWarning
-						.getGpsPosition().latitude
-				&& currentPosition.longitude == currentComingWarning
-						.getGpsPosition().longitude) {
+		if(currentComingWarning != null){
 			// check warning and enable counter meassures
 			if (currentComingWarning.equals(Warnings.ACCIDENT)
 					|| currentComingWarning.equals(Warnings.DEER)) {
@@ -204,12 +210,6 @@ public class Car implements CarInterface {
 					doSlowDown(20);
 				}
 			}
-		} else {
-			if (oldSpeed >= 0) {
-				speed = oldSpeed;
-				oldSpeed = Double.NaN;
-			}
-			sensors.fogLight = false;
 		}
 	}
 
@@ -246,4 +246,27 @@ public class Car implements CarInterface {
 	public String getTrackName() {
 		return trackName;
 	}
+	
+	public void setDisplay(Display display, IWidget iWidget){
+		this.display = display;
+		this.iWidget = iWidget;
+	}
+
+
+	@Override
+	public void setFuelLevel(double fuel) {
+		sensors.tankFillLevel = fuel;
+		
+	}
+
+	@Override
+	public double getConsumption() {
+		return petrolUsage;
+	}
+
+	@Override
+	public double getFuelLevel() {
+		return sensors.tankFillLevel;
+	}
+
 }

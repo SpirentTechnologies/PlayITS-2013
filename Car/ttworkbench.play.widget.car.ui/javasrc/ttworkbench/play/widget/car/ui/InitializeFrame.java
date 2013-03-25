@@ -1,6 +1,7 @@
 package ttworkbench.play.widget.car.ui;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -15,6 +16,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
+
+import com.testingtech.ttworkbench.core.util.ResourceUtil;
 
 
 public class InitializeFrame extends Composite{
@@ -129,7 +132,13 @@ public class InitializeFrame extends Composite{
 		new Label(this, SWT.NONE);
 		new Label(this, SWT.NONE);
 		
-		trackFile = new File("E:\\Users\\kensan.Phenom-PC\\git\\PlayITS\\Car\\ttworkbench.play.widget.car.ui\\maps\\RoutenachArnimallee.txt");
+
+		try {
+			trackFile = new File(ResourceUtil.getLocation(Activator.getDefault().getBundle().getSymbolicName(), "/maps/RoutenachCottbus.kml").getFile());
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 		lblFileName.setText(trackFile.getName());
 		Button btnInitialize_1 = new Button(this, SWT.NONE);
 		btnInitialize_1.setText("initialize");

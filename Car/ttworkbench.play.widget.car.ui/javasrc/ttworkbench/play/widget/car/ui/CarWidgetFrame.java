@@ -31,6 +31,11 @@ public class CarWidgetFrame extends Composite implements IUIController{
 	private Color green = new Color(Display.getCurrent(),0,255,0);
 	private Browser browser;
 	private Label lblSpeed;
+	private ProgressBar progressBarfuel;
+	private Label lblLight;
+	private Label lblEsp;
+	private Label lblFoglight;
+	private Label lblAbs;
 	/**
 	 * Create the composite.
 	 * @param parent
@@ -41,23 +46,16 @@ public class CarWidgetFrame extends Composite implements IUIController{
 		setLayout(new GridLayout(4, false));
 		status = comm.getCarModel().getStatus();
 		controller = comm.getWidgetController();
-		Label lblAbs = new Label(this, SWT.CENTER);
+		lblAbs = new Label(this, SWT.CENTER);
 		lblAbs.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
 		lblAbs.setText("ABS");
-		if(status.isABSenabled()){
-			lblAbs.setBackground(green);
-		}else{
-			lblAbs.setBackground(red);
-		}
+		lblAbs.setBackground(red);
+
 		
-		Label lblFoglight = new Label(this, SWT.CENTER);
+		lblFoglight = new Label(this, SWT.CENTER);
 		lblFoglight.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
 		lblFoglight.setText("FogLight");
-		if(status.isFogLightSensorEnabled()){
-			lblFoglight.setBackground(green);
-		}else{
-			lblFoglight.setBackground(red);
-		}
+		lblFoglight.setBackground(red);
 		
 		browser = new Browser(this, SWT.NONE);
 		browser.setUrl("E:\\Users\\kensan.Phenom-PC\\git\\PlayITS\\Car\\ttworkbench.play.widget.car.ui\\www\\car.html");
@@ -66,30 +64,20 @@ public class CarWidgetFrame extends Composite implements IUIController{
 		gd_browser.widthHint = 284;
 		browser.setLayoutData(gd_browser);
 		
-		Label lblEsp = new Label(this, SWT.CENTER);
+		lblEsp = new Label(this, SWT.CENTER);
 		GridData gd_lblEsp = new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1);
 		gd_lblEsp.widthHint = 61;
 		lblEsp.setLayoutData(gd_lblEsp);
 		lblEsp.setText("ESP");
-		if(status.isESPenabled()){
-			lblEsp.setBackground(green);
-		}else{
-			lblEsp.setBackground(red);
-
-		}
+		lblEsp.setBackground(red);
 		
-		Label lblLight = new Label(this, SWT.CENTER);
+		lblLight = new Label(this, SWT.CENTER);
 		GridData gd_lblLight = new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1);
 		gd_lblLight.widthHint = 60;
 		lblLight.setLayoutData(gd_lblLight);
 		lblLight.setText("Light");
-		
-		if(status.isLightSensorEnabled()){
-			lblLight.setBackground(green);
-		}else{
-			lblLight.setBackground(red);
-		}
-		
+		lblLight.setBackground(red);
+
 		btnEngine = new Button(this, SWT.NONE);
 		btnEngine.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -139,7 +127,7 @@ public class CarWidgetFrame extends Composite implements IUIController{
 		Label lblFuellevel = new Label(this, SWT.NONE);
 		lblFuellevel.setText("fuellevel");
 		
-		ProgressBar progressBarfuel = new ProgressBar(this, SWT.NONE);
+		progressBarfuel = new ProgressBar(this, SWT.NONE);
 		GridData gd_progressBarfuel = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
 		gd_progressBarfuel.widthHint = 74;
 		progressBarfuel.setLayoutData(gd_progressBarfuel);
@@ -208,6 +196,59 @@ public class CarWidgetFrame extends Composite implements IUIController{
 	@Override
 	public void changeMapLocation(double latitude, double longitude) {
 		browser.execute("carPosition(" + latitude + ", " + longitude + ")");
+	}
+
+	@Override
+	public void changeFuelLevel(double fuel) {
+		progressBarfuel.setSelection(new Double(fuel).intValue());
 		
 	}
+
+	@Override
+	public void changeABS(boolean isEnabled) {
+		if(isEnabled){
+			lblAbs.setBackground(green);
+		}else{
+			lblAbs.setBackground(red);
+		}
+		
+	}
+
+	@Override
+	public void changeESP(boolean isEnabled) {
+			if(isEnabled){
+				lblEsp.setBackground(green);
+			}else{
+				lblEsp.setBackground(red);
+			}
+	}
+
+	@Override
+	public void changeLight(boolean isEnabled) {
+		if(isEnabled){
+			lblLight.setBackground(green);
+		}else{
+			lblLight.setBackground(red);
+		}		
+	}
+
+	@Override
+	public void changeFogLight(boolean isEnabled) {
+		if(isEnabled){
+			lblFoglight.setBackground(green);
+		}else{
+			lblFoglight.setBackground(red);
+		}		
+	}
+
+	@Override
+	public void changeSpeed(double speed) {
+		lblSpeed.setBackground(green);
+		lblSpeed.setText("" + speed);
+		sliderSpeed.setSelection(new Double(speed * status.getMaxSpeed()/100).intValue());
+		
+	}
+	
+	
+	
 }
