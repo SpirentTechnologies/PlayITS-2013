@@ -62,7 +62,7 @@ module SUT_TEST {
         testWidgetComp.start(widgetSim());
         testCarComp.start(carSim());
         
-        activate(handleTimeout());
+
         activate(handleCarEvents());
     }
 

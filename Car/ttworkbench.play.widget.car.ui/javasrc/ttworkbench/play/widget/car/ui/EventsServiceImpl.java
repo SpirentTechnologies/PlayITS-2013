@@ -7,7 +7,7 @@ import ttworkbench.play.widget.car.ui.model.CarStatusModel;
 import ttworkbench.play.widget.car.ui.model.GPSposition;
 import ttworkbench.play.widget.car.ui.model.NotifyAttributes;
 import ttworkbench.play.widget.car.ui.model.WarningType;
-import ttworkbench.play.widget.car.ui.model.Warnings;
+import ttworkbench.play.widget.car.ui.model.enumWarning;
 
 import com.google.protobuf.RpcController;
 import com.google.protobuf.ServiceException;
@@ -25,7 +25,8 @@ import com.testingtech.ttworkbench.play.generated.PROTO_API.warningType;
 public class EventsServiceImpl implements BlockingInterface {
 
   private final CarModel model;
-
+  private boolean isFirstCall = true;
+  
   public EventsServiceImpl(CarModel model) {
     this.model = model;
   }
@@ -35,11 +36,11 @@ public class EventsServiceImpl implements BlockingInterface {
 public Void aPICarStatusType(RpcController controller, carStatusType request)
 		throws ServiceException {
 	
-//	String debug = new String(); 
+	//String debug = new String(); 
 	
 	if(request != null){
 		CarStatusModel status = model.getStatus();
-		//first communication sets car id
+		//first message sets car id
 		if(status.getId() == -1){
 			status.setId(request.getCarId());
 		}
@@ -48,7 +49,7 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 			model.clearWarnings();
 			for (warningType reqWarning : reqWarnings) {
 				WarningType warning = new WarningType();
-				warning.setWarning(Warnings.getWarning((reqWarning.getWarningName().getEnumValue().getNumber())));
+				warning.setWarning(enumWarning.getWarning((reqWarning.getWarningName().getEnumValue().getNumber())));
 				warning.setGpsPosition(new GPSposition(reqWarning.getGpsPos().getLatitude(),reqWarning.getGpsPos().getLongitude()));
 				warning.setPriority(reqWarning.getPriority());
 				model.addWarning(warning);
@@ -76,7 +77,7 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 		}
 		
 		if(request.hasEngineStatus()){
-//			debug = debug.concat("Engine : " + status.isEngineStarted() + "  :");
+			//debug = debug.concat("Engine : " + status.isEngineStarted() + "  :");
 			if(request.getEngineStatus() != status.isEngineStarted()){
 				status.setEngineStarted(request.getEngineStatus());
 				model.notifyListener(NotifyAttributes.ENGINE);
@@ -124,6 +125,11 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 		}
 		
 		//System.out.println(debug);
+		
+		if(isFirstCall){
+			model.notifyListener(NotifyAttributes.FIRST);
+			isFirstCall = false;
+		}
 		
 	}
 	return nil();

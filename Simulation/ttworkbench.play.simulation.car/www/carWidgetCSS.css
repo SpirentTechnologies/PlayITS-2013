@@ -1,0 +1,94 @@
+
+    /*-----------------------------Start: switch button/ checkbox ----------------------------*/
+    .onoffswitch {
+      position: relative;
+      margin: 5px 0 20px 0;
+      width: 89px;
+      -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+    }
+
+    .onoffswitch-checkbox {
+      display: none;
+    }
+
+    .onoffswitch-label {
+      display: block; overflow: hidden; cursor: pointer;
+      border: 2px solid #FFFFFF; border-radius: 50px;
+    }
+
+    .onoffswitch-inner {
+      width: 200%; margin-left: -100%;
+      -moz-transition: margin 0.3s ease-in 0s; -webkit-transition: margin 0.3s ease-in 0s;
+      -o-transition: margin 0.3s ease-in 0s; transition: margin 0.3s ease-in 0s;
+    }
+
+    .onoffswitch-inner:before, .onoffswitch-inner:after {
+      float: left; width: 50%; height: 29px; padding: 0; line-height: 29px;
+      font-size: 20px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+      -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+    }
+
+    .onoffswitch-inner:before {
+      content: "ON";
+      padding-left: 12px;
+      background-color: #EEEEEE; color: #2ECC71;
+    }
+
+    .onoffswitch-inner:after {
+      content: "OFF";
+      padding-right: 12px;
+      background-color: #EEEEEE; color: #999999;
+      text-align: right;
+    }
+
+    .onoffswitch-switch {
+      width: 28px; margin: 0.5px;
+      background: #A1A1A1;
+      border: 2px solid #FFFFFF; border-radius: 50px;
+      position: absolute; top: 0; bottom: 0; right: 56px;
+      -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
+      -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s; 
+    }
+
+    .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+      margin-left: 0;
+    }
+
+    .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+      right: 0px; 
+      background-color: #2ECC71; 
+    }
+    
+    input[type='text'] {
+        width: 80px;
+        padding: 5px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 15px;
+        font-weight: bold;
+        text-align: center;
+    }
+    
+    #track {
+        margin-bottom: 20px;
+    }
+    
+    /*----------------------------- End: switch button/checkbox ----------------------------*/
+    
+    /*-----------------------------  START: Speed Slider ----------------------------------- */
+     .sliderValue {
+            margin-left: 20px;
+            padding: 10px;
+            background-color: #d0d0f0;
+            border: 1px solid #808080;
+        }
+    
+    
+    .pp-slider { width: 150px; float:left;  -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none; height: 30px; }
+    .pp-slider .pp-slider-scale { background-color: #aaa; height: 1px; border-bottom: 1px solid #efefef; width: 120px; margin-top: 6px; float: left; }
+    .pp-slider .pp-slider-scale .pp-slider-button { width: 12px; border-radius: 2px; border: 1px solid #adadad; height: 16px; position: relative; top: -7px; left: 0px; background-color: #efefef; cursor: pointer; }
+    .pp-slider .pp-slider-scale .pp-slider-button .pp-slider-divies { border-left: 1px solid #adadad; border-right: 1px solid #adadad; position: relative; left: 3px; top: 3px; width: 4px; height: 10px; }
+    .pp-slider .pp-slider-scale .pp-slider-button:hover { border-color: #777; background-color: #eee;  }
+    .pp-slider .pp-slider-scale .pp-slider-tooltip { width: 24px; height: 20px; position: relative; top: -5px; left: 0px; text-align: center; font-size: 10px; color: #aaa; }
+    .pp-slider .pp-slider-min { float: left; width: 15px; color: #aaa; font-size: 10px; }
+    .pp-slider .pp-slider-max { float: left; width: 15px; color: #aaa; font-size: 10px; text-align: right; }
+ 	/*------------------------------ End: Speed Slider ------------------------------------ */

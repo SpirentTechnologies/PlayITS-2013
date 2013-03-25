@@ -90,7 +90,8 @@ public class CarModel {
 			case WARNING: listener.notifyWarningAdded(); break;
 			case FOG: listener.notifyFogLightChange(); break;
 			case LIGHT: listener.notifyLightChange(); break;
-			case FUEL: listener.notifyFillingStatusChange(); break;			
+			case FUEL: listener.notifyFillingStatusChange(); break;
+			case FIRST: listener.notifyFirstMessageFromSUT(); break;
 			default:;
 			}			
 		}

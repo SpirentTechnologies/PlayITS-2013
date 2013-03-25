@@ -36,15 +36,12 @@ public class WidgetController {
 	 * @throws IOException
 	 */
 	public void startEngine(){	
-		
-		initCar();
 
 		try {
 			onOffEngineType.Builder request = onOffEngineType.newBuilder();
 			request.setEngineStatus(true);
-			//request.setCarId(comm.getCarModel().getStatus().getId());
+			request.setCarId(comm.getCarModel().getStatus().getId());
 			client().getActionsService().aPIOnOffEngineType(client().getController(), request.build());
-			// TODO response check
 
 		} catch (ServiceException e) {
 
@@ -61,7 +58,6 @@ public class WidgetController {
 	 * @throws IOException
 	 */
 	public void stopEngine(){	
-		initCar();
 
 		try {
 			onOffEngineType.Builder request = onOffEngineType.newBuilder();
@@ -82,7 +78,6 @@ public class WidgetController {
 	 * @param speed
 	 */
 	public void changeSpeed(float speed){
-		initCar();
 		try {
 			speedType.Builder request = speedType.newBuilder();
 			request.setSpeed(speed);
@@ -95,6 +90,20 @@ public class WidgetController {
 			System.out.println("Can't change speed! " + e.getMessage());
 		}
 	}
+	
+//	public void sendWarning(WarningType warning){
+//		initCar();
+//		try {
+//			warningType.Builder request = warningType.newBuilder();
+//			request.setCarId(comm.getCarModel().getStatus().getId());
+//
+//			client().getActionsService().aPIWarningType(client().getController(), request.build());
+//
+//		} catch (ServiceException e) {
+//
+//			System.out.println("Can't change speed! " + e.getMessage());
+//		}
+//	}
 
 	/**
 	 * Sets the track file
@@ -106,7 +115,6 @@ public class WidgetController {
 
 		boolean sendTrack = !initialized;
 			
-		initCar();
 		
 		if (!sendTrack) {
 			return;
@@ -139,15 +147,16 @@ public class WidgetController {
 	public void initializeCar(boolean abs,boolean esp,boolean light,
 			boolean fogLight,float maxSpeed,
 			float fuel,float fuelConsumption,File trackFile){
-		CarStatusModel status = comm.getCarModel().getStatus();
+		CarStatusModel status = new CarStatusModel();
 		status.setABSenabled(abs);
 		status.setESPenabled(esp);
 		status.setLightSensorEnabled(light);
 		status.setFogLightEnabled(fogLight);
 		status.setTrackFile(trackFile);
 		status.setMaxSpeed(maxSpeed);
+		status.setFuel(fuel);
 		status.setFuelConsumption(fuelConsumption);
-		initCar();
+		initCar(status);
 
 	}
 	
@@ -156,13 +165,12 @@ public class WidgetController {
 	 * Sends carInitType to SUT
 	 * 
 	 */
-	private void initCar() {
+	private void initCar(CarStatusModel status) {
 		if (initialized) {
 			return;
 		}
 		try {
 			carInitType.Builder request = carInitType.newBuilder();
-			CarStatusModel status = comm.getCarModel().getStatus();
 			request.setEspSensorExists(status.isESPenabled());
 			request.setAbsSensorExists(status.isABSenabled());
 			request.setLightSensorExists(status.isLightSensorEnabled());
@@ -186,7 +194,7 @@ public class WidgetController {
 	 * Exits the widget
 	 */
 	public void exitWidget(){
-		initCar();
+
 		try {
 			widgetExit.Builder request = widgetExit.newBuilder();
 

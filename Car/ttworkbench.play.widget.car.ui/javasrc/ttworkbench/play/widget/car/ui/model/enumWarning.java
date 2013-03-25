@@ -5,7 +5,7 @@ package ttworkbench.play.widget.car.ui.model;
  * @author Björn, Andre
  *
  */
-public enum Warnings {
+public enum enumWarning {
 	DEER, RAIN, ICE, ACCIDENT, FOG, SNOW;
 	
 	/**
@@ -13,7 +13,7 @@ public enum Warnings {
 	 * @param value 0-5
 	 * @return warning
 	 */
-	public static Warnings getWarning(int value){
+	public static enumWarning getWarning(int value){
 		switch(value){
 			case 0: return DEER;
 			case 1: return RAIN;
@@ -29,7 +29,7 @@ public enum Warnings {
 	 * @param warning
 	 * @return id
 	 */
-	public static int getId(Warnings warning) {
+	public static int getId(enumWarning warning) {
 		switch(warning) {
 			case DEER:		return 0;
 			case RAIN:		return 1;
