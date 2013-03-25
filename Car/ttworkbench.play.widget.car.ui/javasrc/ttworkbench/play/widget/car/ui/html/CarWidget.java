@@ -122,7 +122,7 @@ public class CarWidget {
 		new CustomFunction(browser, "speed");
 		new CustomFunction(browser, "fogLight");
 		new CustomFunction(browser, "lightSensor");
-		new CustomFunction(browser, "warning");
+		new CustomFunction(browser, "sendWarning");
 		new CustomFunction(browser, "widgetExit");
 		
 		new CustomFunction(browser, "initialize");
@@ -155,32 +155,36 @@ public class CarWidget {
 			if(this.getName() == "motor") {
 
 				boolean motorOn = parseOnOff(args[0].toString());
-				
 					if(motorOn) {
 						widgetController.startEngine();
 					} else {
 						widgetController.stopEngine();
 					}
-
-
-			}else{
-				if(this.getName() == "initialize"){
+			}
+			else if(this.getName() == "initialize"){
 					widgetController.initializeCar(
 					        (Boolean) args[0], 
-							(Boolean) args[1], 
-							(Boolean) args[2], 
-							(Boolean) args[3], 
+					        (Boolean) args[1], 
+					        (Boolean) args[2], 
+					        (Boolean) args[3], 
 							((Double)args[4]).floatValue(), 
 							((Double)args[5]).floatValue(), 
 							((Double)args[6]).floatValue(), 
 							(String)args[7]
 					);
-
-				}
-				
+					//args[7] liefert nicht den Pfad
+					System.out.println((String)args[7]);
 			}
-			
-			return null;
+			else if(this.getName() == "speed"){
+				widgetController.changeSpeed(((Double) args[0]).floatValue());
+			}
+			else if(this.getName() == "sendWarning"){
+				System.out.println(args[0]+ "  "+  args[1]);
+				//widgetController.sendWarning(args[0], args[1]);
+			}
+			else{
+				return null;
+			}
 		}
 	}
 
