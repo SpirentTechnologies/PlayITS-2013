@@ -3,6 +3,7 @@ package com.testingtech.ttworkbench.play.simulation.car;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.util.Hashtable;
@@ -55,18 +56,18 @@ public class ActionsServiceImpl implements BlockingInterface {
 		long id = request.getCarId();
 		Car car = getCar(id);
 		car.setTrack(request.getTrackName());
-		
+
 		return nil();
 	}
 
 	@Override
 	public Void aPIWarningType(RpcController controller, warningType request)
 			throws ServiceException {
-		
+
 		GPSposition position = new GPSposition(request.getGpsPos().getLongitude(), request.getGpsPos().getLatitude());
 		Warnings warning  = Warnings.valueOf( request.getWarningName().getEnumValue().toString());
 		WarningType wt = new WarningType(warning,position);
-		
+
 		carModel.addWarning(wt,request.getCarId());
 		return nil();
 	}
@@ -77,12 +78,13 @@ public class ActionsServiceImpl implements BlockingInterface {
 		Queue<GPSposition> positions;
 		File tmpFile = null;
 		try {
-		URL url = new URL(request.getTrackName());
-		tmpFile = File.createTempFile("http", ".kml");
-		OutputStream out = new FileOutputStream(tmpFile);
-		FileUtil.copy(url.openStream(), out);
-		out.flush();
-	
+			URL url = new URL(request.getTrackName());
+			InputStream urlStream = url.openStream();
+			tmpFile = File.createTempFile("http", ".kml");
+			OutputStream out = new FileOutputStream(tmpFile);
+			FileUtil.copy(urlStream, out);
+			out.flush();
+
 			out.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -95,7 +97,7 @@ public class ActionsServiceImpl implements BlockingInterface {
 		carModel.addCar(car);
 		Socket socket = new Socket(car,(int) request.getTtcnEventsPort(),request.getTtcnEventsHostName());
 		carSocket.put(car, socket);
-		
+
 		Thread thread = new Thread(socket);
 		thread.start();
 		return nil();
