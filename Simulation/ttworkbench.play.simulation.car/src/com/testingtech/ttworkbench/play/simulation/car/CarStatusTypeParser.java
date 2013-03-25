@@ -13,19 +13,18 @@ public class CarStatusTypeParser {
 		Builder cst = carStatusType.newBuilder();
 		cst.setCarId(car.customID);
 		cst.setAbsSensor(car.sensors.abs);
-		cst.setEngineStatus(car.engine);
+		cst.setEngineStatus(car.isEngine());
 		cst.setEspSensor(car.sensors.esp);
 		cst.setFogLightSensor(car.sensors.fogLight);
-		cst.setFuelFilling((float) car.getTankFill());
-		cst.setCarId(car.customID);
+		cst.setFuelFilling(new Double(car.getTankFill()).floatValue());
 		//set gps position
 		com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.Builder gps = gpsPosition.newBuilder();
-		gps.setLatitude((float) car.currentPosition.latitude);
-		gps.setLongitude((float) car.currentPosition.longitude);
+		gps.setLatitude((float) car.getGPSPosition().latitude);
+		gps.setLongitude((float) car.getGPSPosition().longitude);
 		cst.setGpsPos(gps.build());
 		//set the rest of the fields
 		cst.setLightSensor(car.sensors.light);
-		cst.setSpeed((float)car.speed);
+		cst.setSpeed(new Double(car.speed).floatValue());
 		
 		//warningTyp
 		//	-> GPSposition

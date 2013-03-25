@@ -1,12 +1,11 @@
 package com.testingtech.ttworkbench.play.simulation.car;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.text.MessageFormat;
-import java.util.ArrayList;
+import java.util.Queue;
 import java.util.concurrent.Executors;
 
+import com.googlecode.protobuf.socketrpc.PersistentRpcConnectionFactory;
 import com.googlecode.protobuf.socketrpc.RpcServer;
 import com.googlecode.protobuf.socketrpc.ServerRpcConnectionFactory;
 import com.googlecode.protobuf.socketrpc.SocketRpcConnectionFactories;
@@ -18,27 +17,9 @@ public class Simulation {
 	private int serverPort;
 
 	@SuppressWarnings("unused")
-	private static ArrayList<GPSposition> getMap(File mapFile) {
-		try {
-			return KMLparser.parseFile(mapFile);
-		} catch (NumberFormatException e) {
-			System.out.println(MessageFormat.format(
-					"The file format was wrong", mapFile.getAbsolutePath()));
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			System.out
-					.println(MessageFormat.format(
-							"Map file does the file exist: ",
-							mapFile.getAbsolutePath()));
-			e.printStackTrace();
-		} catch (IOException e) {
-			System.out.println("Some I/O operations went wrong");
-			e.printStackTrace();
-		} catch (CannotParseFileException e) {
-			System.out.println("The Mapfile format is not supported");
-			e.printStackTrace();
-		}
-		return null;
+	private static Queue<GPSposition> getMap(File mapFile) {
+			return new KMLtoGPSQueue(mapFile).getPositions();
+		
 	}
 
 	public static void main(String[] args) {
@@ -88,8 +69,9 @@ public class Simulation {
 		this.serverPort = p_serverPort;
 		CarModel carModel = new CarModel();
 
-		ServerRpcConnectionFactory rpcConnectionFactory = SocketRpcConnectionFactories
-				.createServerRpcConnectionFactory(p_serverPort);
+		ServerRpcConnectionFactory rpcConnectionFactory = 
+				PersistentRpcConnectionFactory.createServerInstance(SocketRpcConnectionFactories
+				.createServerRpcConnectionFactory(p_serverPort));
 		server = new RpcServer(rpcConnectionFactory,
 				Executors.newFixedThreadPool(10), true);
 		ActionsServiceImpl asi = new ActionsServiceImpl(carModel);

@@ -1,9 +1,9 @@
 package com.testingtech.ttworkbench.play.simulation.car;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Map;
+import java.util.Queue;
 
 import com.google.protobuf.RpcController;
 import com.google.protobuf.ServiceException;
@@ -29,7 +29,7 @@ public class ActionsServiceImpl implements BlockingInterface {
 			onOffEngineType request) throws ServiceException {
 		long id = request.getCarId();
 		Car car = getCar(id);
-		car.engine = request.getEngineStatus();
+		car.setEngine(request.getEngineStatus());
 		return nil();
 	}
 
@@ -71,18 +71,27 @@ public class ActionsServiceImpl implements BlockingInterface {
 	@Override
 	public Void aPICarInitType(RpcController controller, carInitType request)
 			throws ServiceException {
-		ArrayList<GPSposition> positions;
-		try {
-			positions = KMLparser.parseFile(new File(request.getTrackName()));
-		} catch (Throwable e) {
-			throw new ServiceException("Could not read map", e);
-		}
+		Queue<GPSposition> positions;
+		positions =	new KMLtoGPSQueue(new File(request.getTrackName())).getPositions();
+
 		// updates the initial car setup with the wanted field values
-		Car car = new Car(0, request.getMaxSpeed(), 2.0, request.getFuelFilling(), request.getFuelConsumption(), request.getLightSensorExists(), true, request.hasFuelFilling(), true, request.getEspSensorExists(), request.getAbsSensorExists(), false, request.getFogLightSensorExists(), positions);
+		final Car car = new Car(0, request.getMaxSpeed(), 2.0, request.getFuelFilling(), request.getFuelConsumption(), request.getLightSensorExists(), true, request.hasFuelFilling(), true, request.getEspSensorExists(), request.getAbsSensorExists(), false, request.getFogLightSensorExists(), positions);
 		carModel.addCar(car);
 		Socket socket = new Socket(car,(int) request.getTtcnEventsPort(),request.getTtcnEventsHostName());
 		carSocket.put(car, socket);
-		new Thread(socket).start();
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				new CarWindow().open(car);	
+			}
+		}).start();
+
+		
+		Thread thread = new Thread(socket);
+		thread.start();
+		//CarWindow for Testing Simulation
+		
 		return nil();
 	}
 
