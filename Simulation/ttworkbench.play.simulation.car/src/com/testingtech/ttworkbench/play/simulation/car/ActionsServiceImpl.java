@@ -1,6 +1,10 @@
 package com.testingtech.ttworkbench.play.simulation.car;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URL;
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.Queue;
@@ -15,6 +19,7 @@ import com.testingtech.ttworkbench.play.generated.PROTO_API.speedType;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.trackType;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.warningType;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit;
+import com.testingtech.util.FileUtil;
 
 public class ActionsServiceImpl implements BlockingInterface {
 	CarModel carModel;
@@ -72,7 +77,20 @@ public class ActionsServiceImpl implements BlockingInterface {
 	public Void aPICarInitType(RpcController controller, carInitType request)
 			throws ServiceException {
 		Queue<GPSposition> positions;
-		positions =	new KMLtoGPSQueue(new File(request.getTrackName())).getPositions();
+		File tmpFile = null;
+		try {
+		URL url = new URL(request.getTrackName());
+		tmpFile = File.createTempFile("http", ".kml");
+		OutputStream out = new FileOutputStream(tmpFile);
+		FileUtil.copy(url.openStream(), out);
+		out.flush();
+	
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		positions =	new KMLtoGPSQueue(tmpFile).getPositions();
 
 		// updates the initial car setup with the wanted field values
 		final Car car = new Car(0, request.getMaxSpeed(), 2.0, request.getFuelFilling(), request.getFuelConsumption(), request.getLightSensorExists(), true, request.hasFuelFilling(), true, request.getEspSensorExists(), request.getAbsSensorExists(), false, request.getFogLightSensorExists(), positions);

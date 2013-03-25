@@ -109,29 +109,29 @@ public class WidgetController {
 	 * Sets the track file
 	 * @param trackFile
 	 */
-	public void setTrack(File trackFile){
-		CarStatusModel status = comm.getCarModel().getStatus();
-		status.setTrackFile(trackFile);
-
-		boolean sendTrack = !initialized;
-			
-		
-		if (!sendTrack) {
-			return;
-		}
-
-		try {
-			trackType.Builder request = trackType.newBuilder();
-			request.setTrackName(status.getTrackFile().getAbsolutePath());
-			request.setCarId(status.getId());
-
-			client().getActionsService().aPITrackType(client().getController(), request.build());
-
-		} catch (ServiceException e) {
-
-			System.out.println("Can't set track! " + e.getMessage());
-		}
-	}
+//	public void setTrack(File trackFile){
+//		CarStatusModel status = comm.getCarModel().getStatus();
+//		status.setTrackFile(trackFile);
+//
+//		boolean sendTrack = !initialized;
+//			
+//		
+//		if (!sendTrack) {
+//			return;
+//		}
+//
+//		try {
+//			trackType.Builder request = trackType.newBuilder();
+//			request.setTrackName(status.getTrackFile().getAbsolutePath());
+//			request.setCarId(status.getId());
+//
+//			client().getActionsService().aPITrackType(client().getController(), request.build());
+//
+//		} catch (ServiceException e) {
+//
+//			System.out.println("Can't set track! " + e.getMessage());
+//		}
+//	}
 	
 	/**
 	 * is called from view, to initialize a new car, sets the car status attributes
@@ -147,7 +147,6 @@ public class WidgetController {
 	public void initializeCar(boolean abs,boolean esp,boolean light,
 			boolean fogLight,float maxSpeed,
 			float fuel,float fuelConsumption,String track){
-		File trackFile = new File(track);
 
 		CarStatusModel status = new CarStatusModel();
 
@@ -155,7 +154,7 @@ public class WidgetController {
 		status.setESPenabled(esp);
 		status.setLightSensorEnabled(light);
 		status.setFogLightEnabled(fogLight);
-		status.setTrackFile(trackFile);
+		status.setTrackFile(track);
 		status.setMaxSpeed(maxSpeed);
 		status.setFuel(fuel);
 		status.setFuelConsumption(fuelConsumption);
@@ -181,7 +180,7 @@ public class WidgetController {
 			request.setFuelFilling(status.getFuel());
 			request.setFuelConsumption(status.getFuelConsumption());
 			request.setMaxSpeed(status.getMaxSpeed());
-			request.setTrackName(status.getTrackFile().getAbsolutePath());
+			request.setTrackName(status.getTrack());
 
 			client().getActionsService().aPICarInitType(client().getController(), request.build());
 			

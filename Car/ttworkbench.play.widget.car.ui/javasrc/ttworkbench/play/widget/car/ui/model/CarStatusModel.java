@@ -25,7 +25,7 @@ public class CarStatusModel {
 	
 
 
-	private File trackFile;
+	private String track;
 		
 	
 	public float getMaxSpeed() {
@@ -151,15 +151,15 @@ public class CarStatusModel {
 	/**
 	 * @return the trackFile
 	 */
-	public File getTrackFile() {
-		return trackFile;
+	public String getTrack() {
+		return track;
 	}
 
 	/**
 	 * @param trackFile the trackFile to set
 	 */
-	public void setTrackFile(File trackFile) {
-		this.trackFile = trackFile;
+	public void setTrackFile(String track) {
+		this.track = track;
 	}
 
 	/**
@@ -189,6 +189,7 @@ public class CarStatusModel {
 	public void setId(long id) {
 		this.id = id;
 	}
+
 
 }
 
