@@ -102,7 +102,7 @@ public class CarWidget {
 			browser = new Browser (group, SWT.NONE);
 			System.out.println ("Could not instantiate Browser: " + e.getMessage ());
 		}
-		
+
 		uiController = new UIController(browser);
 		browser.setLayoutData(new GridData(GridData.FILL_BOTH));
 
@@ -114,7 +114,7 @@ public class CarWidget {
 		//INIT:
 		new CustomFunction(browser, "carType");
 		new CustomFunction(browser, "trackType");
-		
+
 		//DYNAMIC:
 		new CustomFunction(browser, "motor");
 		new CustomFunction(browser, "abs");
@@ -124,9 +124,9 @@ public class CarWidget {
 		new CustomFunction(browser, "lightSensor");
 		new CustomFunction(browser, "sendWarning");
 		new CustomFunction(browser, "widgetExit");
-		
+
 		new CustomFunction(browser, "initialize");
-		
+
 
 		browser.setUrl(new File(wwwRoot, "car.html").toURI().toString());
 		return group;
@@ -134,7 +134,7 @@ public class CarWidget {
 
 	//Define JS Functions
 	class CustomFunction extends BrowserFunction {
-		 /** @param browser
+		/** @param browser
 		 * @param name
 		 * @param uiController
 		 */
@@ -146,45 +146,49 @@ public class CarWidget {
 		 * @see org.eclipse.swt.browser.BrowserFunction#function(java.lang.Object[])
 		 */
 		public Object function(Object[] args) {
-			
+
 			//Get the name of the function and invoke that function in JAVA
-			
+
 			/**
 			 * MOTOR
 			 */
 			if(this.getName() == "motor") {
 
 				boolean motorOn = parseOnOff(args[0].toString());
-					if(motorOn) {
-						widgetController.startEngine();
-					} else {
-						widgetController.stopEngine();
-					}
+				if(motorOn) {
+					widgetController.startEngine();
+				} else {
+					widgetController.stopEngine();
+				}
 			}
 			else if(this.getName() == "initialize"){
-					widgetController.initializeCar(
-					        (Boolean) args[0], 
-					        (Boolean) args[1], 
-					        (Boolean) args[2], 
-					        (Boolean) args[3], 
-							((Double)args[4]).floatValue(), 
-							((Double)args[5]).floatValue(), 
-							((Double)args[6]).floatValue(), 
-							(String)args[7]
-					);
-					//args[7] liefert nicht den Pfad
-					System.out.println((String)args[7]);
+				widgetController.initializeCar(
+						(Boolean) args[0], 
+						(Boolean) args[1], 
+						(Boolean) args[2], 
+						(Boolean) args[3], 
+						((Double)args[4]).floatValue(), 
+						((Double)args[5]).floatValue(), 
+						((Double)args[6]).floatValue(), 
+						(String)args[7]
+						);
+				//args[7] liefert nicht den Pfad
+				System.out.println((String)args[7]);
 			}
 			else if(this.getName() == "speed"){
-				widgetController.changeSpeed(((Double) args[0]).floatValue());
+				float speed;
+				try {
+					speed = Float.parseFloat((String)args[0]);
+				} catch (NumberFormatException e) {
+					speed = 0;
+				}
+				widgetController.changeSpeed(speed);
 			}
 			else if(this.getName() == "sendWarning"){
 				System.out.println(args[0]+ "  "+  args[1]);
 				//widgetController.sendWarning(args[0], args[1]);
 			}
-
-				return null;
-
+			return null;
 		}
 	}
 
