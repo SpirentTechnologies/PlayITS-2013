@@ -208,9 +208,8 @@
                 kml.setMap(null);
             }
 
-            var githubURL = 'https://raw.github.com/TestingTechnologies/PlayITS/master/Car/ttworkbench.play.widget.car.ui/www/track'
-            kml = new google.maps.KmlLayer(githubURL + track + '.kml', {suppressInfoWindows: true});
             trackVal= githubURL + track + '.kml';
+            kml = new google.maps.KmlLayer(trackVal, {suppressInfoWindows: true});
             kml.setMap(map);
 
             google.maps.event.addListener(kml, 'click', function(kmlEvent) {
@@ -265,7 +264,7 @@
                 $('.main').show();
             });
 
-            initialize(abs, esp, light, fogLight, maxSpeed, fuel, fuelConsumption, githubURL + trackVal + '.kml');
+            initialize(abs, esp, light, fogLight, maxSpeed, fuel, fuelConsumption, trackVal);
             initCar(maxSpeed);
             initTrack(track);
         });
