@@ -26,9 +26,11 @@ public class EventsServiceImpl implements BlockingInterface {
 
   private final CarModel model;
   private boolean isFirstCall = true;
+  private ICommunication comm;
   
-  public EventsServiceImpl(CarModel model) {
+  public EventsServiceImpl(CarModel model, ICommunication comm) {
     this.model = model;
+    this.comm = comm;
   }
 
 
@@ -61,7 +63,7 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 		
 		//change Model only if attributes are different from event status
 		if(request.hasAbsSensor()){
-//			debug = debug.concat("ABS : " + status.isABSenabled() + "  :");
+System.out.println("ABS : " + status.isABSenabled() + "  ");
 			if(request.getAbsSensor() != status.isABSenabled()){
 				status.setABSenabled(request.getAbsSensor());
 				model.notifyListener(NotifyAttributes.ABS);
@@ -77,7 +79,7 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 		}
 		
 		if(request.hasEngineStatus()){
-			//debug = debug.concat("Engine : " + status.isEngineStarted() + "  :");
+			
 			if(request.getEngineStatus() != status.isEngineStarted()){
 				status.setEngineStarted(request.getEngineStatus());
 				model.notifyListener(NotifyAttributes.ENGINE);
@@ -117,7 +119,7 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 		}
 		
 		if(request.hasGpsPos()){
-//			debug = debug.concat("GPS : " + request.getGpsPos().toString() + "  :");
+			System.out.println("GPS : " + request.getGpsPos().toString() + "  :");
 			if(!(new GPSposition(request.getGpsPos().getLatitude(), request.getGpsPos().getLongitude()).equals(status.getGpsPosition()))){
 				model.setGPSPostion(request.getGpsPos().getLatitude(), request.getGpsPos().getLongitude());
 				model.notifyListener(NotifyAttributes.GPS);
@@ -127,7 +129,7 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 		//System.out.println(debug);
 		
 		if(isFirstCall){
-			model.notifyListener(NotifyAttributes.FIRST);
+			comm.enableActions();
 			isFirstCall = false;
 		}
 		
