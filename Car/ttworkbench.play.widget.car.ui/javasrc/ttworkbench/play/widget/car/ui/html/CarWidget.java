@@ -182,9 +182,9 @@ public class CarWidget {
 				System.out.println(args[0]+ "  "+  args[1]);
 				//widgetController.sendWarning(args[0], args[1]);
 			}
-			else{
+
 				return null;
-			}
+
 		}
 	}
 
