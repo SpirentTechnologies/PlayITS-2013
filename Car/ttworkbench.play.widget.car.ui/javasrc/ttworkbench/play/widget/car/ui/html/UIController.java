@@ -19,4 +19,23 @@ public class UIController {
 	public void updatePosition(double latitude, double longitude) {
 		browser.execute("carPosition(" + latitude + ", " + longitude + ")");
 	}
+	
+	public void updateSpeed(double speed) {
+		browser.execute("carSpeed(" +speed+ ")");
+	}
+	public void updateABS(boolean abs) {
+		browser.execute("carABS(" +abs+ ")");
+	}
+	public void updateESP(boolean esp) {
+		browser.execute("carESP(" +esp+ ")");
+	}
+	public void updateFuel(boolean fuel) {
+		browser.execute("carFuel(" +fuel+ ")");
+	}
+	public void updateLight(boolean light) {
+		browser.execute("carLight(" +light+ ")");
+	}
+	public void updateFogLight(boolean foglight) {
+		browser.execute("carFogLight(" +foglight+ ")");
+	}
 }

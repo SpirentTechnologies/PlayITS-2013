@@ -143,9 +143,9 @@
       }
       
       .status_off {
-            background: url('img/light_off.png') no-repeat left center;
-            padding-top: 1px;
-            padding-left: 15px;
+          background: url('img/light_off.png') no-repeat left center;
+          padding-top: 1px;
+          padding-left: 15px;
         }
       
       .center_text {
@@ -212,11 +212,8 @@
             kml.setMap(map);
             
             google.maps.event.addListener(kml, 'click', function(kmlEvent) {
-              var warningId = $('input[name=warnings]:checked').attr('id').slice(-1);
-              
-              console.log(warningId + ':' + kmlEvent.latLng);
-              
-              createWarning(kmlEvent.latLng, warningId);
+                var warningId = $('input[name=warnings]:checked').attr('id').slice(-1);
+                createWarning(kmlEvent.latLng, warningId);
             });
         }
         
@@ -227,7 +224,7 @@
         });
         
         $('#motor').on('click', function() {
-			  motor( $(this).is(':checked') );
+			motor( $(this).is(':checked') );
 		});
 		
 		$('#track').on('change', function() {
@@ -278,17 +275,15 @@
 		    if(track === 0) {
 		        alert("Select a track");
 		        return;
-		    } else {
-		        track = githubURL + track + '.kml';
 		    }
-		     $('.configuration').hide(function() {
+		    
+		    $('.configuration').hide(function() {
 		        $('.main').show();
 		    }); 
-		    initialize(abs, esp, light, fogLight, maxSpeed, fuel, fuelConsumption, track);
+		    
+		    initialize(abs, esp, light, fogLight, maxSpeed, fuel, fuelConsumption, githubURL + track + '.kml');
 		    initCar(maxSpeed);
 		    initTrack(track);
-		    
-		   
 		});
     });
     
@@ -314,10 +309,18 @@
     };
     
     function createWarning(latLng, id) {
-      marker = new google.maps.Marker({
+        var iconBaseURL = 'https://raw.github.com/TestingTechnologies/PlayITS/master/Car/ttworkbench.play.widget.car.ui/www/img/icon/';
+        var pinImage = new google.maps.MarkerImage(iconBaseURL + 'warning' + id + '.png',
+            new google.maps.Size(47, 46),
+            new google.maps.Point(0,0),
+            new google.maps.Point(23, 46)
+        );
+        
+        marker = new google.maps.Marker({
           position: latLng, 
-          map: map
-      });
+          map: map,
+          icon: pinImage
+        });
     }
         
     
