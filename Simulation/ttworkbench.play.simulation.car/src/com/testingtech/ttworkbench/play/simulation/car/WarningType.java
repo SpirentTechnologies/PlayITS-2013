@@ -21,19 +21,26 @@ public class WarningType {
 
 	// private Warnings warningElem;
 
+	
 	public WarningType() {
 		warning = new LinkedList<Warnings>();
 		priority = 0;
 		gpsPosition = new GPSposition(0, 0);
 	}
-
+	
+	public int sizeWarnings(){
+		return warning.size();
+	}
+	
 	/**
 	 * @return the warning
 	 */
 	public Warnings getWarning() {
 		return warning.getFirst();
 	}
-
+	public Warnings removeFirst(){
+		return warning.poll();
+	}
 	/**
 	 * @param warning
 	 *            the warning to set

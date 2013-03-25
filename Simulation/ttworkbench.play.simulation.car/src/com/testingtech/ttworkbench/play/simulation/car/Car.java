@@ -8,7 +8,7 @@ public class Car implements CarInterface {
 
 	double speed, maxSpeed, petrolUsage;
 	WarningType currentComingWarning;
-	
+
 	Sensors sensors;
 	boolean engine;
 
@@ -19,7 +19,6 @@ public class Car implements CarInterface {
 	private String trackName;
 	private double oldSpeed = Double.NaN;
 
-	
 	public Car(double speed, double maxSpeed, double tirePressure,
 			double tankFill, double petrolUsage, boolean lightExists,
 			boolean rainExists, boolean tankFillExists,
@@ -84,7 +83,6 @@ public class Car implements CarInterface {
 		return sensors.esp;
 	}
 
-
 	@Override
 	public boolean toggleLightSensor() {
 		sensors.light = !sensors.light;
@@ -131,7 +129,6 @@ public class Car implements CarInterface {
 
 		// check warnings[], Sensors, damage,
 		Tupel<GPSposition, Double> gpsPositionOfCarUpdate;
-		
 
 		// ---------- Update Process starts here-------------//
 		// update with speed and everything only if the engine is turned on and
@@ -170,24 +167,27 @@ public class Car implements CarInterface {
 				&& currentPosition.longitude == currentComingWarning
 						.getGpsPosition().longitude) {
 			// check warning and enable counter meassures
-			if (currentComingWarning.equals(Warnings.ACCIDENT)
-					|| currentComingWarning.equals(Warnings.DEER)) {
-				doBreak();
-			} else if (currentComingWarning.equals(Warnings.FOG)) {
-				turnFogLampOn();
-			} else if (currentComingWarning.equals(Warnings.ICE)) {
-				// only reduce speed if oldSpeed is not set
-				if (Double.isNaN(oldSpeed)) {
-					doSlowDown(80);
-				}
-			} else if (currentComingWarning.equals(Warnings.RAIN)) {
-				if (Double.isNaN(oldSpeed)) {
-					doSlowDown(10);
-				}
+			// possibly
+			while (currentComingWarning.sizeWarnings() - 1 > 0) {
+				Warnings w = currentComingWarning.removeFirst();
+				if (w.equals(Warnings.ACCIDENT) || w.equals(Warnings.DEER)) {
+					doBreak();
+				} else if (w.equals(Warnings.FOG)) {
+					turnFogLampOn();
+				} else if (w.equals(Warnings.ICE)) {
+					// only reduce speed if oldSpeed is not set
+					if (Double.isNaN(oldSpeed)) {
+						doSlowDown(80);
+					}
+				} else if (w.equals(Warnings.RAIN)) {
+					if (Double.isNaN(oldSpeed)) {
+						doSlowDown(10);
+					}
 
-			} else if (currentComingWarning.equals(Warnings.SNOW)) {
-				if (Double.isNaN(oldSpeed)) {
-					doSlowDown(20);
+				} else if (w.equals(Warnings.SNOW)) {
+					if (Double.isNaN(oldSpeed)) {
+						doSlowDown(20);
+					}
 				}
 			}
 		} else {
@@ -200,8 +200,10 @@ public class Car implements CarInterface {
 	}
 
 	private void doSlowDown(int i) {
-		this.oldSpeed = speed;
-		this.speed *= (i / 100);
+		if (oldSpeed == Double.NaN) {
+			this.oldSpeed = speed;
+			this.speed *= (i / 100);
+		}
 	}
 
 	private void turnFogLampOn() {
@@ -209,8 +211,10 @@ public class Car implements CarInterface {
 	}
 
 	private void doBreak() {
-		this.oldSpeed = speed;
-		this.speed = 0;
+		if (oldSpeed == Double.NaN) {
+			this.oldSpeed = speed;
+			this.speed = 0;
+		}
 	}
 
 	public void addWarning(WarningType wt) {
