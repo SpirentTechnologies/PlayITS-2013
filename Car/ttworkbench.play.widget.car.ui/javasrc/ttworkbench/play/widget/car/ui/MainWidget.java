@@ -99,18 +99,18 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 	@Override
 	public void notifyEngineStatusChange() {
-		
+		uiController.updateEngine(model.getStatus().isEngineStarted());
 	}
 
 	@Override
 	public void notifyABSStatusChange() {
-		// TODO Auto-generated method stub
+		uiController.updateABS(model.getStatus().isABSenabled());
 
 	}
 
 	@Override
 	public void notifyESPStatusChange() {
-		// TODO Auto-generated method stub
+		uiController.updateESP(model.getStatus().isESPenabled());
 
 	}
 
@@ -134,7 +134,7 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 	@Override
 	public void notifyFillingStatusChange() {
-		// TODO Auto-generated method stub
+		uiController.updateFuel(model.getStatus().getFuelConsumption());
 
 	}
 
@@ -142,7 +142,7 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 	@Override
 	public void notifySpeedChange() {
-
+		uiController.updateSpeed(model.getStatus().getActualSpeed());
 	}
 
 	@Override
@@ -152,13 +152,13 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 	@Override
 	public void notifyFogLightChange() {
-		// TODO Auto-generated method stub
+		uiController.updateFogLight(model.getStatus().isFogLightSensorEnabled());
 
 	}
 
 	@Override
 	public void notifyLightChange() {
-		// TODO Auto-generated method stub
+		uiController.updateLight(model.getStatus().isLightSensorEnabled());
 
 	}
 

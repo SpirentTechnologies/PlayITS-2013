@@ -38,4 +38,7 @@ public class UIController {
 	public void updateFogLight(boolean foglight) {
 		browser.execute("carFogLight(" +foglight+ ")");
 	}
+	public void updateEngine(boolean engine){
+        browser.execute("carEngine(" + engine + ")");
+    }
 }
