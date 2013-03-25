@@ -133,7 +133,10 @@ public class GPSpositionOfCar {
 	 */
 	public WarningType getNextWarning() {
 		if(warnings.isEmpty()) return null;
-		return warnings.get(0);
+		return warnings.remove(0);
+	}
+	public List<WarningType> getAllWarnings(){
+		return warnings;
 	}
 
 	
@@ -143,7 +146,7 @@ public class GPSpositionOfCar {
 	 * @param dest
 	 * @return distance
 	 */
-	public double calculateDistance(GPSposition src, GPSposition dest){
+	public static double calculateDistance(GPSposition src, GPSposition dest){
 		double r = 6371; // Earthradius in km
 		double dLat = Math.toRadians(dest.latitude-src.latitude);
 		double dLon = Math.toRadians(dest.longitude-src.longitude);
