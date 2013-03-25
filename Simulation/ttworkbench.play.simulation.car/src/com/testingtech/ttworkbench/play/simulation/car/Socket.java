@@ -44,6 +44,11 @@ public class Socket implements Runnable {
 	public void run() {
 		
 		createEventsClient(clientPort, clientHost);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e1) {
+			// ignore
+		}
 		while(!car.isCarDisposed()){
 			// Call the cars update method before the widget needs new information
 			// about the car

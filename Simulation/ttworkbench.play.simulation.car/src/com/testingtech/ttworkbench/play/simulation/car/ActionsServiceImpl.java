@@ -80,11 +80,12 @@ public class ActionsServiceImpl implements BlockingInterface {
 		carModel.addCar(car);
 		Socket socket = new Socket(car,(int) request.getTtcnEventsPort(),request.getTtcnEventsHostName());
 		carSocket.put(car, socket);
+		new CarWindow().open(car);	
+
+		
 		Thread thread = new Thread(socket);
 		thread.start();
 		//CarWindow for Testing Simulation
-    	new CarWindow().open(car);	
-	
 		
 		return nil();
 	}
