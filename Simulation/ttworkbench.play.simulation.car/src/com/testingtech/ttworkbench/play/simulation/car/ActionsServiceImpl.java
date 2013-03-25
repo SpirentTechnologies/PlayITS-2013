@@ -106,8 +106,6 @@ public class ActionsServiceImpl implements BlockingInterface {
 		
 		Thread thread = new Thread(socket);
 		thread.start();
-		//CarWindow for Testing Simulation
-		
 		return nil();
 	}
 

@@ -196,32 +196,33 @@ public class Car implements CarInterface {
 			setSpeed(0);
 	
 		}
-	
-		Iterator<WarningType> iterator = tmpListOfWarnings.iterator();
-		while (iterator.hasNext()) {
-			WarningType wt = iterator.next();
-			// check warning and enable counter meassures
-			if (wt.equals(Warnings.ACCIDENT)
-					|| wt.equals(Warnings.DEER)) {
-				if(Double.isNaN(oldSpeed))
-				doBreak();
-			} else if (wt.equals(Warnings.FOG)) {
-				turnFogLampOn();
-			} else if (wt.equals(Warnings.ICE)) {
-				// only reduce speed if oldSpeed is not set
-				if (Double.isNaN(oldSpeed)) {
-					doSlowDown(80);
-					sensors.abs = true;
-					sensors.esp = true;
-				}
-			} else if (wt.equals(Warnings.RAIN)) {
-				if (Double.isNaN(oldSpeed)) {
-					doSlowDown(10);
-				}
-			} else if (wt.equals(Warnings.SNOW)) {
-				if (Double.isNaN(oldSpeed)) {
-					doSlowDown(20);
-					sensors.abs = true;
+		if(tmpListOfWarnings != null){
+			Iterator<WarningType> iterator = tmpListOfWarnings.iterator();
+			while (iterator.hasNext()) {
+				WarningType wt = iterator.next();
+				// check warning and enable counter meassures
+				if (wt.equals(Warnings.ACCIDENT)
+						|| wt.equals(Warnings.DEER)) {
+					if(Double.isNaN(oldSpeed))
+						doBreak();
+				} else if (wt.equals(Warnings.FOG)) {
+					turnFogLampOn();
+				} else if (wt.equals(Warnings.ICE)) {
+					// only reduce speed if oldSpeed is not set
+					if (Double.isNaN(oldSpeed)) {
+						doSlowDown(80);
+						sensors.abs = true;
+						sensors.esp = true;
+					}
+				} else if (wt.equals(Warnings.RAIN)) {
+					if (Double.isNaN(oldSpeed)) {
+						doSlowDown(10);
+					}
+				} else if (wt.equals(Warnings.SNOW)) {
+					if (Double.isNaN(oldSpeed)) {
+						doSlowDown(20);
+						sensors.abs = true;
+					}
 				}
 			}
 		}
