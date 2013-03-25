@@ -229,7 +229,6 @@
 		
 		$('#track').on('change', function() {
 		    initTrack( $(this).val() );
-		    trackVal(githubURL + track + '.kml');
 		});
 		
 		$('#initialize').on('click', function() {
@@ -315,11 +314,17 @@
             new google.maps.Point(0,0),
             new google.maps.Point(23, 46)
         );
+        var pinShadow = new google.maps.MarkerImage(iconBaseURL + 'shadow.png',
+            new google.maps.Size(65, 35),
+            new google.maps.Point(0, 0),
+            new google.maps.Point(25, 32)
+        );
         
         marker = new google.maps.Marker({
           position: latLng, 
           map: map,
-          icon: pinImage
+          icon: pinImage,
+          shadow: pinShadow
         });
     }
         
