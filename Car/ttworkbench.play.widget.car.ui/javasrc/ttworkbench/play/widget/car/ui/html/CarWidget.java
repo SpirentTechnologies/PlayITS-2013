@@ -21,6 +21,9 @@ import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 
 import ttworkbench.play.widget.car.ui.WidgetController;
+import ttworkbench.play.widget.car.ui.model.GPSposition;
+import ttworkbench.play.widget.car.ui.model.WarningType;
+import ttworkbench.play.widget.car.ui.model.enumWarning;
 
 import com.testingtech.ttworkbench.core.ui.preferences.common.AbstractConfigurationBlock;
 import com.testingtech.ttworkbench.play.dashboard.widget.DashboardWidgetFactoryDescriptor;
@@ -152,16 +155,16 @@ public class CarWidget {
 			/**
 			 * MOTOR
 			 */
-			if(this.getName() == "motor") {
+			if("motor".equals(this.getName())) {
 
-				boolean motorOn = parseOnOff(args[0].toString());
+				boolean motorOn = (Boolean)args[0];
 				if(motorOn) {
 					widgetController.startEngine();
 				} else {
 					widgetController.stopEngine();
 				}
 			}
-			else if(this.getName() == "initialize"){
+			else if("initialize".equals(this.getName())){
 				widgetController.initializeCar(
 						(Boolean) args[0], 
 						(Boolean) args[1], 
@@ -175,7 +178,7 @@ public class CarWidget {
 				//args[7] liefert nicht den Pfad
 				System.out.println((String)args[7]);
 			}
-			else if(this.getName() == "speed"){
+			else if("speed".equals(this.getName())){
 				float speed;
 				try {
 					speed = Float.parseFloat((String)args[0]);
@@ -184,9 +187,11 @@ public class CarWidget {
 				}
 				widgetController.changeSpeed(speed);
 			}
-			else if(this.getName() == "sendWarning"){
-				System.out.println(args[0]+ "  "+  args[1]);
-				//widgetController.sendWarning(args[0], args[1]);
+			else if("sendWarning".equals(this.getName())){
+				WarningType warningType = new WarningType();
+				warningType.setWarning(enumWarning.getWarning((Integer)args[2]));
+				warningType.setGpsPosition(new GPSposition((Double)args[0], (Double)args[1]));
+				widgetController.sendWarning(warningType);
 			}
 			return null;
 		}
@@ -197,10 +202,6 @@ public class CarWidget {
 	 */
 	public void setController(WidgetController widgetController) {
 		this.widgetController = widgetController;
-	}
-
-	public boolean parseOnOff(String string) {
-		return string.equals("on");
 	}
 
 	public void disableActions() {

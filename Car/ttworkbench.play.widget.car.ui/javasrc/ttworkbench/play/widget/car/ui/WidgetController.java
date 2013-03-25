@@ -3,11 +3,14 @@ package ttworkbench.play.widget.car.ui;
 import java.io.IOException;
 
 import ttworkbench.play.widget.car.ui.model.CarStatusModel;
+import ttworkbench.play.widget.car.ui.model.WarningType;
 
 import com.google.protobuf.ServiceException;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType;
+import com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.onOffEngineType;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.speedType;
+import com.testingtech.ttworkbench.play.generated.PROTO_API.warningType;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit;
 
 
@@ -88,49 +91,52 @@ public class WidgetController {
 			System.out.println("Can't change speed! " + e.getMessage());
 		}
 	}
-	
-//	public void sendWarning(WarningType warning){
-//		initCar();
-//		try {
-//			warningType.Builder request = warningType.newBuilder();
-//			request.setCarId(comm.getCarModel().getStatus().getId());
-//
-//			client().getActionsService().aPIWarningType(client().getController(), request.build());
-//
-//		} catch (ServiceException e) {
-//
-//			System.out.println("Can't change speed! " + e.getMessage());
-//		}
-//	}
+
+	public void sendWarning(WarningType warning){
+		try {
+			warningType.Builder request = warningType.newBuilder();
+			gpsPosition.Builder gpsBuilder = gpsPosition.newBuilder();
+			request.setCarId(comm.getCarModel().getStatus().getId());
+			gpsBuilder.setLatitude((float)warning.getGpsPosition().getLatitude());
+			gpsBuilder.setLongitude((float)warning.getGpsPosition().getLongitude());
+			request.setGpsPos(gpsBuilder);
+
+			client().getActionsService().aPIWarningType(client().getController(), request.build());
+
+		} catch (ServiceException e) {
+
+			System.out.println("Can't change speed! " + e.getMessage());
+		}
+	}
 
 	/**
 	 * Sets the track file
 	 * @param trackFile
 	 */
-//	public void setTrack(File trackFile){
-//		CarStatusModel status = comm.getCarModel().getStatus();
-//		status.setTrackFile(trackFile);
-//
-//		boolean sendTrack = !initialized;
-//			
-//		
-//		if (!sendTrack) {
-//			return;
-//		}
-//
-//		try {
-//			trackType.Builder request = trackType.newBuilder();
-//			request.setTrackName(status.getTrackFile().getAbsolutePath());
-//			request.setCarId(status.getId());
-//
-//			client().getActionsService().aPITrackType(client().getController(), request.build());
-//
-//		} catch (ServiceException e) {
-//
-//			System.out.println("Can't set track! " + e.getMessage());
-//		}
-//	}
-	
+	//	public void setTrack(File trackFile){
+	//		CarStatusModel status = comm.getCarModel().getStatus();
+	//		status.setTrackFile(trackFile);
+	//
+	//		boolean sendTrack = !initialized;
+	//			
+	//		
+	//		if (!sendTrack) {
+	//			return;
+	//		}
+	//
+	//		try {
+	//			trackType.Builder request = trackType.newBuilder();
+	//			request.setTrackName(status.getTrackFile().getAbsolutePath());
+	//			request.setCarId(status.getId());
+	//
+	//			client().getActionsService().aPITrackType(client().getController(), request.build());
+	//
+	//		} catch (ServiceException e) {
+	//
+	//			System.out.println("Can't set track! " + e.getMessage());
+	//		}
+	//	}
+
 	/**
 	 * is called from view, to initialize a new car, sets the car status attributes
 	 * @param abs
@@ -159,8 +165,8 @@ public class WidgetController {
 		initCar(status);
 
 	}
-	
-	
+
+
 	/**
 	 * Sends carInitType to SUT
 	 * 
@@ -181,7 +187,7 @@ public class WidgetController {
 			request.setTrackName(status.getTrack());
 
 			client().getActionsService().aPICarInitType(client().getController(), request.build());
-			
+
 			initialized = true;
 
 		} catch (ServiceException e) {
@@ -199,11 +205,10 @@ public class WidgetController {
 			widgetExit.Builder request = widgetExit.newBuilder();
 
 			client().getActionsService().aPIWidgetExit(client().getController(), request.build());
-			
+
 		} catch (ServiceException e) {
 
 			e.printStackTrace();
 		}
 	}
-
 }
