@@ -36,7 +36,7 @@
       #warning {
           width: 270px;
           height: 150px;
-          margin: 20px 30px 80px;
+          margin: 20px 30px 10px;
           background-color: #eee;
           -webkit-border-radius: 10px;
           -moz-border-radius: 10px;
@@ -60,6 +60,37 @@
       .warning_5 {
           background: url('img/snow.png') no-repeat center center;
       }
+      
+      #warnings {
+          margin: 0px 30px 60px;
+      }
+      .warning_radio {
+          -webkit-appearance: none;
+          width: 40px;
+          height: 40px;
+          border: 0;
+          margin: 1px;
+          border-radius: 5px;
+          display: inline-block;
+          position: relative;
+          background-color: #eee;
+          background-size: 50%;
+      }
+      .warning_radio:checked:after {
+          content: ' ';
+          width: 30px;
+          height: 30px;
+          border-radius: 4px;
+          background: #ccc;
+          font-size: 32px;
+      }
+      .warning_radio:checked {
+          background-color: #ccc;
+      }
+      .warning_radio:active, .warning_radio:checked:active {
+          
+      }
+      
       #menuContainer {
           width: 330px;
       }
@@ -135,6 +166,7 @@
         var lat = 52.515;
         var lng = 13.351;
         var myLatlng = new google.maps.LatLng(lat, lng);
+        var githubURL = 'https://raw.github.com/TestingTechnologies/PlayITS/master/Car/ttworkbench.play.widget.car.ui/www/track';
         
         var mapOptions = {
           center: myLatlng,
@@ -176,8 +208,16 @@
             }
             
             var githubURL = 'https://raw.github.com/TestingTechnologies/PlayITS/master/Car/ttworkbench.play.widget.car.ui/www/track'
-            kml = new google.maps.KmlLayer(githubURL + track + '.kml');
+            kml = new google.maps.KmlLayer(githubURL + track + '.kml', {suppressInfoWindows: true});
             kml.setMap(map);
+            
+            google.maps.event.addListener(kml, 'click', function(kmlEvent) {
+              var warningId = $('input[name=warnings]:checked').attr('id').slice(-1);
+              
+              console.log(warningId + ':' + kmlEvent.latLng);
+              
+              createWarning(kmlEvent.latLng, warningId);
+            });
         }
         
         $('#speedSlider').on('change', function() {
@@ -192,6 +232,7 @@
 		
 		$('#track').on('change', function() {
 		    initTrack( $(this).val() );
+		    trackVal(githubURL + track + '.kml');
 		});
 		
 		$('#initialize').on('click', function() {
@@ -237,6 +278,8 @@
 		    if(track === 0) {
 		        alert("Select a track");
 		        return;
+		    } else {
+		        track = githubURL + track + '.kml';
 		    }
 		     $('.configuration').hide(function() {
 		        $('.main').show();
@@ -269,6 +312,13 @@
         marker.setPosition(latLng);
         map.setCenter(latLng);
     };
+    
+    function createWarning(latLng, id) {
+      marker = new google.maps.Marker({
+          position: latLng, 
+          map: map
+      });
+    }
         
     
     </script>
@@ -284,6 +334,14 @@
         </div>
         
         <div id="warning" class="main"></div>
+        <div id="warnings" class="main">
+            <input type="radio" name="warnings" id="warning0" class="warning_radio warning_0" checked />
+            <input type="radio" name="warnings" id="warning1" class="warning_radio warning_1" />
+            <input type="radio" name="warnings" id="warning2" class="warning_radio warning_2" />
+            <input type="radio" name="warnings" id="warning3" class="warning_radio warning_3" />
+            <input type="radio" name="warnings" id="warning4" class="warning_radio warning_4" />
+            <input type="radio" name="warnings" id="warning5" class="warning_radio warning_5" />
+        </div>
         
         <div class="configuration center_text">
             <h1>CREATE A CAR</h1>
