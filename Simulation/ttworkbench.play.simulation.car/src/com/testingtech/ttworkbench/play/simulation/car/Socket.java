@@ -2,8 +2,6 @@ package com.testingtech.ttworkbench.play.simulation.car;
 
 import java.io.Closeable;
 
-import org.eclipse.swt.widgets.Display;
-
 import com.google.protobuf.BlockingRpcChannel;
 import com.google.protobuf.RpcController;
 import com.googlecode.protobuf.socketrpc.PersistentRpcConnectionFactory;

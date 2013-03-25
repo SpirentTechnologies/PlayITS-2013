@@ -103,7 +103,6 @@ public class GPSpositionOfCar {
 //				positions.set(i, wt);
 //			}
 //		}
-		wt.setPriority(Warnings.getPriority(wt.getWarning()));
 		warnings.add(wt);
 		
 		//sort List
@@ -125,15 +124,14 @@ public class GPSpositionOfCar {
 					}
 				}
 		});
-		
 	}
 	
-	/**
-	 * @return the nearest warning
-	 */
-	public WarningType getNextWarning() {
-		if(warnings.isEmpty()) return null;
-		return warnings.get(0);
+	public void removeWarning(WarningType wt){
+		warnings.remove(wt);
+	}
+	
+	public List<WarningType> getAllWarnings(){
+		return warnings;
 	}
 
 	
@@ -141,9 +139,9 @@ public class GPSpositionOfCar {
 	 * Calculate the air distance of two GPS Positions 
 	 * @param src
 	 * @param dest
-	 * @return distance
+	 * @return distance in km
 	 */
-	public double calculateDistance(GPSposition src, GPSposition dest){
+	public static double calculateDistance(GPSposition src, GPSposition dest){
 		double r = 6371; // Earthradius in km
 		double dLat = Math.toRadians(dest.latitude-src.latitude);
 		double dLon = Math.toRadians(dest.longitude-src.longitude);
@@ -154,5 +152,14 @@ public class GPSpositionOfCar {
 		        Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(srcLat) * Math.cos(destLat); 
 		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
 		return r * c;
+	}
+
+	/**
+	 * 
+	 * @param currentPosition is the position is 
+	 */
+	public void removeWarningsWithCurrentPosition(GPSposition currentPosition) {
+		// TODO Auto-generated method stub
+		
 	}
 }
