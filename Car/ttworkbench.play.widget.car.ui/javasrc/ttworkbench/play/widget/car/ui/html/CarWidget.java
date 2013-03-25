@@ -166,17 +166,16 @@ public class CarWidget {
 			}else{
 				if(this.getName() == "initialize"){
 					widgetController.initializeCar(
-					        parseOnOff((String) args[0]), 
-							parseOnOff((String) args[1]), 
-							parseOnOff((String) args[2]), 
-							parseOnOff((String) args[3]), 
+					        (Boolean) args[0], 
+							(Boolean) args[1], 
+							(Boolean) args[2], 
+							(Boolean) args[3], 
 							((Double)args[4]).floatValue(), 
 							((Double)args[5]).floatValue(), 
 							((Double)args[6]).floatValue(), 
 							(String)args[7]
 					);
-					//args[7] liefert nicht den Pfad
-					System.out.println((String)args[7]);
+
 				}
 				
 			}

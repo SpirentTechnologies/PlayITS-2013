@@ -5,6 +5,5 @@ public interface ICommunication {
 	ActionsClient getActionsClient();
 	
 	CarModel getCarModel();
-	
-	WidgetController getWidgetController();
+
 }

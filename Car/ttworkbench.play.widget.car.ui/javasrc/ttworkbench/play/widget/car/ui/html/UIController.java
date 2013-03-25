@@ -1,8 +1,9 @@
 package ttworkbench.play.widget.car.ui.html;
 
 import org.eclipse.swt.browser.Browser;
+
 import ttworkbench.play.widget.car.ui.model.WarningType;
-import ttworkbench.play.widget.car.ui.model.Warnings;
+import ttworkbench.play.widget.car.ui.model.enumWarning;
 
 public class UIController {
 	
@@ -13,7 +14,7 @@ public class UIController {
 	}
 	
 	public void warning(WarningType warning) {
-		browser.execute("warning(" + Warnings.getId(warning.getWarning()) + ", " + warning.getGpsPosition().getLatitude() + ", " + warning.getGpsPosition().getLongitude() + ", " + warning.getPriority() + ")");
+		browser.execute("warning(" + enumWarning.getId(warning.getWarning()) + ", " + warning.getGpsPosition().getLatitude() + ", " + warning.getGpsPosition().getLongitude() + ", " + warning.getPriority() + ")");
 	}
 	
 	public void updatePosition(double latitude, double longitude) {
@@ -29,7 +30,7 @@ public class UIController {
 	public void updateESP(boolean esp) {
 		browser.execute("carESP(" +esp+ ")");
 	}
-	public void updateFuel(boolean fuel) {
+	public void updateFuel(double fuel) {
 		browser.execute("carFuel(" +fuel+ ")");
 	}
 	public void updateLight(boolean light) {
@@ -38,4 +39,7 @@ public class UIController {
 	public void updateFogLight(boolean foglight) {
 		browser.execute("carFogLight(" +foglight+ ")");
 	}
+	public void updateEngine(boolean engine){
+        browser.execute("carEngine(" + engine + ")");
+    }
 }

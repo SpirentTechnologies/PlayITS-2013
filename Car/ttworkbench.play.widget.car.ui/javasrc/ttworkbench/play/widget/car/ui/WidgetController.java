@@ -146,7 +146,8 @@ public class WidgetController {
 	 */
 	public void initializeCar(boolean abs,boolean esp,boolean light,
 			boolean fogLight,float maxSpeed,
-			float fuel,float fuelConsumption,File trackFile){
+			float fuel,float fuelConsumption,String track){
+		File trackFile = new File(track);
 		CarStatusModel status = new CarStatusModel();
 		status.setABSenabled(abs);
 		status.setESPenabled(esp);

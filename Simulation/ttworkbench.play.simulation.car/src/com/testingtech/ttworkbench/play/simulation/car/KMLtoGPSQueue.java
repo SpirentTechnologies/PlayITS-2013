@@ -43,7 +43,8 @@ public KMLtoGPSQueue(File input){
 		
 	//need to change xmlns to ns, so read file and write a temporary file
 	BufferedReader reader = new BufferedReader(new FileReader(input));
-	File output = new File(input.getAbsolutePath()+".tmp");
+	File output = File.createTempFile("Car", ".kml.tmp");
+	output.deleteOnExit();
 	BufferedWriter writer = new BufferedWriter(new FileWriter(output));
 	String line;
 	while((line = reader.readLine()) != null){
@@ -82,12 +83,11 @@ public KMLtoGPSQueue(File input){
         	String[] latlong = tmpLine.split(",");
         	if(latlong.length < 2)continue;
         	gpsPosition = new GPSposition(Double.parseDouble(latlong[0]),Double.parseDouble(latlong[1]));
+        	System.out.println(gpsPosition.latitude + " : " + gpsPosition.longitude);
         	positions.offer(gpsPosition);
         }
     }
         
-    //delete temporary file
-    output.delete();
     
 	}catch(IOException e){
 		System.err.println("IO Errors during writing, reading Files " + e.getMessage());
