@@ -8,7 +8,6 @@ import java.util.Set;
 import org.eclipse.jdt.launching.SocketUtil;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 
 import ttworkbench.play.widget.car.ui.html.CarWidget;
 import ttworkbench.play.widget.car.ui.html.UIController;
@@ -60,11 +59,11 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 			carWidget.setController(new WidgetController(this));
 			Control control = carWidget.createControl(parent);
 			model.addListener(this);
-			
+
 			uiController = carWidget.getUiController();
-			
+
 			return control;
-			
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -89,78 +88,128 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 	@Override
 	protected void disableActions() {
-		carWidget.disableActions();
+		SWTUtil.sync(new Runnable() {
+			public void run() {
+				carWidget.disableActions();
+			}
+		});
 	}
 
 	@Override
 	protected void enableActions() {
-		carWidget.enableActions();
+		SWTUtil.sync(new Runnable() {
+			public void run() {
+				carWidget.enableActions();
+			}
+		});
 	}
 
 	@Override
 	public void notifyEngineStatusChange() {
-		uiController.updateEngine(model.getStatus().isEngineStarted());
+		SWTUtil.sync(new Runnable() {
+			public void run() {
+				if (uiController != null) {
+					uiController.updateEngine(model.getStatus().isEngineStarted());
+				}
+			}
+		});
 	}
 
 	@Override
 	public void notifyABSStatusChange() {
-		uiController.updateABS(model.getStatus().isABSenabled());
+		SWTUtil.sync(new Runnable() {
+			public void run() {
+				if (uiController != null) {
+					uiController.updateABS(model.getStatus().isABSenabled());
+				}
+			}
+		});
 
 	}
 
 	@Override
 	public void notifyESPStatusChange() {
-		uiController.updateESP(model.getStatus().isESPenabled());
-
+		SWTUtil.sync(new Runnable() {
+			public void run() {
+				if (uiController != null) {
+					uiController.updateESP(model.getStatus().isESPenabled());
+				}
+			}
+		});
 	}
 
 
 
 	@Override
 	public void notifyGpsPositionChange() {
-		Display.getDefault().syncExec(new Runnable() {
-		    public void run() {
-		    	if (uiController != null) {
+		SWTUtil.sync(new Runnable() {
+			public void run() {
+				if (uiController != null) {
 					// dropped update if no GUI initialized yet
 					GPSposition gpsPosition = model.getStatus().getGpsPosition();
 					uiController.updatePosition(gpsPosition.getLatitude(), gpsPosition.getLongitude());
 				}
-		    }
+			}
 		});
-		
+
 	}
 
 
 	@Override
 	public void notifyFillingStatusChange() {
-
-		uiController.updateFuel(model.getStatus().getFuel());
-
-
+		SWTUtil.sync(new Runnable() {
+			public void run() {
+				if (uiController != null) {
+					uiController.updateFuel(model.getStatus().getFuel());
+				}
+			}
+		});
 	}
 
 
 
 	@Override
 	public void notifySpeedChange() {
-		uiController.updateSpeed(model.getStatus().getActualSpeed());
+		SWTUtil.sync(new Runnable() {
+			public void run() {
+				if (uiController != null) {
+					uiController.updateSpeed(model.getStatus().getActualSpeed());
+				}
+			}
+		});
 	}
 
 	@Override
 	public void notifyWarningAdded() {
-		uiController.warning(model.getWarning());
+		SWTUtil.sync(new Runnable() {
+			public void run() {
+				if (uiController != null) {
+					uiController.warning(model.getWarning());
+				}
+			}
+		});
 	}
 
 	@Override
 	public void notifyFogLightChange() {
-		uiController.updateFogLight(model.getStatus().isFogLightSensorEnabled());
-
+		SWTUtil.sync(new Runnable() {
+			public void run() {
+				if (uiController != null) {
+					uiController.updateFogLight(model.getStatus().isFogLightSensorEnabled());
+				}
+			}
+		});
 	}
 
 	@Override
 	public void notifyLightChange() {
-		uiController.updateLight(model.getStatus().isLightSensorEnabled());
-
+		SWTUtil.sync(new Runnable() {
+			public void run() {
+				if (uiController != null) {
+					uiController.updateLight(model.getStatus().isLightSensorEnabled());
+				}
+			}
+		});
 	}
 
 	public ActionsClient getActionsClient() {
@@ -169,29 +218,29 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 	@Override
 	protected void initializeCommunication() {
-		
+
 		try {
-      com.testingtech.ttworkbench.play.simulation.car.Activator.startSimulation();
-    } catch (IOException e) {
-      SWTUtil.createErrorDialogAsync("Error", "Error starting Simulation", e, null, getClass().getName());
-    }
-		
+			com.testingtech.ttworkbench.play.simulation.car.Activator.startSimulation();
+		} catch (IOException e) {
+			SWTUtil.createErrorDialogAsync("Error", "Error starting Simulation", e, null, getClass().getName());
+		}
+
 		super.initializeCommunication();
 	}
 
 	public Set<Parameter> getModuleParameters() {
-	  int simulationPort = 0;
-	  try {
-	    simulationPort = com.testingtech.ttworkbench.play.simulation.car.Activator.getSimulationPort();
-	  } catch (IOException e) {
-	    SWTUtil.createErrorDialogAsync("Error", "Error starting Simulation", e, null, getClass().getName());
-	  }
-	  return SetUtil.set(
-	      newModuleParameter("Parameters.EVENTS_WIDGET_TCP_PORT", getEventsServicePort()),
-	      newModuleParameter("Parameters.ACTIONS_WIDGET_TCP_PORT", getActionsServicePort()),
-	      newModuleParameter("Parameters.EVENTS_CAR_TCP_PORT", SocketUtil.findFreePort()),
-	      newModuleParameter("Parameters.ACTIONS_CAR_TCP_PORT", simulationPort)
-	      );
+		int simulationPort = 0;
+		try {
+			simulationPort = com.testingtech.ttworkbench.play.simulation.car.Activator.getSimulationPort();
+		} catch (IOException e) {
+			SWTUtil.createErrorDialogAsync("Error", "Error starting Simulation", e, null, getClass().getName());
+		}
+		return SetUtil.set(
+				newModuleParameter("Parameters.EVENTS_WIDGET_TCP_PORT", getEventsServicePort()),
+				newModuleParameter("Parameters.ACTIONS_WIDGET_TCP_PORT", getActionsServicePort()),
+				newModuleParameter("Parameters.EVENTS_CAR_TCP_PORT", SocketUtil.findFreePort()),
+				newModuleParameter("Parameters.ACTIONS_CAR_TCP_PORT", simulationPort)
+				);
 	}
 
 	@Override
@@ -203,7 +252,7 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 	@Override
 	public void notifyFirstMessageFromSUT() {
 		// TODO to remove
-		
+
 	}
-	
+
 }
