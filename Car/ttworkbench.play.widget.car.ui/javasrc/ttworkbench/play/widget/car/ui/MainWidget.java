@@ -133,7 +133,9 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 	@Override
 	public void notifyFillingStatusChange() {
+
 		uiController.updateFuel(model.getStatus().getFuel());
+
 
 	}
 

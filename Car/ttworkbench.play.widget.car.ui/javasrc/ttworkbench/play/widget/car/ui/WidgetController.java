@@ -148,7 +148,9 @@ public class WidgetController {
 			boolean fogLight,float maxSpeed,
 			float fuel,float fuelConsumption,String track){
 		File trackFile = new File(track);
+
 		CarStatusModel status = new CarStatusModel();
+
 		status.setABSenabled(abs);
 		status.setESPenabled(esp);
 		status.setLightSensorEnabled(light);
