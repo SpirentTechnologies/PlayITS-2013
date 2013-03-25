@@ -63,8 +63,8 @@ public class GPSpositionOfCar {
 		lastTime = actualTime;
 		
 		icar.setFuelLevel(tankFillUpdate(icar.getFuelLevel(), icar.getConsumption(), driveDistance));
-		
-		if(actualDistance <= driveDistance){
+		actualDistance-=driveDistance;
+		if(actualDistance <= 0){
 			
 			currentPosition = positions.poll();
 			//track done
@@ -75,9 +75,9 @@ public class GPSpositionOfCar {
 			latitude = currentPosition.latitude + rest*(nextGPSDestination.latitude - currentPosition.latitude);
 			longitude = currentPosition.longitude + rest*(nextGPSDestination.longitude - currentPosition.longitude);
 			currentPosition = new GPSposition(longitude, latitude);
-			
+			actualDistance = calculateDistance(currentPosition, nextGPSDestination);
 		}
-		actualDistance = calculateDistance(currentPosition, nextGPSDestination);
+		
 		
 	}
 

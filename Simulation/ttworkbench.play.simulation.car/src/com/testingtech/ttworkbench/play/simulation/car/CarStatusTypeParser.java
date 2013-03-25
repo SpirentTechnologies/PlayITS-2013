@@ -38,18 +38,20 @@ public class CarStatusTypeParser {
 		com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.Builder gpsPos = gpsPosition
 				.newBuilder();
 
-		// create GPS-Position
-		gpsPos.setLatitude((float) car.currentPosition.latitude);
-		gpsPos.setLongitude((float) car.currentPosition.longitude);
+
 
 		// create Warning
 		for (WarningType nextWarning : car.position.getAllWarnings()) {
 			//if the warning is in a 3km radius add warning to status
-			if (GPSpositionOfCar.calculateDistance(car.currentPosition, nextWarning.getGpsPosition()) < 3) {
+			GPSposition gpsPosition = nextWarning.getGpsPosition();
+			if (GPSpositionOfCar.calculateDistance(car.currentPosition, gpsPosition) < 3) {
 
 				EnumValue ev = EnumValue.valueOf(nextWarning.toString());
 				warn.setEnumValue(ev);
-
+				
+				// create GPS-Position
+				gpsPos.setLatitude((float) gpsPosition.latitude);
+				gpsPos.setLongitude((float) gpsPosition.longitude);
 				// set the values
 				warningBuilder.setWarningName(warn.build());
 				warningBuilder.setCarId(car.customID);

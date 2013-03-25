@@ -37,6 +37,8 @@ public class ActionsServiceImpl implements BlockingInterface {
 		long id = request.getCarId();
 		Car car = getCar(id);
 		car.speed = request.getSpeed();
+		System.out.println("ActiensServiceImpl: recv speed " + car.speed + " id " + id);
+
 		return nil();
 	}
 
@@ -76,7 +78,6 @@ public class ActionsServiceImpl implements BlockingInterface {
 		carModel.addCar(car);
 		Socket socket = new Socket(car,(int) request.getTtcnEventsPort(),request.getTtcnEventsHostName());
 		carSocket.put(car, socket);
-
 		Thread thread = new Thread(socket);
 		thread.start();
 		return nil();
