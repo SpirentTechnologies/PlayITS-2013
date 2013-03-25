@@ -1,16 +1,25 @@
 package com.testingtech.ttworkbench.play.simulation.car;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Queue;
 
 import org.eclipse.swt.widgets.Display;
 
+import com.testingtech.util.FileUtil;
+
 public class Car implements CarInterface {
 	static int carID;
 	final int customID;
 
-	double speed, maxSpeed, petrolUsage;
+	double speed = 0;
+	double maxSpeed, petrolUsage;
 	WarningType currentComingWarning;
 	
 	Sensors sensors;
@@ -62,7 +71,7 @@ public class Car implements CarInterface {
 			boolean rainExists, boolean tankFillExists,
 			boolean tirePressureExists, boolean espExists, boolean absExists,
 			boolean airbagExists, boolean fogLightExists,
-			Queue<GPSposition> positions) {
+			String trackName) {
 
 		this.speed = speed;
 		this.maxSpeed = maxSpeed;
@@ -72,8 +81,35 @@ public class Car implements CarInterface {
 				tirePressure, tankFill);
 		carID++;
 		customID = carID;
-		currentPosition = positions.peek();
-		position = new GPSpositionOfCar(positions,this);
+		this.trackName = trackName;
+	}
+
+	private void initTrack() {
+		if (position == null) {
+			Queue<GPSposition> positions = parseTrack(getTrackName());
+			currentPosition = positions.peek();
+			position = new GPSpositionOfCar(positions,this);
+		}
+	}
+
+	private Queue<GPSposition> parseTrack(String trackName) {
+		Queue<GPSposition> positions;
+		File tmpFile = null;
+		try {
+			URL url = new URL(trackName);
+			InputStream urlStream = url.openStream();
+			tmpFile = File.createTempFile("http", ".kml");
+			OutputStream out = new FileOutputStream(tmpFile);
+			FileUtil.copy(urlStream, out);
+			out.flush();
+
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		positions =	new KMLtoGPSQueue(tmpFile).getPositions();
+		return positions;
 	}
 
 	@Override
@@ -154,17 +190,18 @@ public class Car implements CarInterface {
 	 * What is needed to be returned: tankFillLevel currentGPSposition
 	 */
 	public void update() {
+		initTrack();
 		List<WarningType> tmpListOfWarnings = null;
 		if (position == null) {
 			System.out.println("No route set");
 			return;
 		}
 	
-		//update back to old settings of the car, i.e. speed
-		if(Double.isNaN(oldSpeed) || sensors.fogLight){
-			sensors.fogLight = false;
-			speed = oldSpeed;
-		}
+//		//update back to old settings of the car, i.e. speed
+//		if(Double.isNaN(oldSpeed) || sensors.fogLight){
+//			sensors.fogLight = false;
+//			speed = oldSpeed;
+//		}
 		
 		// get time for distance check
 		long time = System.currentTimeMillis();
@@ -256,6 +293,7 @@ public class Car implements CarInterface {
 
 	public void setTrack(String trackName) {
 		this.trackName = trackName;
+		this.position = null;
 	}
 
 	public String getTrackName() {

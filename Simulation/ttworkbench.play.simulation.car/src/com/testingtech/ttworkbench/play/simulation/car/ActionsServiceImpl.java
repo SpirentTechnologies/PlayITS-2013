@@ -1,14 +1,7 @@
 package com.testingtech.ttworkbench.play.simulation.car;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
 import java.util.Hashtable;
 import java.util.Map;
-import java.util.Queue;
 
 import com.google.protobuf.RpcController;
 import com.google.protobuf.ServiceException;
@@ -20,7 +13,6 @@ import com.testingtech.ttworkbench.play.generated.PROTO_API.speedType;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.trackType;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.warningType;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit;
-import com.testingtech.util.FileUtil;
 
 public class ActionsServiceImpl implements BlockingInterface {
 	CarModel carModel;
@@ -75,25 +67,12 @@ public class ActionsServiceImpl implements BlockingInterface {
 	@Override
 	public Void aPICarInitType(RpcController controller, carInitType request)
 			throws ServiceException {
-		Queue<GPSposition> positions;
-		File tmpFile = null;
-		try {
-			URL url = new URL(request.getTrackName());
-			InputStream urlStream = url.openStream();
-			tmpFile = File.createTempFile("http", ".kml");
-			OutputStream out = new FileOutputStream(tmpFile);
-			FileUtil.copy(urlStream, out);
-			out.flush();
-
-			out.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		positions =	new KMLtoGPSQueue(tmpFile).getPositions();
+		String trackName = request.getTrackName();
 
 		// updates the initial car setup with the wanted field values
-		final Car car = new Car(0, request.getMaxSpeed(), 2.0, request.getFuelFilling(), request.getFuelConsumption(), request.getLightSensorExists(), true, request.hasFuelFilling(), true, request.getEspSensorExists(), request.getAbsSensorExists(), false, request.getFogLightSensorExists(), positions);
+		final Car car = new Car(0, request.getMaxSpeed(), 2.0, 
+				request.getFuelFilling(), request.getFuelConsumption(), request.getLightSensorExists(), true, request.hasFuelFilling(), true, 
+				request.getEspSensorExists(), request.getAbsSensorExists(), false, request.getFogLightSensorExists(), trackName);
 		carModel.addCar(car);
 		Socket socket = new Socket(car,(int) request.getTtcnEventsPort(),request.getTtcnEventsHostName());
 		carSocket.put(car, socket);
