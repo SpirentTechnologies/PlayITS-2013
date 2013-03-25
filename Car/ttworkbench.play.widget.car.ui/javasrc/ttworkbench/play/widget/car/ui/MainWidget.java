@@ -44,7 +44,7 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 	public BlockingService createEventsService(int eventsServicePortNumber) {
 		BlockingService eventsService = 
-				PROTO_API.EVENTS.newReflectiveBlockingService(new EventsServiceImpl(getModel()));
+				PROTO_API.EVENTS.newReflectiveBlockingService(new EventsServiceImpl(getModel(),this));
 		return eventsService;
 	}
 
@@ -65,7 +65,6 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 			return control;
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new RuntimeException("Cannot instantiate car", e);
 		} catch (Throwable e) {
@@ -87,7 +86,7 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 
 	@Override
-	protected void disableActions() {
+	public void disableActions() {
 		SWTUtil.sync(new Runnable() {
 			public void run() {
 				carWidget.disableActions();
@@ -96,7 +95,7 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 	}
 
 	@Override
-	protected void enableActions() {
+	public void enableActions() {
 		SWTUtil.sync(new Runnable() {
 			public void run() {
 				carWidget.enableActions();
@@ -143,13 +142,10 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 	@Override
 	public void notifyGpsPositionChange() {
 		SWTUtil.sync(new Runnable() {
-			public void run() {
-				if (uiController != null) {
-					// dropped update if no GUI initialized yet
-					GPSposition gpsPosition = model.getStatus().getGpsPosition();
-					uiController.updatePosition(gpsPosition.getLatitude(), gpsPosition.getLongitude());
-				}
-			}
+		    public void run() {
+		    	GPSposition gpsPosition = model.getStatus().getGpsPosition();
+				uiController.updatePosition(gpsPosition.getLatitude(), gpsPosition.getLongitude());
+		    }
 		});
 
 	}
