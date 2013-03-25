@@ -1,6 +1,5 @@
 package ttworkbench.play.widget.car.ui;
 
-import java.io.File;
 import java.io.IOException;
 
 import ttworkbench.play.widget.car.ui.model.CarStatusModel;
@@ -9,7 +8,6 @@ import com.google.protobuf.ServiceException;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.onOffEngineType;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.speedType;
-import com.testingtech.ttworkbench.play.generated.PROTO_API.trackType;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit;
 
 
