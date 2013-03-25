@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Queue;
 import java.util.concurrent.Executors;
 
+import com.googlecode.protobuf.socketrpc.PersistentRpcConnectionFactory;
 import com.googlecode.protobuf.socketrpc.RpcServer;
 import com.googlecode.protobuf.socketrpc.ServerRpcConnectionFactory;
 import com.googlecode.protobuf.socketrpc.SocketRpcConnectionFactories;
@@ -68,8 +69,9 @@ public class Simulation {
 		this.serverPort = p_serverPort;
 		CarModel carModel = new CarModel();
 
-		ServerRpcConnectionFactory rpcConnectionFactory = SocketRpcConnectionFactories
-				.createServerRpcConnectionFactory(p_serverPort);
+		ServerRpcConnectionFactory rpcConnectionFactory = 
+				PersistentRpcConnectionFactory.createServerInstance(SocketRpcConnectionFactories
+				.createServerRpcConnectionFactory(p_serverPort));
 		server = new RpcServer(rpcConnectionFactory,
 				Executors.newFixedThreadPool(10), true);
 		ActionsServiceImpl asi = new ActionsServiceImpl(carModel);
