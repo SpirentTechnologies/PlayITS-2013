@@ -198,7 +198,7 @@
                 max: maxSpeed,
                 change: function(v) {
                     $('#speedSlider').val(v);
-                    speed(v);
+                    //speed(v);
                 }
             });
         }
@@ -219,11 +219,11 @@
         }
 
         $('#speedSlider').on('change', function() {
-            speed( $(this).val() );
+            //speed( $(this).val() );
         });
 
         $('#motor').on('click', function() {
-            motor( $(this).is(':checked') );
+            //motor( $(this).is(':checked') );
         });
 
         $('#track').on('change', function() {
@@ -264,7 +264,7 @@
                 $('.main').show();
             });
 
-            initialize(abs, esp, light, fogLight, maxSpeed, fuel, fuelConsumption, trackVal);
+            //initialize(abs, esp, light, fogLight, maxSpeed, fuel, fuelConsumption, trackVal);
             initCar(maxSpeed);
             initTrack(track);
         });
@@ -310,7 +310,8 @@
             icon: pinImage,
             shadow: pinShadow
         });
-        sendWarning(latLng, id);
+        
+        sendWarning(latLng.kb, latLng.lb, id);
     }
 
     function carSpeed(uSpeed){
