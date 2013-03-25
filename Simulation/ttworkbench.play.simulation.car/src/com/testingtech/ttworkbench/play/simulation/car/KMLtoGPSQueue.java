@@ -1,4 +1,4 @@
-package ttworkbench.play.widget.car.ui;
+package com.testingtech.ttworkbench.play.simulation.car;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -18,12 +18,9 @@ import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
-import org.apache.xpath.NodeSet;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
-import ttworkbench.play.widget.car.ui.model.GPSposition;
 
 
 public class KMLtoGPSQueue {
@@ -84,7 +81,7 @@ public KMLtoGPSQueue(File input){
         	if(tmpLine == "")continue;
         	String[] latlong = tmpLine.split(",");
         	if(latlong.length < 2)continue;
-        	gpsPosition = new GPSposition(Double.parseDouble(latlong[1]),Double.parseDouble(latlong[0]));
+        	gpsPosition = new GPSposition(Double.parseDouble(latlong[0]),Double.parseDouble(latlong[1]));
         	positions.offer(gpsPosition);
         }
     }

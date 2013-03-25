@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="carWidgetCSS.css">
+    
+    <style type="text/css">
+      html { height: 100%; }
+      body {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+          font-size: 12px;
+      }
+      #map_canvas {
+          height: 100%;
+          position: absolute;
+          left: 0px;
+          top: 0;
+      }
+      #map_canvas > div > div:nth-child(3n) {
+          visibility: hidden;
+      }
+      .main {
+          display: none;
+      }
+     
+      
+      .center_text {
+          text-align: center;
+      }
+      .margin_top_20 {
+          margin-top: 20px;
+      }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="jquery.knob.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    
+    <script type="text/javascript">
+    var map, marker;
+    
+    $(document).ready(function() {
+        var lat = 52.515;
+        var lng = 13.351;
+        var myLatlng = new google.maps.LatLng(lat, lng);
+        
+        var mapOptions = {
+          center: myLatlng,
+          zoom: 15,
+          panControl: false,
+          mapTypeControl: false,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        
+        map = new google.maps.Map(document.getElementById("map_canvas"),
+            mapOptions);
+        
+        marker = new google.maps.Marker({
+            position: myLatlng, 
+            map: map
+        });
+        
+       
+    });
+    
+    function carPosition(lat, lng) {
+        var latLng = new google.maps.LatLng(lat, lng);
+        marker.setPosition(latLng);
+        map.setCenter(latLng);
+    };
+        
+    
+    </script>
+  </head>
+  <body>
+
+    
+    <div id="map_canvas" style="width:400px; height:450px;"></div>
+  </body>
+</html>
