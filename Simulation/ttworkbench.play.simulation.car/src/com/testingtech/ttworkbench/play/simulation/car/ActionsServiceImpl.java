@@ -1,7 +1,6 @@
 package com.testingtech.ttworkbench.play.simulation.car;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.Queue;
@@ -76,11 +75,17 @@ public class ActionsServiceImpl implements BlockingInterface {
 		positions =	new KMLtoGPSQueue(new File(request.getTrackName())).getPositions();
 
 		// updates the initial car setup with the wanted field values
-		Car car = new Car(0, request.getMaxSpeed(), 2.0, request.getFuelFilling(), request.getFuelConsumption(), request.getLightSensorExists(), true, request.hasFuelFilling(), true, request.getEspSensorExists(), request.getAbsSensorExists(), false, request.getFogLightSensorExists(), positions);
+		final Car car = new Car(0, request.getMaxSpeed(), 2.0, request.getFuelFilling(), request.getFuelConsumption(), request.getLightSensorExists(), true, request.hasFuelFilling(), true, request.getEspSensorExists(), request.getAbsSensorExists(), false, request.getFogLightSensorExists(), positions);
 		carModel.addCar(car);
 		Socket socket = new Socket(car,(int) request.getTtcnEventsPort(),request.getTtcnEventsHostName());
 		carSocket.put(car, socket);
-		new CarWindow().open(car);	
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				new CarWindow().open(car);	
+			}
+		}).start();
 
 		
 		Thread thread = new Thread(socket);
