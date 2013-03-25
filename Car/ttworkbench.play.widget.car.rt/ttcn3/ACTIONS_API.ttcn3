@@ -11,7 +11,7 @@ module ACTIONS_API {
     import from CONFIG_API all;
     import from TTlibrary all;
     
-    modulepar float TIMEOUT := 10.0;
+    modulepar float TIMEOUT := 500.0;
 
     function ACTION_API__onOffEngineType(API.onOffEngineType p_value) runs on COMPONENT {
         log("ACTION_API__onOffEngineType was called by the widget");
