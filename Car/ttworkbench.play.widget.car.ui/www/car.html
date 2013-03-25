@@ -197,7 +197,7 @@
                 max: maxSpeed,
                 change: function(v) {
                   $('#speedSlider').val(v);
-                  //speed(v);
+                  speed(v);
                 }
             });
         }
@@ -224,7 +224,7 @@
         });
         
         $('#motor').on('click', function() {
-			//motor( $(this).is(':checked') );
+			motor( $(this).is(':checked') );
 		});
 		
 		$('#track').on('change', function() {
@@ -281,7 +281,7 @@
 		        $('.main').show();
 		    }); 
 		    
-		    //initialize(abs, esp, light, fogLight, maxSpeed, fuel, fuelConsumption, githubURL + track + '.kml');
+		    initialize(abs, esp, light, fogLight, maxSpeed, fuel, fuelConsumption, githubURL + track + '.kml');
 		    initCar(maxSpeed);
 		    initTrack(track);
 		});
