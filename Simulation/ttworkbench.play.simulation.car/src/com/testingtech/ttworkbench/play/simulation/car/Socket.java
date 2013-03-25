@@ -21,16 +21,11 @@ public class Socket implements Runnable {
 	 *            run in car
 	 */
 	Car car;
-
 	private int clientPort;
 	private String clientHost;
-
 	private RpcController rpcController;
-
 	private PROTO_API.EVENTS.BlockingInterface service;
-
 	private BlockingRpcChannel channel;
-
 	private RpcConnectionFactory connectionFactory;
 
 	public Socket(Car carInit, int clientPort, String clientHost) {
@@ -38,23 +33,24 @@ public class Socket implements Runnable {
 		this.clientHost = clientHost;
 		this.clientPort = clientPort;
 
-	
 	}
 
 	public void run() {
-		
+
 		createEventsClient(clientPort, clientHost);
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e1) {
 			// ignore
 		}
-		while(!car.isCarDisposed()){
-			// Call the cars update method before the widget needs new information
+		while (!car.isCarDisposed()) {
+			// Call the cars update method before the widget needs new
+			// information
 			// about the car
 			car.update();
-			//send updated information to widget
+			// send updated information to widget
 			sendUpdate();
+			
 			try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {
@@ -64,22 +60,21 @@ public class Socket implements Runnable {
 		cleanupEventsClient();
 	}
 
-
 	private void cleanupEventsClient() {
 
-	    if (service != null) {
-	      try {
-	        if (connectionFactory instanceof Closeable) {
-	          ((Closeable) connectionFactory).close();
-	        }
-	        connectionFactory = null;
-	        channel = null;
-	        service = null;
-	        rpcController = null;
-	      } catch (Throwable e) {
-	        // ignore exception
-	      }
-	    }
+		if (service != null) {
+			try {
+				if (connectionFactory instanceof Closeable) {
+					((Closeable) connectionFactory).close();
+				}
+				connectionFactory = null;
+				channel = null;
+				service = null;
+				rpcController = null;
+			} catch (Throwable e) {
+				// ignore exception
+			}
+		}
 
 	}
 
@@ -87,8 +82,9 @@ public class Socket implements Runnable {
 	// event
 	// We return values to "API"
 	public void createEventsClient(int port, String host) {
-		connectionFactory = PersistentRpcConnectionFactory.createInstance(
-		SocketRpcConnectionFactories.createRpcConnectionFactory(host, port));
+		connectionFactory = PersistentRpcConnectionFactory
+				.createInstance(SocketRpcConnectionFactories
+						.createRpcConnectionFactory(host, port));
 
 		channel = RpcChannels.newBlockingRpcChannel(connectionFactory);
 		service = PROTO_API.EVENTS.newBlockingStub(channel);
@@ -115,7 +111,8 @@ public class Socket implements Runnable {
 						rpcController.errorText()));
 			}
 		} catch (Throwable e) {
-			System.out.println("some error with sending the parsed package the car");
+			System.out
+					.println("some error with sending the parsed package the car");
 			car.disposeCar();
 			cleanupEventsClient();
 		}

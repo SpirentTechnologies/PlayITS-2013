@@ -2,79 +2,72 @@ package com.testingtech.ttworkbench.play.simulation.car;
 
 import java.util.LinkedList;
 
-import com.testingtech.ttworkbench.play.simulation.car.Warnings;;
+import com.testingtech.ttworkbench.play.simulation.car.Warnings;
+
+;
 
 /**
  * 
  * @author kensan,andre
- *
+ * 
  */
 
 public class WarningType {
-	
-	private LinkedList<Warnings> warning;
-	private long priority;
+
+	private Warnings warning;
 	private GPSposition gpsPosition;
-	
-	public WarningType(){
-		warning = new LinkedList<Warnings>();
-		priority = 0;
-		gpsPosition = new GPSposition(0, 0);
+
+	public WarningType(Warnings w, GPSposition gps) {
+		warning = w;
+		gpsPosition = gps;
 	}
 
 	/**
 	 * @return the warning
 	 */
 	public Warnings getWarning() {
-		return warning.getFirst();
+		return warning;
 	}
+
 	/**
-	 * @param warning the warning to set
+	 * @param warning
+	 *            the warning to set
 	 */
 	public void setWarning(Warnings warning) {
-		this.warning.remove();
-		this.warning.add(warning);
+		this.warning = warning;
 	}
+
 	/**
 	 * @return the priority
 	 */
 	public long getPriority() {
-		return priority;
+		return Warnings.getPriority(warning);
 	}
-	/**
-	 * @param l the priority to set
-	 */
-	public void setPriority(long l) {
-		this.priority = l;
-	}
+
 	/**
 	 * @return the gpsPosition
 	 */
 	public GPSposition getGpsPosition() {
 		return gpsPosition;
 	}
+
 	/**
-	 * @param gpsPosition the gpsPosition to set
+	 * @param gpsPosition
+	 *            the gpsPosition to set
 	 */
 	public void setGpsPosition(GPSposition gpsPosition) {
 		this.gpsPosition = gpsPosition;
 	}
-	
-	
-	public int compareTo(WarningType wt1){
-		final int BEFORE = -1;
-		final int EQUAL = 0;
-		final int AFTER = 1;
-		
-		if(this.getGpsPosition().latitude == wt1.getGpsPosition().latitude && this.getGpsPosition().longitude == wt1.getGpsPosition().longitude){
-			return EQUAL;
+
+	public boolean equals(Object o) {
+		if (o instanceof WarningType) {
+			WarningType wt = (WarningType) o;
+			if (wt.warning == this.warning) {
+				if (this.getGpsPosition().compareTo(wt.getGpsPosition()) == 0) {
+					return true;
+				}
+			}
 		}
-		if(this.getGpsPosition().latitude <= wt1.getGpsPosition().latitude && this.getGpsPosition().longitude <= wt1.getGpsPosition().longitude){
-			return BEFORE;
-		}
-		if(this.getGpsPosition().latitude >= wt1.getGpsPosition().latitude && this.getGpsPosition().longitude >= wt1.getGpsPosition().longitude){
-			return AFTER;
-		}
-		return EQUAL;
+		return false;
 	}
 }

@@ -60,6 +60,7 @@ public class CarStatusTypeParser {
 				cst.addWarning(warningBuilder.build());
 			}
 		}
+		
 		return cst.build();
 	}
 }

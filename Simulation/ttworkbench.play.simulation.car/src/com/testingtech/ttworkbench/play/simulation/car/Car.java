@@ -1,5 +1,7 @@
 package com.testingtech.ttworkbench.play.simulation.car;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.Queue;
 
 import org.eclipse.swt.widgets.Display;
@@ -10,40 +12,9 @@ public class Car implements CarInterface {
 
 	double speed, maxSpeed, petrolUsage;
 	WarningType currentComingWarning;
-	
+
 	Sensors sensors;
 	boolean engine;
-
-	/**
-	 * @return the engine
-	 */
-	public boolean isEngine() {
-		return engine;
-	}
-	
-	public boolean isABS(){
-		return sensors.abs;
-	}
-	
-	public boolean isESP(){
-		return sensors.esp;
-	}
-
-	public boolean isFogLight(){
-		return sensors.fogLight;
-	}
-	
-	public boolean isLight(){
-		return sensors.light;
-	}
-	
-	
-	/**
-	 * @param engine the engine to set
-	 */
-	public synchronized void setEngine(boolean engine) {
-		this.engine = engine;
-	}
 
 	GPSpositionOfCar position;
 	GPSposition currentPosition;
@@ -54,7 +25,6 @@ public class Car implements CarInterface {
 	private Display display;
 	private IWidget iWidget;
 
-	
 	public Car(double speed, double maxSpeed, double tirePressure,
 			double tankFill, double petrolUsage, boolean lightExists,
 			boolean rainExists, boolean tankFillExists,
@@ -71,7 +41,38 @@ public class Car implements CarInterface {
 		carID++;
 		customID = carID;
 		currentPosition = positions.peek();
-		position = new GPSpositionOfCar(positions,this);
+		position = new GPSpositionOfCar(positions, this);
+	}
+
+	/**
+	 * @param engine
+	 *            the engine to set
+	 */
+	public synchronized void setEngine(boolean engine) {
+		this.engine = engine;
+	}
+
+	/**
+	 * @return the engine
+	 */
+	public boolean isEngine() {
+		return engine;
+	}
+
+	public boolean isABS() {
+		return sensors.abs;
+	}
+
+	public boolean isESP() {
+		return sensors.esp;
+	}
+
+	public boolean isFogLight() {
+		return sensors.fogLight;
+	}
+
+	public boolean isLight() {
+		return sensors.light;
 	}
 
 	@Override
@@ -118,7 +119,6 @@ public class Car implements CarInterface {
 		return sensors.esp;
 	}
 
-
 	@Override
 	public boolean toggleLightSensor() {
 		sensors.light = !sensors.light;
@@ -152,24 +152,29 @@ public class Car implements CarInterface {
 	 * What is needed to be returned: tankFillLevel currentGPSposition
 	 */
 	public void update() {
+		List<WarningType> tmpListOfWarnings = null;
 		if (position == null) {
 			System.out.println("No route set");
 			return;
 		}
+
+		//update back to old settings of the car, i.e. speed
+		if(Double.isNaN(oldSpeed) || sensors.fogLight){
+			sensors.fogLight = false;
+			speed = oldSpeed;
+		}
 		
-		//get time for distance check
+		// get time for distance check
 		long time = System.currentTimeMillis();
-		
-		//Update View
-		if(display != null){
+
+		// Update View
+		if (display != null) {
 			display.syncExec(new Runnable() {
 				public void run() {
-					iWidget.updateView();				
+					iWidget.updateView();
 				}
 			});
 		}
-
-
 
 		// ---------- Update Process starts here-------------//
 		// update with speed and everything only if the engine is turned on and
@@ -180,34 +185,41 @@ public class Car implements CarInterface {
 
 			// get next world positions warning
 			// this functionality only
-			currentComingWarning = position.getNextWarning();
+			// TODO get all warnings at the current position not only 1
+			tmpListOfWarnings = position.getAllWarnings();
 		} else {
-			
-			if(engine) toggleEngine();
+
+			if (engine)
+				toggleEngine();
 			setSpeed(0);
 
 		}
 
-		if(currentComingWarning != null){
+		Iterator<WarningType> iterator = tmpListOfWarnings.iterator();
+		while (iterator.hasNext()) {
+			WarningType wt = iterator.next();
 			// check warning and enable counter meassures
-			if (currentComingWarning.equals(Warnings.ACCIDENT)
-					|| currentComingWarning.equals(Warnings.DEER)) {
+			if (wt.equals(Warnings.ACCIDENT)
+					|| wt.equals(Warnings.DEER)) {
+				if(Double.isNaN(oldSpeed))
 				doBreak();
-			} else if (currentComingWarning.equals(Warnings.FOG)) {
+			} else if (wt.equals(Warnings.FOG)) {
 				turnFogLampOn();
-			} else if (currentComingWarning.equals(Warnings.ICE)) {
+			} else if (wt.equals(Warnings.ICE)) {
 				// only reduce speed if oldSpeed is not set
 				if (Double.isNaN(oldSpeed)) {
 					doSlowDown(80);
+					sensors.abs = true;
+					sensors.esp = true;
 				}
-			} else if (currentComingWarning.equals(Warnings.RAIN)) {
+			} else if (wt.equals(Warnings.RAIN)) {
 				if (Double.isNaN(oldSpeed)) {
 					doSlowDown(10);
 				}
-
-			} else if (currentComingWarning.equals(Warnings.SNOW)) {
+			} else if (wt.equals(Warnings.SNOW)) {
 				if (Double.isNaN(oldSpeed)) {
 					doSlowDown(20);
+					sensors.abs = true;
 				}
 			}
 		}
@@ -246,17 +258,16 @@ public class Car implements CarInterface {
 	public String getTrackName() {
 		return trackName;
 	}
-	
-	public void setDisplay(Display display, IWidget iWidget){
+
+	public void setDisplay(Display display, IWidget iWidget) {
 		this.display = display;
 		this.iWidget = iWidget;
 	}
 
-
 	@Override
 	public void setFuelLevel(double fuel) {
 		sensors.tankFillLevel = fuel;
-		
+
 	}
 
 	@Override
