@@ -8,8 +8,8 @@ import com.testingtech.ttworkbench.play.generated.PROTO_API.warning.EnumValue;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.warningType;
 
 public class CarStatusTypeParser {
-	public static carStatusType parseToStatusType(Car car){
-		//Build the message with the updated car
+	public static carStatusType parseToStatusType(Car car) {
+		// Build the message with the updated car
 		Builder cst = carStatusType.newBuilder();
 		cst.setCarId(car.customID);
 		cst.setAbsSensor(car.sensors.abs);
@@ -17,44 +17,52 @@ public class CarStatusTypeParser {
 		cst.setEspSensor(car.sensors.esp);
 		cst.setFogLightSensor(car.sensors.fogLight);
 		cst.setFuelFilling(new Double(car.getTankFill()).floatValue());
-		//set gps position
-		com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.Builder gps = gpsPosition.newBuilder();
+		// set gps position
+		com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.Builder gps = gpsPosition
+				.newBuilder();
 		gps.setLatitude((float) car.getGPSPosition().latitude);
 		gps.setLongitude((float) car.getGPSPosition().longitude);
 		cst.setGpsPos(gps.build());
-		//set the rest of the fields
+		// set the rest of the fields
 		cst.setLightSensor(car.sensors.light);
 		cst.setSpeed(new Double(car.speed).floatValue());
-		
-		//warningTyp
-		//	-> GPSposition
-		//	-> warning
-		//	-> priority
-		com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.Builder warningBuilder = warningType.newBuilder();
-		com.testingtech.ttworkbench.play.generated.PROTO_API.warning.Builder warn = warning.newBuilder();
-		com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.Builder gpsPos = gpsPosition.newBuilder();
-		
-		//create GPS-Position
+
+		// warningTyp
+		// -> GPSposition
+		// -> warning
+		// -> priority
+		com.testingtech.ttworkbench.play.generated.PROTO_API.warningType.Builder warningBuilder = warningType
+				.newBuilder();
+		com.testingtech.ttworkbench.play.generated.PROTO_API.warning.Builder warn = warning
+				.newBuilder();
+		com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition.Builder gpsPos = gpsPosition
+				.newBuilder();
+
+		// create GPS-Position
 		gpsPos.setLatitude((float) car.currentPosition.latitude);
 		gpsPos.setLongitude((float) car.currentPosition.longitude);
-		
-		
-		//create Warning
-		WarningType nextWarning = car.position.getNextWarning();
-		if (nextWarning != null) {
-			
-			EnumValue ev = EnumValue.valueOf(nextWarning.toString());
-			warn.setEnumValue(ev);
-			
-			//set the values
-			warningBuilder.setWarningName(warn.build());
-			warningBuilder.setCarId(car.customID);
-			warningBuilder.setGpsPos(gpsPos.build());
-			warningBuilder.setPriority((long) Warnings.getId(nextWarning.getWarning()));
-			
-			
-			cst.addWarning(warningBuilder.build());
+
+		// create Warning
+		for (WarningType nextWarning : car.position.getAllWarnings()) {
+			//if the warning is in a 3km radius add warning to status
+			if (GPSpositionOfCar.calculateDistance(car.currentPosition, nextWarning.getGpsPosition()) < 3) {
+
+				EnumValue ev = EnumValue.valueOf(nextWarning.toString());
+				warn.setEnumValue(ev);
+
+				// set the values
+				warningBuilder.setWarningName(warn.build());
+				warningBuilder.setCarId(car.customID);
+				warningBuilder.setGpsPos(gpsPos.build());
+				warningBuilder.setPriority((long) Warnings.getId(nextWarning
+						.getWarning()));
+
+				cst.addWarning(warningBuilder.build());
+			}
 		}
+		
+		car.position.removeWarningsWithCurrentPosition(car.currentPosition);
+		
 		return cst.build();
 	}
 }

@@ -64,11 +64,9 @@ public class ActionsServiceImpl implements BlockingInterface {
 			throws ServiceException {
 		
 		GPSposition position = new GPSposition(request.getGpsPos().getLongitude(), request.getGpsPos().getLatitude());
-		WarningType wt = new WarningType();
-		wt.setGpsPosition(position);
 		Warnings warning  = Warnings.valueOf( request.getWarningName().getEnumValue().toString());
+		WarningType wt = new WarningType(warning,position);
 		
-		wt.setWarning(warning);
 		carModel.addWarning(wt,request.getCarId());
 		return nil();
 	}

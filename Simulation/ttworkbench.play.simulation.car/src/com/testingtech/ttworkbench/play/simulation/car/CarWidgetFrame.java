@@ -139,8 +139,7 @@ public class CarWidgetFrame extends Composite implements IWidget{
 		btnIce.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				WarningType warning = new WarningType();
-				warning.setWarning(Warnings.ICE);
+				WarningType warning = new WarningType(Warnings.ICE, new GPSposition(0, 0));
 			}
 		});
 		btnIce.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
