@@ -60,7 +60,7 @@ public class CarWidgetFrame extends Composite implements IWidget{
 		}
 		
 		browser = new Browser(this, SWT.NONE);
-		browser.setUrl("E:\\Users\\kensan.Phenom-PC\\git\\PlayITS\\Simulation\\ttworkbench.play.simulation.car\\www\\car.html");
+		browser.setUrl("C:\\Users\\kensan\\git\\PlayITS\\Car\\ttworkbench.play.widget.car.ui\\www\\car.html");
 		GridData gd_browser = new GridData(SWT.CENTER, SWT.CENTER, false, false, 2, 12);
 		gd_browser.heightHint = 269;
 		gd_browser.widthHint = 284;
