@@ -10,11 +10,13 @@ module ACTIONS_API {
     import from API all;
     import from CONFIG_API all;
     import from TTlibrary all;
+    
+    modulepar float TIMEOUT := 10.0;
 
     function ACTION_API__onOffEngineType(API.onOffEngineType p_value) runs on COMPONENT {
         log("ACTION_API__onOffEngineType was called by the widget");
         
-        carActions.call(ACTIONS__API_onOffEngineType:{toProto_onOffEngineType(p_value)}, 1.0){
+        carActions.call(ACTIONS__API_onOffEngineType:{toProto_onOffEngineType(p_value)}, TIMEOUT){
             [] carActions.getreply {}
 
             [] carActions.catch(timeout){
@@ -27,7 +29,7 @@ module ACTIONS_API {
     function ACTION_API__speedType(API.speedType p_value) runs on COMPONENT {
         log("ACTION_API__speedType was called by the widget");
         
-        carActions.call(ACTIONS__API_speedType:{toProto_speedType(p_value)}, 1.0){
+        carActions.call(ACTIONS__API_speedType:{toProto_speedType(p_value)}, TIMEOUT){
             [] carActions.getreply {}
             
             [] carActions.catch(timeout){
@@ -38,7 +40,7 @@ module ACTIONS_API {
     function ACTION_API__trackType(API.trackType p_value) runs on COMPONENT {
         log("ACTION_API__trackType was called by the widget");
         
-        carActions.call(ACTIONS__API_trackType:{toProto_trackType(p_value)}, 1.0){
+        carActions.call(ACTIONS__API_trackType:{toProto_trackType(p_value)}, TIMEOUT){
             [] carActions.getreply {}
 
             [] carActions.catch(timeout){
@@ -50,7 +52,7 @@ module ACTIONS_API {
     function ACTION_API__warningType(API.warningType p_value) runs on COMPONENT {
         log("ACTION_API__warningType was called by the widget");
         
-        carActions.call(ACTIONS__API_warningType:{toProto_warningType(p_value)}, 1.0){
+        carActions.call(ACTIONS__API_warningType:{toProto_warningType(p_value)}, TIMEOUT){
             [] carActions.getreply {}
 
             [] carActions.catch(timeout){
@@ -64,7 +66,7 @@ module ACTIONS_API {
         
         p_value.ttcnEventsPort := EVENTS_CAR_TCP_PORT;
         p_value.ttcnEventsHostName := TTlibrary_Net.hostAddress("localhost");
-        carActions.call(ACTIONS__API_carInitType:{toProto_carInitType(p_value)}, 1.0){
+        carActions.call(ACTIONS__API_carInitType:{toProto_carInitType(p_value)}, TIMEOUT){
             [] carActions.getreply {}
 
             [] carActions.catch(timeout){
@@ -77,7 +79,7 @@ module ACTIONS_API {
         log("ACTION_API__widgetExit was called by the widget");
         widgetExit := true;
         
-        carActions.call(ACTIONS__API_widgetExit:{toProto_widgetExit(p_value)}, 1.0){
+        carActions.call(ACTIONS__API_widgetExit:{toProto_widgetExit(p_value)}, TIMEOUT){
             [] carActions.getreply {}
             [] carActions.catch(timeout){
                 testcase.stop("Timeout")
