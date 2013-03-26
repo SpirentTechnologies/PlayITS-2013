@@ -10,6 +10,12 @@ import com.testingtech.ttworkbench.play.generated.PROTO_API.warning.EnumValue;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.warningType;
 
 public class CarStatusTypeParser {
+	
+	/**
+	 * parse all attributes of car and sensors to TTCN 3 compatible attributes
+	 * @param car
+	 * @return
+	 */
 	public static carStatusType parseToStatusType(Car car) {
 		// Build the message with the updated car
 		Builder cst = carStatusType.newBuilder();

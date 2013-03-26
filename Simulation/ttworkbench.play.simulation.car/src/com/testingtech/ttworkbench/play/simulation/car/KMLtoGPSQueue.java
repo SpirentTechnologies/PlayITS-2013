@@ -73,6 +73,8 @@ public KMLtoGPSQueue(File input){
    
     XPathFactory factory = XPathFactory.newInstance();
     XPath xpath = factory.newXPath();
+    
+    //get all text at coordinates attribute 
     XPathExpression expr = xpath.compile("//coordinates/text()");
 
     NodeList coords =  (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
@@ -84,7 +86,7 @@ public KMLtoGPSQueue(File input){
     	String tmp = coords.item(i).getNodeValue();
     	String[] lines = tmp.split("\n");
     	
-    	//get coordinates, split at ","
+    	//get coordinates from  line like 15.24234,21.2312,0.11, split at ",", last value is not necessary
         for(String tmpLine:lines){
         	if(tmpLine == "")continue;
         	String[] latlong = tmpLine.split(",");

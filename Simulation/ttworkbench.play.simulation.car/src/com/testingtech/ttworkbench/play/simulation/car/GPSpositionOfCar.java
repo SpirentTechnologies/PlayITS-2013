@@ -5,12 +5,15 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Queue;
-
+/**
+ * 
+ * @author Björn, Kurosch
+ *
+ */
 
 public class GPSpositionOfCar {
 	private GPSposition nextGPSDestination;
 	private GPSposition currentGPSPosition;
-	private double angle;
 	private List<WarningType> warnings = new ArrayList<WarningType>();
 	private Queue<GPSposition> positions = null;
 	private long lastTime;
@@ -19,8 +22,8 @@ public class GPSpositionOfCar {
 
 	/**
 	 * Class compute positions, warnings and attributes (f.e. fuel,) of cars,
-	 * @param positions
-	 * @param icar
+	 * @param positions queue of positions for one track
+	 * @param icar is an Interface to get access to attributes of Car.java
 	 */
 	public GPSpositionOfCar(Queue<GPSposition> positions, CarInterface icar) {
 		this.icar = icar;
@@ -28,7 +31,6 @@ public class GPSpositionOfCar {
 		this.nextGPSDestination = positions.peek();
 		this.positions = positions;
 	}
-
 
 	/**
 	 * 
@@ -55,7 +57,10 @@ public class GPSpositionOfCar {
 	}
 
 
-	// update the petrol usage state and the new gps position
+	/**
+	 * sets the new position to car, update the fuel level
+	 * @param actualTime gets the actual system time
+	 */
 	public void updateEverything(long actualTime) {
 		
 		//destination reached, or no track loaded
@@ -70,18 +75,24 @@ public class GPSpositionOfCar {
 			return;
 		}
 		
+		//time between last update and this one in ms
 		long dtime = actualTime - lastTime;
 		
-		// km
 		double speed = icar.getSpeed();
 		
+		//compute the distance what are driven since the last update
 		double driveDistance = speed * dtime / 3600000.0;
 		
+		//set new fuel status in relationship to the driven distance
 		icar.setFuelLevel(tankFillUpdate(icar.getFuelLevel(), icar.getConsumption(), driveDistance, dtime));
 		
-		//calculate new Position
+		//calculate the distance between current position and next position
 		double distanceBetweenCurrentandNext = calculateDistance(currentGPSPosition, nextGPSDestination);
 		
+		/*if driven distance greater then distance between two position, decrease driven distance with distance of
+		 * current and next position. Set new current and next ones and repeat this until decreased driven distance is
+		 * lesser.
+		*/
 		while(driveDistance > distanceBetweenCurrentandNext){
 			driveDistance -= distanceBetweenCurrentandNext;
 			currentGPSPosition = positions.poll();
@@ -101,24 +112,20 @@ public class GPSpositionOfCar {
 
 	}
 
-	public double getAngle() {
-		return angle;
-	}
-
+	/**
+	 * 
+	 * @return current position of car
+	 */
 	public GPSposition getCurrentPosition() {
 		return currentGPSPosition;
 	}
 
-	public void setCurrentPosition(GPSposition currentPosition) {
-		this.currentGPSPosition = currentPosition;
-	}
-
-	public GPSposition getNextGPSPosition() {
-		return positions.poll();
-	}
-
+	/**
+	 * adds a new warning to list
+	 * @param wt 
+	 */
 	public void addWarning(WarningType wt) {
-		double distance = calculateDistance(wt.getGpsPosition(), currentGPSPosition);;
+		double distance = calculateDistance(wt.getGpsPosition(), currentGPSPosition);
 		wt.setDistance(distance);
 		warnings.add(wt);
 		refreshWarningList();
@@ -126,7 +133,8 @@ public class GPSpositionOfCar {
 	}
 	
 	/**
-	 * sets more important and short distance Warnings on top of list
+	 * sets more important warnings on top of list
+	 * sorts for distance than priority
 	 */
 	public void refreshWarningList(){
 		//sort List
@@ -146,10 +154,18 @@ public class GPSpositionOfCar {
 				});
 	}
 	
+	/**
+	 * remove warning from list
+	 * @param wt
+	 */
 	public void removeWarning(WarningType wt){
 		warnings.remove(wt);
 	}
 	
+	/**
+	 * 
+	 * @return current warning list
+	 */
 	public List<WarningType> getAllWarnings(){
 		return warnings;
 	}
@@ -179,11 +195,11 @@ public class GPSpositionOfCar {
 	
 	
 	/**
-	 * 
+	 * Computes the GPS position between two GPS positions
 	 * @param distance
-	 * @param src
-	 * @param dest
-	 * @return GPS position with given distance from startpostion
+	 * @param src start
+	 * @param dest destination
+	 * @return GPS position
 	 * @see http://www.movable-type.co.uk/scripts/latlong.html
 	 */
 	public static GPSposition calculateGPSPosition(double distance, GPSposition src, GPSposition dest){
@@ -214,7 +230,6 @@ public class GPSpositionOfCar {
 	}
 
 	/**
-	 * 
 	 * @param currentPosition is the position is 
 	 */
 	public void removeWarningsWithCurrentPosition(GPSposition currentPosition) {
