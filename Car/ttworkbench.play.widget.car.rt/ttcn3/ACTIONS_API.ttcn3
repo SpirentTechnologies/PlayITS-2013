@@ -11,8 +11,17 @@ module ACTIONS_API {
     import from CONFIG_API all;
     import from TTlibrary all;
     
+    /**
+     * 
+     * @desc TIMEOUT mostly for debuging of Connections Issues 
+     */
     modulepar float TIMEOUT := 500.0;
 
+    /**
+     * 
+     * @desc  Forwards the onOffEngineType Message to SUT and wait for response. A TIMEOUT will stop the Testcase and Disconnect the Ports
+     * 
+     */
     function ACTION_API__onOffEngineType(API.onOffEngineType p_value) runs on COMPONENT {
         log("ACTION_API__onOffEngineType was called by the widget");
         
@@ -25,7 +34,11 @@ module ACTIONS_API {
         }
         
     }
-
+    /**
+     * 
+     * @desc  Forwards the SpeedType Message to SUT and wait for response. A TIMEOUT will stop the Testcase and Disconnect the Ports
+     * 
+     */
     function ACTION_API__speedType(API.speedType p_value) runs on COMPONENT {
         log("ACTION_API__speedType was called by the widget");
         
@@ -37,6 +50,11 @@ module ACTIONS_API {
         }
     }
     }
+    /**
+     * 
+     * @desc  Forwards the trackType Message to SUT and wait for response. A TIMEOUT will stop the Testcase and Disconnect the Ports
+     * 
+     */
     function ACTION_API__trackType(API.trackType p_value) runs on COMPONENT {
         log("ACTION_API__trackType was called by the widget");
         
@@ -48,7 +66,11 @@ module ACTIONS_API {
         }
         }
     }
-
+/**
+ * 
+ * @desc  Forwards the warningType Message to SUT and wait for response. A TIMEOUT will stop the Testcase and Disconnect the Ports
+ * 
+ */
     function ACTION_API__warningType(API.warningType p_value) runs on COMPONENT {
         log("ACTION_API__warningType was called by the widget");
         
@@ -86,7 +108,12 @@ module ACTIONS_API {
         }
         }
     }
-
+/**
+ * 
+ * @desc  wait for CarEvents to response, accept carStatusType. Testcase will stop by any failur or Timeout
+ * @member carStatusType see @see API.ttcn3
+ * @member Events_Port_widgetPort Events_Api_carStatusType is called over this Port
+ */
     altstep handleCarEvents() runs on COMPONENT {
         var PROTO_API.carStatusType status;
         [] carEvents.getcall (EVENTS__API_carStatusType:{?}) -> param (status){
