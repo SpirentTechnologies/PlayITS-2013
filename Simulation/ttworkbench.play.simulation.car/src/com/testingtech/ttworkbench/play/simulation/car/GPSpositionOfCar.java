@@ -9,29 +9,46 @@ import java.util.Queue;
 
 public class GPSpositionOfCar {
 	private GPSposition nextGPSDestination;
-	private GPSposition currentPosition;
+	private GPSposition currentGPSPosition;
 	private double angle;
 	private List<WarningType> warnings = new ArrayList<WarningType>();
 	private Queue<GPSposition> positions = null;
 	private long lastTime;
 	private CarInterface icar;
-	private double actualDistance; //distance between two gps coordinates
 
 
+	/**
+	 * Class compute positions, warnings and attributes (f.e. fuel,) of cars,
+	 * @param positions
+	 * @param icar
+	 */
 	public GPSpositionOfCar(Queue<GPSposition> positions, CarInterface icar) {
 		this.icar = icar;
-		this.currentPosition = positions.poll();
+		this.currentGPSPosition = positions.poll();
 		this.nextGPSDestination = positions.peek();
-		actualDistance = calculateDistance(currentPosition, nextGPSDestination);
 		this.positions = positions;
 	}
 
 
-	// update the tank fill level of the car
+	/**
+	 * 
+	 * @param tankFillLevel
+	 * @param petrolUsage
+	 * @param length
+	 * @param dtime
+	 * @return new fuel level with given consumption or time
+	 */
 	private Double tankFillUpdate(double tankFillLevel, double petrolUsage,
-			double length) {
-		// calculate actual distance
-		double actualUsage = petrolUsage * length / 100;
+			double length, long dtime) {
+		
+		double actualUsage = 0;
+		// calculate actual usage
+		if(length == 0){
+			//1.5l per hour, if engine is started
+			actualUsage = 1.5/3600000.0 * dtime;
+		}else{
+			actualUsage = petrolUsage * length / 100;
+		}
 		// update tankfill
 		tankFillLevel -= actualUsage;
 		return tankFillLevel;
@@ -56,37 +73,34 @@ public class GPSpositionOfCar {
 		long dtime = actualTime - lastTime;
 		
 		// km
-		double driveDistance = icar.getSpeed() * dtime / 3600000.0;
+		double speed = icar.getSpeed();
+		
+		double driveDistance = speed * dtime / 3600000.0;
+		
+		icar.setFuelLevel(tankFillUpdate(icar.getFuelLevel(), icar.getConsumption(), driveDistance, dtime));
 		
 		//calculate new Position
 		// TODO fix this with a real computation: latitude and longitude are degrees
-		double latitude = currentPosition.latitude + driveDistance*(nextGPSDestination.latitude - currentPosition.latitude);
-		double longitude = currentPosition.longitude + driveDistance*(nextGPSDestination.longitude - currentPosition.longitude);
-		currentPosition = new GPSposition(longitude, latitude);
+		double distanceBetweenCurrentandNext = calculateDistance(currentGPSPosition, nextGPSDestination);
 		
-		lastTime = actualTime;
-		
-		icar.setFuelLevel(tankFillUpdate(icar.getFuelLevel(), icar.getConsumption(), driveDistance));
-		actualDistance-=driveDistance;
-		if(actualDistance <= 0){
-			
-			currentPosition = positions.poll();
-
+		while(driveDistance > distanceBetweenCurrentandNext){
+			driveDistance -= distanceBetweenCurrentandNext;
+			currentGPSPosition = positions.poll();
 			//track finished, no next position in queue
 			if(positions.isEmpty()){
-				actualDistance = 0;
 				return;
 			}
-			
 			nextGPSDestination = positions.peek();
-			double rest = driveDistance - actualDistance;
-			latitude = currentPosition.latitude + rest*(nextGPSDestination.latitude - currentPosition.latitude);
-			longitude = currentPosition.longitude + rest*(nextGPSDestination.longitude - currentPosition.longitude);
-			currentPosition = new GPSposition(longitude, latitude);
-			actualDistance = calculateDistance(currentPosition, nextGPSDestination);
+			
+			distanceBetweenCurrentandNext = calculateDistance(currentGPSPosition, nextGPSDestination);
 		}
 		
+		currentGPSPosition = calculateGPSPosition(driveDistance, currentGPSPosition, nextGPSDestination);
+		System.out.println(currentGPSPosition.latitude + " : " + currentGPSPosition.longitude);
 		
+		lastTime = actualTime;
+
+
 	}
 
 	public double getAngle() {
@@ -94,11 +108,11 @@ public class GPSpositionOfCar {
 	}
 
 	public GPSposition getCurrentPosition() {
-		return currentPosition;
+		return currentGPSPosition;
 	}
 
 	public void setCurrentPosition(GPSposition currentPosition) {
-		this.currentPosition = currentPosition;
+		this.currentGPSPosition = currentPosition;
 	}
 
 	public GPSposition getNextGPSPosition() {
@@ -119,8 +133,8 @@ public class GPSpositionOfCar {
 			@Override
 			public int compare(WarningType o1, WarningType o2) {
 				
-					double o1Distance = calculateDistance(o1.getGpsPosition(), currentPosition);
-					double o2Distance = calculateDistance(o2.getGpsPosition(), currentPosition);
+					double o1Distance = calculateDistance(o1.getGpsPosition(), currentGPSPosition);
+					double o2Distance = calculateDistance(o2.getGpsPosition(), currentGPSPosition);
 					if(o1Distance == o2Distance) {
 						if(o1.getPriority() == o2.getPriority()){
 							return 0;
@@ -148,6 +162,7 @@ public class GPSpositionOfCar {
 	 * @param src
 	 * @param dest
 	 * @return distance in km
+	 * @see http://www.movable-type.co.uk/scripts/latlong.html
 	 */
 	// TODO document with the formula and a graphics
 	public static double calculateDistance(GPSposition src, GPSposition dest){
@@ -161,6 +176,43 @@ public class GPSpositionOfCar {
 		        Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(srcLat) * Math.cos(destLat); 
 		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
 		return r * c;
+	}
+	
+	
+	
+	/**
+	 * 
+	 * @param distance
+	 * @param src
+	 * @param dest
+	 * @return GPS position with given distance from startpostion
+	 * @see http://www.movable-type.co.uk/scripts/latlong.html
+	 */
+	public static GPSposition calculateGPSPosition(double distance, GPSposition src, GPSposition dest){
+	
+		if(distance == 0){
+			return src;
+		}
+		double r = 6371; // Earthradius in km
+		double dLon = Math.toRadians(src.longitude-dest.longitude);
+
+		double srcLat = Math.toRadians(src.latitude);
+		double destLat = Math.toRadians(dest.latitude);
+		double srclon = Math.toRadians(src.longitude);
+		
+		//calculates the bearing
+		double y = Math.sin(dLon) * Math.cos(srcLat);
+		double x = Math.cos(destLat)*Math.sin(srcLat) -
+		        Math.sin(destLat)*Math.cos(srcLat)*Math.cos(dLon);
+		 double brng = Math.atan2(y, x)+Math.PI;
+		 
+		 //calculates the new GPSposition
+		 double ergLat = Math.asin( Math.sin(srcLat)*Math.cos(distance/r) + 
+	              Math.cos(srcLat)*Math.sin(distance/r)*Math.cos(brng) );
+		 double ergLon = srclon + Math.atan2(Math.sin(brng)*Math.sin(distance/r)*Math.cos(srcLat), 
+	                     Math.cos(distance/r)-Math.sin(srcLat)*Math.sin(ergLat));
+		 
+		 return new GPSposition(Math.toDegrees(ergLon), Math.toDegrees(ergLat));
 	}
 
 	/**

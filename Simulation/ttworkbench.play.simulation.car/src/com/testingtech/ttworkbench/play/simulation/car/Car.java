@@ -223,7 +223,7 @@ public class Car implements CarInterface {
 			if (engine)
 				toggleEngine();
 			setSpeed(0);
-			position.updateEverything(time);
+			
 	
 		}
 		if(tmpListOfWarnings != null){
