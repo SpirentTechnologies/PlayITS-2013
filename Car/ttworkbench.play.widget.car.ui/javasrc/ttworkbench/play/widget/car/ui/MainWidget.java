@@ -108,7 +108,12 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 		SWTUtil.sync(new Runnable() {
 			public void run() {
 				if (uiController != null) {
-					uiController.updateEngine(model.getStatus().isEngineStarted());
+					try {
+						uiController.updateEngine(model.getStatus().isEngineStarted());
+					} catch (Throwable e) {
+						e.printStackTrace();
+						SWTUtil.showStatusErrorMessage(null, "warning: "+e.toString());
+					}
 				}
 			}
 		});
@@ -119,7 +124,12 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 		SWTUtil.sync(new Runnable() {
 			public void run() {
 				if (uiController != null) {
-					uiController.updateABS(model.getStatus().isABSenabled());
+					try {
+						uiController.updateABS(model.getStatus().isABSenabled());
+					} catch (Throwable e) {
+						e.printStackTrace();
+						SWTUtil.showStatusErrorMessage(null, "warning: "+e.toString());
+					}
 				}
 			}
 		});
@@ -131,7 +141,12 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 		SWTUtil.sync(new Runnable() {
 			public void run() {
 				if (uiController != null) {
-					uiController.updateESP(model.getStatus().isESPenabled());
+					try {
+						uiController.updateESP(model.getStatus().isESPenabled());
+					} catch (Throwable e) {
+						e.printStackTrace();
+						SWTUtil.showStatusErrorMessage(null, "warning: "+e.toString());
+					}
 				}
 			}
 		});
@@ -142,12 +157,17 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 	@Override
 	public void notifyGpsPositionChange() {
 		SWTUtil.sync(new Runnable() {
-		    public void run() {
-		    	if (uiController != null) {
-		    		GPSposition gpsPosition = model.getStatus().getGpsPosition();
-		    		uiController.updatePosition(gpsPosition.getLatitude(), gpsPosition.getLongitude());
-		    	}
-		    }
+			public void run() {
+				if (uiController != null) {
+					try {
+						GPSposition gpsPosition = model.getStatus().getGpsPosition();
+						uiController.updatePosition(gpsPosition.getLatitude(), gpsPosition.getLongitude());
+					} catch (Throwable e) {
+						e.printStackTrace();
+						SWTUtil.showStatusErrorMessage(null, "warning: "+e.toString());
+					}
+				}
+			}
 		});
 
 	}
@@ -158,7 +178,12 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 		SWTUtil.sync(new Runnable() {
 			public void run() {
 				if (uiController != null) {
-					uiController.updateFuel(model.getStatus().getFuel());
+					try {
+						uiController.updateFuel(model.getStatus().getFuel());
+					} catch (Throwable e) {
+						e.printStackTrace();
+						SWTUtil.showStatusErrorMessage(null, "warning: "+e.toString());
+					}
 				}
 			}
 		});
@@ -171,7 +196,12 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 		SWTUtil.sync(new Runnable() {
 			public void run() {
 				if (uiController != null) {
-					uiController.updateSpeed(model.getStatus().getActualSpeed());
+					try {
+						uiController.updateSpeed(model.getStatus().getActualSpeed());
+					} catch (Throwable e) {
+						e.printStackTrace();
+						SWTUtil.showStatusErrorMessage(null, "warning: "+e.toString());
+					}
 				}
 			}
 		});
@@ -182,7 +212,12 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 		SWTUtil.sync(new Runnable() {
 			public void run() {
 				if (uiController != null) {
-					uiController.warning(model.getWarning());
+					try {
+						uiController.warning(model.getWarning());
+					} catch (Throwable e) {
+						e.printStackTrace();
+						SWTUtil.showStatusErrorMessage(null, "warning: "+e.toString());
+					}
 				}
 			}
 		});
@@ -193,7 +228,12 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 		SWTUtil.sync(new Runnable() {
 			public void run() {
 				if (uiController != null) {
-					uiController.updateFogLight(model.getStatus().isFogLightSensorEnabled());
+					try {
+						uiController.updateFogLight(model.getStatus().isFogLightSensorEnabled());
+					} catch (Throwable e) {
+						e.printStackTrace();
+						SWTUtil.showStatusErrorMessage(null, "warning: "+e.toString());
+					}
 				}
 			}
 		});
@@ -204,7 +244,11 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 		SWTUtil.sync(new Runnable() {
 			public void run() {
 				if (uiController != null) {
-					uiController.updateLight(model.getStatus().isLightSensorEnabled());
+					try {
+						uiController.updateLight(model.getStatus().isLightSensorEnabled());
+					} catch (Throwable e) {
+						SWTUtil.showStatusErrorMessage(null, "warning: "+e.toString());
+					}
 				}
 			}
 		});
