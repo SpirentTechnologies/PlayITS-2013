@@ -100,7 +100,7 @@ public class CarModel {
 	}
 	
 	/**
-	 * Notifies every Listener in List.
+	 * Notifies every Listener about changes in model.
 	 * @param attr Enumeration of NotifyAttributes
 	 */
 	public void notifyListener(NotifyAttributes attr){
@@ -140,6 +140,9 @@ public class CarModel {
 		return r * c;
 	}
 
+	/**
+	 * clears the warning list
+	 */
 	public void clearWarnings() {
 		warnings.clear();
 		

@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import ttworkbench.play.widget.car.ui.model.CarStatusModel;
 import ttworkbench.play.widget.car.ui.model.WarningType;
-import ttworkbench.play.widget.car.ui.model.enumWarning;
+import ttworkbench.play.widget.car.ui.model.EnumWarning;
 
 import com.testingtech.ttworkbench.play.generated.PROTO_API;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType;
@@ -118,7 +118,7 @@ public class WidgetController {
 		}
 	}
 
-	private static EnumValue convertWarn(enumWarning warning) {
+	private static EnumValue convertWarn(EnumWarning warning) {
 		EnumValue enumValue;
 		switch (warning) {
 		case ACCIDENT:

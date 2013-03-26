@@ -3,7 +3,7 @@ package ttworkbench.play.widget.car.ui.html;
 import org.eclipse.swt.browser.Browser;
 
 import ttworkbench.play.widget.car.ui.model.WarningType;
-import ttworkbench.play.widget.car.ui.model.enumWarning;
+import ttworkbench.play.widget.car.ui.model.EnumWarning;
 
 public class UIController {
 	
@@ -14,10 +14,10 @@ public class UIController {
 	}
 	
 	public void warning(WarningType warning) {
-		int id = enumWarning.getId(warning.getWarning());
+		int id = EnumWarning.getId(warning.getWarning());
 		if (id < 0) {
 			// backup show only this
-			id = enumWarning.getId(enumWarning.ACCIDENT);
+			id = EnumWarning.getId(EnumWarning.ACCIDENT);
 		}
 		browser.execute("warning(" + id + ")");
 //				+ ", " + warning.getGpsPosition().getLatitude() + ", " + warning.getGpsPosition().getLongitude() + ", " + warning.getPriority() + ")");

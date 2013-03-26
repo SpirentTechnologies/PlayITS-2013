@@ -1,6 +1,6 @@
 package ttworkbench.play.widget.car.ui.model;
 
-import ttworkbench.play.widget.car.ui.model.enumWarning;
+import ttworkbench.play.widget.car.ui.model.EnumWarning;
 
 /**
  * 
@@ -10,20 +10,20 @@ import ttworkbench.play.widget.car.ui.model.enumWarning;
 
 public class WarningType {
 	
-	private enumWarning warning;
+	private EnumWarning warning;
 	private long priority;
 	private GPSposition gpsPosition;
 
 	/**
 	 * @return warning its value
 	 */
-	public enumWarning getWarning() {
+	public EnumWarning getWarning() {
 		return warning;
 	}
 	/**
 	 * @param warning value to be set
 	 */
-	public void setWarning(enumWarning warning) {
+	public void setWarning(EnumWarning warning) {
 		this.warning = warning;
 	}
 	/**

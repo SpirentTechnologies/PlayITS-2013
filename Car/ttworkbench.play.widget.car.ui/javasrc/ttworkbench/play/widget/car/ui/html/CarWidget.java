@@ -23,7 +23,7 @@ import org.eclipse.swt.widgets.Shell;
 import ttworkbench.play.widget.car.ui.WidgetController;
 import ttworkbench.play.widget.car.ui.model.GPSposition;
 import ttworkbench.play.widget.car.ui.model.WarningType;
-import ttworkbench.play.widget.car.ui.model.enumWarning;
+import ttworkbench.play.widget.car.ui.model.EnumWarning;
 
 import com.testingtech.ttworkbench.core.ui.preferences.common.AbstractConfigurationBlock;
 import com.testingtech.ttworkbench.play.dashboard.widget.DashboardWidgetFactoryDescriptor;
@@ -187,7 +187,7 @@ public class CarWidget {
 			}
 			else if("sendWarning".equals(this.getName())){
 				WarningType warningType = new WarningType();
-				warningType.setWarning(enumWarning.getWarning(Integer.parseInt((String)args[2])));
+				warningType.setWarning(EnumWarning.getWarning(Integer.parseInt((String)args[2])));
 				warningType.setGpsPosition(new GPSposition((Double)args[0], (Double)args[1]));
 				widgetController.sendWarning(warningType);
 			}

@@ -7,7 +7,7 @@ import ttworkbench.play.widget.car.ui.model.CarStatusModel;
 import ttworkbench.play.widget.car.ui.model.GPSposition;
 import ttworkbench.play.widget.car.ui.model.NotifyAttributes;
 import ttworkbench.play.widget.car.ui.model.WarningType;
-import ttworkbench.play.widget.car.ui.model.enumWarning;
+import ttworkbench.play.widget.car.ui.model.EnumWarning;
 
 import com.google.protobuf.RpcController;
 import com.google.protobuf.ServiceException;
@@ -34,12 +34,16 @@ public class EventsServiceImpl implements BlockingInterface {
     this.comm = comm;
   }
 
-
+/*
+ * (non-Javadoc)
+ * @see com.testingtech.ttworkbench.play.generated.PROTO_API.EVENTS.BlockingInterface#aPICarStatusType(com.google.protobuf.RpcController, com.testingtech.ttworkbench.play.generated.PROTO_API.carStatusType)
+ *	
+ *	
+ */
 @Override
 public Void aPICarStatusType(RpcController controller, carStatusType request)
 		throws ServiceException {
 	
-
 	
 	if(request != null){
 		CarStatusModel status = model.getStatus();
@@ -47,6 +51,9 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 		if(status.getId() == -1){
 			status.setId(request.getCarId());
 		}
+		
+		
+		//change Model only if attributes are different from current car status
 		if(request.getWarningCount() > 0){
 			List<warningType> reqWarnings = request.getWarningList();
 			model.clearWarnings();
@@ -59,9 +66,9 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 			}
 			model.notifyListener(NotifyAttributes.WARNING);
 		}
-
 		
-		//change Model only if attributes are different from event status
+		
+
 		if(request.hasAbsSensor()){
 			if(request.getAbsSensor() != status.isABSenabled()){
 				status.setABSenabled(request.getAbsSensor());
@@ -127,6 +134,7 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 		
 
 		
+		//if first init of car is complete, enable actions in View
 		if(isFirstCall){
 			comm.enableActions();
 			isFirstCall = false;
@@ -135,26 +143,32 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 	}
 	return nil();
 }
-private static enumWarning convertWarn(EnumValue enumValue) {
-	enumWarning res;
+
+/**
+ * Converts EnumValue to EnumWarning
+ * @param enumValue
+ * @return Type of warning
+ */
+private static EnumWarning convertWarn(EnumValue enumValue) {
+	EnumWarning res;
 	switch (enumValue) {
 	case accident:
-		res = enumWarning.ACCIDENT;
+		res = EnumWarning.ACCIDENT;
 		break;
 	case deer:
-		res = enumWarning.DEER;
+		res = EnumWarning.DEER;
 		break;
 	case fog:
-		res = enumWarning.FOG;
+		res = EnumWarning.FOG;
 		break;
 	case ice:
-		res = enumWarning.ICE;
+		res = EnumWarning.ICE;
 		break;
 	case rain:
-		res = enumWarning.RAIN;
+		res = EnumWarning.RAIN;
 		break;
 	case snow:
-		res = enumWarning.SNOW;
+		res = EnumWarning.SNOW;
 		break;
 	default:
 		throw new IllegalArgumentException("Unknown warning type "+enumValue);
