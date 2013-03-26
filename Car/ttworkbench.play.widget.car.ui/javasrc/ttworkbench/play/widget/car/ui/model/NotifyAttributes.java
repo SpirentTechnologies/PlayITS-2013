@@ -2,7 +2,7 @@ package ttworkbench.play.widget.car.ui.model;
 
 /**
  * 
- * @author kensan
+ * @author Björn
  *
  */
 public enum NotifyAttributes {

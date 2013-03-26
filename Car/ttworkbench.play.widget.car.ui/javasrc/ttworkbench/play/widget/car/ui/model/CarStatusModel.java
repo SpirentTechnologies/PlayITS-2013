@@ -26,68 +26,75 @@ public class CarStatusModel {
 
 	private String track;
 		
-	
+	/**
+	 * 
+	 * @return max speed of car
+	 */
 	public float getMaxSpeed() {
 		return maxSpeed;
 	}
 
+	/**
+	 * 
+	 * @param maxSpeed as float is set
+	 */
 	public void setMaxSpeed(float maxSpeed) {
 		this.maxSpeed = maxSpeed;
 	}
 	
 	/**
-	 * @return engineStarted its value
+	 * @return true if engine is started
 	 */
 	public boolean isEngineStarted() {
 		return engineStarted;
 	}
 	
 	/**
-	 * @param engineStarted value to be set
+	 * @param engine status is set
 	 */
 	public synchronized void setEngineStarted(boolean engineStarted) {
 		this.engineStarted = engineStarted;
 	}
 	/**
-	 * @return aBSenabled its value
+	 * @return true if ABS is enabled
 	 */
 	public boolean isABSenabled() {
 		return aBSenabled;
 	}
 	
 	/**
-	 * @param aBSenabled value to be set
+	 * @param ABS status is set
 	 */
 	public synchronized void setABSenabled(boolean aBSenabled) {
 		this.aBSenabled = aBSenabled;
 	}
 	
 	/**
-	 * @return eSPenabled its value
+	 * @return true if ESP is enabled
 	 */
 	public boolean isESPenabled() {
 		return eSPenabled;
 	}
 	
 	/**
-	 * @param eSPenabled value to be set
+	 * @param ESP status is set
 	 */
 	public synchronized void setESPenabled(boolean eSPenabled) {
 		this.eSPenabled = eSPenabled;
 	}
 
 	/**
-	 * @return actualSpeed its value
+	 * @return current speed of car
 	 */
-	public double getActualSpeed() {
+	public double getCurrentSpeed() {
 		return speed;
 	}
 
 	/**
-	 * @param actualSpeed value to be set
+	 * @param set current speed of car
 	 */
-	public synchronized void setActualSpeed(float actualSpeed) {
-		this.speed = actualSpeed;
+	public synchronized void setActualSpeed(float speed) {
+		this.speed = speed;
 	}
 
 
@@ -113,63 +120,63 @@ public class CarStatusModel {
 	}
 
 	/**
-	 * @param fogLightEnabled value to be set
+	 * @param set foglight status on or off
 	 */
 	public synchronized void setFogLightEnabled(boolean fogLightEnabled) {
 		this.fogLightEnabled = fogLightEnabled;
 	}
 
 	/**
-	 * @return lightSensorEnabled its value
+	 * @return true if light is enabled
 	 */
-	public boolean isLightSensorEnabled() {
+	public boolean isLightEnabled() {
 		return lightEnabled;
 	}
 
 	/**
-	 * @param lightSensorEnabled value to be set
+	 * @param set light status
 	 */
-	public synchronized void setLightSensorEnabled(boolean lightSensorEnabled) {
+	public synchronized void setLightEnabled(boolean lightSensorEnabled) {
 		this.lightEnabled = lightSensorEnabled;
 	}
 
 	/**
-	 * @return fuel its value
-	 */
+	 * @return fuel value of the tank
+ 	 */
 	public float getFuel() {
 		return fuel;
 	}
 
 	/**
-	 * @param fuel value to be set
+	 * @param set fuel status of tank
 	 */
 	public synchronized void setFuel(float fuel) {
 		this.fuel = fuel;
 	}
 
 	/**
-	 * @return the trackFile
+	 * @return set track uri
 	 */
 	public String getTrack() {
 		return track;
 	}
 
 	/**
-	 * @param trackFile the trackFile to set
+	 * @param get track uri
 	 */
 	public void setTrackFile(String track) {
 		this.track = track;
 	}
 
 	/**
-	 * @return the fuelConsumption
+	 * @return consumption as l/100km
 	 */
 	public float getFuelConsumption() {
 		return fuelConsumption;
 	}
 
 	/**
-	 * @param fuelConsumption the fuelConsumption to set
+	 * @param set consumption of car l/100km
 	 */
 	public void setFuelConsumption(float fuelConsumption) {
 		this.fuelConsumption = fuelConsumption;

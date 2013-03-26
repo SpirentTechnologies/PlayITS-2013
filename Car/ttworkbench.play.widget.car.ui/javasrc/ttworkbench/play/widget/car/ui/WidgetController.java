@@ -18,7 +18,7 @@ import com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit;
 
 /**
  * 
- * @author kensan
+ * @author Björn
  *
  */
 public class WidgetController {
@@ -27,8 +27,8 @@ public class WidgetController {
 	private boolean initialized;
 
 	/**
-	 * The constructor
-	 * @param comm Communication to be built up
+	 * sends messages to TTCN 3 layer 
+	 * @param ICommunication interface give access to some functions in Mainwidget
 	 */
 	public WidgetController(ICommunication comm) {
 		this.comm = comm;
@@ -96,7 +96,7 @@ public class WidgetController {
 	}
 
 	/**
-	 * 
+	 * send a new Warning to SUT
 	 * @param warning
 	 */
 	public void sendWarning(WarningType wt){
@@ -118,6 +118,12 @@ public class WidgetController {
 		}
 	}
 
+	
+	/**
+	 * Converts EnumWarning to EnumValue 
+	 * @param EnumWarning
+	 * @return EnumValue
+	 */
 	private static EnumValue convertWarn(EnumWarning warning) {
 		EnumValue enumValue;
 		switch (warning) {
@@ -144,33 +150,6 @@ public class WidgetController {
 		}
 		return enumValue;
 	}
-	/**
-	 * Sets the track file
-	 * @param trackFile
-	 */
-	//	public void setTrack(File trackFile){
-	//		CarStatusModel status = comm.getCarModel().getStatus();
-	//		status.setTrackFile(trackFile);
-	//
-	//		boolean sendTrack = !initialized;
-	//			
-	//		
-	//		if (!sendTrack) {
-	//			return;
-	//		}
-	//
-	//		try {
-	//			trackType.Builder request = trackType.newBuilder();
-	//			request.setTrackName(status.getTrackFile().getAbsolutePath());
-	//			request.setCarId(status.getId());
-	//
-	//			client().getActionsService().aPITrackType(client().getController(), request.build());
-	//
-	//		} catch (Throwable e) {
-	//
-	//			System.out.println("Can't set track! " + e.getMessage());
-	//		}
-	//	}
 
 	/**
 	 * is called from view, to initialize a new car, sets the car status attributes
@@ -193,7 +172,7 @@ public class WidgetController {
 
 		status.setABSenabled(abs);
 		status.setESPenabled(esp);
-		status.setLightSensorEnabled(light);
+		status.setLightEnabled(light);
 		status.setFogLightEnabled(fogLight);
 		status.setTrackFile(track);
 		status.setMaxSpeed(maxSpeed);
@@ -217,7 +196,7 @@ public class WidgetController {
 			carInitType.Builder request = carInitType.newBuilder();
 			request.setEspSensorExists(status.isESPenabled());
 			request.setAbsSensorExists(status.isABSenabled());
-			request.setLightSensorExists(status.isLightSensorEnabled());
+			request.setLightSensorExists(status.isLightEnabled());
 			request.setFogLightSensorExists(status.isFogLightSensorEnabled());
 			request.setFuelFilling(status.getFuel());
 			request.setFuelConsumption(status.getFuelConsumption());
@@ -235,7 +214,7 @@ public class WidgetController {
 	}
 
 	/**
-	 * Exits the widget
+	 * Send an exit message to SUT
 	 */
 	public void exitWidget(){
 

@@ -3,7 +3,7 @@ package com.testingtech.ttworkbench.play.simulation.car;
 
 /**
  * 
- * @author kensan,andre
+ * @author Björn,andre
  * 
  */
 

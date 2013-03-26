@@ -2,7 +2,7 @@ package com.testingtech.ttworkbench.play.simulation.car;
 
 /**
  * 
- * @author kensan
+ * @author Björn
  *
  */
 public enum Warnings {

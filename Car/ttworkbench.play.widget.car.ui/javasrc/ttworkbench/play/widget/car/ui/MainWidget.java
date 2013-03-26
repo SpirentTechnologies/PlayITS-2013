@@ -26,7 +26,7 @@ import com.testingtech.util.SetUtil;
 
 /**
  * 
- * @author kensan
+ * @author Björn
  *
  */
 public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTIONS.BlockingInterface> implements ICarModelListener, ICommunication {
@@ -35,6 +35,11 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 	private CarWidget carWidget;
 	private UIController uiController = null;
 
+	/**
+	 * Main class of View, here are is the view instantiated and all notifies are implemented for change view status 
+	 * @param dashboardWidgetFactory
+	 * @param dashboard
+	 */
 	public MainWidget(
 			IDashboardWidgetFactory<CarModel, BlockingInterface> dashboardWidgetFactory,
 			IDashboard dashboard) {
@@ -42,6 +47,10 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 
 	}
 
+	/**
+	 * instantiate EventServiceImpl
+	 * @return BlockingService
+	 */
 	public BlockingService createEventsService(int eventsServicePortNumber) {
 		BlockingService eventsService = 
 				PROTO_API.EVENTS.newReflectiveBlockingService(new EventsServiceImpl(getModel(),this));
@@ -197,7 +206,7 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 			public void run() {
 				if (uiController != null) {
 					try {
-						uiController.updateSpeed(model.getStatus().getActualSpeed());
+						uiController.updateSpeed(model.getStatus().getCurrentSpeed());
 					} catch (Throwable e) {
 						e.printStackTrace();
 						SWTUtil.showStatusErrorMessage(null, "warning: "+e.toString());
@@ -245,7 +254,7 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 			public void run() {
 				if (uiController != null) {
 					try {
-						uiController.updateLight(model.getStatus().isLightSensorEnabled());
+						uiController.updateLight(model.getStatus().isLightEnabled());
 					} catch (Throwable e) {
 						SWTUtil.showStatusErrorMessage(null, "warning: "+e.toString());
 					}
@@ -254,6 +263,8 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 		});
 	}
 
+
+	@Override
 	public ActionsClient getActionsClient() {
 		return (ActionsClient)super.getActionsClient();
 	}

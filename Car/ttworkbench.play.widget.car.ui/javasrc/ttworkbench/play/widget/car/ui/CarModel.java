@@ -13,7 +13,7 @@ import ttworkbench.play.widget.car.ui.model.WarningType;
 
 /**
  * 
- * @author kensan, andre
+ * @author Björn, andre
  *
  */
 public class CarModel {

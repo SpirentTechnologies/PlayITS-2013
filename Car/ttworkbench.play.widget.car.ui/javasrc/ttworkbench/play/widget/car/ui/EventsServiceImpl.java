@@ -20,7 +20,7 @@ import com.testingtech.ttworkbench.play.generated.PROTO_API.warningType;
 
 /**
  * 
- * @author kensan
+ * @author Björn
  *
  */
 public class EventsServiceImpl implements BlockingInterface {
@@ -29,6 +29,12 @@ public class EventsServiceImpl implements BlockingInterface {
   private boolean isFirstCall = true;
   private ICommunication comm;
   
+  /**
+   * Received messages with current status of the car from sut.
+   * Sends notifies to view and change model, if necessary. 
+   * @param CarModel model
+   * @param ICommunication comm
+   */
   public EventsServiceImpl(CarModel model, ICommunication comm) {
     this.model = model;
     this.comm = comm;
@@ -78,7 +84,7 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 		}
 		
 		if(request.hasSpeed()){
-			if(request.getSpeed() != status.getActualSpeed()){
+			if(request.getSpeed() != status.getCurrentSpeed()){
 				status.setActualSpeed(request.getSpeed());
 				model.notifyListener(NotifyAttributes.SPEED);
 			}
@@ -102,8 +108,8 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 		}
 		
 		if(request.hasLightSensor()){
-			if(request.getLightSensor() != status.isLightSensorEnabled()){
-				status.setLightSensorEnabled(request.getLightSensor());
+			if(request.getLightSensor() != status.isLightEnabled()){
+				status.setLightEnabled(request.getLightSensor());
 				model.notifyListener(NotifyAttributes.LIGHT);
 			}
 		}
@@ -144,7 +150,7 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 /**
  * Converts EnumValue to EnumWarning
  * @param enumValue
- * @return Type of EnumWarning
+ * @return EnumWarning
  */
 private static EnumWarning convertWarn(EnumValue enumValue) {
 	EnumWarning res;

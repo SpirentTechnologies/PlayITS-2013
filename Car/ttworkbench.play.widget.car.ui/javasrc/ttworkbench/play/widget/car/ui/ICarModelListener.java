@@ -1,7 +1,7 @@
 package ttworkbench.play.widget.car.ui;
 /**
  * 
- * @author kensan from controller,  andre
+ * @author Björn,  andre
  *
  */
 public interface ICarModelListener {

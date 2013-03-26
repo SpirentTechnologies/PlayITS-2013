@@ -24,7 +24,7 @@ import org.xml.sax.SAXException;
 
 /**
  * 
- * @author kensan
+ * @author Björn
  *
  */
 public class KMLtoGPSQueue {
