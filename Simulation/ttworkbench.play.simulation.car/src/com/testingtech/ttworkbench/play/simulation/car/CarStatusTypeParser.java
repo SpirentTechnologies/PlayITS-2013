@@ -1,5 +1,7 @@
 package com.testingtech.ttworkbench.play.simulation.car;
 
+import java.util.List;
+
 import com.testingtech.ttworkbench.play.generated.PROTO_API.carStatusType;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.carStatusType.Builder;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition;
@@ -41,14 +43,20 @@ public class CarStatusTypeParser {
 
 
 		// create Warning
-		for (WarningType nextWarning : car.position.getAllWarnings()) {
+		List<WarningType> allWarnings = car.position.getAllWarnings();
+		for (WarningType nextWarning : allWarnings) {
 			//if the warning is in a 3000km radius add warning to status
 			GPSposition gpsPosition = nextWarning.getGpsPosition();
-			if (GPSpositionOfCar.calculateDistance(car.currentPosition, gpsPosition) < 3000) {
+			double distance = GPSpositionOfCar.calculateDistance(car.getGPSPosition(), gpsPosition);
+			if (distance < 0.0) {
+				System.out.println("dst: "+distance);
+				
+			} else
+			if (distance < 1.0) {
 
 				EnumValue ev = convertWarn(nextWarning.getWarning());
 				warn.setEnumValue(ev);
-				
+				System.out.println(ev);
 				// create GPS-Position
 				gpsPos.setLatitude((float) gpsPosition.latitude);
 				gpsPos.setLongitude((float) gpsPosition.longitude);
@@ -61,8 +69,6 @@ public class CarStatusTypeParser {
 				cst.addWarning(warningBuilder.build());
 			}
 		}
-		
-		car.position.removeWarningsWithCurrentPosition(car.currentPosition);
 		
 		return cst.build();
 	}
