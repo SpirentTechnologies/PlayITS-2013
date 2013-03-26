@@ -53,9 +53,11 @@ public class GPSpositionOfCar {
 		
 		long dtime = actualTime - lastTime;
 		
-		double driveDistance = icar.getSpeed() * dtime / (3600 * 1000);
+		// km
+		double driveDistance = icar.getSpeed() * dtime / 3600000.0;
 		
 		//calculate new Position
+		// TODO fix this with a real computation: latitude and longitude are degrees
 		double latitude = currentPosition.latitude + driveDistance*(nextGPSDestination.latitude - currentPosition.latitude);
 		double longitude = currentPosition.longitude + driveDistance*(nextGPSDestination.longitude - currentPosition.longitude);
 		currentPosition = new GPSposition(longitude, latitude);
@@ -141,6 +143,7 @@ public class GPSpositionOfCar {
 	 * @param dest
 	 * @return distance in km
 	 */
+	// TODO document with the formula and a graphics
 	public static double calculateDistance(GPSposition src, GPSposition dest){
 		double r = 6371; // Earthradius in km
 		double dLat = Math.toRadians(dest.latitude-src.latitude);
