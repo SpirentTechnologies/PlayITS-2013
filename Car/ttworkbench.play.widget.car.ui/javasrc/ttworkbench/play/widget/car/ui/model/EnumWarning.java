@@ -11,7 +11,7 @@ public enum EnumWarning {
 	/**
 	 * 
 	 * @param value 0-5
-	 * @return warning
+	 * @return warning of given id
 	 */
 	public static EnumWarning getWarning(int value){
 		switch(value){
@@ -27,8 +27,8 @@ public enum EnumWarning {
 	
 	/**
 	 * @param warning
-	 * @return id
-	 */
+	 * @return id of given waring
+ 	 */
 	public static int getId(EnumWarning warning) {
 		switch(warning) {
 			case DEER:		return 0;

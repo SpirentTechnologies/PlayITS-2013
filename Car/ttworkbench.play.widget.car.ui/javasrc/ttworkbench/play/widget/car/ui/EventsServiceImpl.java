@@ -178,6 +178,7 @@ private static EnumWarning convertWarn(EnumValue enumValue) {
 	}
 	return res;
 }
+
 protected Void nil() {
     return Void.newBuilder().build();
   }

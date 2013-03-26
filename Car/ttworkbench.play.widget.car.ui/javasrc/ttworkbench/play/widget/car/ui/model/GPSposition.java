@@ -36,14 +36,14 @@ public class GPSposition {
 	}
 
 	/**
-	 * @return latitude its value
+	 * @return latitude of position
 	 */
 	public double getLatitude() {
 		return this.latitude;
 	}
 	
 	/**
-	 * @return longitude its value
+	 * @return longitude of position
 	 */
 	public double getLongitude() {
 		return this.longitude;

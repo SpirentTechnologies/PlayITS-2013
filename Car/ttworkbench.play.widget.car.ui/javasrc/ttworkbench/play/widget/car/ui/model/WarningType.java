@@ -33,10 +33,10 @@ public class WarningType {
 		return priority;
 	}
 	/**
-	 * @param l the priority to be set
+	 * @param sets priority
 	 */
-	public void setPriority(long l) {
-		this.priority = l;
+	public void setPriority(long priority) {
+		this.priority = priority;
 	}
 	/**
 	 * @return gpsPosition its value
