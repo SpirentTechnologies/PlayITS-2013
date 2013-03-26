@@ -153,6 +153,8 @@ public class WidgetController {
 			boolean fogLight,float maxSpeed,
 			float fuel,float fuelConsumption,String track){
 
+		//disable Actions until first message with car id arrive
+		comm.disableActions();
 		CarStatusModel status = new CarStatusModel();
 
 		status.setABSenabled(abs);
@@ -163,8 +165,7 @@ public class WidgetController {
 		status.setMaxSpeed(maxSpeed);
 		status.setFuel(fuel);
 		status.setFuelConsumption(fuelConsumption);
-		//disable Actions until first message with car id arrive
-		comm.disableActions();
+
 		initCar(status);
 
 	}

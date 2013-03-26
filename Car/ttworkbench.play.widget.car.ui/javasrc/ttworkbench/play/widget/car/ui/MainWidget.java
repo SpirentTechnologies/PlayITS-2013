@@ -143,8 +143,10 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 	public void notifyGpsPositionChange() {
 		SWTUtil.sync(new Runnable() {
 		    public void run() {
-		    	GPSposition gpsPosition = model.getStatus().getGpsPosition();
-				uiController.updatePosition(gpsPosition.getLatitude(), gpsPosition.getLongitude());
+		    	if (uiController != null) {
+		    		GPSposition gpsPosition = model.getStatus().getGpsPosition();
+		    		uiController.updatePosition(gpsPosition.getLatitude(), gpsPosition.getLongitude());
+		    	}
 		    }
 		});
 

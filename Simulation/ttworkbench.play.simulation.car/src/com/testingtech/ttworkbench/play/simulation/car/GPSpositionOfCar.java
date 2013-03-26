@@ -40,9 +40,11 @@ public class GPSpositionOfCar {
 
 	// update the petrol usage state and the new gps position
 	public void updateEverything(long actualTime) {
-		// already just add function call
+		
+		//destination reached, or no track loaded
 		if(positions.isEmpty()){
 			icar.setSpeed(0);
+			return;
 		}
 		
 		//at the beginning, nothing happens
@@ -69,8 +71,12 @@ public class GPSpositionOfCar {
 		if(actualDistance <= 0){
 			
 			currentPosition = positions.poll();
-			//track done
-			if(positions.isEmpty())return;
+
+			//track finished, no next position in queue
+			if(positions.isEmpty()){
+				actualDistance = 0;
+				return;
+			}
 			
 			nextGPSDestination = positions.peek();
 			double rest = driveDistance - actualDistance;
