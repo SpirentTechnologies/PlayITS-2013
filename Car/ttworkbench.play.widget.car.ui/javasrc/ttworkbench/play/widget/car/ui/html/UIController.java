@@ -14,7 +14,14 @@ public class UIController {
 	}
 	
 	public void warning(WarningType warning) {
-		browser.execute("warning(" + enumWarning.getId(warning.getWarning()) + ", " + warning.getGpsPosition().getLatitude() + ", " + warning.getGpsPosition().getLongitude() + ", " + warning.getPriority() + ")");
+		browser.execute("warning(" + enumWarning.getId(warning.getWarning()) +")");
+		int id = enumWarning.getId(warning.getWarning());
+		if (id < 0) {
+			// backup show only this
+			id = enumWarning.getId(enumWarning.ACCIDENT);
+		}
+		browser.execute("warning(" + id + ")");
+//				+ ", " + warning.getGpsPosition().getLatitude() + ", " + warning.getGpsPosition().getLongitude() + ", " + warning.getPriority() + ")");
 	}
 	
 	public void updatePosition(double latitude, double longitude) {

@@ -1,6 +1,8 @@
 package ttworkbench.play.widget.car.ui;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -41,10 +43,43 @@ public class CarModel {
 	}
 	
 	/**
+	 * sets more important and short distance Warnings on top of list
+	 */
+	public void refreshWarningList(){
+		//sort List
+				Collections.sort(warnings, new Comparator<WarningType>() {
+
+					@Override
+					public int compare(WarningType o1, WarningType o2) {
+						
+							double o1Distance = calculateDistance(o1.getGpsPosition(), status.getGpsPosition());
+							double o2Distance = calculateDistance(o2.getGpsPosition(), status.getGpsPosition());
+							System.out.println(o1.getPriority() + " d: " + o1Distance + "   " +o2.getPriority() + " d: " + o2Distance);
+							if(o1Distance == o2Distance) {
+								if(o1.getPriority() == o2.getPriority()){
+									return 0;
+								}else{
+									return (int) (o1.getPriority() - o2.getPriority());
+								}
+							}else{
+								if(o1Distance < o2Distance)
+								return -1;
+								else return 1;
+							}
+						}
+				});
+				
+				for(WarningType w:warnings){
+					System.out.println(w.getPriority() + " ");
+				}
+	}
+	
+	/**
 	 * Returns warning with highest priority
 	 * @return
 	 */
 	public WarningType getWarning(){
+		refreshWarningList();
 		return warnings.get(0);
 	}
 	

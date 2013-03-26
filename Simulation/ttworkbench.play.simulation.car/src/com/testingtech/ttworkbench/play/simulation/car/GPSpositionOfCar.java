@@ -125,7 +125,7 @@ public class GPSpositionOfCar {
 	}
 	
 	/**
-	 * sets more important und short distance Warnings on top of list
+	 * sets more important and short distance Warnings on top of list
 	 */
 	public void refreshWarningList(){
 		//sort List
