@@ -80,7 +80,6 @@ public class GPSpositionOfCar {
 		icar.setFuelLevel(tankFillUpdate(icar.getFuelLevel(), icar.getConsumption(), driveDistance, dtime));
 		
 		//calculate new Position
-		// TODO fix this with a real computation: latitude and longitude are degrees
 		double distanceBetweenCurrentandNext = calculateDistance(currentGPSPosition, nextGPSDestination);
 		
 		while(driveDistance > distanceBetweenCurrentandNext){
@@ -139,7 +138,7 @@ public class GPSpositionOfCar {
 							if(Math.abs(o2Distance - o1Distance) < 1E-5) {
 								return (int) (o2.getPriority() - o1.getPriority());
 							}else{
-								return (int) Math.signum(o2Distance - o1Distance);
+								return (int) Math.signum(o1Distance - o2Distance);
 							}
 						}
 				});
@@ -161,14 +160,14 @@ public class GPSpositionOfCar {
 	 * @return distance in km
 	 * @see http://www.movable-type.co.uk/scripts/latlong.html
 	 */
-	// TODO document with the formula and a graphics
 	public static double calculateDistance(GPSposition src, GPSposition dest){
 		double r = 6371; // Earthradius in km
 		double dLat = Math.toRadians(dest.latitude-src.latitude);
 		double dLon = Math.toRadians(dest.longitude-src.longitude);
 		double srcLat = Math.toRadians(src.latitude);
 		double destLat = Math.toRadians(dest.latitude);
-
+		
+		//calculates the distance
 		double a = Math.sin(dLat/2) * Math.sin(dLat/2) +
 		        Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(srcLat) * Math.cos(destLat); 
 		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
@@ -208,7 +207,7 @@ public class GPSpositionOfCar {
 	              Math.cos(srcLat)*Math.sin(distance/r)*Math.cos(brng) );
 		 double ergLon = srclon + Math.atan2(Math.sin(brng)*Math.sin(distance/r)*Math.cos(srcLat), 
 	                     Math.cos(distance/r)-Math.sin(srcLat)*Math.sin(ergLat));
-		 
+		
 		 return new GPSposition(Math.toDegrees(ergLon), Math.toDegrees(ergLat));
 	}
 

@@ -11,6 +11,7 @@ public class WarningType {
 
 	private Warnings warning;
 	private GPSposition gpsPosition;
+	private double distanceToCar;
 
 	public WarningType(Warnings w, GPSposition gps) {
 		warning = w;
@@ -64,5 +65,19 @@ public class WarningType {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * @return the distance
+	 */
+	public double getDistance() {
+		return distanceToCar;
+	}
+
+	/**
+	 * @param distance the distance to set
+	 */
+	public void setDistance(double distance) {
+		this.distanceToCar = distance;
 	}
 }

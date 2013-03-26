@@ -22,8 +22,13 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-
+/**
+ * 
+ * @author kensan
+ *
+ */
 public class KMLtoGPSQueue {
+
 
   private static Queue<GPSposition> positions;
 
@@ -73,11 +78,13 @@ public KMLtoGPSQueue(File input){
     NodeList coords =  (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
     positions = new LinkedList<GPSposition>();
 
+    //every result is a string, split at the of the line
     for(int i = 0; i<coords.getLength(); i++){
     	
     	String tmp = coords.item(i).getNodeValue();
     	String[] lines = tmp.split("\n");
-
+    	
+    	//get coordinates, split at ","
         for(String tmpLine:lines){
         	if(tmpLine == "")continue;
         	String[] latlong = tmpLine.split(",");

@@ -45,9 +45,18 @@ public class CarStatusTypeParser {
 		// create Warning
 		List<WarningType> allWarnings = car.position.getAllWarnings();
 		for (WarningType nextWarning : allWarnings) {
-			//if the warning is in a 3000km radius add warning to status
+			//if the warning is in a 1km radius add warning to status
 			GPSposition gpsPosition = nextWarning.getGpsPosition();
 			double distance = GPSpositionOfCar.calculateDistance(car.getGPSPosition(), gpsPosition);
+			
+			//if a warning is passed, don't add it anymore, but leave it stored
+			if(distance > nextWarning.getDistance()){
+				nextWarning.setDistance(distance);
+				continue;
+			}
+			
+			nextWarning.setDistance(distance);
+			
 			if (distance < 0.0) {
 				System.out.println("dst: "+distance);
 				
