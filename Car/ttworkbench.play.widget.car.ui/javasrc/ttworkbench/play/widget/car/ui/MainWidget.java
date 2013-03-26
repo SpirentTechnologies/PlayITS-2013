@@ -270,6 +270,9 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 		super.initializeCommunication();
 	}
 
+	/**
+	 * sets ports for communication
+	 */
 	public Set<Parameter> getModuleParameters() {
 		int simulationPort = 0;
 		try {
@@ -290,11 +293,5 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 		return model;
 	}
 
-
-	@Override
-	public void notifyFirstMessageFromSUT() {
-		// TODO to remove
-
-	}
 
 }

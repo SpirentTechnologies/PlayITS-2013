@@ -120,12 +120,9 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 				status.setFuel(request.getFuelFilling());
 				model.notifyListener(NotifyAttributes.FUEL);
 			}
-				
-			
 		}
 		
 		if(request.hasGpsPos()){
-		
 			if(!(new GPSposition(request.getGpsPos().getLatitude(), request.getGpsPos().getLongitude()).equals(status.getGpsPosition()))){
 				model.setGPSPostion(request.getGpsPos().getLatitude(), request.getGpsPos().getLongitude());
 				model.notifyListener(NotifyAttributes.GPS);
@@ -147,7 +144,7 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 /**
  * Converts EnumValue to EnumWarning
  * @param enumValue
- * @return Type of warning
+ * @return Type of EnumWarning
  */
 private static EnumWarning convertWarn(EnumValue enumValue) {
 	EnumWarning res;
