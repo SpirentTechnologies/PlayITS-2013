@@ -41,39 +41,28 @@ public class CarModel {
 	public synchronized void addWarning(WarningType warning){
 		warnings.add(warning);
 	}
-	
+
 	/**
 	 * sets more important and short distance Warnings on top of list
 	 */
 	public void refreshWarningList(){
 		//sort List
-				Collections.sort(warnings, new Comparator<WarningType>() {
+		Collections.sort(warnings, new Comparator<WarningType>() {
 
-					@Override
-					public int compare(WarningType o1, WarningType o2) {
-						
-							double o1Distance = calculateDistance(o1.getGpsPosition(), status.getGpsPosition());
-							double o2Distance = calculateDistance(o2.getGpsPosition(), status.getGpsPosition());
-							System.out.println(o1.getPriority() + " d: " + o1Distance + "   " +o2.getPriority() + " d: " + o2Distance);
-							if(o1Distance == o2Distance) {
-								if(o1.getPriority() == o2.getPriority()){
-									return 0;
-								}else{
-									return (int) (o1.getPriority() - o2.getPriority());
-								}
-							}else{
-								if(o1Distance < o2Distance)
-								return -1;
-								else return 1;
-							}
-						}
-				});
-				
-				for(WarningType w:warnings){
-					System.out.println(w.getPriority() + " ");
+			@Override
+			public int compare(WarningType o1, WarningType o2) {
+
+				double o1Distance = calculateDistance(o1.getGpsPosition(), status.getGpsPosition());
+				double o2Distance = calculateDistance(o2.getGpsPosition(), status.getGpsPosition());
+				if(Math.abs(o2Distance - o1Distance) < 1E-5) {
+					return (int) (o2.getPriority() - o1.getPriority());
+				}else{
+					return (int) Math.signum(o1Distance - o2Distance);
 				}
+			}
+		});
 	}
-	
+
 	/**
 	 * Returns warning with highest priority
 	 * @return
