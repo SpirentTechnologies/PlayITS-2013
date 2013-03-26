@@ -7,6 +7,7 @@ Bundle-Vendor: %bundle-vendor
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.junit4,
- ttworkbench.play.simulation.car
+ ttworkbench.play.simulation.car,
+ ttworkbench.play.widget.car.rt
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Localization: plugin
