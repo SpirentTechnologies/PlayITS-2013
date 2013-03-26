@@ -119,32 +119,34 @@ public class GPSpositionOfCar {
 	}
 
 	public void addWarning(WarningType wt) {
-//		for (int i = 0; i < positions.size()-1; i++) {
-//			if (positions.get(i).getGpsPosition().latitude == wt.getGpsPosition().latitude && positions.get(i).getGpsPosition().longitude == wt.getGpsPosition().longitude){
-//				positions.set(i, wt);
-//			}
-//		}
 		warnings.add(wt);
+		refreshWarningList();
 		
+	}
+	
+	/**
+	 * sets more important und short distance Warnings on top of list
+	 */
+	public void refreshWarningList(){
 		//sort List
-		Collections.sort(warnings, new Comparator<WarningType>() {
+				Collections.sort(warnings, new Comparator<WarningType>() {
 
-			@Override
-			public int compare(WarningType o1, WarningType o2) {
-				
-					double o1Distance = calculateDistance(o1.getGpsPosition(), currentGPSPosition);
-					double o2Distance = calculateDistance(o2.getGpsPosition(), currentGPSPosition);
-					if(o1Distance == o2Distance) {
-						if(o1.getPriority() == o2.getPriority()){
-							return 0;
-						}else{
-							return (int) (o1.getPriority() - o2.getPriority());
+					@Override
+					public int compare(WarningType o1, WarningType o2) {
+						
+							double o1Distance = calculateDistance(o1.getGpsPosition(), currentGPSPosition);
+							double o2Distance = calculateDistance(o2.getGpsPosition(), currentGPSPosition);
+							if(o1Distance == o2Distance) {
+								if(o1.getPriority() == o2.getPriority()){
+									return 0;
+								}else{
+									return (int) (o1.getPriority() - o2.getPriority());
+								}
+							}else{
+								return (int) (o2Distance - o1Distance);
+							}
 						}
-					}else{
-						return (int) (o2Distance - o1Distance);
-					}
-				}
-		});
+				});
 	}
 	
 	public void removeWarning(WarningType wt){

@@ -4,14 +4,17 @@ import java.io.IOException;
 
 import ttworkbench.play.widget.car.ui.model.CarStatusModel;
 import ttworkbench.play.widget.car.ui.model.WarningType;
+import ttworkbench.play.widget.car.ui.model.enumWarning;
 
 import com.google.protobuf.ServiceException;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.onOffEngineType;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.speedType;
+import com.testingtech.ttworkbench.play.generated.PROTO_API.warning;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.warningType;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit;
+import com.testingtech.ttworkbench.play.generated.PROTO_API.warning.EnumValue;
 
 
 /**
@@ -93,20 +96,30 @@ public class WidgetController {
 		}
 	}
 
-	public void sendWarning(WarningType warning){
+	/**
+	 * 
+	 * @param warning
+	 */
+	public void sendWarning(WarningType wt){
 		try {
 			warningType.Builder request = warningType.newBuilder();
 			gpsPosition.Builder gpsBuilder = gpsPosition.newBuilder();
+			warning.Builder enumValue = warning.newBuilder();
 			request.setCarId(comm.getCarModel().getStatus().getId());
-			gpsBuilder.setLatitude((float)warning.getGpsPosition().getLatitude());
-			gpsBuilder.setLongitude((float)warning.getGpsPosition().getLongitude());
+			gpsBuilder.setLatitude((float)wt.getGpsPosition().getLatitude());
+			gpsBuilder.setLongitude((float)wt.getGpsPosition().getLongitude());
 			request.setGpsPos(gpsBuilder);
+			
+			EnumValue ev = EnumValue.valueOf(enumWarning.getId(wt.getWarning()));
+			enumValue.setEnumValue(ev);
+			
+			request.setWarningName(enumValue.build());
 
 			client().getActionsService().aPIWarningType(client().getController(), request.build());
 
 		} catch (ServiceException e) {
 
-			System.out.println("Can't change speed! " + e.getMessage());
+			System.out.println("Can't send Warning! " + e.getMessage());
 		}
 	}
 

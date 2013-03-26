@@ -187,7 +187,7 @@ public class CarWidget {
 			}
 			else if("sendWarning".equals(this.getName())){
 				WarningType warningType = new WarningType();
-				warningType.setWarning(enumWarning.getWarning((Integer)args[2]));
+				warningType.setWarning(enumWarning.getWarning(Integer.parseInt((String)args[2])));
 				warningType.setGpsPosition(new GPSposition((Double)args[0], (Double)args[1]));
 				widgetController.sendWarning(warningType);
 			}

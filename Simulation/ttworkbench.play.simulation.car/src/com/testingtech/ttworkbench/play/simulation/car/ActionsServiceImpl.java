@@ -56,7 +56,7 @@ public class ActionsServiceImpl implements BlockingInterface {
 	@Override
 	public Void aPIWarningType(RpcController controller, warningType request)
 			throws ServiceException {
-
+		
 		GPSposition position = new GPSposition(request.getGpsPos().getLongitude(), request.getGpsPos().getLatitude());
 		Warnings warning  = Warnings.valueOf( request.getWarningName().getEnumValue().toString());
 		WarningType wt = new WarningType(warning,position);
