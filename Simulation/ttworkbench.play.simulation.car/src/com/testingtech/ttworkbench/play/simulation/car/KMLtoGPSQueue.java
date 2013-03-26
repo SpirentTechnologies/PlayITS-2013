@@ -40,7 +40,7 @@ public Queue<GPSposition> getPositions() {
 }
 
 /**
- * Creates a Queue consisting every GPSposition of a track
+ * Creates a Queue consisting every GPSposition of a track from a common kml file
  */
 public KMLtoGPSQueue(File input){
 	try{

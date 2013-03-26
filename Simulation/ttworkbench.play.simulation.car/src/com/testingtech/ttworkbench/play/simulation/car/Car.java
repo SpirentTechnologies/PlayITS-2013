@@ -62,7 +62,8 @@ public class Car implements CarInterface {
 	// if this boolean is set the car will be removed from the simulation
 	private boolean carDisposed = false;
 	private String trackName;
-	private double oldSpeed = Double.NaN;
+	private double oldSpeed = -1;
+	private boolean slowedDown;
 
 
 	
@@ -119,7 +120,7 @@ public class Car implements CarInterface {
 			sensors.toggleOn();
 			return true;
 		} else {
-			engine = sensors.abs = sensors.esp = sensors.light = sensors.fogLight = sensors.breaks = false;
+			engine = sensors.abs = sensors.esp = sensors.breaks = false;
 			sensors.toggleOff();
 			return false;
 		}
@@ -191,86 +192,94 @@ public class Car implements CarInterface {
 	 */
 	public void update() {
 		initTrack();
-		List<WarningType> tmpListOfWarnings = null;
 		if (position == null) {
 			System.out.println("No route set");
 			return;
 		}
-	
-//		//update back to old settings of the car, i.e. speed
-//		if(Double.isNaN(oldSpeed) || sensors.fogLight){
-//			sensors.fogLight = false;
-//			speed = oldSpeed;
-//		}
-		
+
+
 		// get time for distance check
 		long time = System.currentTimeMillis();
-	
-	
+
+
 		// ---------- Update Process starts here-------------//
 		// update with speed and everything only if the engine is turned on and
 		// there is still petrol in the tank
 		if (isEngine() && (getFuelLevel() > 0)) {
-	
+
 			position.updateEverything(time);
-			
+
 			position.refreshWarningList();
-			
-			//gets List of Warnings
-			tmpListOfWarnings = position.getAllWarnings();
-		} else {
-			
-			if (engine)
-				toggleEngine();
-			setSpeed(0);
-			
-	
-		}
-		if(tmpListOfWarnings != null){
-			Iterator<WarningType> iterator = tmpListOfWarnings.iterator();
-			while (iterator.hasNext()) {
-				WarningType wt = iterator.next();
-				// check warning and enable counter meassures
-				if (wt.equals(Warnings.ACCIDENT)
-						|| wt.equals(Warnings.DEER)) {
-					if(Double.isNaN(oldSpeed))
-						doBreak();
-				} else if (wt.equals(Warnings.FOG)) {
-					turnFogLampOn();
-				} else if (wt.equals(Warnings.ICE)) {
-					// only reduce speed if oldSpeed is not set
-					if (Double.isNaN(oldSpeed)) {
-						doSlowDown(80);
-						sensors.abs = true;
-						sensors.esp = true;
+
+			boolean warningFlag = false;
+			//in 100m around a warning, the car change its behaviour temporarily
+			for(WarningType wt : position.getAllWarnings()){
+				if(wt.getDistance() < 0.1){
+					warningFlag = true;
+					switch(wt.getWarning()){
+					case ACCIDENT: 
+					case DEER: 
+					case ICE: doSlowDown(50); break;
+					case FOG: {
+						doSlowDown(50);
+						turnFogLampOn(); 
+						break;
 					}
-				} else if (wt.equals(Warnings.RAIN)) {
-					if (Double.isNaN(oldSpeed)) {
-						doSlowDown(10);
+					case RAIN: turnLightOn(); break;
+					case SNOW: {turnLightOn();
+					doSlowDown(50);
+					break;
 					}
-				} else if (wt.equals(Warnings.SNOW)) {
-					if (Double.isNaN(oldSpeed)) {
-						doSlowDown(20);
-						sensors.abs = true;
 					}
 				}
 			}
+
+			if(!warningFlag){
+				if(slowedDown) doSpeedUP();
+				turnLightOff();
+				turnFogLampOff();
+			}
+
+		} else {
+
+			if (engine)
+				toggleEngine();
+			setSpeed(0);	
 		}
 	}
 
+	private void turnLightOn() {
+		this.sensors.light = true;
+		
+	}
+	
+	private void turnLightOff() {
+		this.sensors.light = false;
+		
+	}
+
 	private void doSlowDown(int i) {
+		if(!slowedDown){
+			oldSpeed = speed;
+			speed = speed * i/100;
+			slowedDown = true;
+		}
+	}
+	
+	private void doSpeedUP(){
+		this.speed = this.oldSpeed;
 		this.oldSpeed = speed;
-		this.speed *= (i / 100);
+		slowedDown = false;
 	}
 
 	private void turnFogLampOn() {
 		this.sensors.fogLight = true;
 	}
-
-	private void doBreak() {
-		this.oldSpeed = speed;
-		this.speed = 0;
+	
+	private void turnFogLampOff() {
+		this.sensors.fogLight = false;
 	}
+
 
 	public void addWarning(WarningType wt) {
 		this.position.addWarning(wt);

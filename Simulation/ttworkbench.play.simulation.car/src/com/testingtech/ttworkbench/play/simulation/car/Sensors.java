@@ -48,13 +48,11 @@ public class Sensors {
 
 	// toggle all available Sensors on
 	public void toggleOn() {
-		light = lightExists;
 		rain = rainExists;
 		tankFill = tankFillExists;
 		airbag = airbagExists;
 		abs = absExists;
 		esp = espExists;
-		fogLight = fogLightExists;
 	}
 
 	// toggle all Sensors off

@@ -118,6 +118,8 @@ public class GPSpositionOfCar {
 	}
 
 	public void addWarning(WarningType wt) {
+		double distance = calculateDistance(wt.getGpsPosition(), currentGPSPosition);;
+		wt.setDistance(distance);
 		warnings.add(wt);
 		refreshWarningList();
 		
@@ -138,7 +140,7 @@ public class GPSpositionOfCar {
 							if(Math.abs(o2Distance - o1Distance) < 1E-5) {
 								return (int) (o2.getPriority() - o1.getPriority());
 							}else{
-								return (int) Math.signum(o1Distance - o2Distance);
+								return (int) Math.signum(o2Distance - o1Distance);
 							}
 						}
 				});
