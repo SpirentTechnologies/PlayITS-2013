@@ -56,7 +56,7 @@ public class CarStatusTypeParser {
 				warningBuilder.setWarningName(warn.build());
 				warningBuilder.setCarId(car.customID);
 				warningBuilder.setGpsPos(gpsPos.build());
-				warningBuilder.setPriority((long) Warnings.getId(nextWarning.getWarning()));
+				warningBuilder.setPriority((long) Warnings.getPriority(nextWarning.getWarning()));
 
 				cst.addWarning(warningBuilder.build());
 			}
