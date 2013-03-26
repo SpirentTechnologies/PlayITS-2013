@@ -12,6 +12,8 @@ import org.junit.Test;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.carStatusType;
 import com.testingtech.ttworkbench.play.simulation.car.Car;
 import com.testingtech.ttworkbench.play.simulation.car.CarStatusTypeParser;
+import com.testingtech.ttworkbench.play.simulation.car.WarningType;
+import com.testingtech.ttworkbench.play.simulation.car.Warnings;
 
 public class CarTests {
 
@@ -54,7 +56,36 @@ public class CarTests {
 			
 			// parse the car into a carStatusType message and make the rpc call
 			carStatusType request = CarStatusTypeParser.parseToStatusType(car);
-			Assert.assertFalse("Fail latitude is NaN", Float.isNaN(request.getGpsPos().getLatitude()));
+			float latitude = request.getGpsPos().getLatitude();
+			float longitude = request.getGpsPos().getLongitude();
+			Assert.assertFalse("Latitude not around 52", 51 < latitude && latitude < 53);
+			Assert.assertFalse("Longitude not around 13", 12 < longitude && longitude < 14);
+		}
+	}
+
+	@Test
+	public void testCarWarning() throws MalformedURLException {
+		car.setEngine(true);
+		car.setSpeed(50);
+		
+		boolean hasWarning = false;
+		int countUpdates = 200;
+		for (int i = 0; i < countUpdates; i++) {
+			car.update();
+			
+			// parse the car into a carStatusType message and make the rpc call
+			carStatusType request = CarStatusTypeParser.parseToStatusType(car);
+			float latitude = request.getGpsPos().getLatitude();
+			float longitude = request.getGpsPos().getLongitude();
+			Assert.assertFalse("Latitude not around 52", 52 < latitude && latitude < 53);
+			Assert.assertFalse("Longitude not around 13", 13 < longitude && longitude < 14);
+			
+			Assert.assertTrue("no warnings not included", hasWarning && request.getWarningCount() <= 0);
+
+			if (!hasWarning) {
+				car.addWarning(new WarningType(Warnings.DEER, car.getGPSPosition()));
+				hasWarning = true;
+			}
 		}
 	}
 
