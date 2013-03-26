@@ -38,7 +38,7 @@ public class EventsServiceImpl implements BlockingInterface {
 public Void aPICarStatusType(RpcController controller, carStatusType request)
 		throws ServiceException {
 	
-	//String debug = new String(); 
+
 	
 	if(request != null){
 		CarStatusModel status = model.getStatus();
@@ -55,7 +55,7 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 				warning.setGpsPosition(new GPSposition(reqWarning.getGpsPos().getLatitude(),reqWarning.getGpsPos().getLongitude()));
 				warning.setPriority(reqWarning.getPriority());
 				model.addWarning(warning);
-//				debug = debug.concat(warning.toString() + " : ");
+
 			}
 			model.notifyListener(NotifyAttributes.WARNING);
 		}
@@ -63,7 +63,6 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 		
 		//change Model only if attributes are different from event status
 		if(request.hasAbsSensor()){
-System.out.println("ABS : " + status.isABSenabled() + "  ");
 			if(request.getAbsSensor() != status.isABSenabled()){
 				status.setABSenabled(request.getAbsSensor());
 				model.notifyListener(NotifyAttributes.ABS);
@@ -119,14 +118,14 @@ System.out.println("ABS : " + status.isABSenabled() + "  ");
 		}
 		
 		if(request.hasGpsPos()){
-			System.out.println("GPS : " + request.getGpsPos().toString() + "  :");
+		
 			if(!(new GPSposition(request.getGpsPos().getLatitude(), request.getGpsPos().getLongitude()).equals(status.getGpsPosition()))){
 				model.setGPSPostion(request.getGpsPos().getLatitude(), request.getGpsPos().getLongitude());
 				model.notifyListener(NotifyAttributes.GPS);
 			}
 		}
 		
-		//System.out.println(debug);
+
 		
 		if(isFirstCall){
 			comm.enableActions();

@@ -106,8 +106,6 @@ public class Socket implements Runnable {
 		}
 		try {
 			service.aPICarStatusType(rpcController, request);
-			System.out.println("Socket: send status" + car.speed + " engine " + car.engine + " coords " + car.getGPSPosition().latitude +":"+ car.getGPSPosition().longitude);
-
 			// Check success
 			if (rpcController.failed()) {
 				System.err.println(String.format("Rpc failed %s",
