@@ -46,7 +46,7 @@ public class CarStatusTypeParser {
 			GPSposition gpsPosition = nextWarning.getGpsPosition();
 			if (GPSpositionOfCar.calculateDistance(car.currentPosition, gpsPosition) < 3000) {
 
-				EnumValue ev = EnumValue.valueOf(nextWarning.toString());
+				EnumValue ev = convertWarn(nextWarning.getWarning());
 				warn.setEnumValue(ev);
 				
 				// create GPS-Position
@@ -56,8 +56,7 @@ public class CarStatusTypeParser {
 				warningBuilder.setWarningName(warn.build());
 				warningBuilder.setCarId(car.customID);
 				warningBuilder.setGpsPos(gpsPos.build());
-				warningBuilder.setPriority((long) Warnings.getId(nextWarning
-						.getWarning()));
+				warningBuilder.setPriority((long) Warnings.getId(nextWarning.getWarning()));
 
 				cst.addWarning(warningBuilder.build());
 			}
@@ -66,5 +65,32 @@ public class CarStatusTypeParser {
 		car.position.removeWarningsWithCurrentPosition(car.currentPosition);
 		
 		return cst.build();
+	}
+
+	private static EnumValue convertWarn(Warnings warning) {
+		EnumValue enumValue;
+		switch (warning) {
+		case ACCIDENT:
+			enumValue = EnumValue.accident;
+			break;
+		case DEER:
+			enumValue = EnumValue.deer;
+			break;
+		case FOG:
+			enumValue = EnumValue.fog;
+			break;
+		case ICE:
+			enumValue = EnumValue.ice;
+			break;
+		case RAIN:
+			enumValue = EnumValue.rain;
+			break;
+		case SNOW:
+			enumValue = EnumValue.snow;
+			break;
+		default:
+			throw new IllegalArgumentException("Unknown warning type "+warning);
+		}
+		return enumValue;
 	}
 }
