@@ -10,13 +10,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Queue;
 
-import org.eclipse.swt.widgets.Display;
-
 import com.testingtech.util.FileUtil;
 
 public class Car implements CarInterface {
 	static int carID;
 	final int customID;
+
 
 	double speed = 0;
 	double maxSpeed, petrolUsage;
@@ -53,7 +52,9 @@ public class Car implements CarInterface {
 	 * @param engine the engine to set
 	 */
 	public synchronized void setEngine(boolean engine) {
-		this.engine = engine;
+		if(this.engine != engine){
+			toggleEngine();
+		}
 	}
 
 	GPSpositionOfCar position;
@@ -62,8 +63,7 @@ public class Car implements CarInterface {
 	private boolean carDisposed = false;
 	private String trackName;
 	private double oldSpeed = Double.NaN;
-	private Display display;
-	private IWidget iWidget;
+
 
 	
 	public Car(double speed, double maxSpeed, double tirePressure,
@@ -206,14 +206,6 @@ public class Car implements CarInterface {
 		// get time for distance check
 		long time = System.currentTimeMillis();
 	
-		// Update View
-		if (display != null) {
-			display.syncExec(new Runnable() {
-				public void run() {
-					iWidget.updateView();
-				}
-			});
-		}
 	
 		// ---------- Update Process starts here-------------//
 		// update with speed and everything only if the engine is turned on and
@@ -227,10 +219,11 @@ public class Car implements CarInterface {
 			// TODO get all warnings at the current position not only 1
 			tmpListOfWarnings = position.getAllWarnings();
 		} else {
-	
+			
 			if (engine)
 				toggleEngine();
 			setSpeed(0);
+			position.updateEverything(time);
 	
 		}
 		if(tmpListOfWarnings != null){
@@ -300,11 +293,6 @@ public class Car implements CarInterface {
 		return trackName;
 	}
 	
-	public void setDisplay(Display display, IWidget iWidget){
-		this.display = display;
-		this.iWidget = iWidget;
-	}
-
 
 	@Override
 	public void setFuelLevel(double fuel) {

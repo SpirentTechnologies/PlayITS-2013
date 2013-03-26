@@ -82,7 +82,9 @@ public class WidgetController {
 		try {
 			speedType.Builder request = speedType.newBuilder();
 			request.setSpeed(speed);
-			request.setCarId(comm.getCarModel().getStatus().getId());
+			CarStatusModel status = comm.getCarModel().getStatus();
+			request.setCarId(status.getId());
+			System.out.println("WidgetController: send speed " + speed + " id " + status.getId());
 
 			client().getActionsService().aPISpeedType(client().getController(), request.build());
 
@@ -162,6 +164,8 @@ public class WidgetController {
 		status.setMaxSpeed(maxSpeed);
 		status.setFuel(fuel);
 		status.setFuelConsumption(fuelConsumption);
+		//disable Actions until first message with car id arrive
+		comm.disableActions();
 		initCar(status);
 
 	}
