@@ -204,6 +204,9 @@
         }
 
         function initTrack(track) {
+	        trackName = $("#track").children("option").filter(":selected").text();
+	        $('#navi').text("Navigation "+trackName);
+
             if(kml) {
                 kml.setMap(null);
             }
@@ -241,7 +244,6 @@
             fuel = parseFloat($('#fuel').val());
             fuelConsumption = parseFloat($('#fuelConsumption').val());
             track = parseInt($('#track').val());
-
 
             if(!maxSpeed) {
                 maxSpeed = 200;
@@ -350,10 +352,12 @@
 <body>
 <div id="menuContainer">
     <div class="main">
+    	<div id="navi" class="center_text">Navigation: no route selected</div>
         <div id="speedContainer">
             <input type="text" value="0" id="speed">
         </div>
         <div class="center_text">SPEED</div>
+        <div class="center_text">km/h</div>
         <input type="range" min="0" max="100" step="1" id="speedSlider" class="center_text" value="0" />
     </div>
 
@@ -442,9 +446,9 @@
     <div class="configuration center_text">
         <select name="track" id="track">
                <option value="0">Select track</option>
-               <option value="1">Track 1</option>
-               <option value="2">Track 2</option>
-               <option value="3">Track 3</option>
+               <option value="1">Berlin: Siegess&auml;ule to Alexanderplatz</option>
+               <option value="2">Berlin: Siegess&auml;ule to Nollendorfplatz</option>
+               <option value="3">Berlin: Siegess&auml;ule to Ernst-Reuter-Platz</option>
         </select>
     </div>
 
