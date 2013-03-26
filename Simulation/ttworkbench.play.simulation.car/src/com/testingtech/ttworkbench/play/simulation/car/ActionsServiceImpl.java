@@ -11,6 +11,7 @@ import com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.onOffEngineType;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.speedType;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.trackType;
+import com.testingtech.ttworkbench.play.generated.PROTO_API.warning.EnumValue;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.warningType;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit;
 
@@ -58,11 +59,38 @@ public class ActionsServiceImpl implements BlockingInterface {
 			throws ServiceException {
 		
 		GPSposition position = new GPSposition(request.getGpsPos().getLongitude(), request.getGpsPos().getLatitude());
-		Warnings warning  = Warnings.valueOf( request.getWarningName().getEnumValue().toString());
+		Warnings warning  = convertWarn(request.getWarningName().getEnumValue());
 		WarningType wt = new WarningType(warning,position);
 
 		carModel.addWarning(wt,request.getCarId());
 		return nil();
+	}
+
+	private static Warnings convertWarn(EnumValue warning) {
+		Warnings enumValue;
+		switch (warning) {
+		case accident:
+			enumValue = Warnings.ACCIDENT;
+			break;
+		case deer:
+			enumValue = Warnings.DEER;
+			break;
+		case fog:
+			enumValue = Warnings.FOG;
+			break;
+		case ice:
+			enumValue = Warnings.ICE;
+			break;
+		case rain:
+			enumValue = Warnings.RAIN;
+			break;
+		case snow:
+			enumValue = Warnings.SNOW;
+			break;
+		default:
+			throw new IllegalArgumentException("Unknown warning type "+warning);
+		}
+		return enumValue;
 	}
 
 	@Override
