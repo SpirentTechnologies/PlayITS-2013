@@ -78,7 +78,8 @@ public class ActionsServiceImpl implements BlockingInterface {
 		carModel.addCar(car);
 		Socket socket = new Socket(car,(int) request.getTtcnEventsPort(),request.getTtcnEventsHostName());
 		carSocket.put(car, socket);
-		Thread thread = new Thread(socket);
+		String threadName = "Car #"+car.customID+" events@"+request.getTtcnEventsHostName()+":"+request.getTtcnEventsPort();
+		Thread thread = new Thread(socket, threadName);
 		thread.start();
 		return nil();
 	}
