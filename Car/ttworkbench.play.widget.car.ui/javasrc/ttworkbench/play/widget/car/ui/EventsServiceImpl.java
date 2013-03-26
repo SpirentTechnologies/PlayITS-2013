@@ -12,6 +12,7 @@ import ttworkbench.play.widget.car.ui.model.enumWarning;
 import com.google.protobuf.RpcController;
 import com.google.protobuf.ServiceException;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.EVENTS.BlockingInterface;
+import com.testingtech.ttworkbench.play.generated.PROTO_API.warning.EnumValue;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.Void;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.carStatusType;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.warningType;
@@ -51,7 +52,7 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 			model.clearWarnings();
 			for (warningType reqWarning : reqWarnings) {
 				WarningType warning = new WarningType();
-				warning.setWarning(enumWarning.getWarning((reqWarning.getWarningName().getEnumValue().getNumber())));
+				warning.setWarning(convertWarn(reqWarning.getWarningName().getEnumValue()));
 				warning.setGpsPosition(new GPSposition(reqWarning.getGpsPos().getLatitude(),reqWarning.getGpsPos().getLongitude()));
 				warning.setPriority(reqWarning.getPriority());
 				model.addWarning(warning);
@@ -135,7 +136,32 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 	}
 	return nil();
 }
-
+private static enumWarning convertWarn(EnumValue enumValue) {
+	enumWarning res;
+	switch (enumValue) {
+	case accident:
+		res = enumWarning.ACCIDENT;
+		break;
+	case deer:
+		res = enumWarning.DEER;
+		break;
+	case fog:
+		res = enumWarning.FOG;
+		break;
+	case ice:
+		res = enumWarning.ICE;
+		break;
+	case rain:
+		res = enumWarning.RAIN;
+		break;
+	case snow:
+		res = enumWarning.SNOW;
+		break;
+	default:
+		throw new IllegalArgumentException("Unknown warning type "+enumValue);
+	}
+	return res;
+}
 protected Void nil() {
     return Void.newBuilder().build();
   }
