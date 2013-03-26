@@ -5,7 +5,11 @@ module HANDLE_API {
   import from CONVERT_API all;
   import from EVENTS_API all;
   import from PROTO_API language "PROTO" all;
-
+/**
+ * 
+ * @desc Handles how the communication is done. Mostly Call-Repley-GetValue Actions, are used.
+ * @verdict 
+ */
   altstep handleAction () runs on COMPONENT {
     var PROTO_API.onOffEngineType v_API__onOffEngineType;
     var PROTO_API.speedType v_API__speedType;
