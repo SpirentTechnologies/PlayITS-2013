@@ -83,7 +83,6 @@ public KMLtoGPSQueue(File input){
         	String[] latlong = tmpLine.split(",");
         	if(latlong.length < 2)continue;
         	gpsPosition = new GPSposition(Double.parseDouble(latlong[0]),Double.parseDouble(latlong[1]));
-        	System.out.println(gpsPosition.latitude + " : " + gpsPosition.longitude);
         	positions.offer(gpsPosition);
         }
     }

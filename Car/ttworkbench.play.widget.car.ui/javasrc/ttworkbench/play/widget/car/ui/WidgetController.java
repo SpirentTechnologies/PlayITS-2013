@@ -84,8 +84,7 @@ public class WidgetController {
 			request.setSpeed(speed);
 			CarStatusModel status = comm.getCarModel().getStatus();
 			request.setCarId(status.getId());
-			System.out.println("WidgetController: send speed " + speed + " id " + status.getId());
-
+		
 			client().getActionsService().aPISpeedType(client().getController(), request.build());
 
 		} catch (ServiceException e) {

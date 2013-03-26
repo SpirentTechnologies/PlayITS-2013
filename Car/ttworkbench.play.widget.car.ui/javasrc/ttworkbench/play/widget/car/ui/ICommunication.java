@@ -6,7 +6,7 @@ public interface ICommunication {
 	
 	CarModel getCarModel();
 
-	public void disableActions();
+	void disableActions();
 	
-	public void enableActions();
+	void enableActions();
 }
