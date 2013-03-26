@@ -46,17 +46,30 @@ public class Sensors {
 		light = rain = tankFill = airbag = esp = fogLight = abs = breaks = false;
 	}
 
-	// toggle all available Sensors on
+	/**
+	 * toggle all available Sensors on
+	 */
 	public void toggleOn() {
 		rain = rainExists;
 		tankFill = tankFillExists;
 		airbag = airbagExists;
 		abs = absExists;
 		esp = espExists;
+		light = lightExists;
+		fogLight = fogLightExists;
 	}
 
-	// toggle all Sensors off
+	/**
+	 * toggle all Sensors off
+	 */
 	public void toggleOff() {
-		light = rain = tankFill = airbag = esp = fogLight = abs = breaks = false;
+		light = false;
+		rain = false;
+		tankFill = false;
+		airbag = false;
+		esp = false;
+		fogLight = false;
+		abs = false;
+		breaks = false;
 	}
 }

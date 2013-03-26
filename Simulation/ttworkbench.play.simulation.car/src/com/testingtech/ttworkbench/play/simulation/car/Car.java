@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Queue;
 
 import com.testingtech.util.FileUtil;
@@ -19,7 +17,6 @@ public class Car implements CarInterface {
 
 	double speed = 0;
 	double maxSpeed, petrolUsage;
-	WarningType currentComingWarning;
 	
 	Sensors sensors;
 	boolean engine;
@@ -120,7 +117,7 @@ public class Car implements CarInterface {
 			sensors.toggleOn();
 			return true;
 		} else {
-			engine = sensors.abs = sensors.esp = sensors.breaks = false;
+			engine = false;
 			sensors.toggleOff();
 			return false;
 		}
@@ -211,11 +208,15 @@ public class Car implements CarInterface {
 
 			position.refreshWarningList();
 
-			boolean warningFlag = false;
+			
+			//get init back
+			turnFogLampOff();
+			turnLightOff();
+			if(slowedDown) doSpeedUP();
+			
 			//in 100m around a warning, the car change its behaviour temporarily
 			for(WarningType wt : position.getAllWarnings()){
-				if(wt.getDistance() < 0.1){
-					warningFlag = true;
+				if(wt.getDistance() <= 0.1){
 					switch(wt.getWarning()){
 					case ACCIDENT: 
 					case DEER: 
@@ -226,19 +227,15 @@ public class Car implements CarInterface {
 						break;
 					}
 					case RAIN: turnLightOn(); break;
-					case SNOW: {turnLightOn();
-					doSlowDown(50);
-					break;
+					case SNOW: {
+						turnLightOn();
+						doSlowDown(50);
+						break;
 					}
 					}
 				}
 			}
 
-			if(!warningFlag){
-				if(slowedDown) doSpeedUP();
-				turnLightOff();
-				turnFogLampOff();
-			}
 
 		} else {
 
@@ -253,8 +250,11 @@ public class Car implements CarInterface {
 		
 	}
 	
+	/**
+	 * return to standard configuration
+	 */
 	private void turnLightOff() {
-		this.sensors.light = false;
+		this.sensors.light = this.sensors.lightExists;
 		
 	}
 
@@ -277,7 +277,7 @@ public class Car implements CarInterface {
 	}
 	
 	private void turnFogLampOff() {
-		this.sensors.fogLight = false;
+		this.sensors.fogLight = this.sensors.fogLightExists;
 	}
 
 

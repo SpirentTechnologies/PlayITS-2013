@@ -323,21 +323,29 @@
     function carABS(uABS){
         if(uABS){
         turnOn('abs_status');
+        }else{
+        	turnOff('abs_status');
         }
     }
     function carESP(uESP){
         if(uESP){
             turnOn('esp_status');
+        }else{
+        	turnOff('esp_status');
         }
     }
     function carLight(uLight){
         if(uLight){
             turnOn('light_status');
+        }else{
+        	turnOff('light_status');
         }
     }
     function carFogLight(uFogLight){
         if(uFogLight){
             turnOn('fog_light_status');
+        }else{
+        	turnOff('fog_light_status');
         }
     }
     function carEngine(uEngine){

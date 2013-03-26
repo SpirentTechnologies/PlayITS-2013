@@ -86,7 +86,7 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 			}
 		}
 		
-		if(request.getEspSensor()){
+		if(request.hasEspSensor()){
 			if(request.getEspSensor() != status.isESPenabled()){
 				status.setESPenabled(request.getEspSensor());
 				model.notifyListener(NotifyAttributes.ESP);
@@ -94,14 +94,14 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 				
 		}
 		
-		if(request.getLightSensor()){
+		if(request.hasLightSensor()){
 			if(request.getLightSensor() != status.isLightSensorEnabled()){
 				status.setLightSensorEnabled(request.getLightSensor());
 				model.notifyListener(NotifyAttributes.LIGHT);
 			}
 		}
 		
-		if(request.getFogLightSensor()){
+		if(request.hasFogLightSensor()){
 			if(request.getFogLightSensor() != status.isFogLightSensorEnabled()){
 				status.setFogLightEnabled(request.getFogLightSensor());
 				model.notifyListener(NotifyAttributes.FOG);
