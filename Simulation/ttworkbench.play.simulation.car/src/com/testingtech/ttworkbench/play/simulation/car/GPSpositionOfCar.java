@@ -136,14 +136,10 @@ public class GPSpositionOfCar {
 						
 							double o1Distance = calculateDistance(o1.getGpsPosition(), currentGPSPosition);
 							double o2Distance = calculateDistance(o2.getGpsPosition(), currentGPSPosition);
-							if(o1Distance == o2Distance) {
-								if(o1.getPriority() == o2.getPriority()){
-									return 0;
-								}else{
-									return (int) (o1.getPriority() - o2.getPriority());
-								}
+							if(Math.abs(o2Distance - o1Distance) < 1E-5) {
+								return (int) (o2.getPriority() - o1.getPriority());
 							}else{
-								return (int) (o2Distance - o1Distance);
+								return (int) Math.signum(o2Distance - o1Distance);
 							}
 						}
 				});
