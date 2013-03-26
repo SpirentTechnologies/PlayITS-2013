@@ -14,7 +14,6 @@ public class UIController {
 	}
 	
 	public void warning(WarningType warning) {
-		browser.execute("warning(" + enumWarning.getId(warning.getWarning()) +")");
 		int id = enumWarning.getId(warning.getWarning());
 		if (id < 0) {
 			// backup show only this
