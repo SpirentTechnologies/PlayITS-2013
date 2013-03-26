@@ -96,7 +96,6 @@ public class GPSpositionOfCar {
 		}
 		
 		currentGPSPosition = calculateGPSPosition(driveDistance, currentGPSPosition, nextGPSDestination);
-		System.out.println(currentGPSPosition.latitude + " : " + currentGPSPosition.longitude);
 		
 		lastTime = actualTime;
 
