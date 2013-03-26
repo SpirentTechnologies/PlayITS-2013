@@ -75,14 +75,10 @@ public class CarTests {
 			
 			// parse the car into a carStatusType message and make the rpc call
 			carStatusType request = CarStatusTypeParser.parseToStatusType(car);
-			float latitude = request.getGpsPos().getLatitude();
-			float longitude = request.getGpsPos().getLongitude();
-			Assert.assertTrue("Latitude not around 52", 51.0 < latitude && latitude < 53.0);
-			Assert.assertTrue("Longitude not around 13", 12.0 < longitude && longitude < 14.0);
 			
-			Assert.assertTrue("no warnings included in status "+request, hasWarning && request.getWarningCount() <= 0);
-
-			if (!hasWarning) {
+			if (hasWarning) {
+				Assert.assertTrue("no warnings included in status "+request, request.getWarningCount() > 0);
+			} else {
 				car.addWarning(new WarningType(Warnings.DEER, car.getGPSPosition()));
 				hasWarning = true;
 			}
