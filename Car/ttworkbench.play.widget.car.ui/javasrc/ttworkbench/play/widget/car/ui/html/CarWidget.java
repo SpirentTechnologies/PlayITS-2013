@@ -175,8 +175,6 @@ public class CarWidget {
 						((Double)args[6]).floatValue(), 
 						(String)args[7]
 						);
-				//args[7] liefert nicht den Pfad
-				System.out.println((String)args[7]);
 			}
 			else if("speed".equals(this.getName())){
 				float speed;
