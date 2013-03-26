@@ -6,9 +6,9 @@
       <widget
             class="ttworkbench.play.widget.car.ui.CarWidgetFactory"
             clf="configuration/main.clf"
-            description="..."
+            description="The widget creates a car simulation interface showing also obstacles observed along the given route"
             icon="icons/widget.png"
-            name="Car"
+            name="ITS Car Simulation"
             runtime-plugin="ttworkbench.play.widget.car.rt">
       </widget>
    </extension>
