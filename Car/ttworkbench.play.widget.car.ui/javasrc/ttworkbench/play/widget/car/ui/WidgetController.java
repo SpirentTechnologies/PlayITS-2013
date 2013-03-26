@@ -95,22 +95,26 @@ public class WidgetController {
 		}
 	}
 
-	public void sendWarning(WarningType warning){
+	/**
+	 * 
+	 * @param warning
+	 */
+	public void sendWarning(WarningType wt){
 		try {
 			warningType.Builder request = warningType.newBuilder();
 			gpsPosition.Builder gpsBuilder = gpsPosition.newBuilder();
 			request.setCarId(comm.getCarModel().getStatus().getId());
-			gpsBuilder.setLatitude((float)warning.getGpsPosition().getLatitude());
-			gpsBuilder.setLongitude((float)warning.getGpsPosition().getLongitude());
+			gpsBuilder.setLatitude((float)wt.getGpsPosition().getLatitude());
+			gpsBuilder.setLongitude((float)wt.getGpsPosition().getLongitude());
 			request.setGpsPos(gpsBuilder);
 
-			request.setWarningName(PROTO_API.warning.newBuilder().setEnumValue(convertWarn(warning.getWarning())));
+			request.setWarningName(PROTO_API.warning.newBuilder().setEnumValue(convertWarn(wt.getWarning())));
 			request.setPriority(-1);
 			client().getActionsService().aPIWarningType(client().getController(), request.build());
 
 		} catch (Throwable e) {
 
-			System.out.println("Can't send warning! " + e.getMessage());
+			System.out.println("Can't send Warning! " + e.getMessage());
 		}
 	}
 

@@ -213,10 +213,10 @@ public class Car implements CarInterface {
 		if (isEngine() && (getFuelLevel() > 0)) {
 	
 			position.updateEverything(time);
-	
-			// get next world positions warning
-			// this functionality only
-			// TODO get all warnings at the current position not only 1
+			
+			position.refreshWarningList();
+			
+			//gets List of Warnings
 			tmpListOfWarnings = position.getAllWarnings();
 		} else {
 			
