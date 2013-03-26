@@ -4,12 +4,14 @@ import java.io.IOException;
 
 import ttworkbench.play.widget.car.ui.model.CarStatusModel;
 import ttworkbench.play.widget.car.ui.model.WarningType;
+import ttworkbench.play.widget.car.ui.model.enumWarning;
 
-import com.google.protobuf.ServiceException;
+import com.testingtech.ttworkbench.play.generated.PROTO_API;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.carInitType;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.onOffEngineType;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.speedType;
+import com.testingtech.ttworkbench.play.generated.PROTO_API.warning.EnumValue;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.warningType;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.widgetExit;
 
@@ -44,7 +46,7 @@ public class WidgetController {
 			request.setCarId(comm.getCarModel().getStatus().getId());
 			client().getActionsService().aPIOnOffEngineType(client().getController(), request.build());
 
-		} catch (ServiceException e) {
+		} catch (Throwable e) {
 
 			System.err.println("Unable to start engine! \n" + e.getMessage());
 		}
@@ -66,7 +68,7 @@ public class WidgetController {
 			request.setCarId(comm.getCarModel().getStatus().getId());
 			client().getActionsService().aPIOnOffEngineType(client().getController(), request.build());
 			// TODO response check
-		} catch (ServiceException e) {
+		} catch (Throwable e) {
 
 			System.err.println("Unable to stop Engine! \n" + e.getMessage());
 		}
@@ -84,10 +86,10 @@ public class WidgetController {
 			request.setSpeed(speed);
 			CarStatusModel status = comm.getCarModel().getStatus();
 			request.setCarId(status.getId());
-		
+
 			client().getActionsService().aPISpeedType(client().getController(), request.build());
 
-		} catch (ServiceException e) {
+		} catch (Throwable e) {
 
 			System.out.println("Can't change speed! " + e.getMessage());
 		}
@@ -102,14 +104,42 @@ public class WidgetController {
 			gpsBuilder.setLongitude((float)warning.getGpsPosition().getLongitude());
 			request.setGpsPos(gpsBuilder);
 
+			request.setWarningName(PROTO_API.warning.newBuilder().setEnumValue(convertWarn(warning.getWarning())));
+			request.setPriority(-1);
 			client().getActionsService().aPIWarningType(client().getController(), request.build());
 
-		} catch (ServiceException e) {
+		} catch (Throwable e) {
 
-			System.out.println("Can't change speed! " + e.getMessage());
+			System.out.println("Can't send warning! " + e.getMessage());
 		}
 	}
 
+	private static EnumValue convertWarn(enumWarning warning) {
+		EnumValue enumValue;
+		switch (warning) {
+		case ACCIDENT:
+			enumValue = EnumValue.accident;
+			break;
+		case DEER:
+			enumValue = EnumValue.deer;
+			break;
+		case FOG:
+			enumValue = EnumValue.fog;
+			break;
+		case ICE:
+			enumValue = EnumValue.ice;
+			break;
+		case RAIN:
+			enumValue = EnumValue.rain;
+			break;
+		case SNOW:
+			enumValue = EnumValue.snow;
+			break;
+		default:
+			throw new IllegalArgumentException("Unknown warning type "+warning);
+		}
+		return enumValue;
+	}
 	/**
 	 * Sets the track file
 	 * @param trackFile
@@ -132,7 +162,7 @@ public class WidgetController {
 	//
 	//			client().getActionsService().aPITrackType(client().getController(), request.build());
 	//
-	//		} catch (ServiceException e) {
+	//		} catch (Throwable e) {
 	//
 	//			System.out.println("Can't set track! " + e.getMessage());
 	//		}
@@ -194,7 +224,7 @@ public class WidgetController {
 
 			initialized = true;
 
-		} catch (ServiceException e) {
+		} catch (Throwable e) {
 
 			System.out.println("Initialize failed! " + e.getMessage());
 		}
@@ -210,7 +240,7 @@ public class WidgetController {
 
 			client().getActionsService().aPIWidgetExit(client().getController(), request.build());
 
-		} catch (ServiceException e) {
+		} catch (Throwable e) {
 
 			e.printStackTrace();
 		}
