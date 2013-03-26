@@ -15,3 +15,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: com.testingtech.ttworkbench.play.simulation.car.Activator
 Export-Package: com.testingtech.ttworkbench.play.simulation.car
+Bundle-Localization: plugin
