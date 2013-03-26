@@ -58,8 +58,8 @@ public class CarTests {
 			carStatusType request = CarStatusTypeParser.parseToStatusType(car);
 			float latitude = request.getGpsPos().getLatitude();
 			float longitude = request.getGpsPos().getLongitude();
-			Assert.assertFalse("Latitude not around 52", 51 < latitude && latitude < 53);
-			Assert.assertFalse("Longitude not around 13", 12 < longitude && longitude < 14);
+			Assert.assertTrue("Latitude not around 52", 51.0 < latitude && latitude < 53.0);
+			Assert.assertTrue("Longitude not around 13", 12.0 < longitude && longitude < 14.0);
 		}
 	}
 
@@ -77,10 +77,10 @@ public class CarTests {
 			carStatusType request = CarStatusTypeParser.parseToStatusType(car);
 			float latitude = request.getGpsPos().getLatitude();
 			float longitude = request.getGpsPos().getLongitude();
-			Assert.assertFalse("Latitude not around 52", 52 < latitude && latitude < 53);
-			Assert.assertFalse("Longitude not around 13", 13 < longitude && longitude < 14);
+			Assert.assertTrue("Latitude not around 52", 51.0 < latitude && latitude < 53.0);
+			Assert.assertTrue("Longitude not around 13", 12.0 < longitude && longitude < 14.0);
 			
-			Assert.assertTrue("no warnings not included", hasWarning && request.getWarningCount() <= 0);
+			Assert.assertTrue("no warnings included in status "+request, hasWarning && request.getWarningCount() <= 0);
 
 			if (!hasWarning) {
 				car.addWarning(new WarningType(Warnings.DEER, car.getGPSPosition()));
