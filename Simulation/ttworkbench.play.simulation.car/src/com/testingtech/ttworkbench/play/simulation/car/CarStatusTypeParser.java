@@ -42,7 +42,7 @@ public class CarStatusTypeParser {
 
 		// create Warning
 		for (WarningType nextWarning : car.position.getAllWarnings()) {
-			//if the warning is in a 3000m radius add warning to status
+			//if the warning is in a 3000km radius add warning to status
 			GPSposition gpsPosition = nextWarning.getGpsPosition();
 			if (GPSpositionOfCar.calculateDistance(car.currentPosition, gpsPosition) < 3000) {
 
