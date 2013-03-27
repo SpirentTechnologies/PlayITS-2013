@@ -196,10 +196,11 @@ public class GPSpositionOfCar {
 	
 	/**
 	 * Computes the GPS position between two GPS positions
-	 * @param distance
-	 * @param src start
-	 * @param dest destination
-	 * @return GPS position
+	 * @param distance from the source gps position in the direction of the destination gps position,
+	 * the distance must be non-negative and smaller than the full distance between src and dest
+	 * @param src the source gps position (starting point)
+	 * @param dest the destination gps position (end point)
+	 * @return GPS position with given distance from startpostion
 	 * @see http://www.movable-type.co.uk/scripts/latlong.html
 	 */
 	public static GPSposition calculateGPSPosition(double distance, GPSposition src, GPSposition dest){
@@ -207,26 +208,42 @@ public class GPSpositionOfCar {
 		if(distance == 0){
 			return src;
 		}
-		double r = 6371; // Earthradius in km
-		double dLon = Math.toRadians(src.longitude-dest.longitude);
-
-		double srcLat = Math.toRadians(src.latitude);
-		double destLat = Math.toRadians(dest.latitude);
-		double srclon = Math.toRadians(src.longitude);
 		
-		//calculates the bearing
-		double y = Math.sin(dLon) * Math.cos(srcLat);
-		double x = Math.cos(destLat)*Math.sin(srcLat) -
-		        Math.sin(destLat)*Math.cos(srcLat)*Math.cos(dLon);
-		 double brng = Math.atan2(y, x)+Math.PI;
-		 
-		 //calculates the new GPSposition
-		 double ergLat = Math.asin( Math.sin(srcLat)*Math.cos(distance/r) + 
-	              Math.cos(srcLat)*Math.sin(distance/r)*Math.cos(brng) );
-		 double ergLon = srclon + Math.atan2(Math.sin(brng)*Math.sin(distance/r)*Math.cos(srcLat), 
-	                     Math.cos(distance/r)-Math.sin(srcLat)*Math.sin(ergLat));
+		// the full distance is the length of the arc from the src to the dest position
+		double fullDistance = calculateDistance(src, dest);
+		// the distancePercentage is the percentage of the distance of the full distance
+		double percentage = distance/fullDistance;
 		
-		 return new GPSposition(Math.toDegrees(ergLon), Math.toDegrees(ergLat));
+		// add the percentage of the full difference of latitudes to the src latitude
+		double latitude = src.latitude + percentage * (dest.latitude - src.latitude);
+		// add the percentage of the full difference of longitudes to the src longitude
+		double longitude = src.longitude + percentage * (dest.longitude - src.longitude);
+		// Example: 
+		// src.lat == 1, dest.lat == 2, distPerc = 0.5 => 1 + (2-1) * 0.5 = 1.5
+		// src.long == 2, dest.long == 0, distPerc == 0.5 => 2 + (0 - 2) * 0.5 = 1
+		
+		return new GPSposition(longitude, latitude);
+		
+//		double r = 6371; // Earthradius in km
+//		double dLon = Math.toRadians(src.longitude-dest.longitude);
+//
+//		double srcLat = Math.toRadians(src.latitude);
+//		double destLat = Math.toRadians(dest.latitude);
+//		double srclon = Math.toRadians(src.longitude);
+//		
+//		//calculates the bearing
+//		double y = Math.sin(dLon) * Math.cos(srcLat);
+//		double x = Math.cos(destLat)*Math.sin(srcLat) -
+//		        Math.sin(destLat)*Math.cos(srcLat)*Math.cos(dLon);
+//		 double brng = Math.atan2(y, x)+Math.PI;
+//		 
+//		 //calculates the new GPSposition
+//		 double ergLat = Math.asin( Math.sin(srcLat)*Math.cos(distance/r) + 
+//	              Math.cos(srcLat)*Math.sin(distance/r)*Math.cos(brng) );
+//		 double ergLon = srclon + Math.atan2(Math.sin(brng)*Math.sin(distance/r)*Math.cos(srcLat), 
+//	                     Math.cos(distance/r)-Math.sin(srcLat)*Math.sin(ergLat));
+//		 
+//		 return new GPSposition(Math.toDegrees(ergLon), Math.toDegrees(ergLat));
 	}
 
 	/**
