@@ -71,7 +71,6 @@ public class CarStatusTypeParser {
 
 				EnumValue ev = convertWarn(nextWarning.getWarning());
 				warn.setEnumValue(ev);
-				System.out.println(ev);
 				// create GPS-Position
 				gpsPos.setLatitude((float) gpsPosition.latitude);
 				gpsPos.setLongitude((float) gpsPosition.longitude);
