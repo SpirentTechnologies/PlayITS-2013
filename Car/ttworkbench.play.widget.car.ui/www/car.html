@@ -42,6 +42,9 @@
         -moz-border-radius: 10px;
         border-radius: 10px;
     }
+    .warning_none {
+        background: none;
+    }
     .warning_0 {
         background: url('img/deer.png') no-repeat center center;
     }
@@ -284,7 +287,7 @@
 
     function warning(type) {
         $('#warning').removeClass();
-        $('#warning').addClass('warning_' + type);
+    	$('#warning').addClass('warning_' + type);
     }
 
     function carPosition(lat, lng) {
@@ -351,6 +354,8 @@
     function carEngine(uEngine){
         if(uEngine){
             turnOn('engine_status');
+        } else {
+		    turnOff('engine_status');
         }
     }
 

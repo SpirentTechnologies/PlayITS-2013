@@ -26,10 +26,9 @@ public class UIController {
 	
 	/** to update warning information */
 	public void warning(WarningType warning) {
-		int id = EnumWarning.getId(warning.getWarning());
-		if (id < 0) {
-			// backup show only this
-			id = EnumWarning.getId(EnumWarning.ACCIDENT);
+		String id = "none";
+		if (warning != null) {
+			id = ""+EnumWarning.getId(warning.getWarning());
 		}
 		browser.execute("warning(" + id + ")");
 //				+ ", " + warning.getGpsPosition().getLatitude() + ", " + warning.getGpsPosition().getLongitude() + ", " + warning.getPriority() + ")");
