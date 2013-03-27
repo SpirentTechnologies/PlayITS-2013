@@ -21,9 +21,9 @@ import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 
 import ttworkbench.play.widget.car.ui.WidgetController;
+import ttworkbench.play.widget.car.ui.model.EnumWarning;
 import ttworkbench.play.widget.car.ui.model.GPSposition;
 import ttworkbench.play.widget.car.ui.model.WarningType;
-import ttworkbench.play.widget.car.ui.model.EnumWarning;
 
 import com.testingtech.ttworkbench.core.ui.preferences.common.AbstractConfigurationBlock;
 import com.testingtech.ttworkbench.play.dashboard.widget.DashboardWidgetFactoryDescriptor;
@@ -171,10 +171,18 @@ public class CarWidget {
 		/**
 		 * function to catch (previously declared) javascript functions
 		 */
-		public Object function(Object[] args) {
+		public Object function(final Object[] args) {
 
 			//Get the name of the function and invoke that function in JAVA
-			
+			new Thread(new Runnable() {
+				public void run() {
+					execFunction(args);
+				}
+			}).start();
+			return null;
+		}
+
+		private void execFunction(Object[] args) {
 			if("motor".equals(this.getName())) {
 
 				boolean motorOn = (Boolean)args[0];
@@ -211,7 +219,6 @@ public class CarWidget {
 				warningType.setGpsPosition(new GPSposition((Double)args[0], (Double)args[1]));
 				widgetController.sendWarning(warningType);
 			}
-			return null;
 		}
 	}
 
