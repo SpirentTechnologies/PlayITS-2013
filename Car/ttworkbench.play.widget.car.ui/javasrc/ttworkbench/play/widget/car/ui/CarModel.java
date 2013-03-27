@@ -69,6 +69,9 @@ public class CarModel {
 	 */
 	public WarningType getWarning(){
 		refreshWarningList();
+		if (warnings.isEmpty()) {
+			return null;
+		}
 		return warnings.get(0);
 	}
 	
@@ -144,6 +147,9 @@ public class CarModel {
 	 */
 	public void clearWarnings() {
 		warnings.clear();
-		
+	}
+	
+	public boolean hasWarnings() {
+		return !warnings.isEmpty();
 	}
 }
