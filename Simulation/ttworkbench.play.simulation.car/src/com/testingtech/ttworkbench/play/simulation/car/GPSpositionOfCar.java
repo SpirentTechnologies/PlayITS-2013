@@ -186,8 +186,11 @@ public class GPSpositionOfCar {
 		double destLat = Math.toRadians(dest.latitude);
 		
 		//calculates the distance
-		double a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-		        Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(srcLat) * Math.cos(destLat); 
+		double sinOfDeltaLatitudeHalf = Math.sin(dLat/2);
+    double sinOfDeltaLongitudeHalf = Math.sin(dLon/2);
+    double a = sinOfDeltaLatitudeHalf * sinOfDeltaLatitudeHalf +
+		           sinOfDeltaLongitudeHalf * sinOfDeltaLongitudeHalf * 
+		           Math.cos(srcLat) * Math.cos(destLat); 
 		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
 		return r * c;
 	}
