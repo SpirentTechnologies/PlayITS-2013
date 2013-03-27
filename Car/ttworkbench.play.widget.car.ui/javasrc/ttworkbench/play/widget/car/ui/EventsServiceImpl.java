@@ -4,17 +4,17 @@ package ttworkbench.play.widget.car.ui;
 import java.util.List;
 
 import ttworkbench.play.widget.car.ui.model.CarStatusModel;
+import ttworkbench.play.widget.car.ui.model.EnumWarning;
 import ttworkbench.play.widget.car.ui.model.GPSposition;
 import ttworkbench.play.widget.car.ui.model.NotifyAttributes;
 import ttworkbench.play.widget.car.ui.model.WarningType;
-import ttworkbench.play.widget.car.ui.model.EnumWarning;
 
 import com.google.protobuf.RpcController;
 import com.google.protobuf.ServiceException;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.EVENTS.BlockingInterface;
-import com.testingtech.ttworkbench.play.generated.PROTO_API.warning.EnumValue;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.Void;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.carStatusType;
+import com.testingtech.ttworkbench.play.generated.PROTO_API.warning.EnumValue;
 import com.testingtech.ttworkbench.play.generated.PROTO_API.warningType;
 
 
@@ -60,7 +60,7 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 		
 		
 		//change Model only if attributes are different from current car status
-		if(request.getWarningCount() > 0){
+		if (request.getWarningCount() > 0){
 			List<warningType> reqWarnings = request.getWarningList();
 			model.clearWarnings();
 			for (warningType reqWarning : reqWarnings) {
@@ -70,9 +70,8 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 				warning.setPriority(reqWarning.getPriority());
 				model.addWarning(warning);
 			}
-			model.notifyListener(NotifyAttributes.WARNING);
 		}
-		
+		model.notifyListener(NotifyAttributes.WARNING);
 		
 
 		if(request.hasAbsSensor()){
