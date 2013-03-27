@@ -28,9 +28,25 @@ import ttworkbench.play.widget.car.ui.model.EnumWarning;
 import com.testingtech.ttworkbench.core.ui.preferences.common.AbstractConfigurationBlock;
 import com.testingtech.ttworkbench.play.dashboard.widget.DashboardWidgetFactoryDescriptor;
 
+/**
+ * 
+ * @author Hirsch, Cypko
+ *
+ */
+/**
+ * CarWidget UI 
+ * - creating browser window including car.html 
+ * - data processing from javascript to java
+ */
 
 public class CarWidget {
-
+	
+	/**
+	 * @param wwwRoot		root URL for the www folder
+	 * @param widgetController		for the communication path from UI to the Model 
+	 * @param browser		to set a web browser - for communication: html/javascript <--> Java
+	 * @param uiController		to initialize communication path form Model to UI  	
+	 */
 	private final File wwwRoot;
 	protected WidgetController widgetController;
 	private final DashboardWidgetFactoryDescriptor descriptor;
@@ -38,6 +54,7 @@ public class CarWidget {
 	private UIController uiController;
 
 	/**
+	 * to initialize object of CarWidget
 	 * @param wwwRoot
 	 * @param descriptor
 	 */
@@ -46,6 +63,13 @@ public class CarWidget {
 		this.descriptor = descriptor;
 	}
 
+	/**
+	 * 
+	 * @param args
+	 * @param wwwRoot
+	 * @param shell - a window(/shell) to display the browser
+	 * @param display
+	 */
 	public static void main (String [] args) {
 
 		Display display = new Display();
@@ -84,11 +108,7 @@ public class CarWidget {
 
 	/**
 	 * @param parent
-	 * @return browser
-	 */
-	/**
-	 * @param parent
-	 * @return
+	 * @return group
 	 */
 	public Control createControl(Composite parent) {
 		Group group = AbstractConfigurationBlock.addGroup(parent, descriptor.getName());
@@ -114,11 +134,11 @@ public class CarWidget {
 		});
 
 		//Define each JavaScript function
-		//INIT:
+		/** Init of javascript function used at initialization time */
 		new CustomFunction(browser, "carType");
 		new CustomFunction(browser, "trackType");
 
-		//DYNAMIC:
+		/** declaration of javascript function used at later time */
 		new CustomFunction(browser, "motor");
 		new CustomFunction(browser, "abs");
 		new CustomFunction(browser, "esp");
@@ -130,7 +150,7 @@ public class CarWidget {
 
 		new CustomFunction(browser, "initialize");
 
-
+		/** URL root to the car.html */
 		browser.setUrl(new File(wwwRoot, "car.html").toURI().toString());
 		return group;
 	}
@@ -148,13 +168,13 @@ public class CarWidget {
 		/* (non-Javadoc)
 		 * @see org.eclipse.swt.browser.BrowserFunction#function(java.lang.Object[])
 		 */
+		/**
+		 * function to catch (previously declared) javascript functions
+		 */
 		public Object function(Object[] args) {
 
 			//Get the name of the function and invoke that function in JAVA
-
-			/**
-			 * MOTOR
-			 */
+			
 			if("motor".equals(this.getName())) {
 
 				boolean motorOn = (Boolean)args[0];
@@ -201,7 +221,7 @@ public class CarWidget {
 	public void setController(WidgetController widgetController) {
 		this.widgetController = widgetController;
 	}
-
+	
 	public void disableActions() {
 		if (browser.isDisposed()) {
 			return;

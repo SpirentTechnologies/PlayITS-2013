@@ -204,8 +204,8 @@
         }
 
         function initTrack(track) {
-	        trackName = $("#track").children("option").filter(":selected").text();
-	        $('#navi').text("Navigation "+trackName);
+            trackName = $("#track").children("option").filter(":selected").text();
+            $('#navi').text("Navigation "+trackName);
 
             if(kml) {
                 kml.setMap(null);
@@ -322,7 +322,7 @@
 
     function carABS(uABS){
         if(uABS){
-        turnOn('abs_status');
+            turnOn('abs_status');
         }else{
         	turnOff('abs_status');
         }
@@ -350,7 +350,7 @@
     }
     function carEngine(uEngine){
         if(uEngine){
-           turnOn('engine_status');
+            turnOn('engine_status');
         }
     }
 
@@ -360,7 +360,7 @@
 <body>
 <div id="menuContainer">
     <div class="main">
-    	<div id="navi" class="center_text">Navigation: no route selected</div>
+        <div id="navi" class="center_text">Navigation: no route selected</div>
         <div id="speedContainer">
             <input type="text" value="0" id="speed">
         </div>
@@ -387,6 +387,9 @@
     </div>
 
     <div id="smallLeftContainer">
+    	<div id="engine_status" class="status_off main">
+            Motor
+        </div>
         <div id="abs_status" class="status_off main">
             ABS
         </div>
@@ -397,8 +400,8 @@
             LIGHT
         </div>
         <div id="fog_light_status" class="status_off main">
-            FOG LIGHT
-        </div>
+        FOG LIGHT
+    </div>
     </div>
 
     <div id="leftContainer">
