@@ -7,7 +7,7 @@ Winter Semester 2012-2013 (18.02.2013 until 29.03.2013)
 
 https://www.mi.fu-berlin.de/kvv/course.htm?cid=10887&sid=26&iid=1
 
-![PLAYITS](https://github.com/TestingTechnologies/PlayITS/blob/master/Screenshot/Auswahl_006.png)
+![PLAYITS](https://github.com/TestingTechnologies/PlayITS/blob/master/Screenshot/PlayITS.jpg)
 
 TTworkbench Play
 ----------------
