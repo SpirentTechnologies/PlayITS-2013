@@ -184,10 +184,6 @@ public class CarWidget {
 
 		private void execFunction(Object[] args) {
 			
-			for(Object arg : args){
-				System.out.printf("%s",arg.getClass().toString());
-			}
-			System.out.printf("\n");
 			if("motor".equals(this.getName())) {
 
 				boolean motorOn = (Boolean)args[0];
