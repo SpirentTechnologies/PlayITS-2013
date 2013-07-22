@@ -2142,7 +2142,7 @@ public final class PROTO_API {
     com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPosition getGpsPos();
     com.testingtech.ttworkbench.play.generated.PROTO_API.gpsPositionOrBuilder getGpsPosOrBuilder();
     
-    // required sint64 priority = 4;
+    // optional sint64 priority = 4;
     boolean hasPriority();
     long getPriority();
   }
@@ -2211,7 +2211,7 @@ public final class PROTO_API {
       return gpsPos_;
     }
     
-    // required sint64 priority = 4;
+    // optional sint64 priority = 4;
     public static final int PRIORITY_FIELD_NUMBER = 4;
     private long priority_;
     public boolean hasPriority() {
@@ -2237,10 +2237,6 @@ public final class PROTO_API {
         return false;
       }
       if (!hasGpsPos()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasPriority()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -2541,10 +2537,6 @@ public final class PROTO_API {
           
           return false;
         }
-        if (!hasPriority()) {
-          
-          return false;
-        }
         if (!getWarningName().isInitialized()) {
           
           return false;
@@ -2814,7 +2806,7 @@ public final class PROTO_API {
         return gpsPosBuilder_;
       }
       
-      // required sint64 priority = 4;
+      // optional sint64 priority = 4;
       private long priority_ ;
       public boolean hasPriority() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
@@ -6532,7 +6524,7 @@ public final class PROTO_API {
       "\002(\t\"\177\n\013warningType\022\r\n\005carId\030\001 \001(\022\022\'\n\013war",
       "ningName\030\002 \002(\0132\022.PROTO_API.warning\022&\n\006gp" +
       "sPos\030\003 \002(\0132\026.PROTO_API.gpsPosition\022\020\n\010pr" +
-      "iority\030\004 \002(\022\"\374\001\n\rcarStatusType\022\r\n\005carId\030" +
+      "iority\030\004 \001(\022\"\374\001\n\rcarStatusType\022\r\n\005carId\030" +
       "\001 \001(\022\022\024\n\014engineStatus\030\002 \002(\010\022\r\n\005speed\030\003 \002" +
       "(\002\022\021\n\tabsSensor\030\004 \002(\010\022\021\n\tespSensor\030\005 \002(\010" +
       "\022\023\n\013lightSensor\030\006 \002(\010\022\026\n\016fogLightSensor\030" +

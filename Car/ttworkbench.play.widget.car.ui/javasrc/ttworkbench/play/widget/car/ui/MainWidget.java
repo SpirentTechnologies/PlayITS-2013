@@ -31,6 +31,9 @@ import com.testingtech.util.SetUtil;
  */
 public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTIONS.BlockingInterface> implements ICarModelListener, ICommunication {
 
+	  
+	  
+	
 	private CarModel model = new CarModel();
 	private CarWidget carWidget;
 	private UIController uiController = null;
@@ -276,8 +279,10 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 		} catch (IOException e) {
 			SWTUtil.createErrorDialogAsync("Error", "Error starting Simulation", e, null, getClass().getName());
 		}
-
+		
 		super.initializeCommunication();
+		enableActions();
+
 	}
 
 	/**
@@ -293,9 +298,8 @@ public class MainWidget extends AbstractDashboardWidget<CarModel, PROTO_API.ACTI
 		return SetUtil.set(
 				newModuleParameter("Parameters.EVENTS_WIDGET_TCP_PORT", getEventsServicePort()),
 				newModuleParameter("Parameters.ACTIONS_WIDGET_TCP_PORT", getActionsServicePort()),
-				newModuleParameter("Parameters.EVENTS_CAR_TCP_PORT", SocketUtil.findFreePort()),
-				newModuleParameter("Parameters.ACTIONS_CAR_TCP_PORT", simulationPort)
-				);
+				newModuleParameter("Parameters.EVENTS_CAR_TCP_PORT", SocketUtil.findUnusedLocalPort("localhost", 49000, 49100)),
+				newModuleParameter("Parameters.ACTIONS_CAR_TCP_PORT", simulationPort));
 	}
 
 	@Override

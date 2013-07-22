@@ -25,7 +25,7 @@ public class Activator extends AbstractUIPlugin {
 	
 	public static synchronized void startSimulation() throws IOException {
 		if (simulation == null) {
-			int serverPort = SocketUtil.findFreePort();
+			int serverPort = SocketUtil.findUnusedLocalPort("localhost", 52000, 52100);
 			simulation = new Simulation();
 			simulation.startServer(serverPort);
 		}

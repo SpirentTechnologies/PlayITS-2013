@@ -61,6 +61,7 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 		
 		//change Model only if attributes are different from current car status
 		if (request.getWarningCount() > 0){
+			System.out.println("warnings in list");
 			List<warningType> reqWarnings = request.getWarningList();
 			model.clearWarnings();
 			for (warningType reqWarning : reqWarnings) {
@@ -70,8 +71,8 @@ public Void aPICarStatusType(RpcController controller, carStatusType request)
 				warning.setPriority(reqWarning.getPriority());
 				model.addWarning(warning);
 			}
+			model.notifyListener(NotifyAttributes.WARNING);
 		}
-		model.notifyListener(NotifyAttributes.WARNING);
 		
 
 		if(request.hasAbsSensor()){

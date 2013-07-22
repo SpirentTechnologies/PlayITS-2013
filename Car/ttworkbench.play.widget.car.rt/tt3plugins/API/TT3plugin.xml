@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plugin PUBLIC "-//TESTING TECH//DTD TT3plugin//1.0" "TT3plugin.dtd">
+
+<plugin id="com.testingtech.ttcn.tci.codec.generated.API"
+     name="APICodecPlugin"
+  version="1.0.0"
+  provider-name="Testing Technologies">
+
+  <runtime>
+      <library name="APICodec.jar"/>
+  </runtime>
+
+    <dependency>
+    </dependency>
+
+  <extension point="com.testingtech.ttcn.extension.CodecProvider">
+    <parameter id="class" value="com.testingtech.generated.codec.API.TabularAPICodecProvider"/>
+    <parameter id="encoding" value="API"/>
+  </extension>
+
+</plugin>

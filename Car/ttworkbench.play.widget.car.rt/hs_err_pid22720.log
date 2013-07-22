@@ -1,0 +1,636 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00007f8ecc8520a7, pid=22720, tid=140251032696576
+#
+# JRE version: 6.0_31-b04
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (20.6-b01 mixed mode linux-amd64 compressed oops)
+# Problematic frame:
+# V  [libjvm.so+0x4e10a7]  java_lang_String::utf8_length(oopDesc*)+0x67
+#
+# If you would like to submit a bug report, please visit:
+#   http://java.sun.com/webapps/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007f8ec809a800):  JavaThread "JDWP Transport Listener: dt_socket" daemon [_thread_in_vm, id=22737, stack(0x00007f8ebcebb000,0x00007f8ebcfbc000)]
+
+siginfo:si_signo=SIGSEGV: si_errno=0, si_code=1 (SEGV_MAPERR), si_addr=0x0000000000000008
+
+Registers:
+RAX=0x000000000000000c, RBX=0x00007f8ec809a800, RCX=0x0000000000000014, RDX=0x0000000000000000
+RSP=0x00007f8ebcfbaaa0, RBP=0x00007f8ebcfbaaa0, RSI=0x0000000000000000, RDI=0x00000000ec88a250
+R8 =0x0000000000000000, R9 =0x00007f8eccdf6530, R10=0x0000000000000010, R11=0x00007f8ecce12f00
+R12=0x00007f8ec81e0f78, R13=0x00000000ec88a250, R14=0x00007f8ec7ff70f0, R15=0x0000000000000000
+RIP=0x00007f8ecc8520a7, EFLAGS=0x0000000000010202, CSGSFS=0x0000000000000033, ERR=0x0000000000000004
+  TRAPNO=0x000000000000000e
+
+Top of Stack: (sp=0x00007f8ebcfbaaa0)
+0x00007f8ebcfbaaa0:   00007f8ebcfbab30 00007f8ecc88091a
+0x00007f8ebcfbaab0:   00007f8ec809a800 00007f8ebcfbaac0
+0x00007f8ebcfbaac0:   00007f8ec809a800 0000000000000000
+0x00007f8ebcfbaad0:   00007f8ec809a800 0000000000000001
+0x00007f8ebcfbaae0:   00007f8ec809a800 0000000000000001
+0x00007f8ebcfbaaf0:   00007f8ec809a800 00007f8ec7eeaadf
+0x00007f8ebcfbab00:   00007f8ec81e0f78 00007f8ebcfbad20
+0x00007f8ebcfbab10:   00007f8ebcfbab90 00007f8ec81e0f78
+0x00007f8ebcfbab20:   00007f8ec7ff70f0 00007f8ec809a800
+0x00007f8ebcfbab30:   00007f8ec809a9d0 00007f8ec7eca94d
+0x00007f8ebcfbab40:   00007f8ebcfbab90 00007f8ebcfbad50
+0x00007f8ebcfbab50:   00007f8ebcfbad20 00007f8ec7ff70f0
+0x00007f8ebcfbab60:   0000000000000001 00007f8ec7ed28fb
+0x00007f8ebcfbab70:   0000015300000013 00007f8e94010a00
+0x00007f8ebcfbab80:   00007f8e94000d70 00007f8ebcfbab90
+0x00007f8ebcfbab90:   00007f8ebcfbabe0 000000370000012c
+0x00007f8ebcfbaba0:   00007f8ebcfbaba8 00007f8e00000000
+0x00007f8ebcfbabb0:   00007f8ebcfbabe0 0000000000000000
+0x00007f8ebcfbabc0:   00007f0000000000 000001530000000f
+0x00007f8ebcfbabd0:   00007f8e00002e80 00007f8ebcfbabe0
+0x00007f8ebcfbabe0:   0000000000000000 0000000047000000
+0x00007f8ebcfbabf0:   0000000048000000 0000000049000000
+0x00007f8ebcfbac00:   0000000000120000 6f06000000420000
+0x00007f8ebcfbac10:   0000007465736666 0000000000004901
+0x00007f8ebcfbac20:   0000000000001200 6f63050000005200
+0x00007f8ebcfbac30:   4901000000746e75 1200000000000000
+0x00007f8ebcfbac40:   6200000000000000 6873616804000000
+0x00007f8ebcfbac50:   0000004901000000 7f00000200000000
+0x00007f8ebcfbac60:   000000b031009c8e 566c616972657310
+0x00007f8ebcfbac70:   49556e6f69737265 00004a0100000044
+0x00007f8ebcfbac80:   00001a0000000000 00009031009c8e7f
+0x00007f8ebcfbac90:   6c61697265731600 6574736973726550 
+
+Instructions: (pc=0x00007f8ecc8520a7)
+0x00007f8ecc852087:   8b 35 0b b6 6e 00 41 80 39 00 4c 63 12 48 63 0e
+0x00007f8ecc852097:   41 8b 14 3a 8b 34 39 74 64 4c 8b 1d 39 86 6e 00
+0x00007f8ecc8520a7:   41 8b 78 08 41 8b 4b 08 48 d3 e7 49 03 3b 44 0f
+0x00007f8ecc8520b7:   b6 57 19 89 f0 41 83 fa 05 74 02 c9 c3 85 f6 74 
+
+Register to memory mapping:
+
+RAX=0x000000000000000c is an unknown value
+RBX=0x00007f8ec809a800 is a thread
+RCX=0x0000000000000014 is an unknown value
+RDX=0x0000000000000000 is an unknown value
+RSP=0x00007f8ebcfbaaa0 is pointing into the stack for thread: 0x00007f8ec809a800
+RBP=0x00007f8ebcfbaaa0 is pointing into the stack for thread: 0x00007f8ec809a800
+RSI=0x0000000000000000 is an unknown value
+RDI=0x00000000ec88a250 is an oop
+java.lang.String 
+ - klass: 'java/lang/String'
+R8 =0x0000000000000000 is an unknown value
+R9 =0x00007f8eccdf6530: <offset 0xa85530> in /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/server/libjvm.so at 0x00007f8ecc371000
+R10=0x0000000000000010 is an unknown value
+R11=0x00007f8ecce12f00: <offset 0xaa1f00> in /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/server/libjvm.so at 0x00007f8ecc371000
+R12=0x00007f8ec81e0f78 is a global jni handle
+R13=0x00000000ec88a250 is an oop
+java.lang.String 
+ - klass: 'java/lang/String'
+R14=0x00007f8ec7ff70f0: <offset 0x1360f0> in /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/libjdwp.so at 0x00007f8ec7ec1000
+R15=0x0000000000000000 is an unknown value
+
+
+Stack: [0x00007f8ebcebb000,0x00007f8ebcfbc000],  sp=0x00007f8ebcfbaaa0,  free space=1022k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0x4e10a7]  java_lang_String::utf8_length(oopDesc*)+0x67
+V  [libjvm.so+0x50f91a]  unsigned+0xda
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x00007f8e68003000 JavaThread "RMI TCP Connection(3)-192.168.89.61" daemon [_thread_in_native, id=22815, stack(0x00007f8e7338f000,0x00007f8e73490000)]
+  0x00007f8e68001800 JavaThread "RMI TCP Connection(2)-192.168.89.61" daemon [_thread_blocked, id=22813, stack(0x00007f8e73995000,0x00007f8e73a96000)]
+  0x0000000041eed800 JavaThread "FLEXlm Heartbeat" daemon [_thread_blocked, id=22779, stack(0x00007f8e73894000,0x00007f8e73995000)]
+  0x00007f8e48038000 JavaThread "FLEXlm Heartbeat" daemon [_thread_blocked, id=22778, stack(0x00007f8e73591000,0x00007f8e73692000)]
+  0x00007f8ec800c800 JavaThread "DestroyJavaVM" [_thread_blocked, id=22721, stack(0x00007f8ecc270000,0x00007f8ecc371000)]
+  0x00007f8ec8283800 JavaThread "log update thread" daemon [_thread_blocked, id=22764, stack(0x00007f8e73bca000,0x00007f8e73ccb000)]
+  0x00007f8ec8257000 JavaThread "RMI Reaper" [_thread_blocked, id=22761, stack(0x00007f8e73a96000,0x00007f8e73b97000)]
+  0x00007f8ec8223800 JavaThread "RMI TCP Accept-0" daemon [_thread_in_native, id=22760, stack(0x00007f8e73eff000,0x00007f8e74000000)]
+  0x00007f8ec82a6800 JavaThread "Thread-1" daemon [_thread_blocked, id=22759, stack(0x00007f8e73ccb000,0x00007f8e73dcc000)]
+  0x00007f8ec82b8000 JavaThread "Thread-2" daemon [_thread_blocked, id=22758, stack(0x00007f8e73dcc000,0x00007f8e73ecd000)]
+  0x00007f8ec81da000 JavaThread "GC Daemon" daemon [_thread_blocked, id=22756, stack(0x00007f8ebc0c3000,0x00007f8ebc1c4000)]
+  0x00007f8ec81d9000 JavaThread "RMI RenewClean-[127.0.0.1:43085]" daemon [_thread_blocked, id=22755, stack(0x00007f8ebc1c4000,0x00007f8ebc2c5000)]
+  0x00007f8ec81d1800 JavaThread "RMI Scheduler(0)" daemon [_thread_blocked, id=22754, stack(0x00007f8ebc2c5000,0x00007f8ebc3c6000)]
+  0x00007f8ec80a5800 JavaThread "Low Memory Detector" daemon [_thread_blocked, id=22748, stack(0x00007f8ebc9b6000,0x00007f8ebcab7000)]
+  0x00007f8ec80a3800 JavaThread "C2 CompilerThread1" daemon [_thread_blocked, id=22747, stack(0x00007f8ebcab7000,0x00007f8ebcbb8000)]
+  0x00007f8ec80a0800 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=22746, stack(0x00007f8ebcbb8000,0x00007f8ebccb9000)]
+  0x00007f8e9c001000 JavaThread "JDWP Command Reader" daemon [_thread_in_native, id=22739, stack(0x00007f8ebccb9000,0x00007f8ebcdba000)]
+  0x00007f8ec809e800 JavaThread "JDWP Event Helper Thread" daemon [_thread_blocked, id=22738, stack(0x00007f8ebcdba000,0x00007f8ebcebb000)]
+=>0x00007f8ec809a800 JavaThread "JDWP Transport Listener: dt_socket" daemon [_thread_in_vm, id=22737, stack(0x00007f8ebcebb000,0x00007f8ebcfbc000)]
+  0x00007f8ec808e000 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=22735, stack(0x00007f8ebd0c0000,0x00007f8ebd1c1000)]
+  0x00007f8ec8073000 JavaThread "Finalizer" daemon [_thread_blocked, id=22734, stack(0x00007f8ebd1c1000,0x00007f8ebd2c2000)]
+  0x00007f8ec8071000 JavaThread "Reference Handler" daemon [_thread_blocked, id=22733, stack(0x00007f8ebd2c2000,0x00007f8ebd3c3000)]
+
+Other Threads:
+  0x00007f8ec806a000 VMThread [stack: 0x00007f8ebd3c3000,0x00007f8ebd4c4000] [id=22732]
+  0x00007f8ec80a8800 WatcherThread [stack: 0x00007f8ebc8b5000,0x00007f8ebc9b6000] [id=22749]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap
+ PSYoungGen      total 166016K, used 100931K [0x00000000e6b60000, 0x00000000f3e50000, 0x0000000100000000)
+  eden space 165376K, 60% used [0x00000000e6b60000,0x00000000ecd5bea8,0x00000000f0ce0000)
+  from space 640K, 93% used [0x00000000f3db0000,0x00000000f3e44e30,0x00000000f3e50000)
+  to   space 8640K, 0% used [0x00000000f2d70000,0x00000000f2d70000,0x00000000f35e0000)
+ PSOldGen        total 74496K, used 9393K [0x00000000b4200000, 0x00000000b8ac0000, 0x00000000e6b60000)
+  object space 74496K, 12% used [0x00000000b4200000,0x00000000b4b2c4f0,0x00000000b8ac0000)
+ PSPermGen       total 21248K, used 19475K [0x00000000af000000, 0x00000000b04c0000, 0x00000000b4200000)
+  object space 21248K, 91% used [0x00000000af000000,0x00000000b0304e58,0x00000000b04c0000)
+
+Code Cache  [0x00007f8ebe4a3000, 0x00007f8ebe713000, 0x00007f8ec14a3000)
+ total_blobs=706 nmethods=445 adapters=223 free_code_cache=48604416 largest_free_block=7552
+
+Dynamic libraries:
+40000000-40009000 r-xp 00000000 00:25 73602717                           /net/ttech/share/java/jdk1.6.0_31_x64/bin/java
+40108000-4010a000 rwxp 00008000 00:25 73602717                           /net/ttech/share/java/jdk1.6.0_31_x64/bin/java
+41ee8000-41f09000 rwxp 00000000 00:00 0                                  [heap]
+af000000-b04c0000 rwxp 00000000 00:00 0 
+b04c0000-b4200000 rwxp 00000000 00:00 0 
+b4200000-b8ac0000 rwxp 00000000 00:00 0 
+b8ac0000-e6b60000 rwxp 00000000 00:00 0 
+e6b60000-f3e50000 rwxp 00000000 00:00 0 
+f3e50000-f4620000 ---p 00000000 00:00 0 
+f4620000-100000000 rwxp 00000000 00:00 0 
+3711000000-3711020000 r-xp 00000000 00:1d 345838                         /usr/lib64/ld-2.16.so
+3711220000-3711221000 r-xp 00020000 00:1d 345838                         /usr/lib64/ld-2.16.so
+3711221000-3711222000 rwxp 00021000 00:1d 345838                         /usr/lib64/ld-2.16.so
+3711222000-3711223000 rwxp 00000000 00:00 0 
+3711400000-37115ad000 r-xp 00000000 00:1d 345839                         /usr/lib64/libc-2.16.so
+37115ad000-37117ad000 ---p 001ad000 00:1d 345839                         /usr/lib64/libc-2.16.so
+37117ad000-37117b1000 r-xp 001ad000 00:1d 345839                         /usr/lib64/libc-2.16.so
+37117b1000-37117b3000 rwxp 001b1000 00:1d 345839                         /usr/lib64/libc-2.16.so
+37117b3000-37117b8000 rwxp 00000000 00:00 0 
+3711800000-3711803000 r-xp 00000000 00:1d 345846                         /usr/lib64/libdl-2.16.so
+3711803000-3711a02000 ---p 00003000 00:1d 345846                         /usr/lib64/libdl-2.16.so
+3711a02000-3711a03000 r-xp 00002000 00:1d 345846                         /usr/lib64/libdl-2.16.so
+3711a03000-3711a04000 rwxp 00003000 00:1d 345846                         /usr/lib64/libdl-2.16.so
+3711c00000-3711c16000 r-xp 00000000 00:1d 345840                         /usr/lib64/libpthread-2.16.so
+3711c16000-3711e16000 ---p 00016000 00:1d 345840                         /usr/lib64/libpthread-2.16.so
+3711e16000-3711e17000 r-xp 00016000 00:1d 345840                         /usr/lib64/libpthread-2.16.so
+3711e17000-3711e18000 rwxp 00017000 00:1d 345840                         /usr/lib64/libpthread-2.16.so
+3711e18000-3711e1c000 rwxp 00000000 00:00 0 
+3712000000-3712007000 r-xp 00000000 00:1d 345841                         /usr/lib64/librt-2.16.so
+3712007000-3712206000 ---p 00007000 00:1d 345841                         /usr/lib64/librt-2.16.so
+3712206000-3712207000 r-xp 00006000 00:1d 345841                         /usr/lib64/librt-2.16.so
+3712207000-3712208000 rwxp 00007000 00:1d 345841                         /usr/lib64/librt-2.16.so
+3712800000-3712900000 r-xp 00000000 00:1d 345854                         /usr/lib64/libm-2.16.so
+3712900000-3712aff000 ---p 00100000 00:1d 345854                         /usr/lib64/libm-2.16.so
+3712aff000-3712b00000 r-xp 000ff000 00:1d 345854                         /usr/lib64/libm-2.16.so
+3712b00000-3712b01000 rwxp 00100000 00:1d 345854                         /usr/lib64/libm-2.16.so
+3713800000-3713816000 r-xp 00000000 00:1d 345851                         /usr/lib64/libresolv-2.16.so
+3713816000-3713a15000 ---p 00016000 00:1d 345851                         /usr/lib64/libresolv-2.16.so
+3713a15000-3713a16000 r-xp 00015000 00:1d 345851                         /usr/lib64/libresolv-2.16.so
+3713a16000-3713a17000 rwxp 00016000 00:1d 345851                         /usr/lib64/libresolv-2.16.so
+3713a17000-3713a19000 rwxp 00000000 00:00 0 
+372cc00000-372cc16000 r-xp 00000000 00:1d 345931                         /usr/lib64/libnsl-2.16.so
+372cc16000-372ce15000 ---p 00016000 00:1d 345931                         /usr/lib64/libnsl-2.16.so
+372ce15000-372ce16000 r-xp 00015000 00:1d 345931                         /usr/lib64/libnsl-2.16.so
+372ce16000-372ce17000 rwxp 00016000 00:1d 345931                         /usr/lib64/libnsl-2.16.so
+372ce17000-372ce19000 rwxp 00000000 00:00 0 
+7f8e3c000000-7f8e3c021000 rwxp 00000000 00:00 0 
+7f8e3c021000-7f8e40000000 ---p 00000000 00:00 0 
+7f8e44000000-7f8e44021000 rwxp 00000000 00:00 0 
+7f8e44021000-7f8e48000000 ---p 00000000 00:00 0 
+7f8e48000000-7f8e4808b000 rwxp 00000000 00:00 0 
+7f8e4808b000-7f8e4c000000 ---p 00000000 00:00 0 
+7f8e4c000000-7f8e4c021000 rwxp 00000000 00:00 0 
+7f8e4c021000-7f8e50000000 ---p 00000000 00:00 0 
+7f8e50000000-7f8e50021000 rwxp 00000000 00:00 0 
+7f8e50021000-7f8e54000000 ---p 00000000 00:00 0 
+7f8e54000000-7f8e54021000 rwxp 00000000 00:00 0 
+7f8e54021000-7f8e58000000 ---p 00000000 00:00 0 
+7f8e58000000-7f8e58021000 rwxp 00000000 00:00 0 
+7f8e58021000-7f8e5c000000 ---p 00000000 00:00 0 
+7f8e5c000000-7f8e5c021000 rwxp 00000000 00:00 0 
+7f8e5c021000-7f8e60000000 ---p 00000000 00:00 0 
+7f8e60000000-7f8e601d9000 rwxp 00000000 00:00 0 
+7f8e601d9000-7f8e64000000 ---p 00000000 00:00 0 
+7f8e64000000-7f8e64021000 rwxp 00000000 00:00 0 
+7f8e64021000-7f8e68000000 ---p 00000000 00:00 0 
+7f8e68000000-7f8e68021000 rwxp 00000000 00:00 0 
+7f8e68021000-7f8e6c000000 ---p 00000000 00:00 0 
+7f8e6c000000-7f8e6c021000 rwxp 00000000 00:00 0 
+7f8e6c021000-7f8e70000000 ---p 00000000 00:00 0 
+7f8e7328e000-7f8e73291000 ---p 00000000 00:00 0 
+7f8e73291000-7f8e7338f000 rwxp 00000000 00:00 0 
+7f8e7338f000-7f8e73392000 ---p 00000000 00:00 0 
+7f8e73392000-7f8e73490000 rwxp 00000000 00:00 0                          [stack:22815]
+7f8e73490000-7f8e73493000 ---p 00000000 00:00 0 
+7f8e73493000-7f8e73591000 rwxp 00000000 00:00 0 
+7f8e73591000-7f8e73594000 ---p 00000000 00:00 0 
+7f8e73594000-7f8e73692000 rwxp 00000000 00:00 0                          [stack:22778]
+7f8e73692000-7f8e73695000 ---p 00000000 00:00 0 
+7f8e73695000-7f8e73793000 rwxp 00000000 00:00 0 
+7f8e73793000-7f8e73796000 ---p 00000000 00:00 0 
+7f8e73796000-7f8e73894000 rwxp 00000000 00:00 0 
+7f8e73894000-7f8e73897000 ---p 00000000 00:00 0 
+7f8e73897000-7f8e73995000 rwxp 00000000 00:00 0                          [stack:22779]
+7f8e73995000-7f8e73998000 ---p 00000000 00:00 0 
+7f8e73998000-7f8e73a96000 rwxp 00000000 00:00 0                          [stack:22813]
+7f8e73a96000-7f8e73a99000 ---p 00000000 00:00 0 
+7f8e73a99000-7f8e73b97000 rwxp 00000000 00:00 0                          [stack:22761]
+7f8e73bca000-7f8e73bcd000 ---p 00000000 00:00 0 
+7f8e73bcd000-7f8e73ccb000 rwxp 00000000 00:00 0                          [stack:22764]
+7f8e73ccb000-7f8e73cce000 ---p 00000000 00:00 0 
+7f8e73cce000-7f8e73dcc000 rwxp 00000000 00:00 0                          [stack:22759]
+7f8e73dcc000-7f8e73dcf000 ---p 00000000 00:00 0 
+7f8e73dcf000-7f8e73ecd000 rwxp 00000000 00:00 0                          [stack:22758]
+7f8e73eff000-7f8e73f02000 ---p 00000000 00:00 0 
+7f8e73f02000-7f8e74000000 rwxp 00000000 00:00 0                          [stack:22760]
+7f8e74000000-7f8e74021000 rwxp 00000000 00:00 0 
+7f8e74021000-7f8e78000000 ---p 00000000 00:00 0 
+7f8e78000000-7f8e78021000 rwxp 00000000 00:00 0 
+7f8e78021000-7f8e7c000000 ---p 00000000 00:00 0 
+7f8e7c000000-7f8e7c021000 rwxp 00000000 00:00 0 
+7f8e7c021000-7f8e80000000 ---p 00000000 00:00 0 
+7f8e80000000-7f8e80021000 rwxp 00000000 00:00 0 
+7f8e80021000-7f8e84000000 ---p 00000000 00:00 0 
+7f8e84000000-7f8e84021000 rwxp 00000000 00:00 0 
+7f8e84021000-7f8e88000000 ---p 00000000 00:00 0 
+7f8e88000000-7f8e88d7f000 rwxp 00000000 00:00 0 
+7f8e88d7f000-7f8e8c000000 ---p 00000000 00:00 0 
+7f8e8c000000-7f8e8cc99000 rwxp 00000000 00:00 0 
+7f8e8cc99000-7f8e90000000 ---p 00000000 00:00 0 
+7f8e90000000-7f8e90021000 rwxp 00000000 00:00 0 
+7f8e90021000-7f8e94000000 ---p 00000000 00:00 0 
+7f8e94000000-7f8e94021000 rwxp 00000000 00:00 0 
+7f8e94021000-7f8e98000000 ---p 00000000 00:00 0 
+7f8e98000000-7f8e98021000 rwxp 00000000 00:00 0 
+7f8e98021000-7f8e9c000000 ---p 00000000 00:00 0 
+7f8e9c000000-7f8e9c207000 rwxp 00000000 00:00 0 
+7f8e9c207000-7f8ea0000000 ---p 00000000 00:00 0 
+7f8ea0000000-7f8ea0021000 rwxp 00000000 00:00 0 
+7f8ea0021000-7f8ea4000000 ---p 00000000 00:00 0 
+7f8ea4000000-7f8ea4021000 rwxp 00000000 00:00 0 
+7f8ea4021000-7f8ea8000000 ---p 00000000 00:00 0 
+7f8ea8000000-7f8ea8021000 rwxp 00000000 00:00 0 
+7f8ea8021000-7f8eac000000 ---p 00000000 00:00 0 
+7f8eac000000-7f8eac021000 rwxp 00000000 00:00 0 
+7f8eac021000-7f8eb0000000 ---p 00000000 00:00 0 
+7f8eb0000000-7f8eb0021000 rwxp 00000000 00:00 0 
+7f8eb0021000-7f8eb4000000 ---p 00000000 00:00 0 
+7f8eb4000000-7f8eb4021000 rwxp 00000000 00:00 0 
+7f8eb4021000-7f8eb8000000 ---p 00000000 00:00 0 
+7f8eb8000000-7f8eb8021000 rwxp 00000000 00:00 0 
+7f8eb8021000-7f8ebc000000 ---p 00000000 00:00 0 
+7f8ebc086000-7f8ebc089000 r-xs 00027000 00:25 73606160                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/ext/sunjce_provider.jar
+7f8ebc089000-7f8ebc08f000 r-xs 00095000 00:25 73606024                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/jsse.jar
+7f8ebc08f000-7f8ebc093000 r-xs 00018000 00:1d 951355                     /local/workspaces/bgr/ttwork64/com.testingtech.ttworkbench.ttcnlibrary/tt3plugins/TTlibraryBuiltin/lib/TTlibrary_Logging.jar
+7f8ebc093000-7f8ebc095000 r-xs 00008000 00:1d 951356                     /local/workspaces/bgr/ttwork64/com.testingtech.ttworkbench.ttcnlibrary/tt3plugins/TTlibraryBuiltin/lib/TTlibrary_HTTPTest.jar
+7f8ebc095000-7f8ebc097000 r-xs 00008000 00:1d 951357                     /local/workspaces/bgr/ttwork64/com.testingtech.ttworkbench.ttcnlibrary/tt3plugins/TTlibraryBuiltin/lib/TTlibrary_UnitTest.jar
+7f8ebc097000-7f8ebc099000 r-xs 00003000 00:1d 951354                     /local/workspaces/bgr/ttwork64/com.testingtech.ttworkbench.ttcnlibrary/tt3plugins/TTlibraryBuiltin/lib/TTlibrary_UI.jar
+7f8ebc099000-7f8ebc09b000 r-xs 00003000 00:1d 951353                     /local/workspaces/bgr/ttwork64/com.testingtech.ttworkbench.ttcnlibrary/tt3plugins/TTlibraryBuiltin/lib/TTlibrary_Net.jar
+7f8ebc09b000-7f8ebc09d000 r-xs 00006000 00:1d 951352                     /local/workspaces/bgr/ttwork64/com.testingtech.ttworkbench.ttcnlibrary/tt3plugins/TTlibraryBuiltin/lib/TTlibrary_File.jar
+7f8ebc09d000-7f8ebc09f000 r-xs 00000000 00:1d 951351                     /local/workspaces/bgr/ttwork64/com.testingtech.ttworkbench.ttcnlibrary/tt3plugins/TTlibraryBuiltin/lib/TTlibrary.jar
+7f8ebc09f000-7f8ebc0a2000 r-xs 00013000 00:1d 951831                     /local/workspaces/bgr/ttwork64/com.testingtech.ttworkbench.proto.rt/tt3plugins/protoBuiltinPlugin/lib/PROTOAUX.jar
+7f8ebc0a2000-7f8ebc0a4000 r-xs 00002000 00:1d 953937                     /local/workspaces/bgr/ttwork64/com.testingtech.ttworkbench.capture.protocol.terminal/tt3plugins/terminalCodecBuiltinPlugin/lib/Terminal_TypesAndConf.jar
+7f8ebc0a4000-7f8ebc0a9000 r-xs 00026000 00:1d 951702                     /local/workspaces/bgr/ttwork64/com.testingtech.ttworkbench.tcp.rt/tt3plugins/tcpBuiltinPlugin/lib/TCPAUX.jar
+7f8ebc0a9000-7f8ebc0ad000 r-xs 00012000 00:1d 954196                     /local/workspaces/bgr/ttwork64/com.testingtech.ttworkbench.ttcn.rt/tt3plugins/ttcn3BuiltinPlugin/lib/TTCN3AUX.jar
+7f8ebc0ad000-7f8ebc0af000 r-xs 00004000 00:1d 953839                     /local/workspaces/bgr/ttwork64/com.testingtech.ttworkbench.capture.protocol.raw/tt3plugins/rawCodecBuiltinPlugin/lib/Raw_TypesAndConf.jar
+7f8ebc0af000-7f8ebc0b1000 r-xs 00009000 00:25 1051017                    /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3build/HANDLE_API.jar
+7f8ebc0b1000-7f8ebc0b4000 r-xs 00011000 00:25 1051025                    /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3build/ACTIONS_API.jar
+7f8ebc0b4000-7f8ebc0b5000 r-xs 00002000 00:25 1051024                    /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3build/CONFIG_API.jar
+7f8ebc0b5000-7f8ebc0b8000 r-xs 0001e000 00:25 1051023                    /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3build/CONVERT_API.jar
+7f8ebc0b8000-7f8ebc0bd000 r-xs 00024000 00:25 1051019                    /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3build/PROTO_API.jar
+7f8ebc0bd000-7f8ebc0be000 r-xs 00002000 00:25 1051020                    /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3build/CONFIG_CAR.jar
+7f8ebc0be000-7f8ebc0c0000 r-xs 00008000 00:25 1051022                    /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3build/API.jar
+7f8ebc0c0000-7f8ebc0c1000 r-xs 00001000 00:25 1051021                    /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3build/Parameters.jar
+7f8ebc0c1000-7f8ebc0c3000 r-xs 00002000 00:25 1051026                    /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3build/EVENTS_API.jar
+7f8ebc0c3000-7f8ebc0c6000 ---p 00000000 00:00 0 
+7f8ebc0c6000-7f8ebc1c4000 rwxp 00000000 00:00 0                          [stack:22756]
+7f8ebc1c4000-7f8ebc1c7000 ---p 00000000 00:00 0 
+7f8ebc1c7000-7f8ebc2c5000 rwxp 00000000 00:00 0                          [stack:22755]
+7f8ebc2c5000-7f8ebc2c8000 ---p 00000000 00:00 0 
+7f8ebc2c8000-7f8ebc3c6000 rwxp 00000000 00:00 0                          [stack:22754]
+7f8ebc3c6000-7f8ebc3c7000 r-xp 00000000 00:25 73606069                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/librmi.so
+7f8ebc3c7000-7f8ebc4c6000 ---p 00001000 00:25 73606069                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/librmi.so
+7f8ebc4c6000-7f8ebc4c7000 rwxp 00000000 00:25 73606069                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/librmi.so
+7f8ebc4c7000-7f8ebc4cc000 r-xp 00000000 00:1d 342031                     /usr/lib64/libnss_dns-2.16.so
+7f8ebc4cc000-7f8ebc6cc000 ---p 00005000 00:1d 342031                     /usr/lib64/libnss_dns-2.16.so
+7f8ebc6cc000-7f8ebc6cd000 r-xp 00005000 00:1d 342031                     /usr/lib64/libnss_dns-2.16.so
+7f8ebc6cd000-7f8ebc6ce000 rwxp 00006000 00:1d 342031                     /usr/lib64/libnss_dns-2.16.so
+7f8ebc6ce000-7f8ebc6eb000 r-xs 001ba000 00:1d 287742                     /local/bgr/eclipse/plugins/org.apache.ant_1.8.2.v20120109-1030/lib/ant.jar
+7f8ebc6eb000-7f8ebc71c000 rwxp 00000000 00:00 0 
+7f8ebc71c000-7f8ebc72f000 r-xp 00000000 00:25 73606065                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/libnet.so
+7f8ebc72f000-7f8ebc830000 ---p 00013000 00:25 73606065                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/libnet.so
+7f8ebc830000-7f8ebc833000 rwxp 00014000 00:25 73606065                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/libnet.so
+7f8ebc833000-7f8ebc83a000 r-xs 00000000 00:1d 342328                     /usr/lib64/gconv/gconv-modules.cache
+7f8ebc83a000-7f8ebc859000 r-xp 00000000 00:1d 342899                     /usr/share/locale/de/LC_MESSAGES/libc.mo
+7f8ebc859000-7f8ebc85a000 r-xs 00001000 00:1d 452493                     /local/workspaces/bgr/ttwork64/com.testingtech.tools/lib/jaxen-jdom.jar
+7f8ebc85a000-7f8ebc85c000 r-xs 0000d000 00:1d 452494                     /local/workspaces/bgr/ttwork64/com.testingtech.tools/lib/jdom-contrib.jar
+7f8ebc85c000-7f8ebc85f000 r-xs 00022000 00:1d 452495                     /local/workspaces/bgr/ttwork64/com.testingtech.tools/lib/jdom.jar
+7f8ebc85f000-7f8ebc864000 r-xs 00023000 00:1d 452492                     /local/workspaces/bgr/ttwork64/com.testingtech.tools/lib/jaxen-core.jar
+7f8ebc864000-7f8ebc867000 r-xs 0002d000 00:1d 452489                     /local/workspaces/bgr/ttwork64/com.testingtech.tools/lib/isorelax.jar
+7f8ebc867000-7f8ebc877000 r-xs 0009b000 00:1d 452499                     /local/workspaces/bgr/ttwork64/com.testingtech.tools/lib/msv.jar
+7f8ebc877000-7f8ebc87c000 r-xs 00076000 00:1d 452509                     /local/workspaces/bgr/ttwork64/com.testingtech.tools/lib/xsdlib.jar
+7f8ebc87c000-7f8ebc894000 r-xs 00127000 00:1d 287804                     /local/bgr/eclipse/plugins/org.apache.xerces_2.9.0.v201101211617.jar
+7f8ebc894000-7f8ebc8a8000 r-xs 000d8000 00:1d 452506                     /local/workspaces/bgr/ttwork64/com.testingtech.tools/lib/tools.jar
+7f8ebc8a8000-7f8ebc8b5000 r-xs 0009a000 00:1d 452488                     /local/workspaces/bgr/ttwork64/com.testingtech.tools/lib/freemarker.jar
+7f8ebc8b5000-7f8ebc8b6000 ---p 00000000 00:00 0 
+7f8ebc8b6000-7f8ebc9b6000 rwxp 00000000 00:00 0                          [stack:22749]
+7f8ebc9b6000-7f8ebc9b9000 ---p 00000000 00:00 0 
+7f8ebc9b9000-7f8ebcab7000 rwxp 00000000 00:00 0                          [stack:22748]
+7f8ebcab7000-7f8ebcaba000 ---p 00000000 00:00 0 
+7f8ebcaba000-7f8ebcbb8000 rwxp 00000000 00:00 0                          [stack:22747]
+7f8ebcbb8000-7f8ebcbbb000 ---p 00000000 00:00 0 
+7f8ebcbbb000-7f8ebccb9000 rwxp 00000000 00:00 0                          [stack:22746]
+7f8ebccb9000-7f8ebccbc000 ---p 00000000 00:00 0 
+7f8ebccbc000-7f8ebcdba000 rwxp 00000000 00:00 0                          [stack:22739]
+7f8ebcdba000-7f8ebcdbd000 ---p 00000000 00:00 0 
+7f8ebcdbd000-7f8ebcebb000 rwxp 00000000 00:00 0                          [stack:22738]
+7f8ebcebb000-7f8ebcebe000 ---p 00000000 00:00 0 
+7f8ebcebe000-7f8ebcfbc000 rwxp 00000000 00:00 0                          [stack:22737]
+7f8ebcfbc000-7f8ebcfbf000 r-xp 00000000 00:25 73606043                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/libdt_socket.so
+7f8ebcfbf000-7f8ebd0be000 ---p 00003000 00:25 73606043                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/libdt_socket.so
+7f8ebd0be000-7f8ebd0c0000 rwxp 00002000 00:25 73606043                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/libdt_socket.so
+7f8ebd0c0000-7f8ebd0c3000 ---p 00000000 00:00 0 
+7f8ebd0c3000-7f8ebd1c1000 rwxp 00000000 00:00 0                          [stack:22735]
+7f8ebd1c1000-7f8ebd1c4000 ---p 00000000 00:00 0 
+7f8ebd1c4000-7f8ebd2c2000 rwxp 00000000 00:00 0                          [stack:22734]
+7f8ebd2c2000-7f8ebd2c5000 ---p 00000000 00:00 0 
+7f8ebd2c5000-7f8ebd3c3000 rwxp 00000000 00:00 0                          [stack:22733]
+7f8ebd3c3000-7f8ebd3c4000 ---p 00000000 00:00 0 
+7f8ebd3c4000-7f8ebd9fd000 rwxp 00000000 00:00 0                          [stack:22732]
+7f8ebd9fd000-7f8ebdb99000 r-xs 030c2000 00:25 73606034                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/rt.jar
+7f8ebdb99000-7f8ebdbc1000 rwxp 00000000 00:00 0 
+7f8ebdbc1000-7f8ebdbc2000 ---p 00000000 00:00 0 
+7f8ebdbc2000-7f8ebdcc2000 rwxp 00000000 00:00 0                          [stack:22731]
+7f8ebdcc2000-7f8ebdcc3000 ---p 00000000 00:00 0 
+7f8ebdcc3000-7f8ebddc3000 rwxp 00000000 00:00 0                          [stack:22730]
+7f8ebddc3000-7f8ebddc4000 ---p 00000000 00:00 0 
+7f8ebddc4000-7f8ebdec4000 rwxp 00000000 00:00 0                          [stack:22729]
+7f8ebdec4000-7f8ebdec5000 ---p 00000000 00:00 0 
+7f8ebdec5000-7f8ebdfea000 rwxp 00000000 00:00 0                          [stack:22728]
+7f8ebdfea000-7f8ebe15a000 rwxp 00000000 00:00 0 
+7f8ebe15a000-7f8ebe165000 rwxp 00000000 00:00 0 
+7f8ebe165000-7f8ebe183000 rwxp 00000000 00:00 0 
+7f8ebe183000-7f8ebe1a8000 rwxp 00000000 00:00 0 
+7f8ebe1a8000-7f8ebe317000 rwxp 00000000 00:00 0 
+7f8ebe317000-7f8ebe382000 rwxp 00000000 00:00 0 
+7f8ebe382000-7f8ebe386000 ---p 00000000 00:00 0 
+7f8ebe386000-7f8ebe3e2000 rwxp 00000000 00:00 0 
+7f8ebe3e2000-7f8ebe3ed000 rwxp 00000000 00:00 0 
+7f8ebe3ed000-7f8ebe4a3000 rwxp 00000000 00:00 0 
+7f8ebe4a3000-7f8ebe713000 rwxp 00000000 00:00 0 
+7f8ebe713000-7f8ec14a3000 rwxp 00000000 00:00 0 
+7f8ec14a3000-7f8ec14b1000 r-xp 00000000 00:25 73606074                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/libzip.so
+7f8ec14b1000-7f8ec15b3000 ---p 0000e000 00:25 73606074                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/libzip.so
+7f8ec15b3000-7f8ec15b6000 rwxp 00010000 00:25 73606074                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/libzip.so
+7f8ec15b6000-7f8ec15b7000 rwxp 00000000 00:00 0 
+7f8ec15b7000-7f8ec15c1000 r-xp 00000000 00:1d 342037                     /usr/lib64/libnss_nis-2.16.so
+7f8ec15c1000-7f8ec17c1000 ---p 0000a000 00:1d 342037                     /usr/lib64/libnss_nis-2.16.so
+7f8ec17c1000-7f8ec17c2000 r-xp 0000a000 00:1d 342037                     /usr/lib64/libnss_nis-2.16.so
+7f8ec17c2000-7f8ec17c3000 rwxp 0000b000 00:1d 342037                     /usr/lib64/libnss_nis-2.16.so
+7f8ec17c3000-7f8ec17cf000 r-xp 00000000 00:1d 342033                     /usr/lib64/libnss_files-2.16.so
+7f8ec17cf000-7f8ec19ce000 ---p 0000c000 00:1d 342033                     /usr/lib64/libnss_files-2.16.so
+7f8ec19ce000-7f8ec19cf000 r-xp 0000b000 00:1d 342033                     /usr/lib64/libnss_files-2.16.so
+7f8ec19cf000-7f8ec19d0000 rwxp 0000c000 00:1d 342033                     /usr/lib64/libnss_files-2.16.so
+7f8ec19d0000-7f8ec7dbe000 r-xp 00000000 00:1d 342928                     /usr/lib/locale/locale-archive
+7f8ec7dbe000-7f8ec7dc1000 r-xp 00000000 00:25 73606068                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/libnpt.so
+7f8ec7dc1000-7f8ec7ec0000 ---p 00003000 00:25 73606068                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/libnpt.so
+7f8ec7ec0000-7f8ec7ec1000 rwxp 00002000 00:25 73606068                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/libnpt.so
+7f8ec7ec1000-7f8ec7ef7000 r-xp 00000000 00:25 73606056                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/libjdwp.so
+7f8ec7ef7000-7f8ec7ff6000 ---p 00036000 00:25 73606056                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/libjdwp.so
+7f8ec7ff6000-7f8ec8000000 rwxp 00035000 00:25 73606056                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/libjdwp.so
+7f8ec8000000-7f8ec8445000 rwxp 00000000 00:00 0 
+7f8ec8445000-7f8ecc000000 ---p 00000000 00:00 0 
+7f8ecc000000-7f8ecc001000 r-xs 00005000 00:1d 452503                     /local/workspaces/bgr/ttwork64/com.testingtech.tools/lib/saxpath.jar
+7f8ecc001000-7f8ecc003000 r-xs 00000000 00:1d 452505                     /local/workspaces/bgr/ttwork64/com.testingtech.tools/lib/tdomcodec.jar
+7f8ecc003000-7f8ecc009000 r-xs 0003d000 00:1d 452478                     /local/workspaces/bgr/ttwork64/com.testingtech.tools/lib/EccpressoAll.jar
+7f8ecc009000-7f8ecc014000 rwxp 00000000 00:00 0 
+7f8ecc014000-7f8ecc032000 rwxp 00000000 00:00 0 
+7f8ecc032000-7f8ecc05b000 r-xp 00000000 00:25 73606052                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/libjava.so
+7f8ecc05b000-7f8ecc15a000 ---p 00029000 00:25 73606052                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/libjava.so
+7f8ecc15a000-7f8ecc161000 rwxp 00028000 00:25 73606052                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/libjava.so
+7f8ecc161000-7f8ecc16e000 r-xp 00000000 00:25 73606073                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/libverify.so
+7f8ecc16e000-7f8ecc26d000 ---p 0000d000 00:25 73606073                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/libverify.so
+7f8ecc26d000-7f8ecc270000 rwxp 0000c000 00:25 73606073                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/libverify.so
+7f8ecc270000-7f8ecc273000 ---p 00000000 00:00 0 
+7f8ecc273000-7f8ecc371000 rwxp 00000000 00:00 0                          [stack:22721]
+7f8ecc371000-7f8eccc8b000 r-xp 00000000 00:25 73606081                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/server/libjvm.so
+7f8eccc8b000-7f8eccd8d000 ---p 0091a000 00:25 73606081                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/server/libjvm.so
+7f8eccd8d000-7f8eccf42000 rwxp 0091c000 00:25 73606081                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/server/libjvm.so
+7f8eccf42000-7f8eccf7f000 rwxp 00000000 00:00 0 
+7f8eccf7f000-7f8eccf86000 r-xp 00000000 00:25 73606076                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/jli/libjli.so
+7f8eccf86000-7f8ecd087000 ---p 00007000 00:25 73606076                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/jli/libjli.so
+7f8ecd087000-7f8ecd089000 rwxp 00008000 00:25 73606076                   /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/jli/libjli.so
+7f8ecd089000-7f8ecd08a000 rwxp 00000000 00:00 0 
+7f8ecd08a000-7f8ecd08b000 r-xs 00004000 00:1d 452502                     /local/workspaces/bgr/ttwork64/com.testingtech.tools/lib/relaxngDatatype.jar
+7f8ecd08b000-7f8ecd08f000 r-xs 00032000 00:1d 452487                     /local/workspaces/bgr/ttwork64/com.testingtech.tools/lib/flexlm.jar
+7f8ecd08f000-7f8ecd091000 r-xs 00007000 00:1d 452510                     /local/workspaces/bgr/ttwork64/com.testingtech.tools/lib/zeta.jar
+7f8ecd091000-7f8ecd095000 r-xs 00053000 00:1d 452480                     /local/workspaces/bgr/ttwork64/com.testingtech.tools/lib/antlr.jar
+7f8ecd095000-7f8ecd09b000 r-xs 00068000 00:1d 452500                     /local/workspaces/bgr/ttwork64/com.testingtech.tools/lib/protobuf-java-2.4.1.jar
+7f8ecd09b000-7f8ecd09d000 r-xs 0000c000 00:1d 452501                     /local/workspaces/bgr/ttwork64/com.testingtech.tools/lib/protobuf-socket-rpc-2.0.jar
+7f8ecd09d000-7f8ecd0a5000 rwxs 00000000 00:20 5196720                    /tmp/hsperfdata_bgr/22720
+7f8ecd0a5000-7f8ecd0a6000 rwxp 00000000 00:00 0 
+7f8ecd0a6000-7f8ecd0a7000 r-xp 00000000 00:00 0 
+7f8ecd0a7000-7f8ecd0a8000 rwxp 00000000 00:00 0 
+7fff48732000-7fff48754000 rwxp 00000000 00:00 0                          [stack]
+7fff487fe000-7fff48800000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+
+VM Arguments:
+jvm_args: -agentlib:jdwp=transport=dt_socket,suspend=y,address=localhost:55722 -Xmx1213M -Dfile.encoding=UTF-8 -Dttwb.version=TTworkbench Professional 1.1.16.qualifier -Djava.security.policy=/local/workspaces/bgr/ttwork64/com.testingtech.ttworkbench.ttman/server.policy -Dtestingtech.ttcn3.debugger.enabled=true -Dlogging.local=true 
+java_command: com.testingtech.ttcn.rmi.RMIManager %2Fnet%2Fhome%2Fbgr%2Fgit%2FPlayITS%2FCar%2Fttworkbench.play.widget.car.rt%2Fconfiguration%2Fmain.clf 1100 %2Flocal%2Fbgr%2Feclipse%2Flicense.dat file%3A%2Flocal%2Fworkspaces%2Fbgr%2Fttwork64%2Fcom.testingtech.auth.core%2Ftt3plugins%2F file%3A%2Flocal%2Fworkspaces%2Fbgr%2Fttwork64%2Fcom.testingtech.tools%2Ftt3plugins%2F file%3A%2Flocal%2Fworkspaces%2Fbgr%2Fttwork64%2Fcom.testingtech.ttthree.base%2Ftt3plugins%2F file%3A%2Flocal%2Fworkspaces%2Fbgr%2Fttwork64%2Fcom.testingtech.ttthree.compiler%2Ftt3plugins%2F file%3A%2Flocal%2Fworkspaces%2Fbgr%2Fttwork64%2Fcom.testingtech.ttthree.metamodel%2Ftt3plugins%2F file%3A%2Flocal%2Fworkspaces%2Fbgr%2Fttwork64%2Fcom.testingtech.ttthree.runtime%2Ftt3plugins%2F file%3A%2Flocal%2Fworkspaces%2Fbgr%2Fttwork64%2Fcom.testingtech.ttworkbench.auth.cert%2F file%3A%2Flocal%2Fworkspaces%2Fbgr%2Fttwork64%2Fcom.testingtech.ttworkbench.auth.ttthree%2Ftt3plugins%2F file%3A%2Flocal%2Fworkspaces%2Fbgr%2Fttwork64%2Fcom.testingtech.ttworkbench.capture.protocol.raw%2Ftt3plugins%2F file%3A%2Flocal%2Fworkspaces%2Fbgr%2Fttwork64%2Fcom.testingtech.ttworkbench.capture.protocol.terminal%2Ftt3plugins%2F file%3A%2Flocal%2Fworkspaces%2Fbgr%2Fttwork64%2Fcom.testingtech.ttworkbench.cdgen%2Ftt3plugins%2F file%3A%2Flocal%2Fworkspaces%2Fbgr%2Fttwork64%2Fcom.testingtech.ttworkbench.native.rt%2Ftt3plugins%2F file%3A%2Flocal%2Fworkspaces%2Fbgr%2Fttwork64%2Fcom.testingtech.ttworkbench.proto.rt%2Ftt3plugins%2F file%3A%2Flocal%2Fworkspaces%2Fbgr%2Fttwork64%2Fcom.testingtech.ttworkbench.proto.tt3%2Ftt3plugins%2F file%3A%2Flocal%2Fworkspaces%2Fbgr%2Fttwork64%2Fcom.testingtech.ttworkbench.t3doc.gen%2Ftt3plugins%2F file%3A%2Flocal%2Fworkspaces%2Fbgr%2Fttwork64%2Fcom.testingtech.ttworkbench.ttcn.rt%2Ftt3plugins%2F file%3A%2Flocal%2Fworkspaces%2Fbgr%2Fttwork64%2Fcom.testingtech.ttworkbench.ttcn.tt3%2Ftt3plugins%2F file%3A%2Flocal%2Fworkspaces%2Fbgr%2Fttwork64%2Fcom.testingtech.ttworkbench.ttcnlibrary%2Ftt3plugins%2F file%3A
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=/net/ttech/share/java/jdk1.6_64
+CLASSPATH=/usr/local/asn1pjav/linux/current/lib/oss.jar
+PATH=/net/ttech/share/java/jdk1.6_64/bin:/net/ttech/bin:/usr/local/asn1pjav/linux/current/bin:/net/ttech/share/build-tools/apache-ant-1.8.4/bin:/net/ttech/bin:/net/ttech/share/java/jdk1.6/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/net/ttech/bin
+USERNAME=bgr
+LD_LIBRARY_PATH=/net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64/server:/net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/amd64:/net/ttech/share/java/jdk1.6.0_31_x64/jre/../lib/amd64
+SHELL=/bin/tcsh
+DISPLAY=:4.0
+HOSTTYPE=x86_64-linux
+OSTYPE=linux
+MACHTYPE=x86_64
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0x85f7d0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGBUS: [libjvm.so+0x85f7d0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGFPE: [libjvm.so+0x70e3e0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGPIPE: [libjvm.so+0x70e3e0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGXFSZ: [libjvm.so+0x70e3e0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGILL: [libjvm.so+0x70e3e0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGUSR1: SIG_DFL, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGUSR2: [libjvm.so+0x711210], sa_mask[0]=0x00000004, sa_flags=0x10000004
+SIGHUP: [libjvm.so+0x710e10], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGINT: [libjvm.so+0x710e10], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGTERM: [libjvm.so+0x710e10], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGQUIT: [libjvm.so+0x710e10], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+
+
+---------------  S Y S T E M  ---------------
+
+OS:Fedora release 18 (Spherical Cow)
+
+uname:Linux 3.8.9-200.fc18.x86_64 #1 SMP Fri Apr 26 12:50:07 UTC 2013 x86_64
+libc:glibc 2.16 NPTL 2.16 
+rlimit: STACK 8192k, CORE 0k, NPROC 1024, NOFILE 4096, AS infinity
+load average:0,14 0,38 0,48
+
+/proc/meminfo:
+MemTotal:        7145804 kB
+MemFree:          554676 kB
+Buffers:              48 kB
+Cached:           294524 kB
+SwapCached:        29516 kB
+Active:          4837972 kB
+Inactive:        1316148 kB
+Active(anon):    4740484 kB
+Inactive(anon):  1160848 kB
+Active(file):      97488 kB
+Inactive(file):   155300 kB
+Unevictable:        3500 kB
+Mlocked:            3500 kB
+SwapTotal:       4145148 kB
+SwapFree:        3516772 kB
+Dirty:                92 kB
+Writeback:             0 kB
+AnonPages:       5834020 kB
+Mapped:           102628 kB
+Shmem:             39460 kB
+Slab:             252272 kB
+SReclaimable:     208108 kB
+SUnreclaim:        44164 kB
+KernelStack:        8704 kB
+PageTables:        61528 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     7718048 kB
+Committed_AS:   12324932 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:      323584 kB
+VmallocChunk:   34359331384 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:   2009088 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:      112064 kB
+DirectMap2M:     7227392 kB
+
+
+CPU:total 4 (4 cores per cpu, 1 threads per core) family 6 model 23 stepping 10, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1
+
+/proc/cpuinfo:
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 23
+model name	: Intel(R) Core(TM)2 Quad CPU    Q8300  @ 2.50GHz
+stepping	: 10
+microcode	: 0xa0b
+cpu MHz		: 2497.000
+cache size	: 2048 KB
+physical id	: 0
+siblings	: 4
+core id		: 0
+cpu cores	: 4
+apicid		: 0
+initial apicid	: 0
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx lm constant_tsc arch_perfmon pebs bts rep_good nopl aperfmperf pni dtes64 monitor ds_cpl est tm2 ssse3 cx16 xtpr pdcm sse4_1 xsave lahf_lm dtherm
+bogomips	: 4999.92
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 1
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 23
+model name	: Intel(R) Core(TM)2 Quad CPU    Q8300  @ 2.50GHz
+stepping	: 10
+microcode	: 0xa0b
+cpu MHz		: 2497.000
+cache size	: 2048 KB
+physical id	: 0
+siblings	: 4
+core id		: 1
+cpu cores	: 4
+apicid		: 1
+initial apicid	: 1
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx lm constant_tsc arch_perfmon pebs bts rep_good nopl aperfmperf pni dtes64 monitor ds_cpl est tm2 ssse3 cx16 xtpr pdcm sse4_1 xsave lahf_lm dtherm
+bogomips	: 4999.92
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 2
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 23
+model name	: Intel(R) Core(TM)2 Quad CPU    Q8300  @ 2.50GHz
+stepping	: 10
+microcode	: 0xa0b
+cpu MHz		: 2497.000
+cache size	: 2048 KB
+physical id	: 0
+siblings	: 4
+core id		: 2
+cpu cores	: 4
+apicid		: 2
+initial apicid	: 2
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx lm constant_tsc arch_perfmon pebs bts rep_good nopl aperfmperf pni dtes64 monitor ds_cpl est tm2 ssse3 cx16 xtpr pdcm sse4_1 xsave lahf_lm dtherm
+bogomips	: 4999.92
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 3
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 23
+model name	: Intel(R) Core(TM)2 Quad CPU    Q8300  @ 2.50GHz
+stepping	: 10
+microcode	: 0xa0b
+cpu MHz		: 1998.000
+cache size	: 2048 KB
+physical id	: 0
+siblings	: 4
+core id		: 3
+cpu cores	: 4
+apicid		: 3
+initial apicid	: 3
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx lm constant_tsc arch_perfmon pebs bts rep_good nopl aperfmperf pni dtes64 monitor ds_cpl est tm2 ssse3 cx16 xtpr pdcm sse4_1 xsave lahf_lm dtherm
+bogomips	: 4999.92
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+
+
+Memory: 4k page, physical 7145804k(554676k free), swap 4145148k(3516772k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (20.6-b01) for linux-amd64 JRE (1.6.0_31-b04), built on Jan 20 2012 10:18:50 by "java_re" with gcc 3.2.2 (SuSE Linux)
+
+time: Mon Jul 22 11:47:59 2013
+elapsed time: 110 seconds
+

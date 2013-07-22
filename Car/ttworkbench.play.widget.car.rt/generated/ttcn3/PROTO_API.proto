@@ -39,7 +39,7 @@ message warningType {
   optional sint64 carId = 1;
   required PROTO_API.warning warningName = 2;
   required PROTO_API.gpsPosition gpsPos = 3;
-  required sint64 priority = 4;
+  optional sint64 priority = 4;
 }
 
 message carStatusType {

@@ -31,7 +31,7 @@
         </parameter>
         <parameter id="TCP_LOCAL_HOST">
           <value>
-            <Values:charstring name="" type="charstring">
+            <Values:charstring xmlns:Values="Values.xsd" type="charstring">
               <Values:value>localhost</Values:value>
             </Values:charstring>
           </value>
@@ -39,7 +39,7 @@
         <parameter id="TCP_LOCAL_PORT">
           <value>
             <Values:integer xmlns:Values="Values.xsd" type="integer">
-              <Values:value>0</Values:value>
+              <Values:value>5000</Values:value>
             </Values:integer>
           </value>
         </parameter>
@@ -77,7 +77,7 @@
         <parameter id="TCP_LOCAL_PORT">
           <value>
             <Values:integer xmlns:Values="Values.xsd" type="integer">
-              <Values:value>5001</Values:value>
+              <Values:value>5000</Values:value>
             </Values:integer>
           </value>
         </parameter>
@@ -115,7 +115,7 @@
         <parameter id="TCP_LOCAL_PORT" value="${Parameters.ACTIONS_WIDGET_TCP_PORT}"/>
         <parameter id="TCP_REMOTE_HOST">
           <value>
-            <Values:charstring name="" type="charstring">
+            <Values:charstring xmlns:Values="Values.xsd" type="charstring">
               <Values:value>localhost</Values:value>
             </Values:charstring>
           </value>
@@ -123,7 +123,7 @@
         <parameter id="TCP_REMOTE_PORT">
           <value>
             <Values:integer xmlns:Values="Values.xsd" type="integer">
-              <Values:value>5000</Values:value>
+              <Values:value>5001</Values:value>
             </Values:integer>
           </value>
         </parameter>

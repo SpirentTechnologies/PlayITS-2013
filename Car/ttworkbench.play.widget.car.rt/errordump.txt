@@ -1,0 +1,287 @@
+
+Buildfile: /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/play-build.xml
+
+build:
+        [java] hint: cannot instantiate plugin 'com.testingtech.ttworkbench.auth.ttthree', only available in TTworkbench
+        [java] hint: cannot instantiate plugin 'com.testingtech.ttworkbench.auth.ttthree', only available in TTworkbench
+        [java] hint: cannot instantiate plugin 'DefaultCampaignGenerator', only available in TTworkbench
+        [java] hint: cannot instantiate plugin 't3docGenerator', its functionality will not be available
+        [java] log : processing
+        [java] Internal license, do not distribute outside Testing Technologies IST GmbH
+        [java] log : loading module `HANDLE_API' from `/net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3'
+        [java] log : parsing module `HANDLE_API'
+        [java] log : reducing module `HANDLE_API'
+        [java] hint: import from `ACTIONS_API'
+        [java] hint: import from `CONFIG_API'
+        [java] hint: import from `CONVERT_API'
+        [java] hint: import from `EVENTS_API'
+        [java] hint: import from `PROTO_API' language `PROTO'
+        [java] log : exporting module `HANDLE_API'
+        [java] log : loading module `ACTIONS_API' from `/net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3'
+        [java] log : parsing module `ACTIONS_API'
+        [java] log : reducing module `ACTIONS_API'
+        [java] hint: import from `CONFIG_CAR'
+        [java] hint: import from `Parameters'
+        [java] hint: import from `PROTO_API' language `PROTO'
+        [java] hint: import from `CONVERT_API'
+        [java] hint: import from `API'
+        [java] hint: import from `CONFIG_API'
+        [java] hint: import from `TTlibrary'
+        [java] log : exporting module `ACTIONS_API'
+        [java] log : loading module `CONFIG_CAR' from `/net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/CONFIG_CAR.ttcn3'
+        [java] log : parsing module `CONFIG_CAR'
+        [java] log : reducing module `CONFIG_CAR'
+        [java] hint: import from `PROTO_API' language `PROTO'
+        [java] log : exporting module `CONFIG_CAR'
+        [java] log : parsing PROTO file '/net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/PROTO_API.proto'
+        [java] log : Evaluation copy
+        [java] Internal license, do not distribute outside Testing Technologies IST GmbH
+        [java] log : parsing generated ttcn3 file '/net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/PROTO_API.ttcn3view'
+        [java] log : loading module `PROTO_API' from `/net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/PROTO_API.proto'
+        [java] log : reducing module `PROTO_API'
+        [java] hint: import from `PROTOAUX'
+        [java] log : exporting module `PROTO_API'
+        [java] hint: using builtin `PROTOAUX'
+        [java] log : reducing module `PROTOAUX'
+        [java] log : exporting module `PROTOAUX'
+        [java] log : verifying module `PROTOAUX'
+        [java] log : checking module `PROTO_API'
+        [java] log : generating module `PROTO_API'
+        [java] hint: found not yet generated module 'CONFIG_CAR': delaying java compilation of module 'PROTO_API'
+        [java] log : checking module `CONFIG_CAR'
+        [java] log : generating module `CONFIG_CAR'
+        [java] hint: found not yet generated module 'ACTIONS_API': delaying java compilation of module 'CONFIG_CAR'
+        [java] log : loading module `Parameters' from `/net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/Parameters.ttcn3'
+        [java] log : parsing module `Parameters'
+        [java] log : reducing module `Parameters'
+        [java] log : exporting module `Parameters'
+        [java] log : checking module `Parameters'
+        [java] log : generating module `Parameters'
+        [java] hint: found not yet generated module 'ACTIONS_API': delaying java compilation of module 'Parameters'
+        [java] log : loading module `CONVERT_API' from `/net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/CONVERT_API.ttcn3'
+        [java] log : parsing module `CONVERT_API'
+        [java] log : reducing module `CONVERT_API'
+        [java] hint: import from `API'
+        [java] hint: import from `PROTO_API' language `PROTO'
+        [java] log : exporting module `CONVERT_API'
+        [java] log : loading module `API' from `/net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/API.ttcn3'
+        [java] log : parsing module `API'
+        [java] log : reducing module `API'
+        [java] hint: import from `CONFIG_CAR'
+        [java] hint: import from `Parameters'
+        [java] log : exporting module `API'
+        [java] log : checking module `API'
+        [java] log : generating module `API'
+        [java] hint: found not yet generated module 'ACTIONS_API': delaying java compilation of module 'API'
+        [java] log : checking module `CONVERT_API'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/CONVERT_API.ttcn3:152:53:152:74: error: parameter 0 'p_value.warningName' of type 'var warning' is outside of parameter domain for 'CONVERT_API.fromProto_warning' (= 'PROTO_API.warning.enum_value optional')
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/CONVERT_API.ttcn3:152:53:152:74: error: (reason) 'p_value.warningName' of type 'record { warning__EnumValue enum_value; record of PROTOAUX.MessageField optional unknown_ }' would have to be of type 'enumerated warning__EnumValue { deer(1), rain(2), ice(3), accident(4), fog(5), snow(6) }'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/CONVERT_API.ttcn3:165:7:170:8: error: '{ carId := p_value.carId, warningName := CONVERT_API.toProto_warning(p_value.warningName), gpsPos := CONVERT_API.toProto_gpsPosition(p_value.gpsPos), priority := p_value.priority }' of type 'mapping { var integer optional carId; PROTO_API.warning.enum_value optional warningName; PROTO_API.gpsPosition optional gpsPos; var integer optional priority }' is not of type 'PROTO_API.warningType optional'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/CONVERT_API.ttcn3:166:18:166:31: error: (reason) 'p_value.carId' of type 'integer' would have to be of type 'integer:(-infinity..infinity)'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/CONVERT_API.ttcn3:167:24:167:72: error: (reason) not optional: 'CONVERT_API.toProto_warning(p_value.warningName)' ('{ carId := p_value.carId, warningName := CONVERT_API.toProto_warning(p_value.warningName), gpsPos := CONVERT_API.toProto_gpsPosition(p_value.gpsPos), priority := p_value.priority }.warningName') must not be omitted
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/CONVERT_API.ttcn3:167:24:167:72: error: (reason) 'CONVERT_API.toProto_warning(p_value.warningName)' of type 'enumerated warning__EnumValue { deer(1), rain(2), ice(3), accident(4), fog(5), snow(6) }' would have to be of type 'record { warning__EnumValue enum_value; record of PROTOAUX.MessageField optional unknown_ }'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/CONVERT_API.ttcn3:169:21:169:37: error: (reason) 'p_value.priority' of type 'integer' would have to be of type 'integer:(-infinity..infinity)'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/CONVERT_API.ttcn3:168:19:168:66: error: (reason) not optional: 'CONVERT_API.toProto_gpsPosition(p_value.gpsPos)' ('{ carId := p_value.carId, warningName := CONVERT_API.toProto_warning(p_value.warningName), gpsPos := CONVERT_API.toProto_gpsPosition(p_value.gpsPos), priority := p_value.priority }.gpsPos') must not be omitted
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/CONVERT_API.ttcn3:224:9:224:70: warning: 'CONVERT_API.fromProto_warningType(p_value[i])' of type 'API.warningType optional' maybe is not assignable to 'v_result[i]' of type 'var warningType'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/CONVERT_API.ttcn3:224:24:224:69: warning: (reason) not optional: 'CONVERT_API.fromProto_warningType(p_value[i])' must not be omitted
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/CONVERT_API.ttcn3:238:9:238:68: warning: 'CONVERT_API.toProto_warningType(p_value[i])' of type 'PROTO_API.warningType optional' maybe is not assignable to 'v_result[i]' of type 'var warningType'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/CONVERT_API.ttcn3:238:24:238:67: warning: (reason) not optional: 'CONVERT_API.toProto_warningType(p_value[i])' must not be omitted
+        [java] log : loading module `CONFIG_API' from `/net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/CONFIG_API.ttcn3'
+        [java] log : parsing module `CONFIG_API'
+        [java] log : reducing module `CONFIG_API'
+        [java] hint: import from `API'
+        [java] hint: import from `PROTO_API' language `PROTO'
+        [java] log : exporting module `CONFIG_API'
+        [java] log : checking module `CONFIG_API'
+        [java] error: java.lang.NullPointerException
+        [java] java.lang.NullPointerException
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.TypeChecker.checkIsType(TypeChecker.java:3935)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.TypeChecker.checkIsType(TypeChecker.java:3930)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.TypeChecker.visit(TypeChecker.java:3920)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.util.Visitor.visit(Visitor.java:740)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.TypeChecker.visit(TypeChecker.java:3638)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.util.Visitor.visit(Visitor.java:693)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.TypeChecker.visit(TypeChecker.java:3604)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.util.Visitor.visit(Visitor.java:670)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.util.Visitor.visit(Visitor.java:662)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.TypeChecker.visit(TypeChecker.java:2522)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.util.Visitor.visit(Visitor.java:248)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.TypeChecker.visit(TypeChecker.java:490)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.util.Visitor.visit(Visitor.java:220)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.util.Visitor.visit(Visitor.java:181)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.TypeChecker.visit(TypeChecker.java:463)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.util.Visitor.visit(Visitor.java:149)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.util.Visitor.visit(Visitor.java:92)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.AbstractTypeChecker.visit(AbstractTypeChecker.java:352)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.TypeChecker.visit(TypeChecker.java:424)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.util.Visitor.visit(Visitor.java:37)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.util.Visitor.visit(Visitor.java:65)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.util.Visitor.visit(Visitor.java:1171)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.AbstractTypeChecker.visit(AbstractTypeChecker.java:347)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.util.Visitor.visit(Visitor.java:1047)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.util.Visitor.visit(Visitor.java:672)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.util.Visitor.visit(Visitor.java:662)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.TypeChecker.visit(TypeChecker.java:2522)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.util.Visitor.visit(Visitor.java:297)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.AbstractTypeChecker.visit(AbstractTypeChecker.java:334)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.util.Visitor.visit(Visitor.java:190)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.TypeChecker.visit(TypeChecker.java:463)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.util.Visitor.visit(Visitor.java:149)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.util.Visitor.visit(Visitor.java:92)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.AbstractTypeChecker.visit(AbstractTypeChecker.java:352)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.TypeChecker.visit(TypeChecker.java:424)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.util.Visitor.visit(Visitor.java:52)
+        [java] 	at de.tu_berlin.cs.uebb.muttcn.absy.AbstractTypeChecker.check(AbstractTypeChecker.java:312)
+        [java] 	at de.tu_berlin.cs.uebb.ttcn.compiler.Server$ModuleJob.check(Server.java:2880)
+        [java] 	at de.tu_berlin.cs.uebb.ttcn.compiler.Server$ModuleJob.process(Server.java:2006)
+        [java] 	at de.tu_berlin.cs.uebb.ttcn.compiler.Server$Compilator.run(Server.java:4142)
+        [java] 	at java.lang.Thread.run(Thread.java:662)
+        [java] failure: null
+        [java] hint: using builtin `TTlibrary'
+        [java] hint: skipping reduction of module `TTlibrary'
+        [java] hint: skipping reduction of module `TTlibrary'
+        [java] log : checking module `ACTIONS_API'
+        [java] hint: skipping reduction of module `TTlibrary'
+        [java] hint: imported module `CONVERT_API' had errors
+        [java] hint: imported module `CONFIG_API' had errors
+        [java] hint: skipping reduction of module `TTlibrary'
+        [java] hint: imported module `TTlibrary' had errors
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:9:5:9:33: error: can't find module 'CONVERT_API'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:11:5:11:32: error: can't find module 'CONFIG_API'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:12:5:12:31: error: can't find module 'TTlibrary'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:25:79:25:88: error: 'COMPONENT' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:28:9:28:19: error: 'carActions' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:29:16:29:26: error: 'carActions' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:29:16:29:35: error: 'carActions' of type 'none' is not of type 'port'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:31:16:31:26: error: 'carActions' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:31:16:31:41: error: 'carActions' of type 'none' is not of type 'port'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:42:67:42:76: error: 'COMPONENT' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:45:9:45:19: error: 'carActions' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:46:16:46:26: error: 'carActions' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:46:16:46:35: error: 'carActions' of type 'none' is not of type 'port'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:48:16:48:26: error: 'carActions' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:48:16:48:41: error: 'carActions' of type 'none' is not of type 'port'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:58:67:58:76: error: 'COMPONENT' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:61:9:61:19: error: 'carActions' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:62:16:62:26: error: 'carActions' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:62:16:62:35: error: 'carActions' of type 'none' is not of type 'port'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:64:16:64:26: error: 'carActions' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:64:16:64:41: error: 'carActions' of type 'none' is not of type 'port'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:74:71:74:80: error: 'COMPONENT' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:77:9:77:19: error: 'carActions' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:78:16:78:26: error: 'carActions' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:78:16:78:35: error: 'carActions' of type 'none' is not of type 'port'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:80:16:80:26: error: 'carActions' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:80:16:80:41: error: 'carActions' of type 'none' is not of type 'port'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:86:71:86:80: error: 'COMPONENT' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:90:39:90:52: error: 'TTlibrary_Net' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:91:9:91:19: error: 'carActions' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:92:16:92:26: error: 'carActions' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:92:16:92:35: error: 'carActions' of type 'none' is not of type 'port'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:94:16:94:26: error: 'carActions' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:94:16:94:41: error: 'carActions' of type 'none' is not of type 'port'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:100:69:100:78: error: 'COMPONENT' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:102:9:102:19: error: 'widgetExit' was imported from multiple modules: API, PROTO_API
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:104:9:104:19: error: 'carActions' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:105:16:105:26: error: 'carActions' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:105:16:105:35: error: 'carActions' of type 'none' is not of type 'port'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:106:16:106:26: error: 'carActions' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:106:16:106:41: error: 'carActions' of type 'none' is not of type 'port'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:117:39:117:48: error: 'COMPONENT' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:119:12:119:21: error: 'carEvents' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:119:72:119:78: error: 'carEvents' of type 'none' is not of type 'port'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:119:12:119:79: error: 'carEvents' of type 'none' is not of type 'port'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:120:13:120:22: error: 'calltimer' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:121:13:121:35: error: 'EVENTS_PORT_widgetPort' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:122:20:122:42: error: 'EVENTS_PORT_widgetPort' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:122:20:122:81: error: 'EVENTS_PORT_widgetPort' of type 'none' is not of type 'port'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:123:21:123:30: error: 'carEvents' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:125:20:125:42: error: 'EVENTS_PORT_widgetPort' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:125:20:125:58: error: 'EVENTS_PORT_widgetPort' of type 'none' is not of type 'port'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:134:33:134:42: error: 'COMPONENT' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:141:13:141:40: warning: field 'ACTIONS_PORT_widgetPort' in 'mtc' of unknown type may not exist
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:141:42:141:72: warning: field 'ACTIONS_PORT_widgetPort' in 'system' of unknown type may not exist
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:142:13:142:39: warning: field 'EVENTS_PORT_widgetPort' in 'mtc' of unknown type may not exist
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:142:41:142:70: warning: field 'EVENTS_PORT_widgetPort' in 'system' of unknown type may not exist
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:144:13:144:26: warning: field 'carEvents' in 'mtc' of unknown type may not exist
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:144:28:144:44: warning: field 'carEvents' in 'system' of unknown type may not exist
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:145:13:145:27: warning: field 'carActions' in 'mtc' of unknown type may not exist
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:145:29:145:46: warning: field 'carActions' in 'system' of unknown type may not exist
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:147:8:147:36: warning: 'self' of type 'null' maybe is not of type 'component'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:147:8:147:36: warning: (reason) 'self' of type 'COMPONENT' would have to be of type 'component'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:150:34:150:43: error: 'COMPONENT' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:151:15:151:42: warning: field 'ACTIONS_PORT_widgetPort' in 'mtc' of unknown type may not exist
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:151:44:151:74: warning: field 'ACTIONS_PORT_widgetPort' in 'system' of unknown type may not exist
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:152:15:152:41: warning: field 'EVENTS_PORT_widgetPort' in 'mtc' of unknown type may not exist
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:152:43:152:72: warning: field 'EVENTS_PORT_widgetPort' in 'system' of unknown type may not exist
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:154:15:154:28: warning: field 'carEvents' in 'mtc' of unknown type may not exist
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:154:30:154:46: warning: field 'carEvents' in 'system' of unknown type may not exist
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:155:15:155:29: warning: field 'carActions' in 'mtc' of unknown type may not exist
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/ttcn3/ACTIONS_API.ttcn3:155:31:155:48: warning: field 'carActions' in 'system' of unknown type may not exist
+        [java] log : loading module `EVENTS_API' from `/net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/EVENTS_API.ttcn3'
+        [java] log : parsing module `EVENTS_API'
+        [java] log : reducing module `EVENTS_API'
+        [java] hint: import from `API'
+        [java] hint: import from `CONFIG_API'
+        [java] hint: import from `CONVERT_API'
+        [java] hint: import from `PROTO_API' language `PROTO'
+        [java] log : exporting module `EVENTS_API'
+        [java] log : checking module `EVENTS_API'
+        [java] hint: imported module `CONFIG_API' had errors
+        [java] hint: imported module `CONVERT_API' had errors
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/EVENTS_API.ttcn3:4:3:4:30: error: can't find module 'CONFIG_API'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/EVENTS_API.ttcn3:5:3:5:31: error: can't find module 'CONVERT_API'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/EVENTS_API.ttcn3:8:72:8:81: error: 'COMPONENT' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/EVENTS_API.ttcn3:9:5:9:27: error: 'EVENTS_PORT_widgetPort' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/EVENTS_API.ttcn3:10:5:10:27: error: 'EVENTS_PORT_widgetPort' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/EVENTS_API.ttcn3:10:5:10:77: error: 'EVENTS_PORT_widgetPort' of type 'none' is not of type 'port'
+        [java] log : checking module `HANDLE_API'
+        [java] hint: imported module `ACTIONS_API' had errors
+        [java] hint: imported module `CONFIG_API' had errors
+        [java] hint: imported module `CONVERT_API' had errors
+        [java] hint: imported module `EVENTS_API' had errors
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:3:3:3:31: error: can't find module 'ACTIONS_API'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:4:3:4:30: error: can't find module 'CONFIG_API'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:5:3:5:31: error: can't find module 'CONVERT_API'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:6:3:6:30: error: can't find module 'EVENTS_API'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:9:35:9:44: error: 'COMPONENT' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:16:8:16:31: error: 'ACTIONS_PORT_widgetPort' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:16:92:16:114: error: 'ACTIONS_PORT_widgetPort' of type 'none' is not of type 'port'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:16:8:16:115: error: 'ACTIONS_PORT_widgetPort' of type 'none' is not of type 'port'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:17:7:17:30: error: 'ACTIONS_PORT_widgetPort' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:18:7:18:34: error: 'ACTION_API__onOffEngineType' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:20:8:20:31: error: 'ACTIONS_PORT_widgetPort' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:20:86:20:102: error: 'ACTIONS_PORT_widgetPort' of type 'none' is not of type 'port'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:20:8:20:103: error: 'ACTIONS_PORT_widgetPort' of type 'none' is not of type 'port'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:21:7:21:30: error: 'ACTIONS_PORT_widgetPort' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:22:7:22:28: error: 'ACTION_API__speedType' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:24:8:24:31: error: 'ACTIONS_PORT_widgetPort' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:24:86:24:102: error: 'ACTIONS_PORT_widgetPort' of type 'none' is not of type 'port'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:24:8:24:103: error: 'ACTIONS_PORT_widgetPort' of type 'none' is not of type 'port'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:25:7:25:30: error: 'ACTIONS_PORT_widgetPort' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:26:7:26:28: error: 'ACTION_API__trackType' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:28:8:28:31: error: 'ACTIONS_PORT_widgetPort' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:28:88:28:106: error: 'ACTIONS_PORT_widgetPort' of type 'none' is not of type 'port'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:28:8:28:107: error: 'ACTIONS_PORT_widgetPort' of type 'none' is not of type 'port'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:29:7:29:30: error: 'ACTIONS_PORT_widgetPort' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:30:7:30:30: error: 'ACTION_API__warningType' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:32:8:32:31: error: 'ACTIONS_PORT_widgetPort' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:32:88:32:106: error: 'ACTIONS_PORT_widgetPort' of type 'none' is not of type 'port'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:32:8:32:107: error: 'ACTIONS_PORT_widgetPort' of type 'none' is not of type 'port'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:33:7:33:30: error: 'ACTIONS_PORT_widgetPort' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:34:7:34:30: error: 'ACTION_API__carInitType' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:36:8:36:31: error: 'ACTIONS_PORT_widgetPort' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:36:87:36:104: error: 'ACTIONS_PORT_widgetPort' of type 'none' is not of type 'port'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:36:8:36:105: error: 'ACTIONS_PORT_widgetPort' of type 'none' is not of type 'port'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:37:7:37:30: error: 'ACTIONS_PORT_widgetPort' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:38:7:38:29: error: 'ACTION_API__widgetExit' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:42:31:42:40: error: 'COMPONENT' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:43:5:43:13: error: 'PREAMBLE' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:47:5:47:14: error: 'POSTAMBLE' was not declared
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:42:31:42:40: error: 'COMPONENT' was not declared
+        [java] error: operand to 'createMTC' 'COMPONENT' is not a subtype of 'component'
+        [java] /net/home/bgr/git/PlayITS/Car/ttworkbench.play.widget.car.rt/generated/ttcn3/HANDLE_API.ttcn3:42:48:42:57: error: 'COMPONENT' was not declared
+        [java] error: 'mtc' of type 'var COMPONENT' is not of type 'component or timer or port'
+        [java] error: (reason) 'mtc' of type 'COMPONENT' would have to be of type 'component'
+        [java] log : bytecompiling module `PROTO_API'
+        [java] hint: executing <java-compiler> -g:lines -nowarn -d /tmp/TTthree-2013.07.12.13.54.17.989 -classpath /net/ttech/share/java/jdk1.6.0_31_x64/jre/lib/rt.jar:/local/workspaces/bgr/ttwork64/com.testingtech.ttthree.base/tt3plugins/ttthreeBaseJarExport/../../build:/local/workspaces/bgr/ttwork64/com.testingtech.tools/tt3plugins/coreJarExport/../../build/default:/local/workspaces/bgr/ttwork64/com.testingtech.tools/tt3plugins/coreJarExport/../../lib/tools.jar:/local/workspaces/bgr/ttwork64/com.testingtech.ttthree.runtime/tt3plugins/tt3RuntimeJarExport/../../build:/tmp/TTthree-2013.07.12.13.54.17.989/PROTOAUX.jar:/tmp/TTthree-2013.07.12.13.54.17.989 -sourcepath /tmp/TTthree-2013.07.12.13.54.17.989 -target 1.5 -source 1.5 "/tmp/TTthree-2013.07.12.13.54.17.989/generated_ttcn/TTCN3_PROTO_API.java" "/tmp/TTthree-2013.07.12.13.54.17.989/generated_ttcn/TTCN3_API.java" "/tmp/TTthree-2013.07.12.13.54.17.989/generated_ttcn/TTCN3_Parameters.java" "/tmp/TTthree-2013.07.12.13.54.17.989/generated_ttcn/TTCN3_CONFIG_CAR.java"

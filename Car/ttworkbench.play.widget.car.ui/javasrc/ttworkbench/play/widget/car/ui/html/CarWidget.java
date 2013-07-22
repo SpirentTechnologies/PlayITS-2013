@@ -174,15 +174,20 @@ public class CarWidget {
 		public Object function(final Object[] args) {
 
 			//Get the name of the function and invoke that function in JAVA
-			new Thread(new Runnable() {
-				public void run() {
-					execFunction(args);
-				}
-			}).start();
+//			new Thread(new Runnable() {
+//				public void run() {
+//				}
+//			}).start();
+			execFunction(args);
 			return null;
 		}
 
 		private void execFunction(Object[] args) {
+			
+			for(Object arg : args){
+				System.out.printf("%s",arg.getClass().toString());
+			}
+			System.out.printf("\n");
 			if("motor".equals(this.getName())) {
 
 				boolean motorOn = (Boolean)args[0];

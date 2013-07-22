@@ -111,7 +111,8 @@ public class WidgetController {
 			request.setWarningName(PROTO_API.warning.newBuilder().setEnumValue(convertWarn(wt.getWarning())));
 			request.setPriority(-1);
 			client().getActionsService().aPIWarningType(client().getController(), request.build());
-
+			System.out.println("send Warning! ");
+			
 		} catch (Throwable e) {
 
 			System.out.println("Can't send Warning! " + e.getMessage());
