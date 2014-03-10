@@ -11,3 +11,4 @@ Require-Bundle: org.eclipse.ui,
  ttworkbench.play.widget.car.rt
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Localization: plugin
+Bundle-ClassPath: simulation.car.tests.jar

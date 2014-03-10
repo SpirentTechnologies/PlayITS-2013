@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %bundle-name
 Bundle-SymbolicName: ttworkbench.play.simulation.car;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-ClassPath: car.jar
+Bundle-ClassPath: simulation.car.jar
 Require-Bundle: com.testingtech.tools,
  org.eclipse.ui,
  org.eclipse.core.runtime,

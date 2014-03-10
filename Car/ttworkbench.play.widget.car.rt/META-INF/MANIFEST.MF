@@ -9,3 +9,4 @@ Require-Bundle: com.testingtech.tools,
  com.testingtech.ttthree.runtime
 Export-Package: com.testingtech.ttworkbench.play.generated
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ClassPath: widget.car.rt.jar
