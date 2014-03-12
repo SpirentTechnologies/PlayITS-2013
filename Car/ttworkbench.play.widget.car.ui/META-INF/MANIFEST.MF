@@ -15,6 +15,6 @@ Require-Bundle: org.eclipse.ui,
  ttworkbench.play.widget.car.rt,
  ttworkbench.play.simulation.car
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Bundle-ClassPath: .
+Bundle-ClassPath: widget.car.ui.jar
 Bundle-Activator: ttworkbench.play.widget.car.ui.Activator
 Bundle-ActivationPolicy: lazy
